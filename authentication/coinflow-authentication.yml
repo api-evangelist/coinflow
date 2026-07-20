@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/coinflow-openapi-original.json
+docs: https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  model: >-
+    Multi-layered header auth. Server-to-server requests carry the merchant API
+    key in the Authorization header. End-user context is established either by a
+    session key (call get-session-key with x-coinflow-auth-user-id, then pass
+    x-coinflow-auth-session-key; session keys last 24 hours) or by web3 wallet
+    verification (x-coinflow-auth-wallet + x-coinflow-auth-blockchain, proven with
+    a signature in x-coinflow-auth-signed-message and confirmed via verify-token).
+    No OAuth2/OIDC.
+  session_ttl: 24 hours
+schemes:
+- name: wallet
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-wallet
+  description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: blockchain
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-blockchain
+  description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: userId
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-user-id
+  description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: merchant
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: signedMessage
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-signed-message
+  description: The message signed by the users wallet
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: merchantId
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-merchant-id
+  description: The merchant ID the session should be generated for
+  sources:
+  - openapi/coinflow-openapi-original.json
+- name: sessionKey
+  type: apiKey
+  in: header
+  parameter: x-coinflow-auth-session-key
+  description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+  sources:
+  - openapi/coinflow-openapi-original.json
