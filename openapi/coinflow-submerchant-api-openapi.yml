@@ -1,0 +1,921 @@
+openapi: 3.1.0
+info:
+  title: API Reference authentication subMerchant API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: subMerchant
+paths:
+  /submerchant:
+    get:
+      operationId: get-submerchants
+      summary: Get All Submerchants
+      tags:
+      - subMerchant
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+          default: 100
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SanitizedMerchant'
+  /submerchant/{submerchantId}:
+    get:
+      operationId: get-submerchant
+      summary: Get Submerchant by ID
+      tags:
+      - subMerchant
+      parameters:
+      - name: submerchantId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SanitizedMerchant'
+        '404':
+          description: Submerchant Not Found
+          content:
+            application/json:
+              schema:
+                description: Any type
+  /submerchant/onboarding-token:
+    post:
+      operationId: get-onboarding-token
+      summary: Get Submerchant Onboarding Token
+      description: 'Mint a short-lived onboarding token that authorizes creating a
+
+        submerchant or seller under the authenticated merchant. The token embeds
+
+        the caller''s own merchantId as the parent — it cannot be minted for
+
+        another merchant.'
+      tags:
+      - subMerchant
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubMerchant_GetOnboardingToken_Response_200'
+components:
+  schemas:
+    PayPalPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - citcon
+      - mock
+      - paypal
+      title: PayPalPayoutProvider
+    Currency:
+      type: string
+      enum:
+      - USD
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CHF
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ETB
+      - EUR
+      - FJD
+      - GBP
+      - GEL
+      - GHS
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MWK
+      - MVR
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RWF
+      - SAR
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SLE
+      - SLL
+      - SOS
+      - SRD
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - UYU
+      - UZS
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XCD
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMW
+      - ZWL
+      - CDF
+      - ERN
+      - FKP
+      - KPW
+      - RUB
+      - SBD
+      - SHP
+      - SSP
+      - VES
+      title: Currency
+    PortalBrand:
+      type: string
+      enum:
+      - approvely
+      - seamlesschex
+      - coinflow
+      - yourbrandhere
+      - Plan2Play
+      - tango
+      - interlace
+      - tapvia
+      title: PortalBrand
+    TokenizationProviderOption:
+      type: string
+      enum:
+      - bt
+      - tokenex
+      title: TokenizationProviderOption
+    RtpPayoutProvider:
+      type: string
+      enum:
+      - dwolla
+      - mock
+      - aptpay
+      - aptpayRtp
+      - checkbook
+      - brale
+      title: RtpPayoutProvider
+    FeePayerMode:
+      type: string
+      enum:
+      - user
+      - merchant
+      - invoice
+      title: FeePayerMode
+    VenmoPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - citcon
+      - mock
+      - paypal
+      title: VenmoPayoutProvider
+    SanitizedMerchantCardSettings:
+      type: object
+      properties:
+        statementDescriptor:
+          type: string
+        saveCardDefault:
+          type: boolean
+        processor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        googlePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        applePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        supportsApplePay:
+          type: boolean
+        supportsGooglePay:
+          type: boolean
+        tokenizationProvider:
+          $ref: '#/components/schemas/TokenizationProviderOption'
+        avsCheck:
+          type: boolean
+        requiresKyc:
+          type: boolean
+        aftEnabled:
+          type: boolean
+      required:
+      - avsCheck
+      - requiresKyc
+      - aftEnabled
+      description: From T, pick a set of properties whose keys are in the union K
+      title: SanitizedMerchantCardSettings
+    CustomPayInFeeValue0:
+      type: object
+      properties:
+        cents:
+          type: number
+          format: double
+        currency:
+          $ref: '#/components/schemas/Currency'
+        percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue0
+    CustomPayInFeeValue1:
+      type: object
+      properties:
+        cents:
+          type:
+          - number
+          - 'null'
+          format: double
+        currency:
+          type:
+          - number
+          - 'null'
+          format: double
+        percent:
+          type: number
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue1
+    PayoutProviderOption:
+      type: string
+      enum:
+      - aptpay
+      - coinfx
+      - checkbook
+      - BRAID
+      - brale
+      - mock
+      title: PayoutProviderOption
+    CustomPayInFeeConfig:
+      type: object
+      properties:
+        fee:
+          $ref: '#/components/schemas/CustomPayInFeeValue'
+        lineItemLabel:
+          type: string
+      required:
+      - fee
+      - lineItemLabel
+      title: CustomPayInFeeConfig
+    CustomPayInFeeValue:
+      oneOf:
+      - $ref: '#/components/schemas/CustomPayInFeeValue0'
+      - $ref: '#/components/schemas/CustomPayInFeeValue1'
+      title: CustomPayInFeeValue
+    WirePayoutProvider:
+      type: string
+      enum:
+      - MOCK
+      - BRAID
+      title: WirePayoutProvider
+    EftPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - aptpay
+      - mock
+      title: EftPayoutProvider
+    IbanPayoutProvider:
+      type: string
+      enum:
+      - merge
+      - mock
+      - ivy
+      title: IbanPayoutProvider
+    InteracProcessor:
+      type: string
+      enum:
+      - mock
+      - aptpay
+      title: InteracProcessor
+    Cents:
+      type: object
+      properties:
+        cents:
+          type: integer
+      required:
+      - cents
+      title: Cents
+    PixPayoutProvider:
+      type: string
+      enum:
+      - brla
+      - mock
+      title: PixPayoutProvider
+    MerchantStyle:
+      type: string
+      enum:
+      - rounded
+      - sharp
+      - pill
+      title: MerchantStyle
+    InteracPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - mock
+      - aptpay
+      title: InteracPayoutProvider
+    KycType:
+      type: string
+      enum:
+      - person
+      - business
+      - both
+      title: KycType
+    MerchantBrandSettings:
+      type: object
+      properties:
+        portalBrand:
+          $ref: '#/components/schemas/PortalBrand'
+        logo:
+          type: string
+        displayName:
+          type: string
+      title: MerchantBrandSettings
+    ApplePayPayoutProvider:
+      type: string
+      enum:
+      - aptpay
+      - MOCK
+      title: ApplePayPayoutProvider
+    SanitizedMerchantSettlementAddresses:
+      type: object
+      properties:
+        solana:
+          type: string
+        eth:
+          type: string
+        polygon:
+          type: string
+        base:
+          type: string
+        user:
+          type: string
+        arbitrum:
+          type: string
+        stellar:
+          type: string
+        monad:
+          type: string
+        tempo:
+          type: string
+      title: SanitizedMerchantSettlementAddresses
+    Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_:
+      type: object
+      properties:
+        instantSettle:
+          type: boolean
+        requireKycBeforePurchase:
+          type: boolean
+      required:
+      - instantSettle
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_
+    CustomPayInFeesConfig:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomPayInFeeConfig'
+      title: CustomPayInFeesConfig
+    MerchantTheme:
+      type: object
+      properties:
+        showCardIcon:
+          type: boolean
+        placeholderColor:
+          type: string
+        expirationPlaceholder:
+          type: string
+        cvvPlaceholder:
+          type: string
+        cardNumberPlaceholder:
+          type: string
+        fontWeight:
+          type: string
+        fontSize:
+          type: string
+        style:
+          $ref: '#/components/schemas/MerchantStyle'
+        font:
+          type: string
+        ctaColor:
+          type: string
+        textColorAction:
+          type: string
+        textColorAccent:
+          type: string
+        textColor:
+          type: string
+        backgroundAccent2:
+          type: string
+        backgroundAccent:
+          type: string
+        cardBackground:
+          type: string
+        background:
+          type: string
+        primary:
+          type: string
+      title: MerchantTheme
+    InteracSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/InteracProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+      required:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: InteracSettings
+    SanitizedMerchantFirstPartyPayoutOverrides:
+      type: object
+      properties:
+        interacPayoutProvider:
+          $ref: '#/components/schemas/InteracPayoutProvider'
+        wirePayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/WirePayoutProvider'
+        paypalPayoutProvider:
+          $ref: '#/components/schemas/PayPalPayoutProvider'
+        venmoPayoutProvider:
+          $ref: '#/components/schemas/VenmoPayoutProvider'
+        appleP2cPayoutProvider:
+          $ref: '#/components/schemas/ApplePayPayoutProvider'
+        globalP2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        p2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        eftPayoutProvider:
+          $ref: '#/components/schemas/EftPayoutProvider'
+        pixPayoutProvider:
+          $ref: '#/components/schemas/PixPayoutProvider'
+        rtpPayoutProvider:
+          $ref: '#/components/schemas/RtpPayoutProvider'
+        ibanPayoutProvider:
+          $ref: '#/components/schemas/IbanPayoutProvider'
+        bankPayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutProviderOption'
+      title: SanitizedMerchantFirstPartyPayoutOverrides
+    SanitizedMerchant:
+      type: object
+      properties:
+        _id:
+          type: string
+        merchantId:
+          type: string
+        brand:
+          $ref: '#/components/schemas/MerchantBrandSettings'
+        colors:
+          $ref: '#/components/schemas/MerchantTheme'
+        url:
+          type: string
+        kycType:
+          $ref: '#/components/schemas/KycType'
+        settlementAddresses:
+          $ref: '#/components/schemas/SanitizedMerchantSettlementAddresses'
+        hideBranding:
+          type: boolean
+        onlyShowTotal:
+          type: boolean
+        pushToCardEnabled:
+          type: boolean
+        requireAniCheck:
+          type: boolean
+        bankPayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutProviderOption'
+        ibanPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/IbanPayoutProvider'
+        ibanPayoutProvider:
+          $ref: '#/components/schemas/IbanPayoutProvider'
+        rtpPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/RtpPayoutProvider'
+        rtpPayoutProvider:
+          $ref: '#/components/schemas/RtpPayoutProvider'
+        pixPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/PixPayoutProvider'
+        pixPayoutProvider:
+          $ref: '#/components/schemas/PixPayoutProvider'
+        eftPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EftPayoutProvider'
+        eftPayoutProvider:
+          $ref: '#/components/schemas/EftPayoutProvider'
+        p2cPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardPayoutProvider'
+        p2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        globalP2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        appleP2cPayoutProvider:
+          $ref: '#/components/schemas/ApplePayPayoutProvider'
+        venmoPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/VenmoPayoutProvider'
+        venmoPayoutProvider:
+          $ref: '#/components/schemas/VenmoPayoutProvider'
+        paypalPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayPalPayoutProvider'
+        paypalPayoutProvider:
+          $ref: '#/components/schemas/PayPalPayoutProvider'
+        wirePayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/WirePayoutProvider'
+        interacPayoutProviders:
+          type: array
+          items:
+            $ref: '#/components/schemas/InteracPayoutProvider'
+        interacPayoutProvider:
+          $ref: '#/components/schemas/InteracPayoutProvider'
+        interacPaymentProvider:
+          $ref: '#/components/schemas/InteracProcessor'
+        interacSettings:
+          $ref: '#/components/schemas/InteracSettings'
+        firstPartyPayoutOverrides:
+          $ref: '#/components/schemas/SanitizedMerchantFirstPartyPayoutOverrides'
+        creditSeed:
+          type: string
+        enforceJwt:
+          type: boolean
+        enforceCheckoutJwt:
+          type: boolean
+        externalVerificationLinks:
+          type: boolean
+        whitelistedAncestorUrls:
+          type: array
+          items:
+            type: string
+        enforceLivenessKyc:
+          type: boolean
+        feePayerPublicKey:
+          type: string
+        solanaFeePayerPublicKey:
+          type: string
+        solanaUsdcPayerPublicKey:
+          type: string
+        evmFeePayerAddress:
+          type: string
+        evmUsdcPayerAddress:
+          type: string
+        stellarUsdcPayerPublicKey:
+          type: string
+        _sanitized:
+          type: boolean
+        parent:
+          type: string
+        customPayInFees:
+          $ref: '#/components/schemas/CustomPayInFeesConfig'
+        cardSettings:
+          $ref: '#/components/schemas/SanitizedMerchantCardSettings'
+        achSettings:
+          $ref: '#/components/schemas/Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_'
+        verification:
+          $ref: '#/components/schemas/Pick_Verification.status_'
+        canAcceptAch:
+          type: boolean
+        canAcceptWire:
+          type: boolean
+        minTransactionAmount:
+          $ref: '#/components/schemas/Cents'
+        maxTransactionAmount:
+          $ref: '#/components/schemas/Cents'
+        withdrawalGeolocationRequired:
+          type: boolean
+          description: 'Authoritative: derived from the merchant''s blockingRules. The frontend
+
+            uses this to decide whether to prompt for geolocation; the backend
+
+            enforces independently via the same rules.'
+        checkoutGeolocationRequired:
+          type: boolean
+        paypalMerchantId:
+          type: string
+        paypalClientId:
+          type: string
+      required:
+      - _id
+      - merchantId
+      - kycType
+      - hideBranding
+      - onlyShowTotal
+      - pushToCardEnabled
+      - requireAniCheck
+      - interacSettings
+      - creditSeed
+      - enforceJwt
+      - feePayerPublicKey
+      - solanaFeePayerPublicKey
+      - solanaUsdcPayerPublicKey
+      - evmFeePayerAddress
+      - evmUsdcPayerAddress
+      - stellarUsdcPayerPublicKey
+      - _sanitized
+      - cardSettings
+      - achSettings
+      - verification
+      - canAcceptAch
+      - canAcceptWire
+      - withdrawalGeolocationRequired
+      - checkoutGeolocationRequired
+      title: SanitizedMerchant
+    Pick_Verification.status_:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+      required:
+      - status
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_Verification.status_
+    PaymentProcessor:
+      type: string
+      enum:
+      - payarc
+      - mock
+      - shift4
+      - merchant_warrior
+      - greenlight
+      - frame
+      - nmi_direct
+      - mvb
+      - fifththird
+      - natwest
+      - nuveiv1
+      - fallback_payarc_shift4
+      - fallback_shift4_payarc
+      - fallback_shift4_nuvei
+      - fallback_nuvei_payarc
+      - fallback_payarc_nuvei
+      - fallback_shift4_greenlight
+      - fallback_greenlight_shift4
+      - fallback_frame_merchant_warrior
+      - fallback_merchant_warrior_frame
+      - fallback_natwest_shift4
+      - fallback_natwest_nuvei
+      - fallback_natwest_shift4_payarc
+      - fallback_natwest_shift4_nuvei
+      - fallback_shift4_natwest_payarc
+      - fallback_nuvei_natwest_payarc
+      - fallback_natwest_nuvei_payarc
+      - fallback_mvb_fifththird_shift4_payarc
+      - fallback_fifththird_mvb_shift4_payarc
+      - fallback_mvb_nuvei
+      - fallback_nuvei_fifththird
+      - fallback_fifththird_nuvei
+      title: PaymentProcessor
+    VerificationStatus:
+      type: string
+      enum:
+      - pending
+      - partial-approval
+      - approved
+      - rejected
+      - expired
+      title: VerificationStatus
+    CardPayoutProvider:
+      type: string
+      enum:
+      - aptpay
+      - checkbook
+      - shift4
+      - MOCK
+      title: CardPayoutProvider
+    SubMerchant_GetOnboardingToken_Response_200:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+      title: SubMerchant_GetOnboardingToken_Response_200
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

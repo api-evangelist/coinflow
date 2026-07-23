@@ -1,0 +1,301 @@
+openapi: 3.1.0
+info:
+  title: API Reference authentication cardTokenization API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: cardTokenization
+paths:
+  /tokenize/associate-cvv:
+    post:
+      operationId: associate-cvv
+      summary: Associate CVV
+      description: 'Tokenize Card PAN & Optionally CVV in a server to server integration.
+
+
+        In order to gain access to this endpoint your company must have PCI-DSS
+
+        certification, and provide that to your Coinflow Integrations Representative.'
+      tags:
+      - cardTokenization
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      - name: tx-token-scheme
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/TokenizeAssociateCvvPostParametersTxTokenScheme'
+      - name: tx-tokenex-id
+        in: header
+        description: 'In the Sandbox Environment pass: 4582952996979143
+
+          In Production pass: 2781185452603874'
+        required: true
+        schema:
+          type: string
+      - name: tx-apikey
+        in: header
+        description: Contact your Coinflow integrations representative to receive this value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerToServerTokenizationResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerToServerAssociatedCvvRequest'
+  /tokenize:
+    post:
+      operationId: tokenize
+      summary: Tokenize Card and CVV
+      description: 'Tokenize Card PAN & Optionally CVV in a server to server integration.
+
+
+        In order to gain access to this endpoint your company must have PCI-DSS
+
+        certification, and provide that to your Coinflow Integrations Representative.'
+      tags:
+      - cardTokenization
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      - name: tx-token-scheme
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/TokenizePostParametersTxTokenScheme'
+      - name: tx-tokenex-id
+        in: header
+        description: 'In the Sandbox Environment pass: 4582952996979143
+
+          In Production pass: 2781185452603874'
+        required: true
+        schema:
+          type: string
+      - name: tx-apikey
+        in: header
+        description: Contact your Coinflow integrations representative to receive this value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerToServerTokenizationResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerToServerTokenizationRequest'
+  /tokenize/card-only:
+    post:
+      operationId: card-only
+      summary: Tokenize Card Only
+      description: 'Tokenize Card PAN without CVV in a server to server integration.
+
+
+        In order to gain access to this endpoint your company must have PCI-DSS
+
+        certification, and provide that to your Coinflow Integrations Representative.'
+      tags:
+      - cardTokenization
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      - name: tx-token-scheme
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/TokenizeCardOnlyPostParametersTxTokenScheme'
+      - name: tx-tokenex-id
+        in: header
+        description: 'In the Sandbox Environment pass: 4582952996979143
+
+          In Production pass: 2781185452603874'
+        required: true
+        schema:
+          type: string
+      - name: tx-apikey
+        in: header
+        description: Contact your Coinflow integrations representative to receive this value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerToServerTokenizationResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerToServerCardOnlyRequest'
+components:
+  schemas:
+    ServerToServerTokenizationRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 'The data to be tokenized. This is the PAN of the card.
+
+            Example: 4111111111111111
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+        cvv:
+          type: string
+          description: 'The value of the CVV you want to associate with the token.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      title: ServerToServerTokenizationRequest
+    ServerToServerTokenizationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        firstSix:
+          type: string
+        lastFour:
+          type: string
+        referenceNumber:
+          type: string
+        success:
+          type: boolean
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - token
+      - firstSix
+      - lastFour
+      - referenceNumber
+      - success
+      - error
+      - message
+      title: ServerToServerTokenizationResponse
+    TokenizeAssociateCvvPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeAssociateCvvPostParametersTxTokenScheme
+    ServerToServerAssociatedCvvRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: 'The token to associate the CVV with.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+        cvv:
+          type: string
+          description: 'The value of the CVV you wish to associate with the token.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      required:
+      - token
+      title: ServerToServerAssociatedCvvRequest
+    TokenizeCardOnlyPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeCardOnlyPostParametersTxTokenScheme
+    ServerToServerCardOnlyRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 'The data to be tokenized. This is the PAN of the card.
+
+            Example: 4111111111111111
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      title: ServerToServerCardOnlyRequest
+    TokenizePostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizePostParametersTxTokenScheme
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

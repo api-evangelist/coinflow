@@ -1,0 +1,1612 @@
+openapi: 3.1.0
+info:
+  title: API Reference authentication marketplace API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: marketplace
+paths:
+  /seller/usdc-withdraw/recipient:
+    post:
+      operationId: add-usdc-withdraw-recipient
+      summary: Adds a USDC recipient.
+      description: Registers a solana address that can receive USDC from the merchant’s Coinflow wallet balance
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+        '451':
+          description: Must Complete Additional Verification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationRequiredResponse'
+      requestBody:
+        description: '- The recipient''s solana wallet address'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipient:
+                  type: string
+              required:
+              - recipient
+    delete:
+      operationId: remove-usdc-withdraw-recipient
+      summary: Removes a USDC recipient.
+      description: Removes a solana address from the merchant's allowlisted USDC recipients
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+      requestBody:
+        description: '- The recipient''s solana wallet address'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipient:
+                  type: string
+              required:
+              - recipient
+  /seller:
+    post:
+      operationId: create-seller
+      summary: Create Seller
+      description: Given the verification information, register a seller to a marketplace
+      tags:
+      - marketplace
+      responses:
+        '200':
+          description: Successful response
+        '451':
+          description: Must Complete Additional Verification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationRequiredResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSellerRequest'
+  /seller/usdc-withdraw:
+    post:
+      operationId: seller-usdc-withdraw
+      summary: Creates a USDC withdrawal transaction for a merchant using the Coinflow wallet
+      description: Creates a usdc withdrawal transaction for merchants using Coinflow wallet- so they can withdraw usdc from their wallet.
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerUsdcWithdrawResponse'
+        '451':
+          description: Must Complete Additional Verification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationRequiredResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerUsdcWithdrawRequest'
+  /marketplace/kyc/download/{verificationId}:
+    get:
+      operationId: download-kyc
+      summary: Download Seller KYC verification report.
+      tags:
+      - marketplace
+      parameters:
+      - name: verificationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+  /marketplace/link/purchase:
+    post:
+      operationId: get-purchase-link
+      summary: Get Purchase Link
+      description: 'Get a link which the marketplace can redirect or present via iframe to the
+
+        customer for them to complete a purchase with a seller.'
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketplaceLinkResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMarketplacePurchaseLinkRequest'
+  /marketplace/link/purchase/credits:
+    post:
+      operationId: get-purchase-with-credits-link
+      summary: Get Purchase with Credits link
+      description: Get a link for a user to make a marketplace purchase with their Credits Balance
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketplaceLinkResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                checkoutJwtToken:
+                  type: string
+                email:
+                  type: string
+              required:
+              - checkoutJwtToken
+  /marketplace/link/seller/login:
+    post:
+      operationId: get-seller-login-link
+      summary: Get Seller Login Link
+      description: 'Get a link which the marketplace can redirect sellers to login to
+
+        their dashboards and view purchases and withdraw their money.'
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketplaceLinkResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Marketplace_GetSellerLoginLink_Request'
+  /marketplace/link/seller/registration:
+    post:
+      operationId: get-seller-register-link
+      summary: Get Seller Registration Link
+      description: 'Get a link which the marketplace can redirect new sellers to register
+
+        their accounts.'
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketplaceLinkResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMarketplaceSellerRegistrationLinkRequest'
+  /seller/verifyTransaction:
+    get:
+      operationId: get-verify-transaction
+      summary: Get Seller Verification Transaction
+      description: 'Returns a verification transaction so the seller needs to sign and send with their MPC wlalet.
+
+        The transaction verifies that they have access to the authentication method tied to the MPC wallet which is linked
+
+        to their Coinflow Account.'
+      tags:
+      - marketplace
+      parameters:
+      - name: parentId
+        in: query
+        description: '- The parent merchant ID (can be merchantId or _id)'
+        required: true
+        schema:
+          type: string
+      - name: x-coinflow-auth-wallet
+        in: header
+        description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: string
+  /marketplace/link/subscription:
+    post:
+      operationId: get-subscribe-link
+      summary: Get Subscription Link
+      description: 'Get a link which the marketplace can redirect or present via iframe to the
+
+        customer for them to subscribe to a particular seller''s subscription.'
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMarketplaceLinkResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMarketplaceSubscribeLinkRequest'
+  /marketplace/wallet:
+    post:
+      operationId: get-wallet-address-by-email
+      summary: Get wallet by email
+      description: 'Given an email address returns the MPC wallet address for the user. Can
+
+        be used to pass into the SDK, query the API, and check balances.'
+      tags:
+      - marketplace
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Marketplace_GetWalletAddressByEmail_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Email'
+components:
+  schemas:
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment:
+      type: string
+      enum:
+      - digital
+      - physical
+      description: How the product was fulfilled.
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment
+    AdditionalVerification:
+      type: object
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+        reference:
+          type: string
+        vendor:
+          $ref: '#/components/schemas/VerificationVendor'
+        sessionToken:
+          type: string
+      required:
+      - name
+      - link
+      - reference
+      - vendor
+      title: AdditionalVerification
+    SellerDocVKybBody:
+      type: object
+      properties:
+        email:
+          type: string
+        onboardingToken:
+          type: string
+          description: 'Server-signed onboarding token minted by the parent marketplace. The
+
+            parent is derived from this token — it cannot be supplied directly.
+
+            Not required when the request is authenticated with the marketplace''s
+
+            API key; the parent is then derived from the key.'
+        sellerId:
+          type: string
+          description: MerchantId of the individual seller
+        business:
+          type: boolean
+        country:
+          type: string
+      required:
+      - email
+      - sellerId
+      - business
+      - country
+      title: SellerDocVKybBody
+    SellerInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the seller
+        email:
+          type:
+          - string
+          - 'null'
+          description: 'Email
+
+            Example: lois.lane@dailyplanet.com'
+        firstName:
+          type: string
+          description: 'First name
+
+            Example: Lois'
+        lastName:
+          type: string
+          description: 'Last name
+
+            Example: Lois'
+        dob:
+          type: string
+          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
+
+            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
+        rawSellerData:
+          $ref: '#/components/schemas/Record_string.any_'
+      title: SellerInfo
+    MoneyTopUpCartItemItemClass:
+      type: string
+      enum:
+      - moneyTopUp
+      description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+        Allowed value: moneyTopUp
+
+        Example: moneyTopUp'
+      title: MoneyTopUpCartItemItemClass
+    CreateSellerRequest:
+      oneOf:
+      - $ref: '#/components/schemas/SellerUsKybBody'
+      - $ref: '#/components/schemas/SellerUsKycBody'
+      - $ref: '#/components/schemas/SellerDocVKybBody'
+      - $ref: '#/components/schemas/SellerDocVKycBody'
+      title: CreateSellerRequest
+    SellerDocVKycBody:
+      type: object
+      properties:
+        email:
+          type: string
+        onboardingToken:
+          type: string
+          description: 'Server-signed onboarding token minted by the parent marketplace. The
+
+            parent is derived from this token — it cannot be supplied directly.
+
+            Not required when the request is authenticated with the marketplace''s
+
+            API key; the parent is then derived from the key.'
+        sellerId:
+          type: string
+          description: MerchantId of the individual seller
+        individual:
+          type: boolean
+        country:
+          type: string
+        disableAutoApprove:
+          type: boolean
+      required:
+      - email
+      - sellerId
+      - individual
+      - country
+      title: SellerDocVKycBody
+    KycUserInformation:
+      type: object
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        surName:
+          type: string
+        physicalAddress:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country codes
+        dob:
+          type: string
+          description: Date of birth in YYYYMMDD format
+        ssn:
+          type: string
+          description: 4 Digit SSN
+      required:
+      - email
+      - firstName
+      - surName
+      - physicalAddress
+      - city
+      - state
+      - zip
+      - country
+      - dob
+      - ssn
+      title: KycUserInformation
+    CartItemAddress:
+      type: object
+      properties:
+        country:
+          type: string
+          description: 'Country code specified as a two letter code according to ISO 3166 Alpha-2
+
+            Between 2 and 2 characters
+
+            Example: US
+
+            Pattern: ^[A-Z]{2}$'
+        state:
+          type: string
+          description: 'The state or province
+
+            Example: PA'
+        city:
+          type: string
+          description: 'The city or locality
+
+            Example: Pittsburgh'
+        street:
+          type: string
+          description: 'The street name
+
+            Example: Baker St'
+        postalCode:
+          type: string
+          description: The address postal code
+      description: Address structure
+      title: CartItemAddress
+    GetMarketplaceSellerRegistrationLinkRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        sellerId:
+          type: string
+          description: ID of the seller
+        country:
+          type: string
+          description: Country in which the seller is located
+        redirectUrl:
+          type: string
+          description: Optional url for post registration navigation
+      required:
+      - email
+      - sellerId
+      title: GetMarketplaceSellerRegistrationLinkRequest
+    SellerUsdcWithdrawResponse:
+      type: object
+      properties:
+        transaction:
+          type: string
+      required:
+      - transaction
+      title: SellerUsdcWithdrawResponse
+    RecipientInfoWallet:
+      type: object
+      properties:
+        custodialType:
+          $ref: '#/components/schemas/RecipientInfoWalletCustodialType'
+          description: 'The type of the wallet
+
+            Allowed values: custodial, nonCustodial, unknown
+
+            Example: custodial'
+        blockchain:
+          type: string
+          description: 'The blockchain on which the transaction was made
+
+            Example: BTC
+
+            Pattern: ^[A-Z0-9-]+$'
+        address:
+          type: string
+          description: The crypto wallet address that will receive the funds
+      required:
+      - custodialType
+      - blockchain
+      - address
+      description: The crypto wallet that will receive the funds
+      title: RecipientInfoWallet
+    RecipientInfoWalletCustodialType:
+      type: string
+      enum:
+      - custodial
+      - nonCustodial
+      - unknown
+      description: 'The type of the wallet
+
+        Allowed values: custodial, nonCustodial, unknown
+
+        Example: custodial'
+      title: RecipientInfoWalletCustodialType
+    CryptoCartItemItemClass:
+      type: string
+      enum:
+      - crypto
+      description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+        Allowed value: crypto
+
+        Example: crypto'
+      title: CryptoCartItemItemClass
+    NameCustomerInfo:
+      type: object
+      properties:
+        verificationId:
+          type: string
+        displayName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        ip:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+        dob:
+          type: string
+          description: Date of birth in YYYY-MM-DD format
+        email:
+          type: string
+        name:
+          type: string
+      title: NameCustomerInfo
+    CryptoCartItem:
+      type: object
+      properties:
+        itemClass:
+          $ref: '#/components/schemas/CryptoCartItemItemClass'
+          description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+            Allowed value: crypto
+
+            Example: crypto'
+        id:
+          type: string
+          description: 'The cart items''s unique ID
+
+            Example: 5de33332-546a-4171-8988-2a43d2bfe9c6'
+        rawProductData:
+          $ref: '#/components/schemas/AnyObject'
+        units:
+          type: string
+          description: 'The amount in the crypto currency which is specified in the `cryptoCurrency` property
+
+            Example: 1.04112
+
+            Pattern: ^[0-9]+(\.[0-9]+)?$'
+        cryptoCurrency:
+          type: string
+          description: 'The crypto-currency symbol (uppercase)
+
+            Example: BTC
+
+            Pattern: ^[A-Z0-9-]+$'
+        unitPrice:
+          $ref: '#/components/schemas/CryptoCartItemUnitPrice'
+          description: The price per 1 unit
+        expectedDeliveryDelay:
+          type: number
+          format: double
+          description: 'The expected delay in delivery, in hours
+
+            Min value: 0'
+        recipientInfo:
+          $ref: '#/components/schemas/RecipientInfo'
+        seller:
+          $ref: '#/components/schemas/SellerInfo'
+      required:
+      - itemClass
+      - units
+      - cryptoCurrency
+      - unitPrice
+      - recipientInfo
+      description: Represents a crypto item in a shopping cart
+      title: CryptoCartItem
+    SellerUsKycBody:
+      type: object
+      properties:
+        email:
+          type: string
+        onboardingToken:
+          type: string
+          description: 'Server-signed onboarding token minted by the parent marketplace. The
+
+            parent is derived from this token — it cannot be supplied directly.
+
+            Not required when the request is authenticated with the marketplace''s
+
+            API key; the parent is then derived from the key.'
+        sellerId:
+          type: string
+          description: MerchantId of the individual seller
+        individual:
+          type: boolean
+        info:
+          $ref: '#/components/schemas/KycUserInformation'
+      required:
+      - email
+      - sellerId
+      - individual
+      - info
+      title: SellerUsKycBody
+    SplitNameCustomerInfo:
+      type: object
+      properties:
+        verificationId:
+          type: string
+        displayName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        ip:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+        dob:
+          type: string
+          description: Date of birth in YYYY-MM-DD format
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - firstName
+      - lastName
+      title: SplitNameCustomerInfo
+    PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        valueInCurrency:
+          type: number
+          format: double
+      description: The item's list price
+      title: PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice
+    CustomerInfo:
+      oneOf:
+      - $ref: '#/components/schemas/SplitNameCustomerInfo'
+      - $ref: '#/components/schemas/NameCustomerInfo'
+      title: CustomerInfo
+    GetMarketplaceLinkResponse:
+      type: object
+      properties:
+        link:
+          type: string
+          description: URL to redirect or present via IFrame
+      required:
+      - link
+      title: GetMarketplaceLinkResponse
+    CurrencyAmount:
+      type: object
+      properties:
+        valueInCurrency:
+          type: number
+          format: double
+          description: 'The amount in the currency, which is specified in the `currency` property
+
+            Example: 90'
+        currency:
+          type: string
+          description: 'Currency specified as a three letter code according to ISO 4217
+
+            Example: USD'
+      required:
+      - valueInCurrency
+      - currency
+      description: Common currency amount structure
+      title: CurrencyAmount
+    Verification:
+      type: object
+      properties:
+        reference:
+          type: string
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+        vendor:
+          $ref: '#/components/schemas/VerificationVendor'
+        name:
+          type: string
+        attested:
+          type: boolean
+        shareToken:
+          type: string
+        shareTokenStatus:
+          type: string
+        sessionToken:
+          type: string
+      required:
+      - reference
+      - status
+      - vendor
+      title: Verification
+    CryptoCartItemUnitPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: 'Currency specified as a three letter code according to ISO 4217
+
+            Example: USD'
+        valueInCurrency:
+          type: number
+          format: double
+          description: 'The amount in the currency, which is specified in the `currency` property
+
+            Example: 90'
+      required:
+      - currency
+      - valueInCurrency
+      description: The price per 1 unit
+      title: CryptoCartItemUnitPrice
+    productType:
+      type: string
+      enum:
+      - inGameProduct
+      - gameOfSkill
+      - dataStorage
+      - computingResources
+      - sportsTicket
+      - eSportsTicket
+      - musicTicket
+      - conferenceTicket
+      - virtualSportsTicket
+      - virtualESportsTicket
+      - virtualMusicTicket
+      - virtualConferenceTicket
+      - alcohol
+      - DLC
+      - subscription
+      - fundACause
+      - realEstate
+      - computingContract
+      - digitalArt
+      - topUp
+      - ownershipContract
+      - inGameCurrency
+      - digitalCollectibles
+      - digitalCollectiblesMarketplace
+      - digitalGiftingMarketplace
+      - sweepstakes
+      - virtualSportsEvents
+      - contractInvoicing
+      - onlineCasino
+      - cryptoOnramp
+      - gaming
+      - travelDocuments
+      - musicStreaming
+      - digitalContent
+      - eBooks
+      - digitalSubscriptionContent
+      title: productType
+    GetMarketplaceSellerEmailLoginLinkRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email which the seller will use the login to their seller dashboard.
+      required:
+      - email
+      title: GetMarketplaceSellerEmailLoginLinkRequest
+    Email:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+      title: Email
+    UboInfo:
+      type: object
+      properties:
+        ssn:
+          type: string
+        dob:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country codes
+        zip:
+          type: string
+        state:
+          type: string
+        city:
+          type: string
+        physicalAddress:
+          type: string
+        surName:
+          type: string
+        firstName:
+          type: string
+      required:
+      - ssn
+      - dob
+      - country
+      - zip
+      - state
+      - city
+      - physicalAddress
+      - surName
+      - firstName
+      title: UboInfo
+    TransactionHistoryItem:
+      type: object
+      properties:
+        txType:
+          type: string
+        chain:
+          type: string
+        paymentAmount:
+          type: string
+        paymentToken:
+          type: string
+        to:
+          type: string
+        from:
+          type: string
+        registryContract:
+          type: string
+        assetID:
+          type: string
+        txTime:
+          type: string
+        blockNumber:
+          type: number
+          format: double
+        txHash:
+          type: string
+      required:
+      - txType
+      - chain
+      - paymentAmount
+      - paymentToken
+      - to
+      - from
+      - registryContract
+      - assetID
+      - txTime
+      - blockNumber
+      - txHash
+      title: TransactionHistoryItem
+    ThreeDsChallengePreference:
+      type: string
+      enum:
+      - NoPreference
+      - Frictionless
+      - Challenge
+      title: ThreeDsChallengePreference
+    CartClassOmitted:
+      type: array
+      items:
+        $ref: '#/components/schemas/CartItemClassOmitted'
+      description: Cart item details required for Coinflow Chargeback Protection. Required if the merchant uses chargeback protection.
+      title: CartClassOmitted
+    KybInformationBusiness:
+      type: object
+      properties:
+        country:
+          type: string
+          description: Main business country
+        zip:
+          type: string
+          description: Main business zip code
+        state:
+          type: string
+          description: Main business state/providence
+        city:
+          type: string
+          description: Main business city
+        address2:
+          type: string
+        address1:
+          type: string
+          description: Main business street address
+      required:
+      - country
+      - zip
+      - state
+      - city
+      - address1
+      title: KybInformationBusiness
+    Marketplace_GetSellerLoginLink_Request:
+      oneOf:
+      - $ref: '#/components/schemas/GetMarketplaceSellerEmailLoginLinkRequest'
+      - $ref: '#/components/schemas/GetMarketplaceSellerIdLoginLinkRequest'
+      title: Marketplace_GetSellerLoginLink_Request
+    GetMarketplaceSellerIdLoginLinkRequest:
+      type: object
+      properties:
+        sellerId:
+          type: string
+      required:
+      - sellerId
+      title: GetMarketplaceSellerIdLoginLinkRequest
+    RecipientInfo:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: The ID of the account that will receive the purchased goods
+        dob:
+          type: string
+          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
+
+            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
+        email:
+          type:
+          - string
+          - 'null'
+          description: 'Email
+
+            Example: lois.lane@dailyplanet.com'
+        firstName:
+          type: string
+          description: 'First name
+
+            Example: Lois'
+        gender:
+          type: string
+          description: 'Gender
+
+            Example: female'
+        lastName:
+          type: string
+          description: 'Last name
+
+            Example: Lois'
+        message:
+          type: string
+          description: The message that the recipient will receive
+        phoneInfo:
+          $ref: '#/components/schemas/PhoneInfo'
+        shippingAddress:
+          $ref: '#/components/schemas/CartItemAddress'
+        wallet:
+          $ref: '#/components/schemas/RecipientInfoWallet'
+          description: The crypto wallet that will receive the funds
+      title: RecipientInfo
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        valueInCurrency:
+          type: number
+          format: double
+      required:
+      - currency
+      - valueInCurrency
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice
+    MoneyTopUpCartItem:
+      type: object
+      properties:
+        itemClass:
+          $ref: '#/components/schemas/MoneyTopUpCartItemItemClass'
+          description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+            Allowed value: moneyTopUp
+
+            Example: moneyTopUp'
+        id:
+          type: string
+          description: 'The cart items''s unique ID
+
+            Example: 5de33332-546a-4171-8988-2a43d2bfe9c6'
+        rawProductData:
+          $ref: '#/components/schemas/Record_string.any_'
+        sellingPrice:
+          $ref: '#/components/schemas/CurrencyAmount'
+        recipientInfo:
+          $ref: '#/components/schemas/RecipientInfo'
+        topUpAmount:
+          $ref: '#/components/schemas/CurrencyAmount'
+        quantity:
+          type: number
+          format: double
+          description: 'Quantity
+
+            Example: 2'
+        isPresetAmount:
+          type: boolean
+          description: 'Represents whether the item amount is taken from a preset list, e.g. 25, 50, 100, etc.
+
+            or whether it was a different amount, e.g. 27'
+      required:
+      - itemClass
+      - sellingPrice
+      - topUpAmount
+      - quantity
+      - isPresetAmount
+      description: Represents a money top-up item in a shopping cart
+      title: MoneyTopUpCartItem
+    Cents:
+      type: object
+      properties:
+        cents:
+          type: integer
+      required:
+      - cents
+      title: Cents
+    Marketplace_GetWalletAddressByEmail_Response_200:
+      type: object
+      properties:
+        blockchain:
+          type: string
+        wallet:
+          type: string
+      required:
+      - blockchain
+      - wallet
+      title: Marketplace_GetWalletAddressByEmail_Response_200
+    AnyObject:
+      type: object
+      properties:
+        example:
+          type: string
+      title: AnyObject
+    CartItemClassOmitted:
+      oneOf:
+      - $ref: '#/components/schemas/Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__'
+      - $ref: '#/components/schemas/Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__'
+      - $ref: '#/components/schemas/CryptoCartItem'
+      - $ref: '#/components/schemas/MoneyTopUpCartItem'
+      title: CartItemClassOmitted
+    Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__:
+      type: object
+      properties:
+        brand:
+          type: string
+          description: The name of the brand
+        sellingPrice:
+          $ref: '#/components/schemas/PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice'
+        itemClass:
+          $ref: '#/components/schemas/PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass'
+        productType:
+          $ref: '#/components/schemas/PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType'
+        quantity:
+          type: number
+          format: double
+          description: The number of units sold
+        rawProductData:
+          $ref: '#/components/schemas/Record_string.any_'
+        seller:
+          $ref: '#/components/schemas/SellerInfo'
+        id:
+          type: string
+          description: The cart items’s unique ID
+        itemFulfillment:
+          $ref: '#/components/schemas/PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment'
+          description: How the product was fulfilled.
+        sku:
+          type: string
+          description: The stock-keeping unit (SKU) number
+        categories:
+          type: array
+          items:
+            type: string
+          description: The category in the site/app in which the item was classified (e.g., fashion)
+        isGift:
+          type: boolean
+        recipientInfo:
+          $ref: '#/components/schemas/RecipientInfo'
+        expectedDeliveryDelay:
+          type: number
+          format: double
+          description: The expected delay in delivery, in hours
+        isPresetAmount:
+          type: boolean
+          description: Represents whether the item amount is taken from a preset list, e.g. 25, 50, 100, etc. or whether it was a different amount, e.g. 27
+      required:
+      - sellingPrice
+      - itemClass
+      - productType
+      - quantity
+      - id
+      - itemFulfillment
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__
+    GetMarketplaceSubscribeLinkRequest:
+      type: object
+      properties:
+        customerInfo:
+          $ref: '#/components/schemas/CustomerInfo'
+        webhookInfo:
+          $ref: '#/components/schemas/AnyObject'
+        chargebackProtectionData:
+          $ref: '#/components/schemas/CartClassOmitted'
+        feePercentage:
+          type: number
+          format: double
+          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+
+            taken from the subtotal amount.'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        threeDsChallengePreference:
+          $ref: '#/components/schemas/ThreeDsChallengePreference'
+        sellerId:
+          type: string
+          description: ID of the Seller
+        email:
+          type: string
+          description: The email of the end user who is making the purchase.
+        theme:
+          $ref: '#/components/schemas/MerchantTheme'
+        redirectUri:
+          type: string
+          description: (Optional) URL to redirect on successful purchase
+        deviceId:
+          type: string
+          description: If using Chargeback Protection pass the users DeviceID here
+        supportEmail:
+          type: string
+          description: The support email for your marketplace, will be displayed to users so they can contact your team to request support.
+        planCode:
+          type: string
+          description: The code of the plan to use for the subscription
+      required:
+      - sellerId
+      - email
+      - planCode
+      title: GetMarketplaceSubscribeLinkRequest
+    VerificationVendor:
+      type: string
+      enum:
+      - middesk
+      - sumsub
+      - sumsub_docv
+      - persona
+      - persona_kyb
+      title: VerificationVendor
+    Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__:
+      type: object
+      properties:
+        productName:
+          type: string
+          description: The name of the related product
+        productType:
+          $ref: '#/components/schemas/productType'
+        listPrice:
+          $ref: '#/components/schemas/PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice'
+          description: The item's list price
+        quantity:
+          type: number
+          format: double
+          description: The number of units sold
+        rawProductData:
+          $ref: '#/components/schemas/AnyObject'
+        seller:
+          $ref: '#/components/schemas/SellerInfo'
+        transactionHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionHistoryItem'
+      required:
+      - productName
+      - productType
+      - quantity
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType:
+      type: string
+      enum:
+      - giftCard
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType
+    KybInformation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the business
+        dateFormed:
+          type: string
+        tin:
+          type: string
+          description: 'Tax ID Number of the business.
+
+
+            - In the US this is the 9 digital TIN
+
+            - In Canada this is the 9 digit business id
+
+            - In the rest of the world it varys'
+        website:
+          type: string
+          description: Main website to the landing page of the business
+        phoneNumber:
+          type: string
+          description: Business contact phone number, when the KYB vendor collected one
+        entityType:
+          type: string
+          description: Type of business
+        business:
+          $ref: '#/components/schemas/KybInformationBusiness'
+        person:
+          $ref: '#/components/schemas/KybInformationPerson'
+        merchantId:
+          type: string
+          description: The merchant the business is interacting with
+      required:
+      - name
+      - tin
+      - website
+      - business
+      - person
+      title: KybInformation
+    MerchantStyle:
+      type: string
+      enum:
+      - rounded
+      - sharp
+      - pill
+      title: MerchantStyle
+    VerificationRequiredResponse:
+      type: object
+      properties:
+        verification:
+          $ref: '#/components/schemas/Verification'
+        verificationLink:
+          type: string
+          description: Link which can be hosted in an iframe or redirect the user to complete verification.
+        redirectLink:
+          type: string
+          description: Link where the user will be redirected to upon successful verification.
+        additionalVerificationLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalVerification'
+          description: Additional links which can be hosted in an iframe or redirect the user to complete verification.
+        rejectionReasons:
+          type: array
+          items:
+            type: string
+          description: List of reasons as to why the verification was rejected.
+      required:
+      - verification
+      title: VerificationRequiredResponse
+    SellerUsdcWithdrawRequest:
+      type: object
+      properties:
+        destination:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Cents'
+      required:
+      - destination
+      - amount
+      title: SellerUsdcWithdrawRequest
+    MerchantTheme:
+      type: object
+      properties:
+        showCardIcon:
+          type: boolean
+        placeholderColor:
+          type: string
+        expirationPlaceholder:
+          type: string
+        cvvPlaceholder:
+          type: string
+        cardNumberPlaceholder:
+          type: string
+        fontWeight:
+          type: string
+        fontSize:
+          type: string
+        style:
+          $ref: '#/components/schemas/MerchantStyle'
+        font:
+          type: string
+        ctaColor:
+          type: string
+        textColorAction:
+          type: string
+        textColorAccent:
+          type: string
+        textColor:
+          type: string
+        backgroundAccent2:
+          type: string
+        backgroundAccent:
+          type: string
+        cardBackground:
+          type: string
+        background:
+          type: string
+        primary:
+          type: string
+      title: MerchantTheme
+    Record_string.any_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.any_
+    PhoneInfo:
+      type: object
+      properties:
+        carrier:
+          type: string
+          description: 'The mobile carrier
+
+            Example: T-Mobile'
+        countryCode:
+          type: string
+          description: 'The country code (leading `+` is optional)
+
+            Example: 42
+
+            Pattern: ^\+?[0-9]+$'
+        phone:
+          type: string
+          description: 'The phone number without the country code or hyphens
+
+            Example: 2025550169
+
+            Pattern: ^[0-9]+$'
+      required:
+      - countryCode
+      - phone
+      description: Phone information structure
+      title: PhoneInfo
+    GetMarketplacePurchaseLinkRequest:
+      type: object
+      properties:
+        customerInfo:
+          $ref: '#/components/schemas/CustomerInfo'
+        webhookInfo:
+          $ref: '#/components/schemas/AnyObject'
+        chargebackProtectionData:
+          $ref: '#/components/schemas/CartClassOmitted'
+        feePercentage:
+          type: number
+          format: double
+          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+
+            taken from the subtotal amount.'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        threeDsChallengePreference:
+          $ref: '#/components/schemas/ThreeDsChallengePreference'
+        sellerId:
+          type: string
+          description: ID of the Seller
+        email:
+          type: string
+          description: The email of the end user who is making the purchase.
+        theme:
+          $ref: '#/components/schemas/MerchantTheme'
+        redirectUri:
+          type: string
+          description: (Optional) URL to redirect on successful purchase
+        deviceId:
+          type: string
+          description: If using Chargeback Protection pass the users DeviceID here
+        supportEmail:
+          type: string
+          description: The support email for your marketplace, will be displayed to users so they can contact your team to request support.
+        subtotal:
+          $ref: '#/components/schemas/Cents'
+      required:
+      - sellerId
+      - email
+      - subtotal
+      title: GetMarketplacePurchaseLinkRequest
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass:
+      type: string
+      enum:
+      - giftCard
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass
+    KybInformationPerson:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email of the main business contact
+        lastName:
+          type: string
+          description: Last name of the main business contact
+        firstName:
+          type: string
+          description: First name of the main business contact
+      required:
+      - email
+      - lastName
+      - firstName
+      title: KybInformationPerson
+    VerificationStatus:
+      type: string
+      enum:
+      - pending
+      - partial-approval
+      - approved
+      - rejected
+      - expired
+      title: VerificationStatus
+    SellerUsKybBody:
+      type: object
+      properties:
+        email:
+          type: string
+        onboardingToken:
+          type: string
+          description: 'Server-signed onboarding token minted by the parent marketplace. The
+
+            parent is derived from this token — it cannot be supplied directly.
+
+            Not required when the request is authenticated with the marketplace''s
+
+            API key; the parent is then derived from the key.'
+        sellerId:
+          type: string
+          description: MerchantId of the individual seller
+        business:
+          type: boolean
+        info:
+          $ref: '#/components/schemas/KybInformation'
+        ubos:
+          type: array
+          items:
+            $ref: '#/components/schemas/UboInfo'
+          description: Ultimate Beneficiary owners, these are Officers, Directors, Investors and Beneficiaries who own more than 20% of the company.
+      required:
+      - email
+      - sellerId
+      - business
+      - info
+      - ubos
+      title: SellerUsKybBody
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

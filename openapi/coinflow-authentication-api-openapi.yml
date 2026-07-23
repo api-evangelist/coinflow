@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  title: API Reference authentication API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: authentication
+paths:
+  /auth:
+    get:
+      operationId: get-message
+      summary: Get Message
+      description: Get the message for the user's wallet to sign.
+      tags:
+      - authentication
+      parameters:
+      - name: x-coinflow-auth-wallet
+        in: header
+        description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMessageToSignResponse'
+  /auth/session-key:
+    get:
+      operationId: get-session-key
+      summary: Get Session Key
+      description: Get an authentication session key
+      tags:
+      - authentication
+      parameters:
+      - name: x-coinflow-auth-user-id
+        in: header
+        description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSessionKeyResponse'
+  /auth/verify:
+    get:
+      operationId: verify-token
+      summary: Verify Token
+      description: Verify a token is valid and is not expired
+      tags:
+      - authentication
+      parameters:
+      - name: x-coinflow-auth-session-key
+        in: header
+        description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+components:
+  schemas:
+    GetSessionKeyResponse:
+      type: object
+      properties:
+        key:
+          type: string
+      required:
+      - key
+      title: GetSessionKeyResponse
+    GetMessageToSignResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        transaction:
+          type: string
+      required:
+      - message
+      title: GetMessageToSignResponse
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

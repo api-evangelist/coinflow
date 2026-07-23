@@ -1,0 +1,303 @@
+openapi: 3.1.0
+info:
+  title: API Reference authentication utilities API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: utilities
+paths:
+  /utils/contract-address:
+    get:
+      operationId: get-contract-addresses
+      summary: Get the Coinflow Contract Address
+      description: Get the Coinflow Contract address by blockchain
+      tags:
+      - utilities
+      parameters:
+      - name: blockchain
+        in: query
+        description: '- Blockchain to get the contract address of'
+        required: true
+        schema:
+          $ref: '#/components/schemas/Blockchain'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilities_GetContractAddresses_Response_200'
+  /utils/send-coinflow-tx:
+    post:
+      operationId: send-coinflow-transaction
+      summary: Send Coinflow Signed Solana Transaction
+      description: 'Send a Coinflow generated and signed transaction
+
+
+        Use Coinflow''s battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions)
+
+        This endpoint sends a fully signed Solana transaction with retries thru stable RPC servers.
+
+
+        This endpoint is specifically used in the case that the transaction attempting to be sent
+
+        was pre-signed by one of Coinflow''s wallets.
+
+
+        For example:
+
+        Transaction is retrieved from the /api/redeem endpoint, that transaction
+
+        comes with the feePayer set and pre-signed by one of Coinflow''s fee payer wallets.
+
+        This endpoint can then be called directly from a frontend without the need for the
+
+        merchant''s API key like the /send-solana-tx endpoint above.'
+      tags:
+      - utilities
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilities_SendCoinflowTransaction_Response_200'
+        '412':
+          description: Transaction Simulation Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendCoinflowTransactionRequestPreconditionFailedError'
+        '417':
+          description: Transaction Expired, fetch a new transaction, re-sign, and resend
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '503':
+          description: The transaction can't be confirmed, fetch a new transaction, re-sign, and resend
+          content:
+            application/json:
+              schema:
+                description: Any type
+      requestBody:
+        description: "- merchantId: A valid merchant id\n  signedTransaction: The signed transaction\n  confirm: Confirm the solana transaction - Will cause the response times to be longer"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionBody'
+  /utils/send-solana-tx:
+    post:
+      operationId: send-solana-transaction
+      summary: Send Solana Transaction
+      description: 'Use Coinflow''s battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions).
+
+
+        This endpoint sends a fully signed Solana transaction with retries and stable RPC servers.
+
+        This is helpful during periods of network instability where the solution is to use better private RPC servers,
+
+        retry transactions multiple times.'
+      tags:
+      - utilities
+      parameters:
+      - name: Authorization
+        in: header
+        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendSolanaTransactionResponse'
+        '412':
+          description: Transaction Simulation Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendSolanaTransactionRequestPreconditionFailedError'
+        '417':
+          description: Transaction Expired, fetch a new transaction, re-sign, and resend
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '503':
+          description: The transaction can't be confirmed, fetch a new transaction, re-sign, and resend
+          content:
+            application/json:
+              schema:
+                description: Any type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendSolanaTransactionRequest'
+components:
+  schemas:
+    SendSolanaTransactionRequest:
+      type: object
+      properties:
+        confirm:
+          type: boolean
+          description: '(Default: false)
+
+
+            Solana transactions after submission need to be confirmed as having been
+
+            picked up by the network. State such as balance changes will not reflect until the transaction has been confirmed.
+
+            Additionally, errors such as invalid signers, insufficient gas, and network congestion can lead to the transaction being dropped.
+
+
+            The most ideal solution to this is for you to implement your own client side confirmation logic with the Solana SDK,
+
+            however we understand that is complex and not every merchant wants to do that.
+
+
+            Setting this property to true will mean the call will not return with your signature, until the solana transaction
+
+            has been confirmed. If the transaction is unable to be confirmed by the time the blockhash expires, then you wil receive a 503 error.'
+        transaction:
+          type: string
+          description: 'Base 58 encoded Solana Transaction. Supports Transctions and VersionedTransactions.
+
+            Transaction must be signed by all signers.'
+      required:
+      - transaction
+      title: SendSolanaTransactionRequest
+    SendTransactionBody:
+      type: object
+      properties:
+        confirm:
+          type: boolean
+          description: '(Default: false)
+
+
+            Solana transactions after submission need to be confirmed as having been
+
+            picked up by the network. State such as balance changes will not reflect until the transaction has been confirmed.
+
+            Additionally, errors such as invalid signers, insufficient gas, and network congestion can lead to the transaction being dropped.
+
+
+            The most ideal solution to this is for you to implement your own client side confirmation logic with the Solana SDK,
+
+            however we understand that is complex and not every merchant wants to do that.
+
+
+            Setting this property to true will mean the call will not return with your signature, until the solana transaction
+
+            has been confirmed. If the transaction is unable to be confirmed by the time the blockhash expires, then you wil receive a 503 error.'
+        merchantId:
+          type: string
+          description: Merchant ID associated with the transaction
+        signedTransaction:
+          type: string
+          description: The message which has already been signed by the user and Coinflow.
+      required:
+      - merchantId
+      - signedTransaction
+      title: SendTransactionBody
+    SendSolanaTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendSolanaTransactionRequestPreconditionFailedError
+    Utilities_SendCoinflowTransaction_Response_200:
+      type: object
+      properties:
+        signature:
+          type: string
+      required:
+      - signature
+      title: Utilities_SendCoinflowTransaction_Response_200
+    Utilities_GetContractAddresses_Response_200:
+      type: object
+      properties:
+        address:
+          type: string
+      required:
+      - address
+      title: Utilities_GetContractAddresses_Response_200
+    SendCoinflowTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendCoinflowTransactionRequestPreconditionFailedError
+    SendSolanaTransactionResponse:
+      type: object
+      properties:
+        signature:
+          type: string
+          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
+
+            which will query the chain to see if the transaction was confirmed.'
+      required:
+      - signature
+      title: SendSolanaTransactionResponse
+    Blockchain:
+      type: string
+      enum:
+      - solana
+      - eth
+      - polygon
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization
