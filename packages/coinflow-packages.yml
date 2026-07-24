@@ -1,0 +1,45 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments
+description: >-
+  First-party Coinflow client libraries. The web/React SDKs are published under
+  the @coinflowlabs npm scope (confirmed via https://registry.npmjs.org). The
+  native mobile card-tokenization SDKs (Swift, Android/Jetpack Compose, Flutter,
+  React Native) are documented on the Coinflow docs site; only the npm-published
+  packages carry a registry URL + verified latest version. HTTP/registry status
+  recorded at fetch time.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@coinflowlabs/react"
+    url: https://www.npmjs.com/package/@coinflowlabs/react
+    install: npm install @coinflowlabs/react
+    version: 5.20.0
+    official: true
+    note: React components for Coinflow Checkout and Withdraw (pre-built UI).
+  - language: javascript
+    registry: npm
+    name: "@coinflowlabs/react-native"
+    url: https://www.npmjs.com/package/@coinflowlabs/react-native
+    install: npm install @coinflowlabs/react-native
+    version: 4.19.0
+    official: true
+    note: React Native component for embedding the Coinflow card form.
+  - language: swift
+    registry: docs
+    name: Coinflow Swift SDK
+    url: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/swift-sdk
+    official: true
+    note: Native SwiftUI card-tokenization form (iOS).
+  - language: kotlin
+    registry: docs
+    name: Coinflow Android SDK
+    url: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/android-sdk
+    official: true
+    note: Native Jetpack Compose card-tokenization form (Android).
+  - language: dart
+    registry: docs
+    name: Coinflow Flutter SDK
+    url: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/flutter-sdk
+    official: true
+    note: Native Flutter card-tokenization form.

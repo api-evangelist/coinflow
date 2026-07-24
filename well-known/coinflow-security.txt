@@ -1,0 +1,5 @@
+Contact: ben@coinflowlabs.app
+Expires: 2026-12-31T23:59:00.000Z
+Preferred-Languages: en
+Canonical: https://coinflow.cash/.well-known/security.txt
+Policy: https://coinflow.cash/bug-bounty

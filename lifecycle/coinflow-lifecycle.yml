@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/
+description: >-
+  Versioning, status, and deprecation posture for the Coinflow API. Coinflow
+  publishes an Atlassian-style status page. The API itself is unversioned in the
+  URL path (served under /api); webhook payloads carry an explicit WebhookVersion.
+  No formal dated deprecation policy / Sunset-header program was found in the docs.
+versioning:
+  scheme: unversioned-path
+  current: v1.0.0
+  webhook_versions: [Legacy, Version 1, Version 2, Version 3]
+  docs: https://docs.coinflow.cash/api-reference
+status_page: https://status.coinflow.cash/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+deprecated_operations: []
+release_notes:
+  type: blog
+  url: https://coinflow.cash/blog/all/
+  notes: >-
+    Coinflow ships a monthly "New at Coinflow" blog series that functions as
+    release notes; there is no dedicated structured changelog page.

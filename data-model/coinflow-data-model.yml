@@ -1,0 +1,77 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/coinflow-openapi-original.json
+description: >-
+  Entity-relationship graph DERIVED from the Coinflow OpenAPI paths, tags, and
+  schema id-reference fields. Coinflow's domain centers on a Merchant that runs
+  Checkout (pay-ins), Subscriptions, Marketplace (sub-merchants / sellers),
+  and Withdraw/Payout (pay-outs), against end-user Customers and their payment
+  instruments, with Webhooks emitting lifecycle events.
+entities:
+  - name: Merchant
+    id_domain: merchantId
+    notes: The account integrating Coinflow; carries settlement, fee, reserve, and rate-limit config.
+  - name: SubMerchant
+    notes: KYB-verified merchant onboarded under a marketplace/PayFac parent.
+  - name: Customer
+    notes: An end user of a merchant, identified by external user id and/or web3 wallet.
+  - name: Card
+    notes: Tokenized card instrument stored for a customer (card-on-file).
+  - name: BankAccount
+    notes: ACH / IBAN / EFT / PIX / Interac bank instrument for pay-in or payout.
+  - name: Checkout
+    notes: A pay-in transaction (card, ACH, crypto/USDC, ApplePay, PayPal, Venmo, PIX, etc.).
+  - name: Subscription
+    notes: A recurring plan a customer is enrolled in.
+  - name: Plan
+    notes: A subscription plan defined by a merchant.
+  - name: Withdrawal
+    id_domain: withdrawalId
+    notes: A payout / withdraw transaction to a bank, card, wallet, or crypto address.
+  - name: Refund
+    id_domain: refundId
+    notes: A refund against a payment.
+  - name: Seller
+    notes: A marketplace seller receiving USDC / payouts.
+  - name: Webhook
+    notes: A configured webhook endpoint plus the delivered event log.
+relationships:
+  - from: Merchant
+    to: Customer
+    type: has_many
+  - from: Merchant
+    to: SubMerchant
+    type: has_many
+  - from: Merchant
+    to: Plan
+    type: has_many
+    via: merchantId
+  - from: Merchant
+    to: Webhook
+    type: has_many
+  - from: Customer
+    to: Card
+    type: has_many
+  - from: Customer
+    to: BankAccount
+    type: has_many
+  - from: Customer
+    to: Checkout
+    type: has_many
+  - from: Customer
+    to: Subscription
+    type: has_many
+  - from: Subscription
+    to: Plan
+    type: belongs_to
+  - from: Checkout
+    to: Refund
+    type: has_many
+    via: paymentId
+  - from: Merchant
+    to: Withdrawal
+    type: has_many
+  - from: Seller
+    to: Withdrawal
+    type: has_many
+render: null

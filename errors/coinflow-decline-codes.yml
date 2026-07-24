@@ -1,0 +1,133 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/guides/checkout/payment-methods/payment-methods/credit-debit-cards/common-card-error-codes
+description: >-
+  Coinflow card processing decline / error codes and transaction statuses, copied
+  from the published card status & error-code reference. These are card-network
+  processing codes surfaced on card checkout operations; they complement (do not
+  replace) coinflow-problem-types.yml, which covers API-level HTTP responses.
+transaction_statuses:
+  - status: AUTHORIZED
+    meaning: The transaction has been approved but not yet finalized.
+    action: Monitor for settlement.
+  - status: SETTLED
+    meaning: The transaction is complete; funds moved from cardholder to merchant account.
+    action: None required.
+  - status: REFUNDED
+    meaning: The transaction amount has been returned to the cardholder.
+    action: None required.
+  - status: FAILED
+    meaning: The transaction was not successful.
+    action: Retry or use an alternate payment method.
+  - status: CHARGEBACK
+    meaning: The cardholder disputes the transaction; the amount is under investigation.
+    action: Gather documentation.
+  - status: CHARGEBACK_LOST
+    meaning: Dispute resolved in favor of the cardholder; merchant loses the funds.
+    action: None available.
+  - status: CHARGEBACK_WON
+    meaning: Dispute resolved in favor of the merchant; funds retained.
+    action: None required.
+  - status: VOIDED
+    meaning: The transaction was canceled before completion.
+    action: None required.
+  - status: EXPIRED
+    meaning: Pix payment window expired (customers have 5 minutes to complete).
+    action: Generate a new QR code.
+decline_codes:
+  - code: '1-2'
+    meaning: Call Issuer
+    action: Contact the card issuer's 800 number.
+  - code: '4'
+    meaning: Pick Up Card
+    action: Contact issuer; use an alternate payment method.
+  - code: '5'
+    meaning: Do Not Honor
+    action: Investigate hold/fraud flags; contact bank if unclear.
+  - code: '6'
+    meaning: Error
+    action: Retry the transaction or contact the issuer.
+  - code: '7'
+    meaning: Pick Up Card (Fraud)
+    action: Contact issuer immediately.
+  - code: '10'
+    meaning: Partial Approval
+    action: Obtain additional payment for the balance.
+  - code: '12'
+    meaning: Invalid Transaction
+    action: Verify card number, expiration, zip code; avoid rapid retries.
+  - code: '13'
+    meaning: Card Amount Invalid
+    action: Re-enter a valid purchase amount.
+  - code: '14'
+    meaning: Card Number Invalid
+    action: Re-enter the correct card number.
+  - code: '15'
+    meaning: No Such Issuer
+    action: Verify the card's first digit matches the provider.
+  - code: '19'
+    meaning: Re-Enter
+    action: Verify card is active; check spending limits.
+  - code: '25'
+    meaning: POS Condition Code Invalid
+    action: Verify cardholder information.
+  - code: '28'
+    meaning: No Reply
+    action: Wait and retry the transaction.
+  - code: '41'
+    meaning: Pick Up Card (Lost)
+    action: Do not retry; obtain alternate payment.
+  - code: '43'
+    meaning: Pick Up Card (Stolen)
+    action: Do not retry; obtain alternate payment.
+  - code: '46'
+    meaning: Account Closed/Invalid
+    action: Cardholder must contact issuing bank.
+  - code: '51'
+    meaning: Insufficient Funds
+    action: Request an alternate payment method.
+  - code: '54'
+    meaning: Card Expired
+    action: Request a current card.
+  - code: '57'
+    meaning: Service Not Allowed
+    action: Try a different card or payment method.
+  - code: '59'
+    meaning: Suspected Fraud
+    action: Request an alternate payment.
+  - code: '61'
+    meaning: Withdrawal Limit Exceeded
+    action: Request an alternate card.
+  - code: '62'
+    meaning: Restricted SIC Code
+    action: Verify merchant/card compatibility.
+  - code: '63'
+    meaning: Restricted
+    action: Verify the CVV security code.
+  - code: '65'
+    meaning: Activity Limit Exceeded
+    action: Request an alternate payment.
+  - code: '78'
+    meaning: No Account
+    action: Direct the customer to contact the issuer.
+  - code: '91'
+    meaning: Issuer Unavailable
+    action: Wait and retry.
+  - code: '93'
+    meaning: Legal Violation
+    action: Direct the customer to contact the issuer.
+  - code: '96'
+    meaning: System Malfunction
+    action: Wait and retry.
+  - code: '97'
+    meaning: CVV Mismatch
+    action: Re-enter the correct security code.
+  - code: '997'
+    meaning: User Failed 3DS
+    action: Request the customer reattempt authentication.
+  - code: '998'
+    meaning: Rejected by Issuer
+    action: Request an alternate payment.
+  - code: '999'
+    meaning: Rejected by Fraud Monitor
+    action: Request an alternate payment.

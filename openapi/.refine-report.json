@@ -1,0 +1,40 @@
+{
+  "provider": "coinflow",
+  "sources": [
+    "coinflow-authentication-api-openapi.yml",
+    "coinflow-cardtokenization-api-openapi.yml",
+    "coinflow-checkout-api-openapi.yml",
+    "coinflow-customers-api-openapi.yml",
+    "coinflow-events-api-openapi.yml",
+    "coinflow-marketplace-api-openapi.yml",
+    "coinflow-merchant-api-openapi.yml",
+    "coinflow-merchantsubscription-api-openapi.yml",
+    "coinflow-redeem-api-openapi.yml",
+    "coinflow-refund-api-openapi.yml",
+    "coinflow-submerchant-api-openapi.yml",
+    "coinflow-subscription-api-openapi.yml",
+    "coinflow-utilities-api-openapi.yml",
+    "coinflow-withdraw-api-openapi.yml"
+  ],
+  "outputs": [
+    "coinflow-authentication-api-openapi.yml",
+    "coinflow-cardtokenization-api-openapi.yml",
+    "coinflow-checkout-api-openapi.yml",
+    "coinflow-customers-api-openapi.yml",
+    "coinflow-events-api-openapi.yml",
+    "coinflow-marketplace-api-openapi.yml",
+    "coinflow-merchant-api-openapi.yml",
+    "coinflow-merchantsubscription-api-openapi.yml",
+    "coinflow-redeem-api-openapi.yml",
+    "coinflow-refund-api-openapi.yml",
+    "coinflow-submerchant-api-openapi.yml",
+    "coinflow-subscription-api-openapi.yml",
+    "coinflow-utilities-api-openapi.yml",
+    "coinflow-withdraw-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

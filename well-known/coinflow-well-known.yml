@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the Coinflow web
+  host (https://coinflow.cash) and the API host (https://api.coinflow.cash) plus
+  the OpenAPI sandbox server host (https://api-sandbox.coinflow.cash). Status is
+  the HTTP code observed at fetch time. Only documents that returned a real,
+  correctly-typed payload were saved verbatim.
+hosts:
+  - host: https://coinflow.cash
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        type: text/plain
+        file: coinflow-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.coinflow.cash
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

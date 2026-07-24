@@ -1,0 +1,97 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/guides/checkout/testing/testing-credit-cards
+description: >-
+  Coinflow sandbox environment and published test values. All values below are
+  copied verbatim from the Coinflow testing docs; none are invented. The sandbox
+  is a fully separate environment reached at the sandbox base URL; swap
+  sandbox.coinflow.cash for coinflow.cash to move to production.
+environments:
+  sandbox_api_base: https://api-sandbox.coinflow.cash/api
+  sandbox_web_host: sandbox.coinflow.cash
+  production_web_host: coinflow.cash
+  session_key_ttl: 24 hours
+notes:
+  - The pre-built UI SDK handles card capture, PCI-compliant tokenization, 3DS challenges, and fraud signals.
+  - A sandbox merchant account + API keys are provisioned from the Coinflow dashboard (Account Setup).
+test_cards:
+  - number: '4242424242424242'
+    brand: Visa
+    cvv: '123'
+    outcome: Approval for any zipcode; decline when billing zipcode is 99999
+  - number: '5555555555554444'
+    brand: Mastercard
+    cvv: '123'
+    outcome: Approval for any zipcode; decline when billing zipcode is 99999
+  - number: '6011010000000003'
+    brand: Discover
+    cvv: '123'
+    outcome: Approval for any zipcode; decline when billing zipcode is 99999
+  - number: '378282246310005'
+    brand: American Express
+    cvv: '1234'
+    outcome: Approval for any zipcode; decline when billing zipcode is 99999
+special_zipcodes:
+  - zipcode: '99999'
+    effect: Card decline
+  - zipcode: '00000'
+    effect: Chargeback protection rejection
+  - zipcode: '00001'
+    effect: Fraud protection rejection
+test_cards_3ds:
+  - number: '5204247750001471'
+    brand: Mastercard
+    cvv: '123'
+    exp: 08/27
+    scenario: Frictionless
+  - number: '4000020000000000'
+    brand: Visa
+    cvv: '123'
+    exp: 08/27
+    scenario: Friction challenge
+  - number: '4055011111111111'
+    brand: Visa
+    cvv: '123'
+    exp: 08/27
+    scenario: Friction challenge failure
+  - number: '4264281511112228'
+    brand: Visa
+    cvv: '123'
+    exp: 08/27
+    scenario: Rejection
+  - number: '2303779951000396'
+    brand: Mastercard
+    cvv: '123'
+    exp: 08/26
+    scenario: Frictionless
+  - number: '2303779951000446'
+    brand: Mastercard
+    cvv: '123'
+    exp: 08/26
+    scenario: Friction challenge
+  - number: '2303779951000453'
+    brand: Mastercard
+    cvv: '123'
+    exp: 08/26
+    scenario: Friction challenge failure
+  - number: '2303779951000347'
+    brand: Mastercard
+    cvv: '123'
+    exp: 08/26
+    scenario: Rejection
+amount_based_3ds_triggers:
+  - subtotal_ending: '.98'
+    effect: Friction challenge success
+  - subtotal_ending: '.97'
+    effect: Friction challenge failure
+  - subtotal_ending: '.96'
+    effect: Rejection
+  - subtotal_ending: any other amount
+    effect: Frictionless challenge
+two_factor_challenge:
+  success_code: '1234'
+  note: Enter 1234 to pass the friction challenge; any other value simulates rejection.
+additional_testing_docs:
+  - https://docs.coinflow.cash/guides/checkout/testing/testing-ach
+  - https://docs.coinflow.cash/guides/checkout/testing/testing-sepa
+  - https://docs.coinflow.cash/guides/payouts/testing-sandbox/testing-withdraws

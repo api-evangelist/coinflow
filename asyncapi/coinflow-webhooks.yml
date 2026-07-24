@@ -1,0 +1,95 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/guides/developer-resources/webhooks
+spec_type: Webhooks
+description: >-
+  Coinflow webhook (event) catalog. Coinflow does not publish an AsyncAPI
+  document; this is the webhook surface captured from the docs and from the
+  WebhookEventType / WebhookCategory / WebhookData schemas in the OpenAPI.
+  Merchants configure webhook URLs in the dashboard (Developers -> Webhooks) and
+  Coinflow POSTs JSON events, signed for verification.
+delivery:
+  transport: HTTPS POST (JSON)
+  configuration: Coinflow dashboard, Developers -> Webhooks
+  resend_operation: resend-webhook
+  ingest_operation: post-event
+signature:
+  header: Coinflow-Signature
+  algorithm: HMAC-SHA256
+  header_components:
+    t: Unix timestamp (seconds) when the signature was created
+    v1: HMAC-SHA256 hex digest of "{timestamp}.{raw request body}"
+  verification: >-
+    Reconstruct "{t}.{raw request body}", compute HMAC-SHA256 with your Webhook
+    Validation Key, and timing-safe compare to v1. Verify against the RAW body
+    string, not a re-serialized JSON object.
+  docs: https://docs.coinflow.cash/guides/developer-resources/webhooks/verifying-webhook-signatures
+categories: [Purchase, Subscription, KYC, Withdraw, Marketplace]
+versions: [Legacy, Version 1, Version 2, Version 3]
+event_types:
+  - Card Payment Authorized
+  - Card Payment Declined
+  - Card Payment Voided
+  - Credits Minted
+  - ACH Initiated
+  - ACH Success
+  - ACH Returned
+  - ACH Failed
+  - ACH Chargeback
+  - ACH Batched
+  - PIX Failed
+  - PIX Expiration
+  - Payment Authorized
+  - Payment Expiration
+  - Settled
+  - Wire Initiated
+  - USDC Payment Received
+  - Subscription Created
+  - Subscription Canceled
+  - Subscription Expired
+  - Subscription Failure
+  - Subscription Concluded
+  - Card Payment Chargeback Opened
+  - Card Payment Chargeback Won
+  - Card Payment Chargeback Lost
+  - Card Payment Suspected Fraud
+  - Payment Pending Review
+  - KYC Created
+  - KYC Success
+  - KYC Failure
+  - Sub-merchant KYB Created
+  - Sub-merchant KYB Success
+  - Sub-merchant KYB Failure
+  - Withdraw Pending
+  - Withdraw Success
+  - Withdraw Failure
+  - Seller Blocked
+  - Refund
+  - Refund Complete
+  - Refund Failure
+  - Refund Returned
+  - Wire Failure
+  - Iban Failure
+  - Interac Failure
+  - CashApp Failure
+  - PayPal Failure
+  - Venmo Failure
+  - Reserve Released
+  - Crypto Overpayment
+  - Crypto Underpayment
+  - Iban RFI Created
+  - Iban RFI Submitted
+  - Crypto Deposit Funds Received
+  - Customer Override Limit Threshold
+  - Crypto Payin Funds Received
+  - PayPal Payment Authorized
+  - PayPal Payment Voided
+  - PayPal Payment Chargeback Opened
+  - PayPal Payment Chargeback Won
+  - PayPal Payment Chargeback Lost
+  - Venmo Payment Authorized
+  - Venmo Payment Voided
+  - Venmo Payment Chargeback Opened
+  - Venmo Payment Chargeback Won
+  - Venmo Payment Chargeback Lost
+  - Disbursed Funds

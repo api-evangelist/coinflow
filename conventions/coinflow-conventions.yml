@@ -1,0 +1,67 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/
+description: >-
+  Cross-cutting request/response semantics for the Coinflow API, captured from the
+  docs and derived from the OpenAPI. Cross-links authentication/, errors/,
+  lifecycle/, and asyncapi/ (webhooks).
+authentication:
+  style: apiKey (header-based, multi-layered)
+  merchant_header: Authorization
+  end_user_headers:
+    - x-coinflow-auth-user-id
+    - x-coinflow-auth-wallet
+    - x-coinflow-auth-blockchain
+    - x-coinflow-auth-signed-message
+    - x-coinflow-auth-merchant-id
+  session:
+    header: x-coinflow-auth-session-key
+    obtained_via: get-session-key
+    ttl: 24 hours
+  ref: authentication/coinflow-authentication.yml
+idempotency:
+  supported: true
+  mechanism: request-body field
+  field: idempotencyKey
+  scope: >-
+    Client-generated idempotency key accepted on money-movement request bodies
+    (withdraw / payout / settlement transfer operations) so a retried request is
+    not double-processed. Coinflow uses a body field, not an Idempotency-Key
+    header.
+  evidence: openapi/coinflow-openapi-original.json (idempotencyKey property on withdraw/payout schemas)
+pagination:
+  style: none-uniform
+  notes: >-
+    No cursor/offset envelope is declared in the OpenAPI; list endpoints return
+    arrays and some accept date/id range parameters. No standard pagination
+    wrapper.
+versioning:
+  scheme: unversioned-path
+  current: v1.0.0
+  notes: >-
+    OpenAPI info.version is 1.0.0; the API is served under /api with no version
+    segment in the path. Webhook payloads carry their own WebhookVersion
+    (Legacy, Version 1, Version 2, Version 3).
+  ref: lifecycle/coinflow-lifecycle.yml
+error_envelope:
+  format: http-status + message
+  problem_json: false
+  notes: >-
+    Errors are conveyed via HTTP status codes with a descriptive message; several
+    codes carry payment-specific meaning (412 challenge required, 451 additional
+    verification, 423 customer blocked). Card processing decline codes are
+    surfaced separately.
+  ref: errors/coinflow-problem-types.yml
+  decline_codes_ref: errors/coinflow-decline-codes.yml
+rate_limiting:
+  signaled: false
+  notes: >-
+    A per-merchant globalRateLimit setting exists in merchant configuration and a
+    429 "Reached Max Number of Transactions In Period" is returned on
+    merchant-initiated-transaction, but no standard X-RateLimit-* response headers
+    are declared in the spec.
+webhooks:
+  supported: true
+  signature_header: Coinflow-Signature
+  signature_algorithm: HMAC-SHA256
+  ref: asyncapi/coinflow-webhooks.yml

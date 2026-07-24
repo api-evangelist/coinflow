@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.coinflow.cash/llms.txt
+description: >-
+  Coinflow publishes a hosted, remote MCP server for its documentation (a Fern
+  "fern-docs-mcp-server"), advertised in the docs llms.txt for AI-client
+  integration (Claude Code, Cursor, etc.). Its scope is documentation search,
+  not Coinflow API operations. The candidate[] tool list below is DERIVED from
+  the OpenAPI operations as a starting point for an operation-level MCP server —
+  it is not published by Coinflow.
+server:
+  name: coinflow-docs
+  transport: http
+  url: https://docs.coinflow.cash/_mcp/server
+  serverInfo: fern-docs-mcp-server 1.0.0
+  protocolVersion: '2024-11-05'
+tools:
+  - name: searchDocs
+    description: Search the Coinflow documentation at https://docs.coinflow.cash and return relevant doc passages.
+    verified: true
+candidate_status: candidate
+candidate_source: openapi/coinflow-openapi-original.json
+candidate:
+  - name: authenticate
+    description: Get the message to sign, exchange for a session key, and verify a token.
+    source_operations: [get-message, get-session-key, verify-token]
+  - name: take_card_payment
+    description: Tokenize a card and run a checkout charge.
+    source_operations: [tokenize, get-fees, card-checkout]
+  - name: create_customer
+    description: Create a Coinflow customer for an end user.
+    source_operations: [create-customer]
+  - name: create_subscription
+    description: List plans and subscribe a customer with a card.
+    source_operations: [get-available-plans, create-subscription-card]
+  - name: payout
+    description: Quote and execute a merchant payout / withdrawal.
+    source_operations: [get-payout-balance, get-delegated-payout-quote, do-payout, get-withdrawal]
+  - name: refund_payment
+    description: Issue and track a refund.
+    source_operations: [refund-payment, get-refunds]

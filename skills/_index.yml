@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/coinflow-openapi-original.json
+description: >-
+  Packaged Agent Skills for the Coinflow API. Each skill is grounded in real
+  operationIds verified against openapi/coinflow-openapi-original.json and folds
+  in the conventions/, errors/, sandbox/, and webhook rules captured in this repo.
+skills:
+  - file: coinflow-take-card-payment.md
+    name: Take a card payment with Coinflow
+    api: openapi/coinflow-openapi-original.json
+    operations: [get-message, get-session-key, verify-token, tokenize, get-fees, card-checkout]
+  - file: coinflow-create-subscription.md
+    name: Create a customer and subscribe them to a plan
+    api: openapi/coinflow-openapi-original.json
+    operations: [create-customer, get-available-plans, create-subscription-card]
+  - file: coinflow-merchant-payout.md
+    name: Quote and execute a merchant payout
+    api: openapi/coinflow-openapi-original.json
+    operations: [get-payout-balance, get-delegated-payout-quote, do-payout, payout-from-delegated-settlement-wallet, get-withdrawal]
+  - file: coinflow-refund-and-webhooks.md
+    name: Refund a payment and reconcile via webhooks
+    api: openapi/coinflow-openapi-original.json
+    operations: [refund-payment, get-refunds, get-refund-via-payment-id, retry-refund, resend-webhook]

@@ -1,0 +1,89 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/coinflow-openapi-original.json
+format: openapi-responses
+description: >-
+  API-level error responses DERIVED from the 4xx/5xx responses declared across
+  the 170 operations of the Coinflow OpenAPI. Coinflow does not emit
+  application/problem+json (RFC 9457); it reuses HTTP status codes with a
+  descriptive message, several of them repurposed to payment-specific semantics
+  (e.g. 412 Challenge required, 451 additional verification required, 423 customer
+  blocked). common_description is the most frequent response description observed
+  for that status. Card-network processing codes are catalogued separately in
+  coinflow-decline-codes.yml.
+problems:
+  - status: 400
+    title: Bad Request
+    common_description: The applicant linked to this share token is not approved; verification was incomplete or failed.
+    occurrences: 1
+    example_operations: [create-kyc-share-token]
+  - status: 402
+    title: Payment Required
+    common_description: Payment method (e.g. ApplePay) unavailable.
+    occurrences: 3
+    example_operations: [apple-pay, google-pay, payout-from-delegated-settlement-wallet]
+  - status: 403
+    title: Forbidden
+    common_description: Card on file not enabled.
+    occurrences: 5
+    example_operations: [card-on-file-authorized, card-on-file-checkout, merchant-initiated-transaction]
+  - status: 404
+    title: Not Found
+    common_description: Resource (e.g. withdrawal, sub-merchant) not found.
+    occurrences: 3
+    example_operations: [get-withdrawal, resend-webhook, get-submerchant]
+  - status: 409
+    title: Conflict
+    common_description: User already exists for this wallet and merchant.
+    occurrences: 2
+    example_operations: [create-kyb, create-kyc]
+  - status: 410
+    title: Gone
+    common_description: Card validation expired; revalidate the CVV and tokenize again before reusing the endpoint.
+    occurrences: 4
+    example_operations: [card-on-file-authorized, card-on-file-checkout, merchant-initiated-transaction]
+  - status: 412
+    title: Precondition Failed
+    common_description: Challenge required (3DS / additional customer challenge).
+    occurrences: 23
+    example_operations: [card-checkout, card-on-file-authorized, card-on-file-checkout]
+  - status: 417
+    title: Expectation Failed
+    common_description: Transaction expired; fetch a new transaction, re-sign, and resend.
+    occurrences: 2
+    example_operations: [send-coinflow-transaction, send-solana-transaction]
+  - status: 422
+    title: Unprocessable Entity
+    common_description: Required field missing (e.g. address).
+    occurrences: 2
+    example_operations: [token-checkout, create-subscription-token]
+  - status: 423
+    title: Locked
+    common_description: Customer is blocked.
+    occurrences: 18
+    example_operations: [ach-checkout, apa-checkout, apple-pay]
+  - status: 426
+    title: Upgrade Required
+    common_description: Additional bank routing detail required (e.g. BIC).
+    occurrences: 2
+    example_operations: [iban-checkout, create-iban-account]
+  - status: 428
+    title: Precondition Required
+    common_description: User must re-verify account.
+    occurrences: 6
+    example_operations: [ach-checkout, iban-checkout, iban-token-checkout]
+  - status: 429
+    title: Too Many Requests
+    common_description: Reached the maximum number of transactions in the period.
+    occurrences: 1
+    example_operations: [merchant-initiated-transaction]
+  - status: 451
+    title: Unavailable For Legal Reasons
+    common_description: Must complete additional verification (compliance / KYC).
+    occurrences: 26
+    example_operations: [ach-checkout, apa-checkout, apple-pay]
+  - status: 503
+    title: Service Unavailable
+    common_description: The transaction can't be confirmed; fetch a new transaction, re-sign, and resend.
+    occurrences: 3
+    example_operations: [payout-from-delegated-settlement-wallet, send-coinflow-transaction, send-solana-transaction]

@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.coinflow.cash/guides/checkout/implementation-overview
+description: >-
+  Coinflow's client-side / embeddable UI components. Coinflow ships a pre-built
+  UI SDK that renders a PCI-compliant card form, hosted checkout, and a withdraw
+  widget, so merchants never touch raw card data. Distinct from the server-side
+  usage of the SDKs in packages/.
+families:
+  - name: Checkout (pre-built UI)
+    description: Embeddable card form + hosted checkout handling card capture, tokenization, 3DS challenges, and fraud signals.
+    surfaces:
+      - name: React Checkout component
+        loader: "@coinflowlabs/react"
+        docs: https://docs.coinflow.cash/guides/developer-resources/checkout-implementation/credit-cards-implementation/card-form-components
+      - name: Browser Redirect (hosted) Checkout
+        docs: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/browser-redirect-checkout
+      - name: Swift card form
+        loader: Coinflow Swift SDK
+        docs: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/swift-sdk
+      - name: Android card form
+        loader: Coinflow Android SDK
+        docs: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/android-sdk
+      - name: Flutter card form
+        loader: Coinflow Flutter SDK
+        docs: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/flutter-sdk
+      - name: React Native card form
+        loader: "@coinflowlabs/react-native"
+        docs: https://docs.coinflow.cash/guides/checkout/implementation-overview/mobile-app-payments/react-native-sdk
+  - name: Withdraw / Payout widget
+    description: Pre-built React component for end-user payouts and withdrawals.
+    surfaces:
+      - name: React Withdraw component
+        loader: "@coinflowlabs/react"
+        docs: https://docs.coinflow.cash/guides/payouts

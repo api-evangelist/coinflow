@@ -1,8 +1,14 @@
 aid: coinflow
 name: Coinflow
-description: 'Coinflow is a company surfaced as a portfolio company of pantera-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Coinflow is a stablecoin-native payments platform (backed by Pantera Capital)
+  that lets software companies and marketplaces accept card, ACH, and crypto/USDC
+  payments and send instant payouts across Solana, EVM, and Stellar rails. Its API
+  covers checkout / pay-ins, PCI-compliant tokenized card-on-file, subscriptions,
+  marketplace sub-merchant onboarding with KYC/KYB, refunds, withdrawals and
+  merchant payouts, and HMAC-signed webhooks. Coinflow ships pre-built UI SDKs for
+  React, React Native, Swift, Android, and Flutter, plus a sandbox environment with
+  published test cards and 3DS triggers.
 url: https://raw.githubusercontent.com/api-evangelist/coinflow/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +16,230 @@ x-backed-by:
 - pantera-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://coinflow.cash/coinflow-og-image.jpg
 tags:
 - Company
 - Crypto
-apis: []
+- Payments
+- Stablecoin
+- USDC
+- Checkout
+- Payouts
+- Marketplace
+- Web3
+- Fintech
+apis:
+- aid: coinflow:coinflow-authentication-api
+  name: Coinflow authentication API
+  description: The authentication API from Coinflow — 3 operation(s) for authentication.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-cardtokenization-api
+  name: Coinflow cardTokenization API
+  description: The cardTokenization API from Coinflow — 3 operation(s) for cardtokenization.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - cardTokenization
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-cardtokenization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-checkout-api
+  name: Coinflow checkout API
+  description: The checkout API from Coinflow — 33 operation(s) for checkout.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-customers-api
+  name: Coinflow customers API
+  description: The customers API from Coinflow — 15 operation(s) for customers.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - customers
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-events-api
+  name: Coinflow events API
+  description: The events API from Coinflow — 1 operation(s) for events.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-marketplace-api
+  name: Coinflow marketplace API
+  description: The marketplace API from Coinflow — 11 operation(s) for marketplace.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - marketplace
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-marketplace-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-merchant-api
+  name: Coinflow merchant API
+  description: The merchant API from Coinflow — 49 operation(s) for merchant.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - merchant
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-merchant-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-merchantsubscription-api
+  name: Coinflow merchantSubscription API
+  description: The merchantSubscription API from Coinflow — 4 operation(s) for merchantsubscription.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - merchantSubscription
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-merchantsubscription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-redeem-api
+  name: Coinflow redeem API
+  description: The redeem API from Coinflow — 4 operation(s) for redeem.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - redeem
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-redeem-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-refund-api
+  name: Coinflow refund API
+  description: The refund API from Coinflow — 4 operation(s) for refund.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - refund
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-refund-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-submerchant-api
+  name: Coinflow subMerchant API
+  description: The subMerchant API from Coinflow — 3 operation(s) for submerchant.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - subMerchant
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-submerchant-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-subscription-api
+  name: Coinflow subscription API
+  description: The subscription API from Coinflow — 7 operation(s) for subscription.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-utilities-api
+  name: Coinflow utilities API
+  description: The utilities API from Coinflow — 3 operation(s) for utilities.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-withdraw-api
+  name: Coinflow withdraw API
+  description: The withdraw API from Coinflow — 30 operation(s) for withdraw.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - withdraw
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-withdraw-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +248,78 @@ maintainers:
 common:
 - type: Website
   url: https://coinflow.cash/
+- type: DeveloperPortal
+  url: https://docs.coinflow.cash/
+- type: Documentation
+  url: https://docs.coinflow.cash/
+- type: APIReference
+  url: https://docs.coinflow.cash/api-reference
+- type: GettingStarted
+  url: https://docs.coinflow.cash/guides/getting-started/quickstart
+- type: Blog
+  url: https://coinflow.cash/blog/
+- type: Support
+  url: https://coinflow.cash/contact/
+- type: SignUp
+  url: https://app.coinflow.cash/
+- type: TermsOfService
+  url: https://coinflow.cash/terms-of-service/
+- type: PrivacyPolicy
+  url: https://coinflow.cash/privacy-policy/
+- type: StatusPage
+  url: https://status.coinflow.cash/
+- type: Security
+  url: https://coinflow.cash/bug-bounty
+- type: Compliance
+  url: https://docs.coinflow.cash/guides/product-overview/key-concepts
+- type: OpenAPI
+  url: openapi/coinflow-openapi-original.json
+- type: LLMsTxt
+  url: llms/coinflow-llms.txt
+- type: WellKnown
+  url: well-known/coinflow-well-known.yml
+- type: SecurityTxt
+  url: well-known/coinflow-security.txt
+- type: Packages
+  url: packages/coinflow-packages.yml
+- type: SDKs
+  url: packages/coinflow-packages.yml
+- type: Components
+  url: components/coinflow-components.yml
+- type: MCPServer
+  url: mcp/coinflow-mcp.yml
+- type: Sandbox
+  url: sandbox/coinflow-sandbox.yml
+- type: Conventions
+  url: conventions/coinflow-conventions.yml
+- type: Idempotency
+  url: conventions/coinflow-conventions.yml
+- type: Lifecycle
+  url: lifecycle/coinflow-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/coinflow-problem-types.yml
+- type: DeclineCodes
+  url: errors/coinflow-decline-codes.yml
+- type: Conformance
+  url: conformance/coinflow-conformance.yml
+- type: DataModel
+  url: data-model/coinflow-data-model.yml
+- type: Webhooks
+  url: asyncapi/coinflow-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/coinflow-overlay.yaml
+- type: VulnerabilityDisclosure
+  url: security/coinflow-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/coinflow-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/coinflow-agentic-access.yml
+- type: Authentication
+  url: authentication/coinflow-authentication.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

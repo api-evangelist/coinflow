@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Coinflow
+  version: 1.0.0
+extends: openapi/coinflow-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-provider: coinflow
+      x-apievangelist-category: payments
+      x-apievangelist-auth: apiKey-header
+      x-apievangelist-idempotency:
+        supported: true
+        mechanism: request-body field
+        field: idempotencyKey
+      x-apievangelist-webhooks:
+        supported: true
+        signature_header: Coinflow-Signature
+        signature_algorithm: HMAC-SHA256
+        catalog: asyncapi/coinflow-webhooks.yml
+      x-apievangelist-sandbox:
+        base_url: https://api-sandbox.coinflow.cash/api
+        catalog: sandbox/coinflow-sandbox.yml
+      x-apievangelist-artifacts:
+        authentication: authentication/coinflow-authentication.yml
+        conventions: conventions/coinflow-conventions.yml
+        errors: errors/coinflow-problem-types.yml
+        decline_codes: errors/coinflow-decline-codes.yml
+        lifecycle: lifecycle/coinflow-lifecycle.yml
+        data_model: data-model/coinflow-data-model.yml

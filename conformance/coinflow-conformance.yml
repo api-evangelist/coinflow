@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/coinflow-openapi-original.json
+description: >-
+  Cross-cutting standards conformance for the Coinflow API, derived from the
+  OpenAPI and enriched from the docs. Coinflow is a card + crypto payments
+  processor; its published PCI-compliant card tokenization and KYC/KYB verification
+  flows are the compliance-bearing surfaces.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/coinflow-openapi-original.json declares openapi 3.1.0
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 security schemes; auth is apiKey header-based.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use HTTP status + message, not application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset/Deprecation header program found.
+  - id: pci-dss
+    conforms: true
+    evidence: >-
+      Docs state the pre-built UI performs PCI-compliant card tokenization; card
+      data is tokenized so merchants avoid handling raw PAN.
+    docs: https://docs.coinflow.cash/guides/product-overview/key-concepts
+  - id: 3ds
+    conforms: true
+    evidence: 3DS challenge preference + frictionless/challenge test cards documented.
+  - id: kyc-kyb
+    conforms: true
+    evidence: create-kyc / create-kyb operations and KYC/KYB webhook events.
+  - id: idempotency
+    conforms: true
+    evidence: idempotencyKey request-body field on money-movement operations.
+  - id: webhook-signing
+    conforms: true
+    evidence: HMAC-SHA256 signed webhooks (Coinflow-Signature).
