@@ -273,7 +273,7 @@ common:
 - type: Compliance
   url: https://docs.coinflow.cash/guides/product-overview/key-concepts
 - type: OpenAPI
-  url: openapi/coinflow-openapi-original.json
+  url: openapi/_original/coinflow-openapi-original.json
 - type: LLMsTxt
   url: llms/coinflow-llms.txt
 - type: WellKnown
