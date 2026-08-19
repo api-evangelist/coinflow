@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "fd3c84aa-fe32-491f-949b-929223e95900",
+      "name": "utilities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba0c4bd8-bcf9-4aca-ab81-a32e961a18b3",
+          "name": "Get the Coinflow Contract Address",
+          "request": {
+            "name": "Get the Coinflow Contract Address",
+            "description": {
+              "content": "Get the Coinflow Contract address by blockchain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "utils",
+                "contract-address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "blockchain",
+                  "value": "<string>",
+                  "description": "(Required) - Blockchain to get the contract address of"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9706bd7e-1868-4672-aebc-7c33fe4879d0",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "contract-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "blockchain",
+                      "value": "solana"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc2919c4-1249-4364-b6e9-7b55315bc97c",
+          "name": "Send Coinflow Signed Solana Transaction",
+          "request": {
+            "name": "Send Coinflow Signed Solana Transaction",
+            "description": {
+              "content": "Send a Coinflow generated and signed transaction\n\nUse Coinflow's battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions)\nThis endpoint sends a fully signed Solana transaction with retries thru stable RPC servers.\n\nThis endpoint is specifically used in the case that the transaction attempting to be sent\nwas pre-signed by one of Coinflow's wallets.\n\nFor example:\nTransaction is retrieved from the /api/redeem endpoint, that transaction\ncomes with the feePayer set and pre-signed by one of Coinflow's fee payer wallets.\nThis endpoint can then be called directly from a frontend without the need for the\nmerchant's API key like the /send-solana-tx endpoint above.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "utils",
+                "send-coinflow-tx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"signedTransaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "889c6906-c141-4009-93f7-db38a95042d0",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-coinflow-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"signedTransaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f7ac447-8714-4688-ae0c-79394b209d18",
+              "name": "Transaction Simulation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-coinflow-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"signedTransaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a941488-a9ed-42e8-b229-9392cfe2e6f7",
+              "name": "Transaction Expired, fetch a new transaction, re-sign, and resend",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-coinflow-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"signedTransaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Expectation Failed",
+              "code": 417,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "671d3bad-cc1c-408d-8f87-fbb65fb6a9c0",
+              "name": "The transaction can't be confirmed, fetch a new transaction, re-sign, and resend",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-coinflow-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"signedTransaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24564c00-df05-4889-a142-fe17f6f23f8d",
+          "name": "Send Solana Transaction",
+          "request": {
+            "name": "Send Solana Transaction",
+            "description": {
+              "content": "Use Coinflow's battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions).\n\nThis endpoint sends a fully signed Solana transaction with retries and stable RPC servers.\nThis is helpful during periods of network instability where the solution is to use better private RPC servers,\nretry transactions multiple times.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "utils",
+                "send-solana-tx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94ca767e-4d47-4a22-91d4-50d83fa10381",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-solana-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signature\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "871a222a-a0d6-4673-aa2a-4a25bae4d180",
+              "name": "Transaction Simulation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-solana-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f2c553c-87b7-4a08-9d04-5c6a1daff6b1",
+              "name": "Transaction Expired, fetch a new transaction, re-sign, and resend",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-solana-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Expectation Failed",
+              "code": 417,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fad1e9c-6789-4b56-85c7-c97611fefaca",
+              "name": "The transaction can't be confirmed, fetch a new transaction, re-sign, and resend",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utils",
+                    "send-solana-tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction\": \"<string>\",\n  \"confirm\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f9fe5dc1-6dfe-4e66-9148-0cf4aaae61de",
+    "name": "API Reference authentication utilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

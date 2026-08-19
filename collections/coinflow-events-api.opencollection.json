@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication events API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/events",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is for reporting Chargeback Protection Events throughout your customer's application lifecycle.\n\nThe goal of this endpoint is for reporting events to the chargeback protection system to that it\ncan evaluate timing and take note of significant events which will occur in a user's lifecycle. The end goal of\ncollecting this information is to increase approval rates (lower false positives) and reduce fraud and chargebacks\n(lower false negatives). When calling these API's it is highly en"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,359 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication customers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/v2/bankAccount",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a bank account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Bank Account Status Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/plaid-check",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checks whether a customer's linked bank account is still active and\nvalid. Returns a normalized status (`active`, `removed`, `login_required`,\nor `error`) that merchants can use to gate transaction attempts before\nsubmission."
+        },
+        {
+          "info": {
+            "name": "Create an Iban account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/iban",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Iban account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Create Card for Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/card",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create card for a particular customer"
+        },
+        {
+          "info": {
+            "name": "Create Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/customer",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a customer"
+        },
+        {
+          "info": {
+            "name": "Delete Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/bankAccount/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a bank account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Delete Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/card/:cardToken",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cardToken",
+                "value": "",
+                "type": "path",
+                "description": "- Token of the card to delete"
+              }
+            ]
+          },
+          "docs": "Deletes the card for a particular customer"
+        },
+        {
+          "info": {
+            "name": "Delete Iban Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/iban/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an Iban account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Delete Interac Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/interac/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an Interac account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Delete PayPal Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/paypal/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a saved PayPal account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Delete Venmo Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/venmo/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a saved Venmo account for a given customer"
+        },
+        {
+          "info": {
+            "name": "Get Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/balances/:merchantIdOrCreditSeed",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantIdOrCreditSeed",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the balances of credits, usdc, and an optional token for a particular wallet"
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/v2",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets the Customer record for a particular user."
+        },
+        {
+          "info": {
+            "name": "Get Purchase History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/history",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "query",
+                "description": "- Optional payment id to filter the request by"
+              }
+            ]
+          },
+          "docs": "Gets the Purchase History for a particular Customer"
+        },
+        {
+          "info": {
+            "name": "Get Purchase History By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/customer/history/:paymentId",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "- Payment id to filter the request by"
+              }
+            ]
+          },
+          "docs": "Gets the Purchase for a Customer by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

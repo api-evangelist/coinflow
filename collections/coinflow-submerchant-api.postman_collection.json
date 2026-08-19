@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "69f439df-5083-4bc3-8fcb-d9461a529e89",
+      "name": "subMerchant",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2d7d9f2-84a4-4a5f-b238-43925701170b",
+          "name": "Get All Submerchants",
+          "request": {
+            "name": "Get All Submerchants",
+            "description": {},
+            "url": {
+              "path": [
+                "submerchant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dce72c43-a126-4ff4-bccb-fd1fcee1f9f2",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "submerchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"string\",\n    \"merchantId\": \"string\",\n    \"kycType\": \"business\",\n    \"hideBranding\": true,\n    \"onlyShowTotal\": true,\n    \"pushToCardEnabled\": false,\n    \"requireAniCheck\": false,\n    \"interacSettings\": {\n      \"customerEmailNotifications\": false,\n      \"merchantEmailNotifications\": false,\n      \"processor\": \"aptpay\",\n      \"feeMode\": \"merchant\",\n      \"fxFeeMode\": \"user\",\n      \"fixedFee\": {\n        \"cents\": 9475\n      },\n      \"feeBps\": 3581.208313645852,\n      \"minFee\": {\n        \"cents\": 3382\n      }\n    },\n    \"creditSeed\": \"string\",\n    \"enforceJwt\": true,\n    \"feePayerPublicKey\": \"string\",\n    \"solanaFeePayerPublicKey\": \"string\",\n    \"solanaUsdcPayerPublicKey\": \"string\",\n    \"evmFeePayerAddress\": \"string\",\n    \"evmUsdcPayerAddress\": \"string\",\n    \"stellarUsdcPayerPublicKey\": \"string\",\n    \"_sanitized\": false,\n    \"cardSettings\": {\n      \"avsCheck\": true,\n      \"requiresKyc\": true,\n      \"aftEnabled\": true,\n      \"statementDescriptor\": \"string\",\n      \"saveCardDefault\": true,\n      \"processor\": \"fallback_fifththird_mvb_shift4_payarc\",\n      \"googlePayProcessor\": \"fallback_natwest_nuvei_payarc\",\n      \"applePayProcessor\": \"fallback_mvb_nuvei\",\n      \"supportsApplePay\": true,\n      \"supportsGooglePay\": true,\n      \"tokenizationProvider\": \"bt\"\n    },\n    \"achSettings\": {\n      \"instantSettle\": true,\n      \"requireKycBeforePurchase\": false\n    },\n    \"verification\": {\n      \"status\": \"expired\"\n    },\n    \"canAcceptAch\": true,\n    \"canAcceptWire\": true,\n    \"withdrawalGeolocationRequired\": false,\n    \"checkoutGeolocationRequired\": true,\n    \"brand\": {\n      \"portalBrand\": \"seamlesschex\",\n      \"logo\": \"string\",\n      \"displayName\": \"string\"\n    },\n    \"colors\": {\n      \"showCardIcon\": true,\n      \"placeholderColor\": \"string\",\n      \"expirationPlaceholder\": \"string\",\n      \"cvvPlaceholder\": \"string\",\n      \"cardNumberPlaceholder\": \"string\",\n      \"fontWeight\": \"string\",\n      \"fontSize\": \"string\",\n      \"style\": \"pill\",\n      \"font\": \"string\",\n      \"ctaColor\": \"string\",\n      \"textColorAction\": \"string\",\n      \"textColorAccent\": \"string\",\n      \"textColor\": \"string\",\n      \"backgroundAccent2\": \"string\",\n      \"backgroundAccent\": \"string\",\n      \"cardBackground\": \"string\",\n      \"background\": \"string\",\n      \"primary\": \"string\"\n    },\n    \"url\": \"string\",\n    \"settlementAddresses\": {\n      \"solana\": \"string\",\n      \"eth\": \"string\",\n      \"polygon\": \"string\",\n      \"base\": \"string\",\n      \"user\": \"string\",\n      \"arbitrum\": \"string\",\n      \"stellar\": \"string\",\n      \"monad\": \"string\",\n      \"tempo\": \"string\"\n    },\n    \"bankPayoutProvider\": [\n      \"coinfx\",\n      \"checkbook\"\n    ],\n    \"ibanPayoutProviders\": [\n      \"merge\",\n      \"mock\"\n    ],\n    \"ibanPayoutProvider\": \"merge\",\n    \"rtpPayoutProviders\": [\n      \"brale\",\n      \"dwolla\"\n    ],\n    \"rtpPayoutProvider\": \"checkbook\",\n    \"pixPayoutProviders\": [\n      \"mock\",\n      \"mock\"\n    ],\n    \"pixPayoutProvider\": \"brla\",\n    \"eftPayoutProviders\": [\n      \"mock\",\n      \"aptpay\"\n    ],\n    \"eftPayoutProvider\": \"checkbook\",\n    \"p2cPayoutProviders\": [\n      \"MOCK\",\n      \"shift4\"\n    ],\n    \"p2cPayoutProvider\": \"aptpay\",\n    \"globalP2cPayoutProvider\": \"shift4\",\n    \"appleP2cPayoutProvider\": \"aptpay\",\n    \"venmoPayoutProviders\": [\n      \"paypal\",\n      \"mock\"\n    ],\n    \"venmoPayoutProvider\": \"mock\",\n    \"paypalPayoutProviders\": [\n      \"paypal\",\n      \"paypal\"\n    ],\n    \"paypalPayoutProvider\": \"checkbook\",\n    \"wirePayoutProvider\": [\n      \"BRAID\",\n      \"MOCK\"\n    ],\n    \"interacPayoutProviders\": [\n      \"mock\",\n      \"mock\"\n    ],\n    \"interacPayoutProvider\": \"checkbook\",\n    \"interacPaymentProvider\": \"mock\",\n    \"firstPartyPayoutOverrides\": {\n      \"interacPayoutProvider\": \"mock\",\n      \"wirePayoutProvider\": [\n        \"BRAID\",\n        \"MOCK\"\n      ],\n      \"paypalPayoutProvider\": \"paypal\",\n      \"venmoPayoutProvider\": \"citcon\",\n      \"appleP2cPayoutProvider\": \"aptpay\",\n      \"globalP2cPayoutProvider\": \"checkbook\",\n      \"p2cPayoutProvider\": \"aptpay\",\n      \"eftPayoutProvider\": \"mock\",\n      \"pixPayoutProvider\": \"brla\",\n      \"rtpPayoutProvider\": \"checkbook\",\n      \"ibanPayoutProvider\": \"mock\",\n      \"bankPayoutProvider\": [\n        \"mock\",\n        \"mock\"\n      ]\n    },\n    \"enforceCheckoutJwt\": true,\n    \"externalVerificationLinks\": true,\n    \"whitelistedAncestorUrls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"enforceLivenessKyc\": false,\n    \"parent\": \"string\",\n    \"customPayInFees\": [\n      {\n        \"fee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"lineItemLabel\": \"string\"\n      },\n      {\n        \"fee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"lineItemLabel\": \"string\"\n      }\n    ],\n    \"minTransactionAmount\": {\n      \"cents\": 7107\n    },\n    \"maxTransactionAmount\": {\n      \"cents\": 2707\n    },\n    \"paypalMerchantId\": \"string\",\n    \"paypalClientId\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"merchantId\": \"string\",\n    \"kycType\": \"business\",\n    \"hideBranding\": false,\n    \"onlyShowTotal\": false,\n    \"pushToCardEnabled\": true,\n    \"requireAniCheck\": true,\n    \"interacSettings\": {\n      \"customerEmailNotifications\": true,\n      \"merchantEmailNotifications\": false,\n      \"processor\": \"mock\",\n      \"feeMode\": \"user\",\n      \"fxFeeMode\": \"merchant\",\n      \"fixedFee\": {\n        \"cents\": 4350\n      },\n      \"feeBps\": 4397.904806247302,\n      \"minFee\": {\n        \"cents\": 8842\n      }\n    },\n    \"creditSeed\": \"string\",\n    \"enforceJwt\": true,\n    \"feePayerPublicKey\": \"string\",\n    \"solanaFeePayerPublicKey\": \"string\",\n    \"solanaUsdcPayerPublicKey\": \"string\",\n    \"evmFeePayerAddress\": \"string\",\n    \"evmUsdcPayerAddress\": \"string\",\n    \"stellarUsdcPayerPublicKey\": \"string\",\n    \"_sanitized\": true,\n    \"cardSettings\": {\n      \"avsCheck\": false,\n      \"requiresKyc\": false,\n      \"aftEnabled\": false,\n      \"statementDescriptor\": \"string\",\n      \"saveCardDefault\": false,\n      \"processor\": \"fallback_merchant_warrior_frame\",\n      \"googlePayProcessor\": \"fallback_payarc_nuvei\",\n      \"applePayProcessor\": \"fallback_nuvei_fifththird\",\n      \"supportsApplePay\": false,\n      \"supportsGooglePay\": false,\n      \"tokenizationProvider\": \"bt\"\n    },\n    \"achSettings\": {\n      \"instantSettle\": false,\n      \"requireKycBeforePurchase\": false\n    },\n    \"verification\": {\n      \"status\": \"expired\"\n    },\n    \"canAcceptAch\": false,\n    \"canAcceptWire\": false,\n    \"withdrawalGeolocationRequired\": true,\n    \"checkoutGeolocationRequired\": true,\n    \"brand\": {\n      \"portalBrand\": \"yourbrandhere\",\n      \"logo\": \"string\",\n      \"displayName\": \"string\"\n    },\n    \"colors\": {\n      \"showCardIcon\": true,\n      \"placeholderColor\": \"string\",\n      \"expirationPlaceholder\": \"string\",\n      \"cvvPlaceholder\": \"string\",\n      \"cardNumberPlaceholder\": \"string\",\n      \"fontWeight\": \"string\",\n      \"fontSize\": \"string\",\n      \"style\": \"pill\",\n      \"font\": \"string\",\n      \"ctaColor\": \"string\",\n      \"textColorAction\": \"string\",\n      \"textColorAccent\": \"string\",\n      \"textColor\": \"string\",\n      \"backgroundAccent2\": \"string\",\n      \"backgroundAccent\": \"string\",\n      \"cardBackground\": \"string\",\n      \"background\": \"string\",\n      \"primary\": \"string\"\n    },\n    \"url\": \"string\",\n    \"settlementAddresses\": {\n      \"solana\": \"string\",\n      \"eth\": \"string\",\n      \"polygon\": \"string\",\n      \"base\": \"string\",\n      \"user\": \"string\",\n      \"arbitrum\": \"string\",\n      \"stellar\": \"string\",\n      \"monad\": \"string\",\n      \"tempo\": \"string\"\n    },\n    \"bankPayoutProvider\": [\n      \"coinfx\",\n      \"aptpay\"\n    ],\n    \"ibanPayoutProviders\": [\n      \"mock\",\n      \"mock\"\n    ],\n    \"ibanPayoutProvider\": \"mock\",\n    \"rtpPayoutProviders\": [\n      \"dwolla\",\n      \"aptpay\"\n    ],\n    \"rtpPayoutProvider\": \"aptpay\",\n    \"pixPayoutProviders\": [\n      \"brla\",\n      \"brla\"\n    ],\n    \"pixPayoutProvider\": \"mock\",\n    \"eftPayoutProviders\": [\n      \"aptpay\",\n      \"checkbook\"\n    ],\n    \"eftPayoutProvider\": \"mock\",\n    \"p2cPayoutProviders\": [\n      \"aptpay\",\n      \"MOCK\"\n    ],\n    \"p2cPayoutProvider\": \"aptpay\",\n    \"globalP2cPayoutProvider\": \"MOCK\",\n    \"appleP2cPayoutProvider\": \"aptpay\",\n    \"venmoPayoutProviders\": [\n      \"checkbook\",\n      \"mock\"\n    ],\n    \"venmoPayoutProvider\": \"paypal\",\n    \"paypalPayoutProviders\": [\n      \"citcon\",\n      \"citcon\"\n    ],\n    \"paypalPayoutProvider\": \"paypal\",\n    \"wirePayoutProvider\": [\n      \"BRAID\",\n      \"MOCK\"\n    ],\n    \"interacPayoutProviders\": [\n      \"mock\",\n      \"mock\"\n    ],\n    \"interacPayoutProvider\": \"checkbook\",\n    \"interacPaymentProvider\": \"aptpay\",\n    \"firstPartyPayoutOverrides\": {\n      \"interacPayoutProvider\": \"mock\",\n      \"wirePayoutProvider\": [\n        \"BRAID\",\n        \"BRAID\"\n      ],\n      \"paypalPayoutProvider\": \"mock\",\n      \"venmoPayoutProvider\": \"mock\",\n      \"appleP2cPayoutProvider\": \"aptpay\",\n      \"globalP2cPayoutProvider\": \"shift4\",\n      \"p2cPayoutProvider\": \"MOCK\",\n      \"eftPayoutProvider\": \"mock\",\n      \"pixPayoutProvider\": \"mock\",\n      \"rtpPayoutProvider\": \"checkbook\",\n      \"ibanPayoutProvider\": \"merge\",\n      \"bankPayoutProvider\": [\n        \"aptpay\",\n        \"BRAID\"\n      ]\n    },\n    \"enforceCheckoutJwt\": true,\n    \"externalVerificationLinks\": true,\n    \"whitelistedAncestorUrls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"enforceLivenessKyc\": false,\n    \"parent\": \"string\",\n    \"customPayInFees\": [\n      {\n        \"fee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"lineItemLabel\": \"string\"\n      },\n      {\n        \"fee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"lineItemLabel\": \"string\"\n      }\n    ],\n    \"minTransactionAmount\": {\n      \"cents\": 5561\n    },\n    \"maxTransactionAmount\": {\n      \"cents\": 2390\n    },\n    \"paypalMerchantId\": \"string\",\n    \"paypalClientId\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf9eac1b-644e-4496-b839-04546b575c28",
+          "name": "Get Submerchant by ID",
+          "request": {
+            "name": "Get Submerchant by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "submerchant",
+                ":submerchantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submerchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "839b1ec0-46f6-4d6c-b379-d9b889019a5b",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "submerchant",
+                    ":submerchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submerchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"merchantId\": \"string\",\n  \"kycType\": \"person\",\n  \"hideBranding\": false,\n  \"onlyShowTotal\": false,\n  \"pushToCardEnabled\": true,\n  \"requireAniCheck\": true,\n  \"interacSettings\": {\n    \"customerEmailNotifications\": false,\n    \"merchantEmailNotifications\": true,\n    \"processor\": \"aptpay\",\n    \"feeMode\": \"invoice\",\n    \"fxFeeMode\": \"merchant\",\n    \"fixedFee\": {\n      \"cents\": 4049\n    },\n    \"feeBps\": 1987.7808846214928,\n    \"minFee\": {\n      \"cents\": 3253\n    }\n  },\n  \"creditSeed\": \"string\",\n  \"enforceJwt\": false,\n  \"feePayerPublicKey\": \"string\",\n  \"solanaFeePayerPublicKey\": \"string\",\n  \"solanaUsdcPayerPublicKey\": \"string\",\n  \"evmFeePayerAddress\": \"string\",\n  \"evmUsdcPayerAddress\": \"string\",\n  \"stellarUsdcPayerPublicKey\": \"string\",\n  \"_sanitized\": true,\n  \"cardSettings\": {\n    \"avsCheck\": false,\n    \"requiresKyc\": false,\n    \"aftEnabled\": true,\n    \"statementDescriptor\": \"string\",\n    \"saveCardDefault\": false,\n    \"processor\": \"fallback_shift4_natwest_payarc\",\n    \"googlePayProcessor\": \"fallback_payarc_nuvei\",\n    \"applePayProcessor\": \"fallback_mvb_fifththird_shift4_payarc\",\n    \"supportsApplePay\": true,\n    \"supportsGooglePay\": true,\n    \"tokenizationProvider\": \"bt\"\n  },\n  \"achSettings\": {\n    \"instantSettle\": true,\n    \"requireKycBeforePurchase\": false\n  },\n  \"verification\": {\n    \"status\": \"expired\"\n  },\n  \"canAcceptAch\": true,\n  \"canAcceptWire\": false,\n  \"withdrawalGeolocationRequired\": false,\n  \"checkoutGeolocationRequired\": false,\n  \"brand\": {\n    \"portalBrand\": \"approvely\",\n    \"logo\": \"string\",\n    \"displayName\": \"string\"\n  },\n  \"colors\": {\n    \"showCardIcon\": false,\n    \"placeholderColor\": \"string\",\n    \"expirationPlaceholder\": \"string\",\n    \"cvvPlaceholder\": \"string\",\n    \"cardNumberPlaceholder\": \"string\",\n    \"fontWeight\": \"string\",\n    \"fontSize\": \"string\",\n    \"style\": \"sharp\",\n    \"font\": \"string\",\n    \"ctaColor\": \"string\",\n    \"textColorAction\": \"string\",\n    \"textColorAccent\": \"string\",\n    \"textColor\": \"string\",\n    \"backgroundAccent2\": \"string\",\n    \"backgroundAccent\": \"string\",\n    \"cardBackground\": \"string\",\n    \"background\": \"string\",\n    \"primary\": \"string\"\n  },\n  \"url\": \"string\",\n  \"settlementAddresses\": {\n    \"solana\": \"string\",\n    \"eth\": \"string\",\n    \"polygon\": \"string\",\n    \"base\": \"string\",\n    \"user\": \"string\",\n    \"arbitrum\": \"string\",\n    \"stellar\": \"string\",\n    \"monad\": \"string\",\n    \"tempo\": \"string\"\n  },\n  \"bankPayoutProvider\": [\n    \"aptpay\",\n    \"coinfx\"\n  ],\n  \"ibanPayoutProviders\": [\n    \"mock\",\n    \"ivy\"\n  ],\n  \"ibanPayoutProvider\": \"mock\",\n  \"rtpPayoutProviders\": [\n    \"aptpay\",\n    \"checkbook\"\n  ],\n  \"rtpPayoutProvider\": \"checkbook\",\n  \"pixPayoutProviders\": [\n    \"mock\",\n    \"mock\"\n  ],\n  \"pixPayoutProvider\": \"mock\",\n  \"eftPayoutProviders\": [\n    \"checkbook\",\n    \"mock\"\n  ],\n  \"eftPayoutProvider\": \"mock\",\n  \"p2cPayoutProviders\": [\n    \"checkbook\",\n    \"aptpay\"\n  ],\n  \"p2cPayoutProvider\": \"MOCK\",\n  \"globalP2cPayoutProvider\": \"MOCK\",\n  \"appleP2cPayoutProvider\": \"aptpay\",\n  \"venmoPayoutProviders\": [\n    \"checkbook\",\n    \"mock\"\n  ],\n  \"venmoPayoutProvider\": \"mock\",\n  \"paypalPayoutProviders\": [\n    \"mock\",\n    \"mock\"\n  ],\n  \"paypalPayoutProvider\": \"paypal\",\n  \"wirePayoutProvider\": [\n    \"BRAID\",\n    \"MOCK\"\n  ],\n  \"interacPayoutProviders\": [\n    \"mock\",\n    \"aptpay\"\n  ],\n  \"interacPayoutProvider\": \"checkbook\",\n  \"interacPaymentProvider\": \"aptpay\",\n  \"firstPartyPayoutOverrides\": {\n    \"interacPayoutProvider\": \"aptpay\",\n    \"wirePayoutProvider\": [\n      \"MOCK\",\n      \"BRAID\"\n    ],\n    \"paypalPayoutProvider\": \"mock\",\n    \"venmoPayoutProvider\": \"checkbook\",\n    \"appleP2cPayoutProvider\": \"MOCK\",\n    \"globalP2cPayoutProvider\": \"checkbook\",\n    \"p2cPayoutProvider\": \"aptpay\",\n    \"eftPayoutProvider\": \"aptpay\",\n    \"pixPayoutProvider\": \"brla\",\n    \"rtpPayoutProvider\": \"aptpayRtp\",\n    \"ibanPayoutProvider\": \"mock\",\n    \"bankPayoutProvider\": [\n      \"mock\",\n      \"aptpay\"\n    ]\n  },\n  \"enforceCheckoutJwt\": true,\n  \"externalVerificationLinks\": false,\n  \"whitelistedAncestorUrls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enforceLivenessKyc\": false,\n  \"parent\": \"string\",\n  \"customPayInFees\": [\n    {\n      \"fee\": {\n        \"cents\": 7858.050924792365,\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"percent\": 8587.871063689918,\n        \"isFixed\": false\n      },\n      \"lineItemLabel\": \"string\"\n    },\n    {\n      \"fee\": {\n        \"cents\": 9404.978323657422,\n        \"currency\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"percent\": 8150.487521336992,\n        \"isFixed\": false\n      },\n      \"lineItemLabel\": \"string\"\n    }\n  ],\n  \"minTransactionAmount\": {\n    \"cents\": 7735\n  },\n  \"maxTransactionAmount\": {\n    \"cents\": 9008\n  },\n  \"paypalMerchantId\": \"string\",\n  \"paypalClientId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8562c458-4888-4fcf-bd0e-e3fb63c791d5",
+              "name": "Submerchant Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "submerchant",
+                    ":submerchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submerchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eff3214a-a485-4163-b01a-00f1d9dd3946",
+          "name": "Get Submerchant Onboarding Token",
+          "request": {
+            "name": "Get Submerchant Onboarding Token",
+            "description": {
+              "content": "Mint a short-lived onboarding token that authorizes creating a\nsubmerchant or seller under the authenticated merchant. The token embeds\nthe caller's own merchantId as the parent — it cannot be minted for\nanother merchant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "submerchant",
+                "onboarding-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77445b0a-1b90-4e60-bacb-f660b31d137c",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "submerchant",
+                    "onboarding-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5e409c43-bc46-429c-a39b-098fb48052aa",
+    "name": "API Reference authentication subMerchant API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

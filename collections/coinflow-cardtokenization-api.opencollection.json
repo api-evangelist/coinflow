@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication cardTokenization API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cardTokenization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Associate CVV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/tokenize/associate-cvv",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "tx-token-scheme",
+                "value": ""
+              },
+              {
+                "name": "tx-tokenex-id",
+                "value": ""
+              },
+              {
+                "name": "tx-apikey",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+        },
+        {
+          "info": {
+            "name": "Tokenize Card and CVV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/tokenize",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "tx-token-scheme",
+                "value": ""
+              },
+              {
+                "name": "tx-tokenex-id",
+                "value": ""
+              },
+              {
+                "name": "tx-apikey",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+        },
+        {
+          "info": {
+            "name": "Tokenize Card Only",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/tokenize/card-only",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "tx-token-scheme",
+                "value": ""
+              },
+              {
+                "name": "tx-tokenex-id",
+                "value": ""
+              },
+              {
+                "name": "tx-apikey",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tokenize Card PAN without CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "19ffbaf4-438e-4ee0-8b6a-6dc6ebdbefe8",
+      "name": "events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "626c3d26-ff54-4491-a36d-2ece204fe72d",
+          "name": "Report Event",
+          "request": {
+            "name": "Report Event",
+            "description": {
+              "content": "This endpoint is for reporting Chargeback Protection Events throughout your customer's application lifecycle.\n\nThe goal of this endpoint is for reporting events to the chargeback protection system to that it\ncan evaluate timing and take note of significant events which will occur in a user's lifecycle. The end goal of\ncollecting this information is to increase approval rates (lower false positives) and reduce fraud and chargebacks\n(lower false negatives). When calling these API's it is highly encouraged to pass as much information as possible.\nThe more information provided, the better the outcomes will be.\n\nImplementing this API will help to increase your revenue via higher approval rates, while reducing your account's risk of becoming flagged\nby one of the card brands for excessive chargebacks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventType\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"username\": \"<string>\",\n  \"country\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df5a18cb-977d-4fca-95c7-383781905bfc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"eventType\": \"SignUp\",\n  \"customerId\": \"string\",\n  \"username\": \"string\",\n  \"country\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "35c88371-72c9-489e-a248-ba6498ef719d",
+    "name": "API Reference authentication events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

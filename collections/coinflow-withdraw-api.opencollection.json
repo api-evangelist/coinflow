@@ -1,0 +1,740 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication withdraw API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "withdraw",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add Interac Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/interac",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an interac account to the withdrawer's account which they can withdraw funds to."
+        },
+        {
+          "info": {
+            "name": "Create Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/account",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a bank account for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Create Bank Account (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/account/v2",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a bank account for a particular user or business"
+        },
+        {
+          "info": {
+            "name": "Create Debit Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/debit-card",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a debit card to the withdrawer's account which they can withdraw funds to.\n\nWill check the card to see if its eligible to receive funds."
+        },
+        {
+          "info": {
+            "name": "Create EFT Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/eft",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an EFT account for a particular Canadian user or business.\nAccepts raw Canadian bank details (institution number, transit number, account number)."
+        },
+        {
+          "info": {
+            "name": "Create Iban Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/iban",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an Iban account for a particular user"
+        },
+        {
+          "info": {
+            "name": "Create Pix Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/pix",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Pix account for a particular user"
+        },
+        {
+          "info": {
+            "name": "Create Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/transaction",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the transaction to be signed by the user and sent to the blockchain."
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Bank Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/account/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the bank account to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a bank account for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/card/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the card to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a card for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer EFT Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/eft/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an EFT account for a particular user"
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Iban Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/iban/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an Iban account for a particular user"
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Interac Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/interac/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the bank account to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a bank account for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Paypal Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/paypal/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the bank account to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a bank account for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Pix Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/pix/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a Pix account for a particular user"
+        },
+        {
+          "info": {
+            "name": "Delete Withdrawer Venmo Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/venmo/:token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token of the bank account to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a venmo for a particular user."
+        },
+        {
+          "info": {
+            "name": "Get Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/balances",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenAddress",
+                "value": "",
+                "type": "query",
+                "description": "- Optional token address to fetch balance for a specific token"
+              }
+            ]
+          },
+          "docs": "Gets all the token balances for a particular wallet"
+        },
+        {
+          "info": {
+            "name": "Get Message (EVM USDC/SBC/EuroE only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/evm/message",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets any messages to be signed by the user, the signed message is then passed\nas the `evmPermitMessage` body property into the\n`/api/withdraw/evm/transaction` endpoint.\n\nThis is only necessary for EVM chains."
+        },
+        {
+          "info": {
+            "name": "Get Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/quote",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "- The token address or contract of the token which the user is withdrawing."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "- The amount of that token which the user is withdrawing."
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query",
+                "description": "- The merchant that this quote is for."
+              },
+              {
+                "name": "usePermit",
+                "value": "",
+                "type": "query",
+                "description": "- [EVM only] whether the user's wallet supports signing permit messages."
+              },
+              {
+                "name": "accountToken",
+                "value": "",
+                "type": "query",
+                "description": "- The token of the account to use"
+              }
+            ]
+          },
+          "docs": "Gets a quote in USD cents for a particular token and amount."
+        },
+        {
+          "info": {
+            "name": "Get Withdrawer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "redirectLink",
+                "value": "",
+                "type": "query",
+                "description": "(optional): The URL to which the user will be redirected after\nsuccessfully completing verification via verificationLink. This applies\nwhen the API responds with a 451 status code, instructing the caller\nto direct the user to verificationLink first."
+              }
+            ]
+          },
+          "docs": "Gets the withdrawer record for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Get Withdrawer History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/history",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Gets the withdrawal history for a particular user or business."
+        },
+        {
+          "info": {
+            "name": "Link Paypal Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/paypal",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Paypal account to the withdrawer's account which they can withdraw funds to."
+        },
+        {
+          "info": {
+            "name": "Link Venmo Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/venmo",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Venmo account to the withdrawer's account which they can withdraw funds to."
+        },
+        {
+          "info": {
+            "name": "Register Business",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyb",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a Know-Your-Business check for a particular user. Will create  a withdrawer record for the user if one does not exist.\nIf the user has previously used coinflow to withdraw, the wallet will be added to the withdrawer record."
+        },
+        {
+          "info": {
+            "name": "Register User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyc",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a Know-Your-Customer check for a particular user. Will create  a withdrawer record for the user if one does not exist.\nIf the user has previously used coinflow to withdraw, the wallet will be added to the withdrawer record.\nNote: If `x-coinflow-auth-wallet` in request headers is not associated with a user, the wallet will get added to the newly created /existing user withdrawer record."
+        },
+        {
+          "info": {
+            "name": "Register User Via Attested KYC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyc/attested",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register User Via Attested KYC"
+        },
+        {
+          "info": {
+            "name": "Register User Via Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyc-doc",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "country",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "merchantId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idFront",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "idBack",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Register User Via Document"
+        },
+        {
+          "info": {
+            "name": "Register User Via Share Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyc/share-token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register User Via Share Token"
+        },
+        {
+          "info": {
+            "name": "Send Gasless Withdraw Transaction (EVM USDC/SBC/EuroE only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/evm/transaction",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a gasless USDC withdraw transaction to the blockchain.\nThe gas for the transaction can either be paid by the user or by the merchant,\ndepending on your merchant settings.\n\nThis is only allowed for withdrawing USDC/SBC/EuroE on EVM chains."
+        },
+        {
+          "info": {
+            "name": "Validate KYC Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/kyc/validate",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint checks if the user's provided information matches the information used during their Know-Your-Customer (KYC) verification.\nIt returns an object with a `valid` property that is `true` if the information matches and `false` otherwise.\nA 404 error is returned if the KYC information for the user cannot be found. This does not indicate a validation failure.\nCheck the response body to determine if the KYC information is valid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

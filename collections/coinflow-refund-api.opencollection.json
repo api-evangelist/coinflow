@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication refund API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "refund",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Refunds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/refunds",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Payment ID or User ID / Customer ID"
+              }
+            ]
+          },
+          "docs": "Get Refunds"
+        },
+        {
+          "info": {
+            "name": "Retry a Failed Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/refunds/:refundId/retry",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "refundId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry a Failed Refund"
+        },
+        {
+          "info": {
+            "name": "View All Refunds for Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/refunds/payment/:paymentId/all",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View All Refunds for Payment"
+        },
+        {
+          "info": {
+            "name": "View Refund Information for Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/refunds/payment/:paymentId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View Refund Information for Payment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

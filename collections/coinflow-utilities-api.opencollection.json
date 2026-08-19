@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication utilities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Coinflow Contract Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/utils/contract-address",
+            "params": [
+              {
+                "name": "blockchain",
+                "value": "",
+                "type": "query",
+                "description": "- Blockchain to get the contract address of"
+              }
+            ]
+          },
+          "docs": "Get the Coinflow Contract address by blockchain"
+        },
+        {
+          "info": {
+            "name": "Send Coinflow Signed Solana Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/utils/send-coinflow-tx",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a Coinflow generated and signed transaction\n\nUse Coinflow's battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions)\nThis endpoint sends a fully signed Solana transaction with retries thru stable RPC servers.\n\nThis endpoint is specifically used in the case that the transaction attempting to be sent\nwas pre-signed by one of Coinflow's wallets.\n\nFor example:\nTransaction is retrieved from the /api/redeem endpoint, that transaction\ncomes with the feePayer set a"
+        },
+        {
+          "info": {
+            "name": "Send Solana Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/utils/send-solana-tx",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use Coinflow's battle tested ⚔️ Transaction Sending (The same system we use to send our own transactions).\n\nThis endpoint sends a fully signed Solana transaction with retries and stable RPC servers.\nThis is helpful during periods of network instability where the solution is to use better private RPC servers,\nretry transactions multiple times."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication subMerchant API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subMerchant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Submerchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/submerchant",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get All Submerchants"
+        },
+        {
+          "info": {
+            "name": "Get Submerchant by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/submerchant/:submerchantId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "submerchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Submerchant by ID"
+        },
+        {
+          "info": {
+            "name": "Get Submerchant Onboarding Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/submerchant/onboarding-token",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Mint a short-lived onboarding token that authorizes creating a\nsubmerchant or seller under the authenticated merchant. The token embeds\nthe caller's own merchantId as the parent — it cannot be minted for\nanother merchant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

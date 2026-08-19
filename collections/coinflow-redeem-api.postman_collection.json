@@ -1,0 +1,709 @@
+{
+  "item": [
+    {
+      "id": "baea4291-5db0-476c-a5e7-e4218ed1728c",
+      "name": "redeem",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5215447e-9fd5-49fc-886c-0c6cbc61b401",
+          "name": "(EVM only) Get Credits Authorization Message",
+          "request": {
+            "name": "(EVM only) Get Credits Authorization Message",
+            "description": {
+              "content": "Endpoint to generate an EIP-712 typed data message for authorizing credits usage on EVM chains.\n\nThis endpoint is used to retrieve a \"CreditsAuthorization\" message that the user must sign using their wallet (e.g., MetaMask)\nvia the eth_signTypedData_v4 method. The resulting signed message (permitCredits) is then supplied to the\n`/api/redeem/evm/sendGaslessTx` endpoint to execute a gasless redeem transaction.\n\n**Request Body:**\n- `merchantId` (string): The ID of the merchant requesting redemption.\n- `subtotal` (Subtotal): The transaction subtotal (either in USDC or a token-based subtotal).\n- `transactionData` (EvmTransactionData): Transaction details used for calculating gas fees and total credits required.\n\n**Response:**\nReturns an object with the following properties:\n- `message` (string): A JSON string representing the EIP-712 typed data.\n- `validBefore` (string): A timestamp or block number indicating until when the message is valid.\n- `nonce` (string): A unique value to prevent replay attacks.\n- `creditsRawAmount` (number): The raw credits amount calculated based on the transaction subtotal and estimated gas fees.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redeem",
+                "evm",
+                "creditsAuthMsg"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                "key": "x-coinflow-auth-wallet",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"waitForHash\": \"<boolean>\",\n    \"nftContract\": \"<string>\"\n  },\n  \"usdcAmount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e3cd66e-dfca-46e5-84b6-320f537c9597",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "evm",
+                    "creditsAuthMsg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 8062,\n    \"currency\": \"UGX\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"string\",\n      \"to\": \"string\"\n    },\n    \"type\": \"safeMint\",\n    \"waitForHash\": false,\n    \"nftContract\": \"string\"\n  },\n  \"usdcAmount\": {\n    \"cents\": 6038\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"validBefore\": \"string\",\n  \"nonce\": \"string\",\n  \"creditsRawAmount\": 4611.586759280943\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf0d2fa5-49a6-4702-917c-883a3c57b3af",
+              "name": "Wallet does not have enough credits to complete redeem request, this can happen when the network is slow. Please retry the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "evm",
+                    "creditsAuthMsg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 8062,\n    \"currency\": \"UGX\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"string\",\n      \"to\": \"string\"\n    },\n    \"type\": \"safeMint\",\n    \"waitForHash\": false,\n    \"nftContract\": \"string\"\n  },\n  \"usdcAmount\": {\n    \"cents\": 6038\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"stack\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b10a58e0-c175-404a-811b-997a9e61c6f0",
+          "name": "(EVM only) Send Redeem Transaction with Credits Authorization Message",
+          "request": {
+            "name": "(EVM only) Send Redeem Transaction with Credits Authorization Message",
+            "description": {
+              "content": "Endpoint to send a credits redeem transaction on EVM-based blockchains.\n\nThis endpoint processes a gasless transaction for redeeming credits. It requires a signed permit message\n(contained in `signedMessages.permitCredits`) that was previously generated by the `/evm/creditsAuthMsg` endpoint.\n\n**How It Works:**\n- Validates that the provided signed permit (EIP-712 signature) is correct.\n- Constructs the transaction using provided details and sends it through the appropriate EVM network provider.\n\n**Request Body:**\n- `merchantId` (string): The ID of the merchant.\n- `subtotal` (Subtotal): The transaction subtotal.\n- `transactionData` (EvmTransactionData): Details of the transaction to be executed.\n- `signedMessages` (SignedMessages): Contains the signed permit message (permitCredits) for credit authorization.\n- `chargebackProtectionData?` (CartItemClassOmitted): Optional chargeback protection data.\n- `validBefore`, `nonce`, `creditsRawAmount`: Values returned by `/evm/creditsAuthMsg` for further verification.\n\n**Response:**\nReturns an object containing:\n- `hash` (string): The transaction hash of the submitted gasless transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redeem",
+                "evm",
+                "sendGaslessTx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                "key": "x-coinflow-auth-wallet",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Optional device identifier provided in the request header.",
+                "key": "x-device-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"<string>\",\n      \"to\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"waitForHash\": \"<boolean>\",\n    \"nftContract\": \"<string>\"\n  },\n  \"signedMessages\": {\n    \"permitCredits\": \"<string>\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\",\n      \"value\": \"<string>\",\n      \"validAfter\": \"<string>\",\n      \"validBefore\": \"<string>\",\n      \"nonce\": \"<string>\",\n      \"v\": \"<double>\",\n      \"r\": \"<string>\",\n      \"s\": \"<string>\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\",\n      \"value\": \"<string>\",\n      \"validAfter\": \"<string>\",\n      \"validBefore\": \"<string>\",\n      \"nonce\": \"<string>\",\n      \"signature\": \"<string>\"\n    }\n  },\n  \"validBefore\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"creditsRawAmount\": \"<double>\",\n  \"usdcAmount\": {\n    \"cents\": \"<integer>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "586054c2-e705-4c67-a352-6428bc532bf2",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "evm",
+                    "sendGaslessTx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional device identifier provided in the request header.",
+                    "key": "x-device-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 6197,\n    \"currency\": \"QAR\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"string\",\n      \"to\": \"string\"\n    },\n    \"type\": \"safeMint\",\n    \"waitForHash\": false,\n    \"nftContract\": \"string\"\n  },\n  \"signedMessages\": {\n    \"permitCredits\": \"string\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"v\": 8442.094590251938,\n      \"r\": \"string\",\n      \"s\": \"string\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"signature\": \"string\"\n    }\n  },\n  \"validBefore\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"creditsRawAmount\": \"<double>\",\n  \"usdcAmount\": {\n    \"cents\": 8679\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"gaming\",\n      \"quantity\": 9113.042624579433,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 6358.994457031128\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6136.166544769151,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6130.368817690627,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"musicTicket\",\n      \"quantity\": 7522.41183495535,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 2160.242974113307\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6343.813927386044,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 5058.391552799002,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hash\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89434e13-9604-4ed4-b1ea-e191268f37ea",
+              "name": "Wallet does not have enough credits to complete redeem request, this can happen when the network is slow. Please retry the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "evm",
+                    "sendGaslessTx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional device identifier provided in the request header.",
+                    "key": "x-device-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 6197,\n    \"currency\": \"QAR\"\n  },\n  \"transactionData\": {\n    \"transaction\": {\n      \"data\": \"string\",\n      \"to\": \"string\"\n    },\n    \"type\": \"safeMint\",\n    \"waitForHash\": false,\n    \"nftContract\": \"string\"\n  },\n  \"signedMessages\": {\n    \"permitCredits\": \"string\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"v\": 8442.094590251938,\n      \"r\": \"string\",\n      \"s\": \"string\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"signature\": \"string\"\n    }\n  },\n  \"validBefore\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"creditsRawAmount\": \"<double>\",\n  \"usdcAmount\": {\n    \"cents\": 8679\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"gaming\",\n      \"quantity\": 9113.042624579433,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 6358.994457031128\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6136.166544769151,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6130.368817690627,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"musicTicket\",\n      \"quantity\": 7522.41183495535,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 2160.242974113307\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 6343.813927386044,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 5058.391552799002,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"stack\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9a9e1e6-4c69-4a87-9c8b-7b4a9ebf8a4d",
+          "name": "Create Merchant Wallet Redemption Transaction",
+          "request": {
+            "name": "Create Merchant Wallet Redemption Transaction",
+            "description": {
+              "content": "Creates a transaction for the user to sign in order to redeem their Coinflow credits, with the resulting stablecoins being delivered to the merchant's settlement wallet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redeem",
+                "merchant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                "key": "x-coinflow-auth-wallet",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "x-device-id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"jwtToken\": \"<string>\",\n  \"redeemAmount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82d4957c-3249-43fc-95e5-eacc04019865",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-device-id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 4497\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"ownershipContract\",\n      \"quantity\": 3172.242975338987,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9197.189861219678\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1701.8459907763684,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 8466.46241651919,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"digitalContent\",\n      \"quantity\": 1489.7202831487332,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9021.73856006454\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 9014.377329986048,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1659.2020302889443,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 7528\n  },\n  \"jwtToken\": \"<string>\",\n  \"redeemAmount\": {\n    \"cents\": 3280\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d313eac-68d9-44d6-bf7d-ed433465f863",
+              "name": "Wallet does not have enough credits to complete redeem request, this can happen when the network is slow. Please retry the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem",
+                    "merchant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-device-id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 4497\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"ownershipContract\",\n      \"quantity\": 3172.242975338987,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9197.189861219678\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1701.8459907763684,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 8466.46241651919,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"digitalContent\",\n      \"quantity\": 1489.7202831487332,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9021.73856006454\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 9014.377329986048,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1659.2020302889443,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 7528\n  },\n  \"jwtToken\": \"<string>\",\n  \"redeemAmount\": {\n    \"cents\": 3280\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"stack\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2bcd3f9-1bef-4cf2-92d4-29852f5a84d4",
+          "name": "Create Redeem Transaction",
+          "request": {
+            "name": "Create Redeem Transaction",
+            "description": {
+              "content": "Creates a transaction for the user to sign in order to redeem their Coinflow credits with a merchant's contract.\n\nThe transaction passed to this endpoint should be the same as if the end user's wallet was calling the merchant's contract with enough USDC/Other Cryto Currency to successfully complete the transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redeem"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                "key": "x-coinflow-auth-wallet",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "key": "x-device-id",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"transaction\": \"<string>\",\n  \"signedMessages\": {\n    \"permitCredits\": \"<string>\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\",\n      \"value\": \"<string>\",\n      \"validAfter\": \"<string>\",\n      \"validBefore\": \"<string>\",\n      \"nonce\": \"<string>\",\n      \"v\": \"<double>\",\n      \"r\": \"<string>\",\n      \"s\": \"<string>\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"<string>\",\n      \"to\": \"<string>\",\n      \"value\": \"<string>\",\n      \"validAfter\": \"<string>\",\n      \"validBefore\": \"<string>\",\n      \"nonce\": \"<string>\",\n      \"signature\": \"<string>\"\n    }\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"rent\": {\n    \"lamports\": \"<string>\"\n  },\n  \"nativeSolToConvert\": {\n    \"lamports\": \"<string>\"\n  },\n  \"skipBalanceCheck\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9fb5104-f26c-4c10-9841-ef262dea6316",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-device-id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 9953,\n    \"currency\": \"VES\"\n  },\n  \"transaction\": \"<string>\",\n  \"signedMessages\": {\n    \"permitCredits\": \"string\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"v\": 5668.560036848476,\n      \"r\": \"string\",\n      \"s\": \"string\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"signature\": \"string\"\n    }\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"eBooks\",\n      \"quantity\": 6053.3894310371725,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 6205.049585774654\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1989.663368928375,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 722.0632303667651,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"conferenceTicket\",\n      \"quantity\": 3273.431260354808,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 3348.6014564748466\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 4405.0045129346745,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 2612.0686046907904,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rent\": {\n    \"lamports\": \"string\"\n  },\n  \"nativeSolToConvert\": {\n    \"lamports\": \"string\"\n  },\n  \"skipBalanceCheck\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4c04e80-587a-423b-a3ef-f7044f9a26cb",
+              "name": "Wallet does not have enough credits to complete redeem request, this can happen when the network is slow. Please retry the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redeem"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-device-id",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 9953,\n    \"currency\": \"VES\"\n  },\n  \"transaction\": \"<string>\",\n  \"signedMessages\": {\n    \"permitCredits\": \"string\",\n    \"customerUsdcAuthData\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"v\": 5668.560036848476,\n      \"r\": \"string\",\n      \"s\": \"string\"\n    },\n    \"customerUsdcAuthDataV2\": {\n      \"from\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"validAfter\": \"string\",\n      \"validBefore\": \"string\",\n      \"nonce\": \"string\",\n      \"signature\": \"string\"\n    }\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"eBooks\",\n      \"quantity\": 6053.3894310371725,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 6205.049585774654\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 1989.663368928375,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 722.0632303667651,\n          \"txHash\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"conferenceTicket\",\n      \"quantity\": 3273.431260354808,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 3348.6014564748466\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 4405.0045129346745,\n          \"txHash\": \"string\"\n        },\n        {\n          \"txType\": \"string\",\n          \"chain\": \"string\",\n          \"paymentAmount\": \"string\",\n          \"paymentToken\": \"string\",\n          \"to\": \"string\",\n          \"from\": \"string\",\n          \"registryContract\": \"string\",\n          \"assetID\": \"string\",\n          \"txTime\": \"string\",\n          \"blockNumber\": 2612.0686046907904,\n          \"txHash\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"rent\": {\n    \"lamports\": \"string\"\n  },\n  \"nativeSolToConvert\": {\n    \"lamports\": \"string\"\n  },\n  \"skipBalanceCheck\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"stack\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c8fc060f-c5ba-4f8b-b121-1666c8f013a9",
+    "name": "API Reference authentication redeem API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

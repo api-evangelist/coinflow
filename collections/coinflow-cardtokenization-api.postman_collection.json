@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "fdf1920c-817d-4c1c-89b9-3719146d0eef",
+      "name": "cardTokenization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a012647-d426-436f-858e-11296189ea5a",
+          "name": "Associate CVV",
+          "request": {
+            "name": "Associate CVV",
+            "description": {
+              "content": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokenize",
+                "associate-cvv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "tx-token-scheme",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                "key": "tx-tokenex-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                "key": "tx-apikey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d1f8e8a-ee24-4a29-8a35-649d384e0385",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokenize",
+                    "associate-cvv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"firstSix\": \"string\",\n  \"lastFour\": \"string\",\n  \"referenceNumber\": \"string\",\n  \"success\": true,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c943140-0b3f-4767-a92f-23fd7dba63e6",
+          "name": "Tokenize Card and CVV",
+          "request": {
+            "name": "Tokenize Card and CVV",
+            "description": {
+              "content": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokenize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "tx-token-scheme",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                "key": "tx-tokenex-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                "key": "tx-apikey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44b2ba2d-3e4b-40fb-bb84-1fde887d45ea",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"firstSix\": \"string\",\n  \"lastFour\": \"string\",\n  \"referenceNumber\": \"string\",\n  \"success\": true,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc9cf999-d0f3-4dfe-b385-e6ea4e77f2be",
+          "name": "Tokenize Card Only",
+          "request": {
+            "name": "Tokenize Card Only",
+            "description": {
+              "content": "Tokenize Card PAN without CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokenize",
+                "card-only"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "tx-token-scheme",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                "key": "tx-tokenex-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                "key": "tx-apikey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96fab6ee-62c7-4405-b798-9516faebcc33",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokenize",
+                    "card-only"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) In the Sandbox Environment pass: 4582952996979143\nIn Production pass: 2781185452603874",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Contact your Coinflow integrations representative to receive this value",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"firstSix\": \"string\",\n  \"lastFour\": \"string\",\n  \"referenceNumber\": \"string\",\n  \"success\": true,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "37c11f77-7dc3-42b7-8fd6-c3ab11045ba7",
+    "name": "API Reference authentication cardTokenization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

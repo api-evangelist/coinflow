@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication marketplace API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "marketplace",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds a USDC recipient.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/seller/usdc-withdraw/recipient",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a solana address that can receive USDC from the merchant’s Coinflow wallet balance"
+        },
+        {
+          "info": {
+            "name": "Removes a USDC recipient.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/seller/usdc-withdraw/recipient",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a solana address from the merchant's allowlisted USDC recipients"
+        },
+        {
+          "info": {
+            "name": "Create Seller",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/seller",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Given the verification information, register a seller to a marketplace"
+        },
+        {
+          "info": {
+            "name": "Creates a USDC withdrawal transaction for a merchant using the Coinflow wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/seller/usdc-withdraw",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a usdc withdrawal transaction for merchants using Coinflow wallet- so they can withdraw usdc from their wallet."
+        },
+        {
+          "info": {
+            "name": "Download Seller KYC verification report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/kyc/download/:verificationId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "verificationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download Seller KYC verification report."
+        },
+        {
+          "info": {
+            "name": "Get Purchase Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/link/purchase",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to complete a purchase with a seller."
+        },
+        {
+          "info": {
+            "name": "Get Purchase with Credits link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/link/purchase/credits",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a link for a user to make a marketplace purchase with their Credits Balance"
+        },
+        {
+          "info": {
+            "name": "Get Seller Login Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/link/seller/login",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a link which the marketplace can redirect sellers to login to\ntheir dashboards and view purchases and withdraw their money."
+        },
+        {
+          "info": {
+            "name": "Get Seller Registration Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/link/seller/registration",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a link which the marketplace can redirect new sellers to register\ntheir accounts."
+        },
+        {
+          "info": {
+            "name": "Get Seller Verification Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/seller/verifyTransaction",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "- The parent merchant ID (can be merchantId or _id)"
+              }
+            ]
+          },
+          "docs": "Returns a verification transaction so the seller needs to sign and send with their MPC wlalet.\nThe transaction verifies that they have access to the authentication method tied to the MPC wallet which is linked\nto their Coinflow Account."
+        },
+        {
+          "info": {
+            "name": "Get Subscription Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/link/subscription",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to subscribe to a particular seller's subscription."
+        },
+        {
+          "info": {
+            "name": "Get wallet by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/marketplace/wallet",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Given an email address returns the MPC wallet address for the user. Can\nbe used to pass into the SDK, query the API, and check balances."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

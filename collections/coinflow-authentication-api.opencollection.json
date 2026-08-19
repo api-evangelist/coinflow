@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/auth",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-wallet",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get the message for the user's wallet to sign."
+        },
+        {
+          "info": {
+            "name": "Get Session Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/auth/session-key",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get an authentication session key"
+        },
+        {
+          "info": {
+            "name": "Verify Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/auth/verify",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Verify a token is valid and is not expired"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

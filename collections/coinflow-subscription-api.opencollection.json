@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication subscription API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Customer Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/subscribers/:subscriptionId",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a subscription (by customer)"
+        },
+        {
+          "info": {
+            "name": "Get Available Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/plans",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the available subscription plans for a merchant"
+        },
+        {
+          "info": {
+            "name": "Get Customer Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/subscribers",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the subscriptions a customer has with a merchant"
+        },
+        {
+          "info": {
+            "name": "Get Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/plans/:code",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a specific subscription plan"
+        },
+        {
+          "info": {
+            "name": "Purchase Subscription by ACH",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/subscribers/ach",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchase a subscription using ACH"
+        },
+        {
+          "info": {
+            "name": "Purchase Subscription with Existing Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/subscribers/token",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              },
+              {
+                "name": "x-device-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchase a subscription with an existing credit card"
+        },
+        {
+          "info": {
+            "name": "Purchase Subscription with New Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/subscription/:merchantId/subscribers/card",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-session-key",
+                "value": ""
+              },
+              {
+                "name": "x-device-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchase a subscription with a new credit card"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

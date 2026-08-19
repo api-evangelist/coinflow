@@ -1,0 +1,1595 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference authentication merchant API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "merchant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Activate Passive Deposit Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/crypto-deposit-address/activate",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a passive deposit address so it accepts new payments. If a deposit\naddress already exists for this merchant + withdrawer + chain + token, that\naddress is re-activated and returned. Otherwise a new session is created\nand its address is activated."
+        },
+        {
+          "info": {
+            "name": "Bans a seller",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/block-seller",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bans a seller"
+        },
+        {
+          "info": {
+            "name": "Block or Unblock Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/blocked/:customerId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Block or Unblock Customer"
+        },
+        {
+          "info": {
+            "name": "Block or Unblock Withdrawer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/block-withdrawer/:withdrawerId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "withdrawerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Block or Unblock Withdrawer"
+        },
+        {
+          "info": {
+            "name": "Configure 3DS exemption",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/:customerId/exempt3DS",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change customer 3DS exemption status"
+        },
+        {
+          "info": {
+            "name": "Configure attempt limit setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/:customerId/attemptLimit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change customer attempt limit setting"
+        },
+        {
+          "info": {
+            "name": "Create Chargeback Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/:paymentId/respond",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Respond to a chargeback. This will send the response to the card network."
+        },
+        {
+          "info": {
+            "name": "Get Supported Chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/crypto-deposit-address",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get the list of supported chains and tokens for crypto deposit withdrawals."
+        },
+        {
+          "info": {
+            "name": "Create Crypto Withdraw Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/crypto-deposit-address",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a crypto deposit session for a payout. Returns a deposit address where\nthe merchant can send funds. Once funds are received via the deposit webhook,\nthe payout is automatically initiated."
+        },
+        {
+          "info": {
+            "name": "List Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/exports",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all exports for the merchant"
+        },
+        {
+          "info": {
+            "name": "Create Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/exports",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new export job"
+        },
+        {
+          "info": {
+            "name": "Deactivate Passive Deposit Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/crypto-deposit-address/deactivate",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivate (pause) a passive deposit address so it stops accepting new payments."
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/exports/:exportId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a specific export by ID"
+        },
+        {
+          "info": {
+            "name": "Delete Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/exports/:exportId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an export"
+        },
+        {
+          "info": {
+            "name": "Get Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get the merchant"
+        },
+        {
+          "info": {
+            "name": "Edit Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit the merchant details"
+        },
+        {
+          "info": {
+            "name": "Fail Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/:paymentId/fail",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "-- This method is for test environment only --\nForce an ACH, Wire, Iban, CashApp or PIX payment to fail"
+        },
+        {
+          "info": {
+            "name": "Get all chargebacks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "responded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "discrepancy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "processor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "threeDSecure",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "reasonCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all chargebacks"
+        },
+        {
+          "info": {
+            "name": "Get All Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "- UTC epoch milliseconds of the earliest date to include in the results"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "- UTC epoch milliseconds of the latest date to include in the results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "- Page number to return starting from 1. Must be used with limit param."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "- amount of records per page (def. 100). Must be used with page param."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "authCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get All Payments"
+        },
+        {
+          "info": {
+            "name": "Get chargeback data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/:paymentId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get information about a Chargeback for a payment"
+        },
+        {
+          "info": {
+            "name": "Get Chargeback Response Draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/:paymentId/draft",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Chargeback Response Draft"
+        },
+        {
+          "info": {
+            "name": "Save Chargeback Response Draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/:paymentId/draft",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save Chargeback Response Draft"
+        },
+        {
+          "info": {
+            "name": "Get chargeback stats for time frame",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/rate",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "-- YYYY-MM-DD"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "-- YYYY-MM-DD"
+              }
+            ]
+          },
+          "docs": "Get chargeback stats for time frame"
+        },
+        {
+          "info": {
+            "name": "Get Coinflow Wallet Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/payout/balance",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get Coinflow Wallet Balance"
+        },
+        {
+          "info": {
+            "name": "Get customer list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/customers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "blocked",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protection",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List customers for a merchant"
+        },
+        {
+          "info": {
+            "name": "Get Delegated Payout Quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/payout/delegated/quote",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a quote for a delegated payout including the fee breakdown.\nShows the total amount that will be debited from the merchant's wallet,\nthe amount the user will receive, and the merchant fees."
+        },
+        {
+          "info": {
+            "name": "Get Enhanced Transaction Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/enhanced/:paymentId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Enhanced Transaction Information"
+        },
+        {
+          "info": {
+            "name": "Get Export Download URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/exports/:exportId/download",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a signed download URL for a completed export"
+        },
+        {
+          "info": {
+            "name": "Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/credits/status/:jobId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of a mint or burn job"
+        },
+        {
+          "info": {
+            "name": "Get Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/v2",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get the merchant"
+        },
+        {
+          "info": {
+            "name": "Get Payment By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/:paymentId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "- ID of the payment to retrieve"
+              }
+            ]
+          },
+          "docs": "Get Payment By ID"
+        },
+        {
+          "info": {
+            "name": "Get Payment Webhook Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/webhooks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "responseCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by numeric responseCode"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sentAt >= startDate (ISO 8601)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sentAt <= endDate (ISO 8601)"
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "query",
+                "description": "Search by transaction Id"
+              }
+            ]
+          },
+          "docs": "Get Payment Webhook Activity"
+        },
+        {
+          "info": {
+            "name": "Get Returned ACH Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/ach-returns",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "- UTC ISO String of the earliest date to include in the results"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "- UTC ISO String of the latest date to include in the results"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "- Number of results to return per page (MAX 1000)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "- Page number to return"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "protection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Returned ACH Payments"
+        },
+        {
+          "info": {
+            "name": "Get Submerchants under Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/submerchants",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get submerchant Ids for a merchant"
+        },
+        {
+          "info": {
+            "name": "Get URL Whitelist Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/url-whitelist-requests",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get all whitelist requests for the current merchant"
+        },
+        {
+          "info": {
+            "name": "Get Withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/:withdrawalId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "withdrawalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a specific withdrawal associated with the merchant\n  The withdrawal can be specified by transfer id or transaction"
+        },
+        {
+          "info": {
+            "name": "Get Withdraws",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "speed",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get All Withdraws associated with the merchant"
+        },
+        {
+          "info": {
+            "name": "Gets merchant withdrawers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdrawers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "blocked",
+                "value": "",
+                "type": "query",
+                "description": "Filter on blocked status (boolean string - 'true' or 'false')"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter results"
+              }
+            ]
+          },
+          "docs": "Gets merchant withdrawers"
+        },
+        {
+          "info": {
+            "name": "List Passive Deposit Addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.coinflow.cash/api/withdraw/crypto-deposit-address/passive",
+            "headers": [
+              {
+                "name": "x-coinflow-auth-user-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List passive deposit addresses (active and paused) belonging to the\nauthenticated merchant + withdrawer. Sessions that were never activated\nas passive are excluded."
+        },
+        {
+          "info": {
+            "name": "Mint Credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/credits/mint",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mint Credits from your Merchant's Coinflow USDC wallet to a users wallet"
+        },
+        {
+          "info": {
+            "name": "Override Chargeback Protection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/:customerId/protection",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Override the chargeback protection setting to false"
+        },
+        {
+          "info": {
+            "name": "Payout to a user via Coinflow Wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/payout/delegated",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Payout a user from the coinflow wallet balance.\nBy default, this endpoint waits for transaction confirmation before returning.\nSet waitForConfirmation to false to return immediately after queuing the transaction."
+        },
+        {
+          "info": {
+            "name": "Payout to a user via Merchant Self-Custodial Wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/payout",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a transaction which will payout a user's account upon successful sending\nof the transaction."
+        },
+        {
+          "info": {
+            "name": "Refund Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/:paymentId/refund",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "- ID of the payment to refund"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refunds a payment. First will check if the users wallet has credits to refund the payment. If so, will take the\ncredits from the users wallet and refund the payment. Otherwise, will transfer USDC from the merchants wallet to\nCoinflow's wallet and refund the payment.The amount of USDC transferred will the total amount of the payment +\ncredit card fees + gas fees."
+        },
+        {
+          "info": {
+            "name": "Request Program Approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/program",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request Program Approval"
+        },
+        {
+          "info": {
+            "name": "Request URL Whitelisting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/url-whitelist-request",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request to whitelist a URL for embedding the checkout form.\nThe request will be placed in a pending state for compliance review."
+        },
+        {
+          "info": {
+            "name": "Resend Payment Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/webhooks/:webhookLogId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhookLogId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resend Payment Webhook"
+        },
+        {
+          "info": {
+            "name": "Revoke URL Whitelist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/url-whitelist",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revokes a URLs whitelist for use in the checkout iframe"
+        },
+        {
+          "info": {
+            "name": "Set Customer Override Limit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/:customerId/override-limit",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Customer Override Limit"
+        },
+        {
+          "info": {
+            "name": "Set Settlement Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/settlement-address",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the blockchain account information which will be used for settlement. Only call this if you want the money processed\nfrom credit card transactions to be sent to directly as USDC to a company owned blockchain address."
+        },
+        {
+          "info": {
+            "name": "Settle Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/payments/:paymentId/settle",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "-- This method is for test environment only --\nForce an ACH, Wire, Iban, CashApp or PIX payment to settlement"
+        },
+        {
+          "info": {
+            "name": "Unverify Seller",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/unverify-seller",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unverify Seller"
+        },
+        {
+          "info": {
+            "name": "Update Custom Withdrawal Fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/withdraws/custom-fees",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update custom withdrawal fees for a merchant"
+        },
+        {
+          "info": {
+            "name": "Update merchant ignore chargeback",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.coinflow.cash/api/merchant/chargebacks/:paymentId/ignore",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update merchant ignore chargeback"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,706 @@
+{
+  "item": [
+    {
+      "id": "3d34bdc1-c9d0-47fd-8d1b-5cffd0e5c817",
+      "name": "merchantSubscription",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59079fda-0dd2-4a05-a178-72c00a0858ee",
+          "name": "Cancel Subscription (by merchant)",
+          "request": {
+            "name": "Cancel Subscription (by merchant)",
+            "description": {
+              "content": "Cancel a subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "subscribers",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97546751-960c-49d9-880c-d8834315b0f4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "subscribers",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95fe1c33-6188-47c1-a75d-abe17e89ff87",
+          "name": "Get Subscription Payments",
+          "request": {
+            "name": "Get Subscription Payments",
+            "description": {
+              "content": "Get the payments applied to a subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "subscribers",
+                ":subscriptionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5cbb42b-6446-4a63-ba38-aff8be6baf86",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "subscribers",
+                    ":subscriptionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"paymentId\": \"string\",\n    \"status\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": 7037,\n        \"currency\": \"BWP\"\n      },\n      \"creditCardFees\": {\n        \"cents\": 6340,\n        \"currency\": \"KMF\"\n      },\n      \"chargebackProtectionFees\": {\n        \"cents\": 9465,\n        \"currency\": \"SEK\"\n      },\n      \"gasFees\": {\n        \"cents\": 6234,\n        \"currency\": \"QAR\"\n      },\n      \"fxFees\": {\n        \"cents\": 6596,\n        \"currency\": \"DJF\"\n      },\n      \"total\": {\n        \"cents\": 6222,\n        \"currency\": \"WST\"\n      },\n      \"networkFees\": {\n        \"cents\": 5791,\n        \"currency\": \"AZN\"\n      },\n      \"payInFees\": {\n        \"cents\": 2084,\n        \"currency\": \"PHP\"\n      },\n      \"reserve\": {\n        \"cents\": 5145,\n        \"currency\": \"XPF\"\n      },\n      \"merchantPaidCreditCardFees\": {\n        \"cents\": 2038,\n        \"currency\": \"CLP\"\n      },\n      \"merchantPaidChargebackProtectionFees\": {\n        \"cents\": 6718,\n        \"currency\": \"SSP\"\n      },\n      \"merchantPaidGasFees\": {\n        \"cents\": 8562,\n        \"currency\": \"WST\"\n      },\n      \"merchantPaidFxFees\": {\n        \"cents\": 2027,\n        \"currency\": \"BND\"\n      },\n      \"merchantPaidNetworkFees\": {\n        \"cents\": 2549,\n        \"currency\": \"HUF\"\n      },\n      \"invoicedCreditCardFees\": {\n        \"cents\": 4369,\n        \"currency\": \"ISK\"\n      },\n      \"invoicedChargebackProtectionFees\": {\n        \"cents\": 2116,\n        \"currency\": \"BHD\"\n      },\n      \"invoicedGasFees\": {\n        \"cents\": 6127,\n        \"currency\": \"RON\"\n      },\n      \"invoicedFxFees\": {\n        \"cents\": 325,\n        \"currency\": \"BAM\"\n      },\n      \"invoicedNetworkFees\": {\n        \"cents\": 6116,\n        \"currency\": \"NPR\"\n      }\n    },\n    \"paidAt\": \"1988-03-03T05:31:06.595Z\"\n  },\n  {\n    \"paymentId\": \"string\",\n    \"status\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": 6926,\n        \"currency\": \"UZS\"\n      },\n      \"creditCardFees\": {\n        \"cents\": 6201,\n        \"currency\": \"LAK\"\n      },\n      \"chargebackProtectionFees\": {\n        \"cents\": 4151,\n        \"currency\": \"XCD\"\n      },\n      \"gasFees\": {\n        \"cents\": 4076,\n        \"currency\": \"KZT\"\n      },\n      \"fxFees\": {\n        \"cents\": 1751,\n        \"currency\": \"MDL\"\n      },\n      \"total\": {\n        \"cents\": 7422,\n        \"currency\": \"GHS\"\n      },\n      \"networkFees\": {\n        \"cents\": 8229,\n        \"currency\": \"BDT\"\n      },\n      \"payInFees\": {\n        \"cents\": 8014,\n        \"currency\": \"MXN\"\n      },\n      \"reserve\": {\n        \"cents\": 1760,\n        \"currency\": \"EUR\"\n      },\n      \"merchantPaidCreditCardFees\": {\n        \"cents\": 1665,\n        \"currency\": \"CAD\"\n      },\n      \"merchantPaidChargebackProtectionFees\": {\n        \"cents\": 5650,\n        \"currency\": \"PYG\"\n      },\n      \"merchantPaidGasFees\": {\n        \"cents\": 4600,\n        \"currency\": \"KZT\"\n      },\n      \"merchantPaidFxFees\": {\n        \"cents\": 9141,\n        \"currency\": \"DZD\"\n      },\n      \"merchantPaidNetworkFees\": {\n        \"cents\": 3173,\n        \"currency\": \"SGD\"\n      },\n      \"invoicedCreditCardFees\": {\n        \"cents\": 3971,\n        \"currency\": \"SHP\"\n      },\n      \"invoicedChargebackProtectionFees\": {\n        \"cents\": 3035,\n        \"currency\": \"BIF\"\n      },\n      \"invoicedGasFees\": {\n        \"cents\": 3648,\n        \"currency\": \"AUD\"\n      },\n      \"invoicedFxFees\": {\n        \"cents\": 4968,\n        \"currency\": \"KRW\"\n      },\n      \"invoicedNetworkFees\": {\n        \"cents\": 2647,\n        \"currency\": \"SLE\"\n      }\n    },\n    \"paidAt\": \"1975-03-18T08:41:44.203Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33bd5dff-92e3-480e-a5f3-05a6f60ddc35",
+          "name": "Create Plans",
+          "request": {
+            "name": "Create Plans",
+            "description": {
+              "content": "Create a new subscription plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"duration\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"settlementChain\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"merchantInitiated\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b0bb0e5-6622-4264-b9de-8b4a7d708874",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"interval\": \"Yearly\",\n  \"amount\": {\n    \"cents\": 6012,\n    \"currency\": \"BZD\"\n  },\n  \"duration\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"settlementChain\": \"solana\",\n  \"active\": \"<boolean>\",\n  \"merchantInitiated\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"code\": \"string\",\n  \"interval\": \"Yearly\",\n  \"amount\": {\n    \"cents\": 4747,\n    \"currency\": \"BAM\"\n  },\n  \"active\": false,\n  \"duration\": 8595,\n  \"description\": \"string\",\n  \"transaction\": \"string\",\n  \"settlementChain\": \"solana\",\n  \"merchantInitiated\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4d8b7de-1347-4214-aec8-1fdb14275309",
+          "name": "Get Plans",
+          "request": {
+            "name": "Get Plans",
+            "description": {
+              "content": "Get subscription plans",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f5a26ea-99a6-499f-82eb-f5fc2d3d3255",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"interval\": \"Monthly\",\n    \"amount\": {\n      \"cents\": 4797,\n      \"currency\": \"FKP\"\n    },\n    \"active\": false,\n    \"duration\": 5034,\n    \"description\": \"string\",\n    \"transaction\": \"string\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": false\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"interval\": \"Yearly\",\n    \"amount\": {\n      \"cents\": 2654,\n      \"currency\": \"ERN\"\n    },\n    \"active\": false,\n    \"duration\": 705,\n    \"description\": \"string\",\n    \"transaction\": \"string\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e0f29c4-f9ed-4f6d-8ccc-7cd70c6501d0",
+          "name": "Deactivate Plan",
+          "request": {
+            "name": "Deactivate Plan",
+            "description": {
+              "content": "Deactivate a subscription plan\nIf no subscribers, will be deleted.\nNew subscriptions will not be allowed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) - can be the id or the plan code"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a8702a6-e29e-46bd-82fe-6a06eed4ee14",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) - can be the id or the plan code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e773def-675f-47c2-b853-dbeeb544e43a",
+          "name": "Update Plan",
+          "request": {
+            "name": "Update Plan",
+            "description": {
+              "content": "Update a subscription plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) - can be the id or the plan code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"interval\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"amount\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"settlementChain\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"merchantInitiated\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2917b12d-80b0-41c4-b673-b9271902beb8",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) - can be the id or the plan code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"interval\": \"Weekly\",\n  \"duration\": \"<integer>\",\n  \"amount\": {\n    \"cents\": 2504,\n    \"currency\": \"SEK\"\n  },\n  \"description\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"settlementChain\": \"solana\",\n  \"active\": \"<boolean>\",\n  \"merchantInitiated\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"code\": \"string\",\n  \"interval\": \"Yearly\",\n  \"amount\": {\n    \"cents\": 4747,\n    \"currency\": \"BAM\"\n  },\n  \"active\": false,\n  \"duration\": 8595,\n  \"description\": \"string\",\n  \"transaction\": \"string\",\n  \"settlementChain\": \"solana\",\n  \"merchantInitiated\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac03d228-a2aa-4a2d-a6c8-2275a45e30df",
+          "name": "Get Subscribers",
+          "request": {
+            "name": "Get Subscribers",
+            "description": {
+              "content": "Get the subscriptions for a subscription plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchant",
+                "subscription",
+                "plans",
+                ":planId",
+                "subscribers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) - can be the id or the plan code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4297d6dd-f438-4082-8d7b-12e8437423a7",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchant",
+                    "subscription",
+                    "plans",
+                    ":planId",
+                    "subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) - can be the id or the plan code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"merchantId\": \"string\",\n    \"email\": \"string\",\n    \"plan\": \"string\",\n    \"planCode\": \"string\",\n    \"status\": \"Blocked\",\n    \"blockchain\": \"stellar\",\n    \"nextPaymentAt\": \"2017-09-19T08:23:40.602Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"merchantId\": \"string\",\n    \"email\": \"string\",\n    \"plan\": \"string\",\n    \"planCode\": \"string\",\n    \"status\": \"Blocked\",\n    \"blockchain\": \"stellar\",\n    \"nextPaymentAt\": \"1999-01-09T07:52:08.144Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.coinflow.cash/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b3c26389-54e7-4319-9148-0bd1fb0d56df",
+    "name": "API Reference authentication merchantSubscription API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
