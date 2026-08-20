@@ -36,6 +36,17 @@ tags:
 - Company
 - Crypto
 - Payments
+- Stablecoins
+- USDC
+- Checkout
+- Payouts
+- Marketplace
+- Web3
+- Fintech
+tags_raw:
+- Company
+- Crypto
+- Payments
 - Stablecoin
 - USDC
 - Checkout
@@ -50,6 +61,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Authentication
+  tags_raw:
   - authentication
   properties:
   - type: OpenAPI
@@ -64,6 +77,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Card Tokenization
+  tags_raw:
   - cardTokenization
   properties:
   - type: OpenAPI
@@ -78,6 +93,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Checkout
+  tags_raw:
   - checkout
   properties:
   - type: OpenAPI
@@ -92,6 +109,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Customers
+  tags_raw:
   - customers
   properties:
   - type: OpenAPI
@@ -106,6 +125,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -120,6 +141,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Marketplace
+  tags_raw:
   - marketplace
   properties:
   - type: OpenAPI
@@ -134,6 +157,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Merchant
+  tags_raw:
   - merchant
   properties:
   - type: OpenAPI
@@ -147,7 +172,8 @@ apis:
   description: The merchantSubscription API from Coinflow — 4 operation(s) for merchantsubscription.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
-  tags:
+  tags: []
+  tags_raw:
   - merchantSubscription
   properties:
   - type: OpenAPI
@@ -162,6 +188,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Redeem
+  tags_raw:
   - redeem
   properties:
   - type: OpenAPI
@@ -176,6 +204,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Refund
+  tags_raw:
   - refund
   properties:
   - type: OpenAPI
@@ -189,7 +219,8 @@ apis:
   description: The subMerchant API from Coinflow — 3 operation(s) for submerchant.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
-  tags:
+  tags: []
+  tags_raw:
   - subMerchant
   properties:
   - type: OpenAPI
@@ -204,6 +235,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Subscription
+  tags_raw:
   - subscription
   properties:
   - type: OpenAPI
@@ -218,6 +251,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Utilities
+  tags_raw:
   - utilities
   properties:
   - type: OpenAPI
@@ -232,6 +267,8 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
+  - Withdraw
+  tags_raw:
   - withdraw
   properties:
   - type: OpenAPI
