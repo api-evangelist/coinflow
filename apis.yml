@@ -48,7 +48,7 @@ tags:
 - Company
 - Crypto
 - Payments
-- Stablecoins
+- Stablecoin
 - USDC
 - Checkout
 - Payouts
@@ -88,8 +88,7 @@ apis:
   description: The cardTokenization API from Coinflow — 3 operation(s) for cardtokenization.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
-  tags:
-  - Card Tokenization
+  tags: []
   tags_raw:
   - cardTokenization
   properties:
@@ -105,7 +104,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Checkout
+  - checkout
   tags_raw:
   - checkout
   properties:
@@ -169,7 +168,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Merchant
+  - merchant
   tags_raw:
   - merchant
   properties:
@@ -200,7 +199,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Redeem
+  - redeem
   tags_raw:
   - redeem
   properties:
@@ -216,7 +215,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Refund
+  - refund
   tags_raw:
   - refund
   properties:
@@ -279,7 +278,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Withdraw
+  - withdraw
   tags_raw:
   - withdraw
   properties:
