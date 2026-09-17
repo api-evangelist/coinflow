@@ -85,22 +85,6 @@ apis:
     url: https://docs.coinflow.cash/
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
-- aid: coinflow:coinflow-cardtokenization-api
-  name: Coinflow cardTokenization API
-  description: The cardTokenization API from Coinflow — 3 operation(s) for cardtokenization.
-  humanURL: https://docs.coinflow.cash/api-reference
-  baseURL: https://api.coinflow.cash/api
-  tags:
-  - Card Tokenization
-  tags_raw:
-  - cardTokenization
-  properties:
-  - type: OpenAPI
-    url: openapi/coinflow-cardtokenization-api-openapi.yml
-  - type: Documentation
-    url: https://docs.coinflow.cash/
-  - type: APIReference
-    url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-checkout-api
   name: Coinflow checkout API
   description: The checkout API from Coinflow — 33 operation(s) for checkout.
@@ -287,6 +271,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/coinflow-withdraw-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-card-tokenization-api
+  name: Coinflow Card Tokenization API
+  description: The Card Tokenization API from Coinflow — 3 operation(s) for card tokenization.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - Card Tokenization
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-card-tokenization-api-openapi.yml
   - type: Documentation
     url: https://docs.coinflow.cash/
   - type: APIReference
