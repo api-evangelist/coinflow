@@ -155,7 +155,7 @@ apis:
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:
-  - Merchant
+  - Merchants
   tags_raw:
   - merchant
   properties:
