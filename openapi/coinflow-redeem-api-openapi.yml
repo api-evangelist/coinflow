@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference authentication redeem API
+  title: Reference Redeem API
   version: 1.0.0
 servers:
 - url: https://api-sandbox.coinflow.cash/api
   description: https://api-sandbox.coinflow.cash/api
 tags:
-- name: redeem
+- name: Redeem
 paths:
   /redeem/evm/creditsAuthMsg:
     post:
@@ -43,7 +43,7 @@ paths:
 
         - `creditsRawAmount` (number): The raw credits amount calculated based on the transaction subtotal and estimated gas fees.'
       tags:
-      - redeem
+      - Redeem
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -110,7 +110,7 @@ paths:
 
         - `hash` (string): The transaction hash of the submitted gasless transaction.'
       tags:
-      - redeem
+      - Redeem
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -149,7 +149,7 @@ paths:
       summary: Create Merchant Wallet Redemption Transaction
       description: Creates a transaction for the user to sign in order to redeem their Coinflow credits, with the resulting stablecoins being delivered to the merchant's settlement wallet.
       tags:
-      - redeem
+      - Redeem
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -189,7 +189,7 @@ paths:
 
         The transaction passed to this endpoint should be the same as if the end user''s wallet was calling the merchant''s contract with enough USDC/Other Cryto Currency to successfully complete the transaction.'
       tags:
-      - redeem
+      - Redeem
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -222,77 +222,115 @@ paths:
               $ref: '#/components/schemas/RedeemBody'
 components:
   schemas:
-    ReturnedTokenIdRedeemTransaction:
+    TokenRedeemType:
+      type: string
+      enum:
+      - token
+      title: TokenRedeemType
+    DecentRedeemCost:
       type: object
       properties:
-        data:
-          type: string
-          description: 'The data to call this contract with, HEX encoded.
+        isNative:
+          type: boolean
+          description: 'Whether or not the token is the native token for the chain (ex: Ethereum - ETH, Polygon - POL).
 
-
-            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
-        to:
+            If native dstToken should be the 0 address (0x00...)'
+        amount:
           type: string
-          description: The merchant's whitelisted contract
+          description: 'This is the raw amount of the token
+
+            ex: 50000000000000n'
       required:
-      - data
-      - to
-      description: Transaction to be called.
-      title: ReturnedTokenIdRedeemTransaction
-    RedeemBodyNativeSolToConvertLamports:
+      - isNative
+      - amount
+      description: Amount of the token on the destination chain you will be receiving
+      title: DecentRedeemCost
+    Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__:
+      type: object
+      properties:
+        productName:
+          type: string
+          description: The name of the related product
+        productType:
+          $ref: '#/components/schemas/productType'
+        listPrice:
+          $ref: '#/components/schemas/PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice'
+          description: The item's list price
+        quantity:
+          type: number
+          format: double
+          description: The number of units sold
+        rawProductData:
+          $ref: '#/components/schemas/AnyObject'
+        seller:
+          $ref: '#/components/schemas/SellerInfo'
+        transactionHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionHistoryItem'
+      required:
+      - productName
+      - productType
+      - quantity
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__
+    KnownTokenIdRedeem:
+      type: object
+      properties:
+        waitForHash:
+          type: boolean
+          description: 'Whether the UI should wait
+
+            for the transaction to be sent and
+
+            the hash to be returned.'
+        transaction:
+          $ref: '#/components/schemas/KnownTokenIdRedeemTransaction'
+          description: Transaction to be called.
+        nftContract:
+          type: string
+          description: The address of the Nft's Contract
+        nftId:
+          type: string
+          description: The ID of the NFT being purchased. Will be forwarded by the Coinflow contract to the customer's wallet.
+      required:
+      - transaction
+      - nftContract
+      - nftId
+      description: '(EVM only) If your know the ID of the NFT being purchased, then utilize this object.
+
+
+        The contract transfers the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract fwd''s the NFT to the end user''s wallet.'
+      title: KnownTokenIdRedeem
+    GetEvmCreditsAuthMsgBody:
+      type: object
+      properties:
+        merchantId:
+          type: string
+          description: The ID of the merchant requesting redemption.
+        subtotal:
+          $ref: '#/components/schemas/Subtotal'
+        transactionData:
+          $ref: '#/components/schemas/EvmTransactionData'
+        usdcAmount:
+          $ref: '#/components/schemas/Cents'
+      required:
+      - merchantId
+      - subtotal
+      - transactionData
+      title: GetEvmCreditsAuthMsgBody
+    ReturnedTokenIdRedeemType:
+      type: string
+      enum:
+      - returned
+      title: ReturnedTokenIdRedeemType
+    TokenSubtotalAmount:
       oneOf:
-      - type: string
       - type: number
         format: double
-      title: RedeemBodyNativeSolToConvertLamports
-    NormalRedeemTransaction:
-      type: object
-      properties:
-        data:
-          type: string
-          description: 'The data to call this contract with, HEX encoded.
-
-
-            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
-        to:
-          type: string
-          description: The merchant's whitelisted contract
-      required:
-      - data
-      - to
-      description: Transaction to be called.
-      title: NormalRedeemTransaction
-    SellerInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Id of the seller
-        email:
-          type:
-          - string
-          - 'null'
-          description: 'Email
-
-            Example: lois.lane@dailyplanet.com'
-        firstName:
-          type: string
-          description: 'First name
-
-            Example: Lois'
-        lastName:
-          type: string
-          description: 'Last name
-
-            Example: Lois'
-        dob:
-          type: string
-          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
-
-            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
-        rawSellerData:
-          $ref: '#/components/schemas/Record_string.any_'
-      title: SellerInfo
+      - type: string
+      description: Number of tokens
+      title: TokenSubtotalAmount
     CustomerUsdcTransferDataV2:
       type: object
       properties:
@@ -324,6 +362,145 @@ components:
 
         `transferWithAuthorization`. All other fields unchanged from V1.'
       title: CustomerUsdcTransferDataV2
+    RedeemBodyRent:
+      type: object
+      properties:
+        lamports:
+          $ref: '#/components/schemas/RedeemBodyRentLamports'
+      required:
+      - lamports
+      description: (Solana Only) if your transaction requires a known amount of Rent to be paid, you can pass it here.
+      title: RedeemBodyRent
+    AnyObject:
+      type: object
+      properties:
+        example:
+          type: string
+      title: AnyObject
+    CustomerUsdcTransferData:
+      type: object
+      properties:
+        from:
+          type: string
+        to:
+          type: string
+        value:
+          type: string
+        validAfter:
+          $ref: '#/components/schemas/CustomerUsdcTransferDataValidAfter'
+        validBefore:
+          $ref: '#/components/schemas/CustomerUsdcTransferDataValidBefore'
+        nonce:
+          type: string
+        v:
+          type: number
+          format: double
+        r:
+          type: string
+        s:
+          type: string
+      required:
+      - from
+      - to
+      - value
+      - validAfter
+      - validBefore
+      - nonce
+      - v
+      - r
+      - s
+      description: 'Customer signed USDC transferWithAuthorization data for dual-source payments
+
+        Used for combined USDC + Credit Card payments on EVM chains'
+      title: CustomerUsdcTransferData
+    CustomerUsdcTransferDataV2ValidAfter:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      title: CustomerUsdcTransferDataV2ValidAfter
+    ApiError:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+        stack:
+          type: string
+      required:
+      - name
+      - message
+      title: ApiError
+    CustomerUsdcTransferDataV2ValidBefore:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      title: CustomerUsdcTransferDataV2ValidBefore
+    ReturnedTokenIdRedeem:
+      type: object
+      properties:
+        waitForHash:
+          type: boolean
+          description: 'Whether the UI should wait
+
+            for the transaction to be sent and
+
+            the hash to be returned.'
+        transaction:
+          $ref: '#/components/schemas/ReturnedTokenIdRedeemTransaction'
+          description: Transaction to be called.
+        type:
+          $ref: '#/components/schemas/ReturnedTokenIdRedeemType'
+        nftContract:
+          type: string
+      required:
+      - transaction
+      - type
+      description: '(EVM only) If your contract returns the NFT ID, then utilize this object.
+
+
+        The contract mints the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract picks up the returned NFT ID, and fwd''s the NFT to the end user''s wallet.'
+      title: ReturnedTokenIdRedeem
+    TokenSubtotal:
+      type: object
+      properties:
+        address:
+          type: string
+          description: 'The tokens address
+
+
+            Solana - Token Mint Address
+
+            Evm - Token Contract Address'
+        amount:
+          $ref: '#/components/schemas/TokenSubtotalAmount'
+          description: Number of tokens
+        decimals:
+          type: number
+          format: double
+          description: Number of decimals for the token
+      required:
+      - address
+      - amount
+      title: TokenSubtotal
+    RedeemBodyRentLamports:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      title: RedeemBodyRentLamports
+    PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        valueInCurrency:
+          type: number
+          format: double
+      description: The item's list price
+      title: PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice
     DecentRedeem:
       type: object
       properties:
@@ -362,6 +539,31 @@ components:
       - cost
       description: If your contract exists on a chain supported by Decent, pass this object in order to call it.
       title: DecentRedeem
+    SafeMintRedeem:
+      type: object
+      properties:
+        waitForHash:
+          type: boolean
+          description: 'Whether the UI should wait
+
+            for the transaction to be sent and
+
+            the hash to be returned.'
+        transaction:
+          $ref: '#/components/schemas/SafeMintRedeemTransaction'
+          description: Transaction to be called.
+        type:
+          $ref: '#/components/schemas/SafeMintRedeemType'
+        nftContract:
+          type: string
+      required:
+      - transaction
+      - type
+      description: '(EVM only) If your contract mints an NFT via a OpenZeppelin Safe Mint Call, then utilize this object.
+
+
+        The contract mints the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract picks up the SafeMint event, and fwd''s the NFT to the end user''s wallet.'
+      title: SafeMintRedeem
     Currency:
       type: string
       enum:
@@ -522,128 +724,71 @@ components:
       - SSP
       - VES
       title: Currency
-    EvmRedeemBody:
+    ReturnedTokenIdRedeemTransaction:
       type: object
       properties:
-        merchantId:
+        data:
           type: string
-          description: The ID of the merchant requesting redemption.
-        subtotal:
-          $ref: '#/components/schemas/Subtotal'
-        transactionData:
-          $ref: '#/components/schemas/EvmTransactionData'
-        usdcAmount:
-          $ref: '#/components/schemas/Cents'
-        signedMessages:
-          $ref: '#/components/schemas/SignedMessages'
-        chargebackProtectionData:
-          $ref: '#/components/schemas/RedeemCartItems'
-        validBefore:
-          type: string
-          description: Values returned from getEvmCreditsAuthMsg endpoint
-        nonce:
-          type: string
-        creditsRawAmount:
-          type: number
-          format: double
-      required:
-      - merchantId
-      - subtotal
-      - transactionData
-      - signedMessages
-      - validBefore
-      - nonce
-      - creditsRawAmount
-      description: EVM-specific Redeem body
-      title: EvmRedeemBody
-    ApiError:
-      type: object
-      properties:
-        name:
-          type: string
-        message:
-          type: string
-        stack:
-          type: string
-      required:
-      - name
-      - message
-      title: ApiError
-    CustomerUsdcTransferDataValidBefore:
-      oneOf:
-      - type: string
-      - type: number
-        format: double
-      title: CustomerUsdcTransferDataValidBefore
-    TokenRedeem:
-      type: object
-      properties:
-        waitForHash:
-          type: boolean
-          description: 'Whether the UI should wait
+          description: 'The data to call this contract with, HEX encoded.
 
-            for the transaction to be sent and
 
-            the hash to be returned.'
-        type:
-          $ref: '#/components/schemas/TokenRedeemType'
-        destination:
+            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
+        to:
           type: string
+          description: The merchant's whitelisted contract
       required:
-      - type
-      - destination
-      title: TokenRedeem
-    Redeem_SendEvmCreditsGaslessTx_Response_200:
+      - data
+      - to
+      description: Transaction to be called.
+      title: ReturnedTokenIdRedeemTransaction
+    SellerInfo:
       type: object
       properties:
-        hash:
+        id:
           type: string
-      required:
-      - hash
-      title: Redeem_SendEvmCreditsGaslessTx_Response_200
-    SafeMintRedeemType:
-      type: string
-      enum:
-      - safeMint
-      title: SafeMintRedeemType
-    ReturnedTokenIdRedeemType:
-      type: string
-      enum:
-      - returned
-      title: ReturnedTokenIdRedeemType
-    PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice:
+          description: Id of the seller
+        email:
+          type:
+          - string
+          - 'null'
+          description: 'Email
+
+            Example: lois.lane@dailyplanet.com'
+        firstName:
+          type: string
+          description: 'First name
+
+            Example: Lois'
+        lastName:
+          type: string
+          description: 'Last name
+
+            Example: Lois'
+        dob:
+          type: string
+          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
+
+            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
+        rawSellerData:
+          $ref: '#/components/schemas/Record_string.any_'
+      title: SellerInfo
+    NormalRedeemTransaction:
       type: object
       properties:
-        currency:
+        data:
           type: string
-        valueInCurrency:
-          type: number
-          format: double
-      description: The item's list price
-      title: PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice
-    GetCreditsAuthMessageResponse:
-      type: object
-      properties:
-        message:
+          description: 'The data to call this contract with, HEX encoded.
+
+
+            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
+        to:
           type: string
-          description: EIP-712 typed-data JSON string for the user to sign via eth_signTypedData_v
-        validBefore:
-          type: string
-          description: Timestamp indicating signature validity period
-        nonce:
-          type: string
-          description: Unique identifier for the transaction
-        creditsRawAmount:
-          type: number
-          format: double
-          description: Total amount of credits that will be used including gas fees
+          description: The merchant's whitelisted contract
       required:
-      - message
-      - validBefore
-      - nonce
-      - creditsRawAmount
-      description: For retrieving the typed-data (EIP-712) that a user must sign to authorize credits usage.
-      title: GetCreditsAuthMessageResponse
+      - data
+      - to
+      description: Transaction to be called.
+      title: NormalRedeemTransaction
     productType:
       type: string
       enum:
@@ -684,42 +829,6 @@ components:
       - eBooks
       - digitalSubscriptionContent
       title: productType
-    CustomerUsdcTransferData:
-      type: object
-      properties:
-        from:
-          type: string
-        to:
-          type: string
-        value:
-          type: string
-        validAfter:
-          $ref: '#/components/schemas/CustomerUsdcTransferDataValidAfter'
-        validBefore:
-          $ref: '#/components/schemas/CustomerUsdcTransferDataValidBefore'
-        nonce:
-          type: string
-        v:
-          type: number
-          format: double
-        r:
-          type: string
-        s:
-          type: string
-      required:
-      - from
-      - to
-      - value
-      - validAfter
-      - validBefore
-      - nonce
-      - v
-      - r
-      - s
-      description: 'Customer signed USDC transferWithAuthorization data for dual-source payments
-
-        Used for combined USDC + Credit Card payments on EVM chains'
-      title: CustomerUsdcTransferData
     RedeemBodyNativeSolToConvert:
       type: object
       properties:
@@ -731,6 +840,149 @@ components:
 
         contract requires native SOL. This will convert the amount of wSOL to native SOL for use in the transaction.'
       title: RedeemBodyNativeSolToConvert
+    Record_string.any_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.any_
+    MerchantWalletRedeemBody:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        chargebackProtectionData:
+          $ref: '#/components/schemas/RedeemCartItems'
+        webhookInfo:
+          $ref: '#/components/schemas/AnyObject'
+        feePercentage:
+          type: number
+          format: double
+          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+
+            taken from the subtotal amount.'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        jwtToken:
+          type: string
+          description: 'This is a token encoding the parameters for the request. Allows purchase parameters to be verified
+
+            to prevent manipulation when the checkout page is presented to the user.'
+        redeemAmount:
+          $ref: '#/components/schemas/Cents'
+        subtotal:
+          $ref: '#/components/schemas/Cents'
+      required:
+      - merchantId
+      - subtotal
+      description: From T, pick a set of properties whose keys are in the union K
+      title: MerchantWalletRedeemBody
+    SignedMessages:
+      type: object
+      properties:
+        permitCredits:
+          type: string
+          description: (Evm only) This is the signed permit messages that the user must sign granting the Merchant Contract access to their balances.
+        customerUsdcAuthData:
+          $ref: '#/components/schemas/CustomerUsdcTransferData'
+        customerUsdcAuthDataV2:
+          $ref: '#/components/schemas/CustomerUsdcTransferDataV2'
+      required:
+      - permitCredits
+      title: SignedMessages
+    RedeemResponse:
+      type: object
+      properties:
+        transaction:
+          type: string
+          description: 'Transaction for the users wallet to sign and send.
+
+
+            Solana - base 58 encoded transaction, recover using: `Transaction.from(base58.decode(transaction))`
+
+            Near - Base 64 encoded stringified transaction, recover using: `JSON.parse(Buffer.from(transaction, ''base64'').toString());`
+
+            Evm - Base 64 encoded stringified transaction, recover using: `JSON.parse(Buffer.from(transaction, ''base64'').toString());`'
+      required:
+      - transaction
+      title: RedeemResponse
+    EvmRedeemBody:
+      type: object
+      properties:
+        merchantId:
+          type: string
+          description: The ID of the merchant requesting redemption.
+        subtotal:
+          $ref: '#/components/schemas/Subtotal'
+        transactionData:
+          $ref: '#/components/schemas/EvmTransactionData'
+        usdcAmount:
+          $ref: '#/components/schemas/Cents'
+        signedMessages:
+          $ref: '#/components/schemas/SignedMessages'
+        chargebackProtectionData:
+          $ref: '#/components/schemas/RedeemCartItems'
+        validBefore:
+          type: string
+          description: Values returned from getEvmCreditsAuthMsg endpoint
+        nonce:
+          type: string
+        creditsRawAmount:
+          type: number
+          format: double
+      required:
+      - merchantId
+      - subtotal
+      - transactionData
+      - signedMessages
+      - validBefore
+      - nonce
+      - creditsRawAmount
+      description: EVM-specific Redeem body
+      title: EvmRedeemBody
+    RedeemCartItems:
+      type: array
+      items:
+        $ref: '#/components/schemas/Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__'
+      title: RedeemCartItems
+    Cents:
+      type: object
+      properties:
+        cents:
+          type: integer
+      required:
+      - cents
+      title: Cents
+    KnownTokenIdRedeemTransaction:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 'The data to call this contract with, HEX encoded.
+
+
+            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
+        to:
+          type: string
+          description: The merchant's whitelisted contract
+      required:
+      - data
+      - to
+      description: Transaction to be called.
+      title: KnownTokenIdRedeemTransaction
+    Subtotal:
+      oneOf:
+      - $ref: '#/components/schemas/CurrencyCents'
+      - $ref: '#/components/schemas/Cents'
+      - $ref: '#/components/schemas/TokenSubtotal'
+      title: Subtotal
+    Redeem_SendEvmCreditsGaslessTx_Response_200:
+      type: object
+      properties:
+        hash:
+          type: string
+      required:
+      - hash
+      title: Redeem_SendEvmCreditsGaslessTx_Response_200
     TransactionHistoryItem:
       type: object
       properties:
@@ -770,62 +1022,23 @@ components:
       - blockNumber
       - txHash
       title: TransactionHistoryItem
-    CustomerUsdcTransferDataValidAfter:
-      oneOf:
-      - type: string
-      - type: number
-        format: double
-      title: CustomerUsdcTransferDataValidAfter
-    TokenSubtotalAmount:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Number of tokens
-      title: TokenSubtotalAmount
-    Subtotal:
-      oneOf:
-      - $ref: '#/components/schemas/CurrencyCents'
-      - $ref: '#/components/schemas/Cents'
-      - $ref: '#/components/schemas/TokenSubtotal'
-      title: Subtotal
-    Cents:
+    DecentRedeemType:
+      type: string
+      enum:
+      - decent
+      title: DecentRedeemType
+    CurrencyCents:
       type: object
       properties:
         cents:
           type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
       required:
       - cents
-      title: Cents
-    TokenSubtotal:
-      type: object
-      properties:
-        address:
-          type: string
-          description: 'The tokens address
-
-
-            Solana - Token Mint Address
-
-            Evm - Token Contract Address'
-        amount:
-          $ref: '#/components/schemas/TokenSubtotalAmount'
-          description: Number of tokens
-        decimals:
-          type: number
-          format: double
-          description: Number of decimals for the token
-      required:
-      - address
-      - amount
-      title: TokenSubtotal
-    CustomerUsdcTransferDataV2ValidAfter:
-      oneOf:
-      - type: string
-      - type: number
-        format: double
-      title: CustomerUsdcTransferDataV2ValidAfter
-    ReturnedTokenIdRedeem:
+      - currency
+      title: CurrencyCents
+    NormalRedeem:
       type: object
       properties:
         waitForHash:
@@ -836,54 +1049,15 @@ components:
 
             the hash to be returned.'
         transaction:
-          $ref: '#/components/schemas/ReturnedTokenIdRedeemTransaction'
+          $ref: '#/components/schemas/NormalRedeemTransaction'
           description: Transaction to be called.
-        type:
-          $ref: '#/components/schemas/ReturnedTokenIdRedeemType'
-        nftContract:
-          type: string
       required:
       - transaction
-      - type
-      description: '(EVM only) If your contract returns the NFT ID, then utilize this object.
+      description: '(EVM only) If your contract sends the item/service being purchased via a custom "receiver" field, then utilize this object.
 
 
-        The contract mints the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract picks up the returned NFT ID, and fwd''s the NFT to the end user''s wallet.'
-      title: ReturnedTokenIdRedeem
-    Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__:
-      type: object
-      properties:
-        productName:
-          type: string
-          description: The name of the related product
-        productType:
-          $ref: '#/components/schemas/productType'
-        listPrice:
-          $ref: '#/components/schemas/PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice'
-          description: The item's list price
-        quantity:
-          type: number
-          format: double
-          description: The number of units sold
-        rawProductData:
-          $ref: '#/components/schemas/AnyObject'
-        seller:
-          $ref: '#/components/schemas/SellerInfo'
-        transactionHistory:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionHistoryItem'
-      required:
-      - productName
-      - productType
-      - quantity
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__
-    TokenRedeemType:
-      type: string
-      enum:
-      - token
-      title: TokenRedeemType
+        The coinflow contract calls the "to" contract, which transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
+      title: NormalRedeem
     SafeMintRedeemTransaction:
       type: object
       properties:
@@ -901,119 +1075,31 @@ components:
       - to
       description: Transaction to be called.
       title: SafeMintRedeemTransaction
-    DecentRedeemCost:
-      type: object
-      properties:
-        isNative:
-          type: boolean
-          description: 'Whether or not the token is the native token for the chain (ex: Ethereum - ETH, Polygon - POL).
-
-            If native dstToken should be the 0 address (0x00...)'
-        amount:
-          type: string
-          description: 'This is the raw amount of the token
-
-            ex: 50000000000000n'
-      required:
-      - isNative
-      - amount
-      description: Amount of the token on the destination chain you will be receiving
-      title: DecentRedeemCost
-    KnownTokenIdRedeem:
-      type: object
-      properties:
-        waitForHash:
-          type: boolean
-          description: 'Whether the UI should wait
-
-            for the transaction to be sent and
-
-            the hash to be returned.'
-        transaction:
-          $ref: '#/components/schemas/KnownTokenIdRedeemTransaction'
-          description: Transaction to be called.
-        nftContract:
-          type: string
-          description: The address of the Nft's Contract
-        nftId:
-          type: string
-          description: The ID of the NFT being purchased. Will be forwarded by the Coinflow contract to the customer's wallet.
-      required:
-      - transaction
-      - nftContract
-      - nftId
-      description: '(EVM only) If your know the ID of the NFT being purchased, then utilize this object.
-
-
-        The contract transfers the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract fwd''s the NFT to the end user''s wallet.'
-      title: KnownTokenIdRedeem
-    GetEvmCreditsAuthMsgBody:
-      type: object
-      properties:
-        merchantId:
-          type: string
-          description: The ID of the merchant requesting redemption.
-        subtotal:
-          $ref: '#/components/schemas/Subtotal'
-        transactionData:
-          $ref: '#/components/schemas/EvmTransactionData'
-        usdcAmount:
-          $ref: '#/components/schemas/Cents'
-      required:
-      - merchantId
-      - subtotal
-      - transactionData
-      title: GetEvmCreditsAuthMsgBody
-    SignedMessages:
-      type: object
-      properties:
-        permitCredits:
-          type: string
-          description: (Evm only) This is the signed permit messages that the user must sign granting the Merchant Contract access to their balances.
-        customerUsdcAuthData:
-          $ref: '#/components/schemas/CustomerUsdcTransferData'
-        customerUsdcAuthDataV2:
-          $ref: '#/components/schemas/CustomerUsdcTransferDataV2'
-      required:
-      - permitCredits
-      title: SignedMessages
-    CustomerUsdcTransferDataV2ValidBefore:
+    RedeemBodyNativeSolToConvertLamports:
       oneOf:
       - type: string
       - type: number
         format: double
-      title: CustomerUsdcTransferDataV2ValidBefore
-    MerchantWalletRedeemBody:
-      type: object
-      properties:
-        merchantId:
-          type: string
-        chargebackProtectionData:
-          $ref: '#/components/schemas/RedeemCartItems'
-        webhookInfo:
-          $ref: '#/components/schemas/AnyObject'
-        feePercentage:
-          type: number
-          format: double
-          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+      title: RedeemBodyNativeSolToConvertLamports
+    CustomerUsdcTransferDataValidBefore:
+      oneOf:
+      - type: string
+      - type: number
+        format: double
+      title: CustomerUsdcTransferDataValidBefore
+    EvmTransactionData:
+      oneOf:
+      - $ref: '#/components/schemas/SafeMintRedeem'
+      - $ref: '#/components/schemas/ReturnedTokenIdRedeem'
+      - $ref: '#/components/schemas/KnownTokenIdRedeem'
+      - $ref: '#/components/schemas/NormalRedeem'
+      - $ref: '#/components/schemas/TokenRedeem'
+      - $ref: '#/components/schemas/DecentRedeem'
+      description: '(EVM only) if you want to execute an EVM transaction on a successful purchase, you can pass a transaction request here.
 
-            taken from the subtotal amount.'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        jwtToken:
-          type: string
-          description: 'This is a token encoding the parameters for the request. Allows purchase parameters to be verified
 
-            to prevent manipulation when the checkout page is presented to the user.'
-        redeemAmount:
-          $ref: '#/components/schemas/Cents'
-        subtotal:
-          $ref: '#/components/schemas/Cents'
-      required:
-      - merchantId
-      - subtotal
-      description: From T, pick a set of properties whose keys are in the union K
-      title: MerchantWalletRedeemBody
+        Gas fees for the transaction will be automatically calculated and added to the total charged to the customer. Optionally the merchant can opt to pay for these gas fees.'
+      title: EvmTransactionData
     RedeemBody:
       type: object
       properties:
@@ -1052,75 +1138,13 @@ components:
       - subtotal
       - transaction
       title: RedeemBody
-    EvmTransactionData:
-      oneOf:
-      - $ref: '#/components/schemas/SafeMintRedeem'
-      - $ref: '#/components/schemas/ReturnedTokenIdRedeem'
-      - $ref: '#/components/schemas/KnownTokenIdRedeem'
-      - $ref: '#/components/schemas/NormalRedeem'
-      - $ref: '#/components/schemas/TokenRedeem'
-      - $ref: '#/components/schemas/DecentRedeem'
-      description: '(EVM only) if you want to execute an EVM transaction on a successful purchase, you can pass a transaction request here.
-
-
-        Gas fees for the transaction will be automatically calculated and added to the total charged to the customer. Optionally the merchant can opt to pay for these gas fees.'
-      title: EvmTransactionData
-    CurrencyCents:
-      type: object
-      properties:
-        cents:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-      required:
-      - cents
-      - currency
-      title: CurrencyCents
-    Record_string.any_:
-      type: object
-      properties: {}
-      description: Construct a type with a set of properties K of type T
-      title: Record_string.any_
-    KnownTokenIdRedeemTransaction:
-      type: object
-      properties:
-        data:
-          type: string
-          description: 'The data to call this contract with, HEX encoded.
-
-
-            The coinflow contract calls the "to" contract, contract pulls USDC from msg.sender, and transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
-        to:
-          type: string
-          description: The merchant's whitelisted contract
-      required:
-      - data
-      - to
-      description: Transaction to be called.
-      title: KnownTokenIdRedeemTransaction
-    RedeemResponse:
-      type: object
-      properties:
-        transaction:
-          type: string
-          description: 'Transaction for the users wallet to sign and send.
-
-
-            Solana - base 58 encoded transaction, recover using: `Transaction.from(base58.decode(transaction))`
-
-            Near - Base 64 encoded stringified transaction, recover using: `JSON.parse(Buffer.from(transaction, ''base64'').toString());`
-
-            Evm - Base 64 encoded stringified transaction, recover using: `JSON.parse(Buffer.from(transaction, ''base64'').toString());`'
-      required:
-      - transaction
-      title: RedeemResponse
-    RedeemBodyRentLamports:
+    CustomerUsdcTransferDataValidAfter:
       oneOf:
       - type: string
       - type: number
         format: double
-      title: RedeemBodyRentLamports
-    SafeMintRedeem:
+      title: CustomerUsdcTransferDataValidAfter
+    TokenRedeem:
       type: object
       properties:
         waitForHash:
@@ -1130,66 +1154,42 @@ components:
             for the transaction to be sent and
 
             the hash to be returned.'
-        transaction:
-          $ref: '#/components/schemas/SafeMintRedeemTransaction'
-          description: Transaction to be called.
         type:
-          $ref: '#/components/schemas/SafeMintRedeemType'
-        nftContract:
+          $ref: '#/components/schemas/TokenRedeemType'
+        destination:
           type: string
       required:
-      - transaction
       - type
-      description: '(EVM only) If your contract mints an NFT via a OpenZeppelin Safe Mint Call, then utilize this object.
-
-
-        The contract mints the NFT to msg.sender (which is the Coinflow contract), the Coinflow contract picks up the SafeMint event, and fwd''s the NFT to the end user''s wallet.'
-      title: SafeMintRedeem
-    RedeemCartItems:
-      type: array
-      items:
-        $ref: '#/components/schemas/Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__'
-      title: RedeemCartItems
-    NormalRedeem:
-      type: object
-      properties:
-        waitForHash:
-          type: boolean
-          description: 'Whether the UI should wait
-
-            for the transaction to be sent and
-
-            the hash to be returned.'
-        transaction:
-          $ref: '#/components/schemas/NormalRedeemTransaction'
-          description: Transaction to be called.
-      required:
-      - transaction
-      description: '(EVM only) If your contract sends the item/service being purchased via a custom "receiver" field, then utilize this object.
-
-
-        The coinflow contract calls the "to" contract, which transfers the NFT/item to the "receiver" address defined in the contract function arguments.'
-      title: NormalRedeem
-    DecentRedeemType:
+      - destination
+      title: TokenRedeem
+    SafeMintRedeemType:
       type: string
       enum:
-      - decent
-      title: DecentRedeemType
-    AnyObject:
+      - safeMint
+      title: SafeMintRedeemType
+    GetCreditsAuthMessageResponse:
       type: object
       properties:
-        example:
+        message:
           type: string
-      title: AnyObject
-    RedeemBodyRent:
-      type: object
-      properties:
-        lamports:
-          $ref: '#/components/schemas/RedeemBodyRentLamports'
+          description: EIP-712 typed-data JSON string for the user to sign via eth_signTypedData_v
+        validBefore:
+          type: string
+          description: Timestamp indicating signature validity period
+        nonce:
+          type: string
+          description: Unique identifier for the transaction
+        creditsRawAmount:
+          type: number
+          format: double
+          description: Total amount of credits that will be used including gas fees
       required:
-      - lamports
-      description: (Solana Only) if your transaction requires a known amount of Rent to be paid, you can pass it here.
-      title: RedeemBodyRent
+      - message
+      - validBefore
+      - nonce
+      - creditsRawAmount
+      description: For retrieving the typed-data (EIP-712) that a user must sign to authorize credits usage.
+      title: GetCreditsAuthMessageResponse
   securitySchemes:
     wallet:
       type: apiKey

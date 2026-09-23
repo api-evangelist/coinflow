@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference authentication API
+  title: Reference Authentication API
   version: 1.0.0
 servers:
 - url: https://api-sandbox.coinflow.cash/api
   description: https://api-sandbox.coinflow.cash/api
 tags:
-- name: authentication
+- name: Authentication
 paths:
   /auth:
     get:
@@ -14,7 +14,7 @@ paths:
       summary: Get Message
       description: Get the message for the user's wallet to sign.
       tags:
-      - authentication
+      - Authentication
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -35,7 +35,7 @@ paths:
       summary: Get Session Key
       description: Get an authentication session key
       tags:
-      - authentication
+      - Authentication
       parameters:
       - name: x-coinflow-auth-user-id
         in: header
@@ -56,7 +56,7 @@ paths:
       summary: Verify Token
       description: Verify a token is valid and is not expired
       tags:
-      - authentication
+      - Authentication
       parameters:
       - name: x-coinflow-auth-session-key
         in: header

@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference authentication customers API
+  title: Reference Customers API
   version: 1.0.0
 servers:
 - url: https://api-sandbox.coinflow.cash/api
   description: https://api-sandbox.coinflow.cash/api
 tags:
-- name: customers
+- name: Customers
 paths:
   /customer/v2/bankAccount:
     post:
@@ -14,7 +14,7 @@ paths:
       summary: Add Bank Account
       description: Adds a bank account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: x-coinflow-auth-wallet
         in: header
@@ -42,7 +42,7 @@ paths:
 
         submission.'
       tags:
-      - customers
+      - Customers
       parameters:
       - name: Authorization
         in: header
@@ -84,7 +84,7 @@ paths:
       summary: Create an Iban account
       description: Create an Iban account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: x-coinflow-auth-session-key
         in: header
@@ -114,7 +114,7 @@ paths:
       summary: Create Card for Customer
       description: Create card for a particular customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: x-coinflow-auth-user-id
         in: header
@@ -145,7 +145,7 @@ paths:
       summary: Create Customer
       description: Creates a customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: x-coinflow-auth-user-id
         in: header
@@ -178,7 +178,7 @@ paths:
       summary: Delete Bank Account
       description: Deletes a bank account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: token
         in: path
@@ -200,7 +200,7 @@ paths:
       summary: Delete Card
       description: Deletes the card for a particular customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: cardToken
         in: path
@@ -223,7 +223,7 @@ paths:
       summary: Delete Iban Account
       description: Deletes an Iban account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: token
         in: path
@@ -245,7 +245,7 @@ paths:
       summary: Delete Interac Account
       description: Deletes an Interac account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: token
         in: path
@@ -267,7 +267,7 @@ paths:
       summary: Delete PayPal Account
       description: Deletes a saved PayPal account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: token
         in: path
@@ -289,7 +289,7 @@ paths:
       summary: Delete Venmo Account
       description: Deletes a saved Venmo account for a given customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: token
         in: path
@@ -311,7 +311,7 @@ paths:
       summary: Get Balances
       description: Gets the balances of credits, usdc, and an optional token for a particular wallet
       tags:
-      - customers
+      - Customers
       parameters:
       - name: merchantIdOrCreditSeed
         in: path
@@ -337,7 +337,7 @@ paths:
       summary: Get Customer
       description: Gets the Customer record for a particular user.
       tags:
-      - customers
+      - Customers
       parameters:
       - name: x-coinflow-auth-session-key
         in: header
@@ -371,7 +371,7 @@ paths:
       summary: Get Purchase History
       description: Gets the Purchase History for a particular Customer
       tags:
-      - customers
+      - Customers
       parameters:
       - name: paymentId
         in: query
@@ -398,7 +398,7 @@ paths:
       summary: Get Purchase History By ID
       description: Gets the Purchase for a Customer by ID
       tags:
-      - customers
+      - Customers
       parameters:
       - name: paymentId
         in: path
@@ -421,12 +421,277 @@ paths:
                 $ref: '#/components/schemas/Customers_GetCustomerPaymentById_Response_200'
 components:
   schemas:
-    Pick_IIbanAccount.Exclude_keyofIIbanAccount.vendorData__:
+    VelocityLimitMode:
+      type: string
+      enum:
+      - default
+      - dynamic
+      - custom
+      - no_limit
+      title: VelocityLimitMode
+    HighnoteMerchantSettings:
+      type: object
+      properties:
+        businessId:
+          type: string
+        primaryAuthorizedPersonId:
+          type: string
+          description: 'Highnote id of the primary business person, captured from the
+
+            createBusiness response — onboardBusiness attributes its consent to it.'
+        merchantAcceptorId:
+          type: string
+        applicationSubmittedAt:
+          type: string
+          format: date-time
+          description: 'Set when onboardBusiness (the ProductApplication submission) succeeded.
+
+            A re-run while underwriting is still Pending must not re-submit the
+
+            application — Highnote rejects duplicates, which would overwrite a
+
+            healthy Pending status with an error.'
+      required:
+      - businessId
+      title: HighnoteMerchantSettings
+    IbanProcessor:
+      type: string
+      enum:
+      - merge
+      - ivy
+      - mock
+      title: IbanProcessor
+    AchProcessor:
+      type: string
+      enum:
+      - mock
+      - aptpay
+      - coinfx
+      - braid
+      title: AchProcessor
+    IGeoBlockOverride:
+      type: object
+      properties:
+        reason:
+          type: string
+        setBy:
+          type: string
+        setAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+      required:
+      - reason
+      - setBy
+      - setAt
+      description: 'Per-customer exemption from real-time geographic enforcement.
+
+
+        When set and not expired, withdrawal blocking rules with method
+
+        `GEOLOCATION` or `IP` are skipped for this withdrawer. `KYC_ADDRESS` rules
+
+        still apply — KYC is the compliance floor and must remain enforceable.
+
+
+        Auditable by construction: `reason` and `setBy` are required so admins can
+
+        review why a specific user was exempted. `expiresAt` is optional but
+
+        strongly recommended; long-lived overrides should be avoided.'
+      title: IGeoBlockOverride
+    AcquirerInfo:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        bin:
+          type: string
+        name:
+          type: string
+        mcc:
+          type: string
+      required:
+      - merchantId
+      - bin
+      - name
+      title: AcquirerInfo
+    Partial_Record_Blockchain.boolean__:
+      type: object
+      properties:
+        solana:
+          type: boolean
+        eth:
+          type: boolean
+        polygon:
+          type: boolean
+        base:
+          type: boolean
+        user:
+          type: boolean
+        arbitrum:
+          type: boolean
+        stellar:
+          type: boolean
+        monad:
+          type: boolean
+        tempo:
+          type: boolean
+      description: Make all properties in T optional
+      title: Partial_Record_Blockchain.boolean__
+    BlockedLevel:
+      type: string
+      enum:
+      - Unverified
+      - Suspended
+      title: BlockedLevel
+    VelocityControlSettings:
+      type: object
+      properties:
+        limitMode:
+          $ref: '#/components/schemas/VelocityLimitMode'
+        customLimit:
+          type: number
+          format: double
+        haltOnThreshold:
+          type: boolean
+        lastHaltNotificationSentAt:
+          type: string
+          format: date-time
+        lastSettlementPausedNotificationSentAt:
+          type: string
+          format: date-time
+      required:
+      - limitMode
+      title: VelocityControlSettings
+    Verification:
+      type: object
+      properties:
+        reference:
+          type: string
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+        vendor:
+          $ref: '#/components/schemas/VerificationVendor'
+        name:
+          type: string
+        attested:
+          type: boolean
+        shareToken:
+          type: string
+        shareTokenStatus:
+          type: string
+        sessionToken:
+          type: string
+      required:
+      - reference
+      - status
+      - vendor
+      title: Verification
+    AptPayCanadaSettings:
+      oneOf:
+      - $ref: '#/components/schemas/AptpayCanadaMerchantSettings'
+      - $ref: '#/components/schemas/AptpayCanadaCoinflowSettings'
+      title: AptPayCanadaSettings
+    Blockchain:
+      type: string
+      enum:
+      - solana
+      - eth
+      - polygon
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
+    PayPalProcessor:
+      type: string
+      enum:
+      - mock
+      - paypal
+      title: PayPalProcessor
+    BlockedStatus:
+      type: object
+      properties:
+        level:
+          $ref: '#/components/schemas/BlockedLevel'
+        reason:
+          type: string
+        editor:
+          type: string
+        blockedAt:
+          type: string
+          format: date-time
+        recoverySignature:
+          type: string
+      required:
+      - level
+      - reason
+      - editor
+      - blockedAt
+      title: BlockedStatus
+    InterchangeFees:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/InterchangeSettings'
+        rates:
+          $ref: '#/components/schemas/Record_string.InterchangeRate_'
+      required:
+      - settings
+      title: InterchangeFees
+    RainPendingTopUp:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        queuedAt:
+          type: string
+          format: date-time
+        transactionId:
+          type: string
+      required:
+      - amount
+      - queuedAt
+      - transactionId
+      title: RainPendingTopUp
+    CustomPayInFeesConfig:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomPayInFeeConfig'
+      title: CustomPayInFeesConfig
+    CustomPayInFeeValue:
+      oneOf:
+      - $ref: '#/components/schemas/CustomPayInFeeValue0'
+      - $ref: '#/components/schemas/CustomPayInFeeValue1'
+      title: CustomPayInFeeValue
+    CardPayoutProvider:
+      type: string
+      enum:
+      - aptpay
+      - checkbook
+      - shift4
+      - MOCK
+      title: CardPayoutProvider
+    Pick_IBankAccount.Exclude_keyofIBankAccount.vendorData-or-accountOwnerNames-or-nameMatchStatus__:
       type: object
       properties:
         last4:
           type: string
         accountHash:
+          type: string
+        accountNumberOnlyHash:
+          type: string
+        isDeleted:
+          type: boolean
+        isTokenized:
+          type: boolean
+        accountNumber:
           type: string
         alias:
           type: string
@@ -434,283 +699,400 @@ components:
           type: string
         reference:
           type: string
-        sortCode:
-          type: string
-        bic:
-          type: string
       required:
       - last4
       - accountHash
       - alias
       - token
       - reference
-      - sortCode
       description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_IIbanAccount.Exclude_keyofIIbanAccount.vendorData__
-    MpcWalletProvider:
+      title: Pick_IBankAccount.Exclude_keyofIBankAccount.vendorData-or-accountOwnerNames-or-nameMatchStatus__
+    PassiveWithdrawSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        maxActiveAddresses:
+          type: number
+          format: double
+          description: 'Cap on the number of simultaneously-active withdraw passive deposit
+
+            addresses for this merchant. Undefined = no cap.'
+      required:
+      - enabled
+      description: 'Merchant-level settings for the withdrawer-side passive deposit address
+
+        flow (CryptoWithdrawService). Independent from CryptoPayInSettings.'
+      title: PassiveWithdrawSettings
+    PortalBrand:
       type: string
       enum:
-      - metakeep
-      description: 'The MPC provider Coinflow uses to custody managed settlement wallets. Single
-
-        source of truth — the merchant type, the predicate, and the query filter all
-
-        reference this so a new provider can''t silently pass one check but not another.'
-      title: MpcWalletProvider
-    Country:
+      - approvely
+      - seamlesschex
+      - coinflow
+      - yourbrandhere
+      - Plan2Play
+      - tango
+      - interlace
+      - tapvia
+      title: PortalBrand
+    IMerchantStringSettlementAddressesRecipientAddressesItems:
+      type: object
+      properties:
+        info:
+          $ref: '#/components/schemas/Record_string.any_'
+        createdAt:
+          type: string
+          format: date-time
+        recipient:
+          type: string
+      required:
+      - createdAt
+      - recipient
+      title: IMerchantStringSettlementAddressesRecipientAddressesItems
+    VerisoulSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        riskThresholds:
+          $ref: '#/components/schemas/VerisoulRiskThresholds'
+      required:
+      - enabled
+      - riskThresholds
+      title: VerisoulSettings
+    PaymentProcessor:
       type: string
       enum:
-      - AF
-      - AL
-      - DZ
-      - AS
-      - AD
-      - AO
-      - AI
-      - AQ
-      - AG
-      - AR
-      - AM
-      - AW
-      - AU
-      - AT
-      - AX
-      - AZ
-      - BS
-      - BH
-      - BD
-      - BB
-      - BY
-      - BE
-      - BZ
-      - BJ
-      - BM
-      - BT
-      - BO
-      - BQ
-      - BA
-      - BW
-      - BV
-      - BR
-      - IO
-      - BN
-      - BG
-      - BF
-      - BI
-      - CV
-      - KH
-      - CM
-      - CA
-      - KY
-      - CF
-      - TD
-      - CL
-      - CN
-      - CX
-      - CC
-      - CO
-      - KM
-      - CD
-      - CG
-      - CK
-      - CR
-      - HR
-      - CU
-      - CW
-      - CY
-      - CZ
-      - CI
-      - DK
-      - DJ
-      - DM
-      - DO
-      - EC
-      - EG
-      - SV
-      - GQ
-      - ER
-      - EE
-      - EH
-      - SZ
-      - ET
-      - FK
-      - FO
-      - FJ
-      - FI
-      - FR
-      - GF
-      - PF
-      - TF
-      - GA
-      - GM
-      - GE
-      - DE
-      - GH
-      - GI
-      - GR
-      - GL
-      - GD
-      - GP
-      - GU
-      - GT
-      - GG
-      - GN
-      - GW
-      - GY
-      - HT
-      - HM
-      - VA
-      - HN
-      - HK
-      - HU
-      - IS
-      - IN
-      - ID
-      - IR
-      - IQ
-      - IE
-      - IM
-      - IL
-      - IT
-      - JM
-      - JP
-      - JE
-      - JO
-      - KZ
-      - KE
-      - KI
-      - KP
-      - KR
-      - KW
-      - KG
-      - LA
-      - LV
-      - LB
-      - LS
-      - LR
-      - LY
-      - LI
-      - LT
-      - LU
-      - MO
-      - MG
-      - MW
-      - MY
-      - MV
-      - ML
-      - MT
-      - MH
-      - MQ
-      - MR
-      - MU
-      - YT
-      - MX
-      - FM
-      - MD
-      - MC
-      - MN
-      - ME
-      - MS
-      - MA
-      - MZ
-      - MM
-      - NA
-      - NR
-      - NP
-      - NL
-      - NC
-      - NZ
-      - NI
-      - NE
-      - NG
-      - NU
-      - NF
-      - MP
-      - 'NO'
-      - OM
-      - PK
-      - PW
-      - PS
-      - PA
-      - PG
-      - PY
-      - PE
-      - PH
-      - PN
-      - PL
-      - PT
-      - PR
-      - QA
-      - MK
-      - RO
-      - RU
-      - RW
-      - RE
-      - BL
-      - SH
-      - KN
-      - LC
-      - MF
-      - PM
-      - VC
-      - WS
-      - SM
-      - ST
-      - SA
-      - SN
-      - RS
-      - SC
-      - SL
-      - SG
-      - SX
-      - SK
-      - SI
-      - SB
-      - SO
-      - ZA
-      - GS
-      - SS
-      - ES
-      - LK
-      - SD
-      - SR
-      - SJ
-      - SE
-      - CH
-      - SY
-      - TW
-      - TJ
-      - TZ
-      - TH
-      - TL
-      - TG
-      - TK
-      - TO
-      - TT
-      - TN
-      - TR
-      - TM
-      - TC
-      - TV
-      - UG
-      - UA
-      - AE
-      - GB
-      - UM
-      - US
-      - UY
-      - UZ
-      - VU
-      - VE
-      - VN
-      - VG
-      - VI
-      - WF
-      - XK
-      - YE
-      - ZM
-      - ZW
-      title: Country
+      - payarc
+      - mock
+      - shift4
+      - merchant_warrior
+      - greenlight
+      - frame
+      - nmi_direct
+      - mvb
+      - fifththird
+      - natwest
+      - nuveiv1
+      - fallback_payarc_shift4
+      - fallback_shift4_payarc
+      - fallback_shift4_nuvei
+      - fallback_nuvei_payarc
+      - fallback_payarc_nuvei
+      - fallback_shift4_greenlight
+      - fallback_greenlight_shift4
+      - fallback_frame_merchant_warrior
+      - fallback_merchant_warrior_frame
+      - fallback_natwest_shift4
+      - fallback_natwest_nuvei
+      - fallback_natwest_shift4_payarc
+      - fallback_natwest_shift4_nuvei
+      - fallback_shift4_natwest_payarc
+      - fallback_nuvei_natwest_payarc
+      - fallback_natwest_nuvei_payarc
+      - fallback_mvb_fifththird_shift4_payarc
+      - fallback_fifththird_mvb_shift4_payarc
+      - fallback_mvb_nuvei
+      - fallback_nuvei_fifththird
+      - fallback_fifththird_nuvei
+      title: PaymentProcessor
+    AftPurpose:
+      type: string
+      enum:
+      - businessToBusiness
+      - creditCardRepayment
+      - crypto
+      - crowdLending
+      - debitCard
+      - education
+      - emergency
+      - familySupport
+      - gift
+      - giftCard
+      - gaming
+      - highRiskSecurities
+      - liquidAssets
+      - medical
+      - payroll
+      - prepaidCard
+      - salary
+      - savings
+      - travel
+      - other
+      title: AftPurpose
+    VerificationStatus:
+      type: string
+      enum:
+      - pending
+      - partial-approval
+      - approved
+      - rejected
+      - expired
+      title: VerificationStatus
+    IMerchantStringSettlementAddresses:
+      type: object
+      properties:
+        solana:
+          type: string
+        eth:
+          type: string
+        polygon:
+          type: string
+        base:
+          type: string
+        user:
+          type: string
+        arbitrum:
+          type: string
+        stellar:
+          type: string
+        monad:
+          type: string
+        tempo:
+          type: string
+        directVendor:
+          $ref: '#/components/schemas/DirectVendorSettlement'
+        mpcWalletProvider:
+          $ref: '#/components/schemas/MpcWalletProvider'
+        recipientAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/IMerchantStringSettlementAddressesRecipientAddressesItems'
+        verification:
+          $ref: '#/components/schemas/Verification'
+      title: IMerchantStringSettlementAddresses
+    InteracPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - mock
+      - aptpay
+      title: InteracPayoutProvider
+    CustomerPlaidCheckPostRequestBodyContentApplicationJsonSchemaAccountsItems:
+      type: object
+      properties:
+        bankAccountToken:
+          type: string
+        customerId:
+          type: string
+      required:
+      - customerId
+      title: CustomerPlaidCheckPostRequestBodyContentApplicationJsonSchemaAccountsItems
+    RainCardApplicationStatus:
+      type: string
+      enum:
+      - approved
+      - pending
+      - needsInformation
+      - needsVerification
+      - manualReview
+      - denied
+      - locked
+      - canceled
+      title: RainCardApplicationStatus
+    CardSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        orchestrationRuleId:
+          type: string
+        applePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        googlePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        creditCardFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        chargebackProtectionFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        gasFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        networkFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        variableFeeBps:
+          type: number
+          format: double
+        networkFeeBps:
+          type: number
+          format: double
+        supportsGooglePay:
+          type: boolean
+        supportsApplePay:
+          type: boolean
+        saveCardDefault:
+          type: boolean
+        ignoreProcessorLimit:
+          type: boolean
+        nameMatchThreshold:
+          type: number
+          format: double
+        verificationSettings:
+          $ref: '#/components/schemas/CardSettingsVerificationSettings'
+        avsCheck:
+          type: boolean
+        threeDsChallengePreference:
+          $ref: '#/components/schemas/ThreeDsChallengePreference'
+        enforce3DSWhenProtectionExempt:
+          type: boolean
+        greenlightMerchantArgs:
+          $ref: '#/components/schemas/GreenlightMerchantArgs'
+        nuveiV1MerchantArgs:
+          $ref: '#/components/schemas/NuveiV1MerchantArgs'
+        crbMerchantArgs:
+          $ref: '#/components/schemas/CrbMerchantArgs'
+        threeDSArgs:
+          $ref: '#/components/schemas/ThreeDSArgs'
+        statementDescriptor:
+          type: string
+        tokenizationProvider:
+          $ref: '#/components/schemas/TokenizationProviderOption'
+        applePayIntegratorRegistration:
+          $ref: '#/components/schemas/ApplePayIntegratorRegistration'
+        applePayMerchantDecryption:
+          type: boolean
+        applePayCertificates:
+          $ref: '#/components/schemas/CardSettingsApplePayCertificates'
+        aftSettings:
+          $ref: '#/components/schemas/AftSettings'
+        customStatementDescriptor:
+          type: boolean
+        cardOnFileSettings:
+          $ref: '#/components/schemas/CardOnFileSettings'
+        mitSettings:
+          $ref: '#/components/schemas/CardOnFileSettings'
+        blockCardReuseAcrossCustomers:
+          type: boolean
+          description: When true, blocks a card payment if the same card token has been used by a different customer for this merchant.
+        allowedCardNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardType'
+        allowServerToServerTokenization:
+          type: boolean
+        visaFraudMonitoringProgram:
+          type: boolean
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
+      required:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      - avsCheck
+      - threeDsChallengePreference
+      - enforce3DSWhenProtectionExempt
+      title: CardSettings
+    CardOnFileSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        period:
+          type: number
+          format: double
+        maxCount:
+          type: number
+          format: double
+        maxMultiple:
+          type: number
+          format: double
+        expiration:
+          type: number
+          format: double
+        maxZeroAuthAmount:
+          $ref: '#/components/schemas/Cents'
+        maxAmountLookback:
+          type: number
+          format: double
+      required:
+      - enabled
+      - period
+      - maxCount
+      - maxMultiple
+      - expiration
+      title: CardOnFileSettings
+    ICardAccountWithExpiry:
+      type: object
+      properties:
+        last4:
+          type: string
+        isDeleted:
+          type: boolean
+        token:
+          type: string
+        type:
+          $ref: '#/components/schemas/CardType'
+        disbursementStatus:
+          $ref: '#/components/schemas/DisbursementStatus'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        nameOnCard:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        hasAddress:
+          type: boolean
+        expMonth:
+          type: string
+        expYear:
+          type: string
+      required:
+      - last4
+      - token
+      - type
+      - disbursementStatus
+      - createdAt
+      - hasAddress
+      title: ICardAccountWithExpiry
+    CrbMerchantSettings:
+      type: object
+      properties:
+        customerId:
+          type: string
+        cifNumber:
+          type: string
+        subledgerAccountNumber:
+          type: string
+        environment:
+          $ref: '#/components/schemas/CrbEnvironment'
+      required:
+      - customerId
+      description: 'The merchant''s CRB banking identity. CRB is onboarded manually in CRB''s
+
+        dashboard — these values are pasted into our merchant dashboard and
+
+        verified live against CRB before being persisted.'
+      title: CrbMerchantSettings
+    WebhookSettings:
+      type: object
+      properties:
+        webhookUrls:
+          type: array
+          items:
+            type: string
+        version:
+          $ref: '#/components/schemas/WebhookVersion'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+        disableAuthorizationHeader:
+          type: boolean
+        disableSubmerchantToParentWebhooks:
+          type: boolean
+      required:
+      - webhookUrls
+      - version
+      - subscriptions
+      title: WebhookSettings
     IbanSettings:
       type: object
       properties:
@@ -737,236 +1119,147 @@ components:
       - customerEmailNotifications
       - merchantEmailNotifications
       title: IbanSettings
-    PortalBrand:
-      type: string
-      enum:
-      - approvely
-      - seamlesschex
-      - coinflow
-      - yourbrandhere
-      - Plan2Play
-      - tango
-      - interlace
-      - tapvia
-      title: PortalBrand
-    VendorSettings:
+    PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsBlockConfigOverride:
       type: object
       properties:
-        aptPayIdentity:
+        maxDistinctTokensPer30Days:
           type: number
           format: double
-        aptPayUSCoinflow:
-          type: boolean
-        braid:
-          $ref: '#/components/schemas/BraidMerchantSettings'
-        crb:
-          $ref: '#/components/schemas/CrbMerchantSettings'
-        highnote:
-          $ref: '#/components/schemas/HighnoteMerchantSettings'
-        ivy:
-          $ref: '#/components/schemas/IvySettings'
-        paypal:
-          $ref: '#/components/schemas/PayPalVendorSettings'
-        koard:
-          $ref: '#/components/schemas/VendorSettingsKoard'
-      title: VendorSettings
-    SettlementLocations:
-      type: string
-      enum:
-      - circle
-      - brale
-      - paper
-      - brale_youpay
-      - bastion
-      title: SettlementLocations
-    VenmoSettings:
+      description: Per-customer overrides of merchant `blockConfig`. Only honored when they raise the effective limit.
+      title: PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsBlockConfigOverride
+    Pick_IIbanAccount.Exclude_keyofIIbanAccount.vendorData__:
       type: object
       properties:
-        processor:
-          $ref: '#/components/schemas/VenmoProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        maxFee:
-          $ref: '#/components/schemas/Cents'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
-      required:
-      - fixedFee
-      - feeBps
-      - minFee
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: VenmoSettings
-    ApplePayIntegratorRegistration:
-      type: object
-      properties:
-        domainNames:
-          type: array
-          items:
-            type: string
-        partnerMerchantName:
+        last4:
           type: string
-        partnerMerchantValidationURI:
+        accountHash:
           type: string
-        partnerInternalMerchantIdentifier:
+        alias:
           type: string
-      required:
-      - domainNames
-      - partnerMerchantName
-      - partnerMerchantValidationURI
-      - partnerInternalMerchantIdentifier
-      title: ApplePayIntegratorRegistration
-    NameCustomerInfo:
-      type: object
-      properties:
-        verificationId:
+        token:
           type: string
-        displayName:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        ip:
-          type: string
-        lat:
-          type: string
-        lng:
-          type: string
-        dob:
-          type: string
-          description: Date of birth in YYYY-MM-DD format
-        email:
-          type: string
-        name:
-          type: string
-      title: NameCustomerInfo
-    SplitNameCustomerInfo:
-      type: object
-      properties:
-        verificationId:
-          type: string
-        displayName:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        ip:
-          type: string
-        lat:
-          type: string
-        lng:
-          type: string
-        dob:
-          type: string
-          description: Date of birth in YYYY-MM-DD format
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-      required:
-      - firstName
-      - lastName
-      title: SplitNameCustomerInfo
-    CrbMerchantSettings:
-      type: object
-      properties:
-        customerId:
-          type: string
-        cifNumber:
-          type: string
-        subledgerAccountNumber:
-          type: string
-        environment:
-          $ref: '#/components/schemas/CrbEnvironment'
-      required:
-      - customerId
-      description: 'The merchant''s CRB banking identity. CRB is onboarded manually in CRB''s
-
-        dashboard — these values are pasted into our merchant dashboard and
-
-        verified live against CRB before being persisted.'
-      title: CrbMerchantSettings
-    IMerchantUser:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-        scope:
-          $ref: '#/components/schemas/MerchantScope'
-        secret:
-          type: string
-        resetNonce:
-          type: string
-        resetNonceUsed:
-          type: boolean
-        ssoProvider:
-          $ref: '#/components/schemas/SsoProvider'
-        ssoId:
-          type: string
-      required:
-      - email
-      - scope
-      title: IMerchantUser
-    Verification:
-      type: object
-      properties:
         reference:
           type: string
-        status:
-          $ref: '#/components/schemas/VerificationStatus'
-        vendor:
-          $ref: '#/components/schemas/VerificationVendor'
-        name:
+        sortCode:
           type: string
-        attested:
-          type: boolean
-        shareToken:
-          type: string
-        shareTokenStatus:
-          type: string
-        sessionToken:
+        bic:
           type: string
       required:
+      - last4
+      - accountHash
+      - alias
+      - token
       - reference
-      - status
-      - vendor
-      title: Verification
-    PickIInteracExcludeKeyofIInteracVendorDataType:
+      - sortCode
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_IIbanAccount.Exclude_keyofIIbanAccount.vendorData__
+    WebhookEventType:
       type: string
       enum:
-      - interac
-      title: PickIInteracExcludeKeyofIInteracVendorDataType
+      - Card Payment Authorized
+      - Card Payment Declined
+      - Card Payment Voided
+      - Credits Minted
+      - ACH Initiated
+      - ACH Success
+      - ACH Returned
+      - ACH Failed
+      - ACH Chargeback
+      - ACH Batched
+      - PIX Failed
+      - PIX Expiration
+      - Payment Authorized
+      - Payment Expiration
+      - Settled
+      - Wire Initiated
+      - USDC Payment Received
+      - Subscription Created
+      - Subscription Canceled
+      - Subscription Expired
+      - Subscription Failure
+      - Subscription Concluded
+      - Card Payment Chargeback Opened
+      - Card Payment Chargeback Won
+      - Card Payment Chargeback Lost
+      - Card Payment Suspected Fraud
+      - Payment Pending Review
+      - KYC Created
+      - KYC Success
+      - KYC Failure
+      - Sub-merchant KYB Created
+      - Sub-merchant KYB Success
+      - Sub-merchant KYB Failure
+      - Withdraw Pending
+      - Withdraw Success
+      - Withdraw Failure
+      - Seller Blocked
+      - Refund
+      - Refund Complete
+      - Refund Failure
+      - Refund Returned
+      - Wire Failure
+      - Iban Failure
+      - Interac Failure
+      - CashApp Failure
+      - PayPal Failure
+      - Venmo Failure
+      - Reserve Released
+      - Crypto Overpayment
+      - Crypto Underpayment
+      - Iban RFI Created
+      - Iban RFI Submitted
+      - Crypto Deposit Funds Received
+      - Customer Override Limit Threshold
+      - Crypto Payin Funds Received
+      - PayPal Payment Authorized
+      - PayPal Payment Voided
+      - PayPal Payment Chargeback Opened
+      - PayPal Payment Chargeback Won
+      - PayPal Payment Chargeback Lost
+      - Venmo Payment Authorized
+      - Venmo Payment Voided
+      - Venmo Payment Chargeback Opened
+      - Venmo Payment Chargeback Won
+      - Venmo Payment Chargeback Lost
+      - Disbursed Funds
+      title: WebhookEventType
+    MerchantBankSettlementOptions:
+      type: object
+      properties:
+        token:
+          type: string
+        minRemainingBalance:
+          $ref: '#/components/schemas/Cents'
+        useWire:
+          type: boolean
+      required:
+      - token
+      - minRemainingBalance
+      title: MerchantBankSettlementOptions
+    PickIPayPalExcludeKeyofIPayPalVendorDataType:
+      type: string
+      enum:
+      - paypal
+      title: PickIPayPalExcludeKeyofIPayPalVendorDataType
+    PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsMerchant:
+      oneOf:
+      - type: string
+      - $ref: '#/components/schemas/IMerchant_string_'
+      title: PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsMerchant
+    ProgramWhitelistRequest:
+      type: object
+      properties:
+        programId:
+          type: string
+        blockchain:
+          $ref: '#/components/schemas/Blockchain'
+        status:
+          $ref: '#/components/schemas/ProgramWhitelistStatus'
+      required:
+      - programId
+      - blockchain
+      - status
+      title: ProgramWhitelistRequest
     PayoutProviderOption:
       type: string
       enum:
@@ -977,47 +1270,17 @@ components:
       - brale
       - mock
       title: PayoutProviderOption
-    RefundFeeSettings:
+    IMerchantStringProcessing:
       type: object
       properties:
-        feeBps:
-          type: number
-          format: double
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        maxFee:
-          $ref: '#/components/schemas/Cents'
-      title: RefundFeeSettings
-    CustomPayInFeeValue:
-      oneOf:
-      - $ref: '#/components/schemas/CustomPayInFeeValue0'
-      - $ref: '#/components/schemas/CustomPayInFeeValue1'
-      title: CustomPayInFeeValue
-    IMerchantStringRiskControls:
-      type: object
-      properties:
-        topup:
-          $ref: '#/components/schemas/TopupRiskControls'
-      title: IMerchantStringRiskControls
-    CitconSettingsFundPurpose:
-      type: string
-      enum:
-      - goods
-      - services
-      - prizes
-      - rebates
-      - others
-      title: CitconSettingsFundPurpose
-    Customers_GetCustomerPaymentById_Response_200:
-      type: object
-      properties:
-        payment:
-          $ref: '#/components/schemas/PaymentHistory'
+        msaSigned:
+          type: boolean
+        statementsOnFile:
+          type: boolean
       required:
-      - payment
-      title: Customers_GetCustomerPaymentById_Response_200
+      - msaSigned
+      - statementsOnFile
+      title: IMerchantStringProcessing
     Partial_Record_Currency.number__:
       type: object
       properties:
@@ -1491,21 +1754,170 @@ components:
           format: double
       description: Make all properties in T optional
       title: Partial_Record_Currency.number__
-    CardType:
+    IWireProviderSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/WireProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        maxFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        dailyLimit:
+          $ref: '#/components/schemas/Cents'
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
+      required:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: IWireProviderSettings
+    IMerchantStringWalletsStellar:
+      type: object
+      properties:
+        usdcPayer:
+          type: string
+      required:
+      - usdcPayer
+      title: IMerchantStringWalletsStellar
+    Cents:
+      type: object
+      properties:
+        cents:
+          type: integer
+      required:
+      - cents
+      title: Cents
+    PickIInteracExcludeKeyofIInteracVendorDataType:
       type: string
       enum:
+      - interac
+      title: PickIInteracExcludeKeyofIInteracVendorDataType
+    WireProcessor:
+      type: string
+      enum:
+      - braid
+      - mock
+      title: WireProcessor
+    DisbursementStatus:
+      type: string
+      enum:
+      - Immediate
+      - Business Day
+      - Ineligible
+      - Unknown
+      title: DisbursementStatus
+    NuveiV1MerchantArgs:
+      type: object
+      properties:
+        merchantId:
+          type: string
+        merchantSiteId:
+          type: string
+        conversionAffiliateCountryCode:
+          type: string
+      required:
+      - merchantId
+      - merchantSiteId
+      title: NuveiV1MerchantArgs
+    ThreeDSArgs:
+      type: object
+      properties:
+        VISA:
+          $ref: '#/components/schemas/AcquirerInfo'
+        MSTR:
+          $ref: '#/components/schemas/AcquirerInfo'
+        AMEX:
+          $ref: '#/components/schemas/AcquirerInfo'
+        DISC:
+          $ref: '#/components/schemas/AcquirerInfo'
+        scaOnly:
+          type: boolean
+        allowAttempts:
+          type: boolean
+        mcc:
+          type: string
+      required:
       - VISA
       - MSTR
       - AMEX
       - DISC
-      title: CardType
-    EftPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - aptpay
-      - mock
-      title: EftPayoutProvider
+      - allowAttempts
+      - mcc
+      description: Construct a type with a set of properties K of type T
+      title: ThreeDSArgs
+    NameCustomerInfo:
+      type: object
+      properties:
+        verificationId:
+          type: string
+        displayName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        ip:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+        dob:
+          type: string
+          description: Date of birth in YYYY-MM-DD format
+        email:
+          type: string
+        name:
+          type: string
+      title: NameCustomerInfo
+    AftSettingsMerchantA2AMastercardAftRecipient:
+      type: object
+      properties:
+        walletReference:
+          type: string
+        countryCode:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        address1:
+          type: string
+        lastName:
+          type: string
+        firstName:
+          type: string
+      required:
+      - walletReference
+      - countryCode
+      - state
+      - postalCode
+      - city
+      - address1
+      - lastName
+      - firstName
+      title: AftSettingsMerchantA2AMastercardAftRecipient
     MultiPlaidAccountStatusResponse:
       type: object
       properties:
@@ -1531,334 +1943,203 @@ components:
       - status
       - customerId
       title: MultiPlaidAccountStatusResponse
-    PixPayoutProvider:
-      type: string
-      enum:
-      - brla
-      - mock
-      title: PixPayoutProvider
-    MerchantScope:
-      type: string
-      enum:
-      - admin
-      - editor
-      - chargeback
-      - chargeback_analyst
-      - viewer
-      - seller
-      - pos_device
-      title: MerchantScope
-    BlockingRuleMethod:
-      type: string
-      enum:
-      - KYC_ADDRESS
-      - IP
-      - BILLING_ADDRESS
-      - GEOLOCATION
-      title: BlockingRuleMethod
-    SubscriptionDisplay:
+    CustomerInfo:
+      oneOf:
+      - $ref: '#/components/schemas/SplitNameCustomerInfo'
+      - $ref: '#/components/schemas/NameCustomerInfo'
+      title: CustomerInfo
+    AptpayCanadaMerchantSettings:
       type: object
       properties:
         id:
           type: string
-        customerId:
-          type: string
-        blockchain:
-          $ref: '#/components/schemas/Blockchain'
-        merchantId:
-          type: string
-        email:
-          type: string
-        plan:
-          type: string
-        planCode:
-          type: string
-        nextPaymentAt:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/SubscriptionStatus'
       required:
       - id
-      - customerId
-      - merchantId
-      - email
-      - plan
-      - planCode
-      - status
-      title: SubscriptionDisplay
-    Partial_Record_Blockchain.boolean__:
-      type: object
-      properties:
-        solana:
-          type: boolean
-        eth:
-          type: boolean
-        polygon:
-          type: boolean
-        base:
-          type: boolean
-        user:
-          type: boolean
-        arbitrum:
-          type: boolean
-        stellar:
-          type: boolean
-        monad:
-          type: boolean
-        tempo:
-          type: boolean
-      description: Make all properties in T optional
-      title: Partial_Record_Blockchain.boolean__
-    RainCompanyCardsSettings:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        rainCompanyId:
-          type: string
-        externalId:
-          type: string
-        applicationStatus:
-          $ref: '#/components/schemas/RainCardApplicationStatus'
-        applicationReason:
-          type: string
-        completionLink:
-          type: string
-        submittedAt:
-          type: string
-          format: date-time
-        lastSyncedAt:
-          type: string
-          format: date-time
-        contract:
-          $ref: '#/components/schemas/RainContractInfo'
-        autoTopUp:
-          $ref: '#/components/schemas/RainAutoTopUpSettings'
-        pendingTopUps:
-          type: array
-          items:
-            $ref: '#/components/schemas/RainPendingTopUp'
-        processedSpendTxnIds:
-          type: array
-          items:
-            type: string
-      title: RainCompanyCardsSettings
-    Pick_IPayPal.Exclude_keyofIPayPal.vendorData__:
-      type: object
-      properties:
-        isDeleted:
-          type: boolean
-        alias:
-          type: string
-        token:
-          type: string
-        type:
-          $ref: '#/components/schemas/PickIPayPalExcludeKeyofIPayPalVendorDataType'
-      required:
-      - alias
-      - token
-      - type
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_IPayPal.Exclude_keyofIPayPal.vendorData__
-    CustomWithdrawFeesConfig:
-      type: object
-      properties:
-        asap:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        same_day:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        standard:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        card:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        iban:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        pix:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        eft:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        venmo:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        paypal:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        wire:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        interac:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        global:
-          $ref: '#/components/schemas/CustomWithdrawFeeValue'
-        lineItemLabel:
-          type: string
-        isBundled:
-          type: boolean
-      required:
-      - global
-      - lineItemLabel
-      - isBundled
-      description: Make all properties in T optional
-      title: CustomWithdrawFeesConfig
-    KycType:
-      type: string
-      enum:
-      - person
-      - business
-      - both
-      title: KycType
-    BlockedLevel:
-      type: string
-      enum:
-      - Unverified
-      - Suspended
-      title: BlockedLevel
-    ReserveStatus:
-      type: string
-      enum:
-      - Disabled
-      - Active
-      - SweepFixed
-      title: ReserveStatus
-    MerchantRfiRef:
-      type: object
-      properties:
-        name:
-          type: string
-        status:
-          $ref: '#/components/schemas/RfiStatus'
-        url:
-          type: string
-        assignmentFormId:
-          type: string
-      required:
-      - name
-      - status
-      - url
-      title: MerchantRfiRef
-    CardDataAdditionalVendorData:
-      type: object
-      properties: {}
-      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
-
-        Base type is empty; tokenization providers extend it with their own fields.'
-      title: CardDataAdditionalVendorData
-    IMerchantStringSettlementAddresses:
-      type: object
-      properties:
-        solana:
-          type: string
-        eth:
-          type: string
-        polygon:
-          type: string
-        base:
-          type: string
-        user:
-          type: string
-        arbitrum:
-          type: string
-        stellar:
-          type: string
-        monad:
-          type: string
-        tempo:
-          type: string
-        directVendor:
-          $ref: '#/components/schemas/DirectVendorSettlement'
-        mpcWalletProvider:
-          $ref: '#/components/schemas/MpcWalletProvider'
-        recipientAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/IMerchantStringSettlementAddressesRecipientAddressesItems'
-        verification:
-          $ref: '#/components/schemas/Verification'
-      title: IMerchantStringSettlementAddresses
+      title: AptpayCanadaMerchantSettings
     CustomWithdrawFeeValue:
       oneOf:
       - $ref: '#/components/schemas/CustomWithdrawFeeValue0'
       - $ref: '#/components/schemas/CustomWithdrawFeeValue1'
       title: CustomWithdrawFeeValue
-    PickIPayPalExcludeKeyofIPayPalVendorDataType:
+    PixProcessor:
       type: string
       enum:
-      - paypal
-      title: PickIPayPalExcludeKeyofIPayPalVendorDataType
-    CardPayoutProvider:
+      - brla
+      - mock
+      title: PixProcessor
+    WebhookVersion:
       type: string
       enum:
-      - aptpay
-      - checkbook
-      - shift4
-      - MOCK
-      title: CardPayoutProvider
-    ACHSettings:
+      - Legacy
+      - Version 1
+      - Version 2
+      - Version 3
+      title: WebhookVersion
+    TotalsResponse:
       type: object
       properties:
-        processor:
-          $ref: '#/components/schemas/AchProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        maxAmount:
-          $ref: '#/components/schemas/Cents'
-        nameMatchThreshold:
-          type: number
-          format: double
-        requireKycBeforePurchase:
-          type: boolean
-        withdrawNameMatchThreshold:
-          type: number
-          format: double
-        allowDelayedTransactions:
-          type: boolean
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-        instantSettle:
-          type: boolean
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        maxFee:
-          $ref: '#/components/schemas/Cents'
+        subtotal:
+          $ref: '#/components/schemas/CurrencyCents'
+        creditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        chargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        gasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        fxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        networkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        payInFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        total:
+          $ref: '#/components/schemas/CurrencyCents'
+        reserve:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidCreditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidChargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidGasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidFxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidNetworkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedCreditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedChargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedGasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedFxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedNetworkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+      required:
+      - subtotal
+      - creditCardFees
+      - chargebackProtectionFees
+      - gasFees
+      - fxFees
+      - total
+      title: TotalsResponse
+    Customers_GetCustomerPaymentById_Response_200:
+      type: object
+      properties:
+        payment:
+          $ref: '#/components/schemas/PaymentHistory'
+      required:
+      - payment
+      title: Customers_GetCustomerPaymentById_Response_200
+    RefundFeeSettings:
+      type: object
+      properties:
         feeBps:
           type: number
           format: double
         fixedFee:
           $ref: '#/components/schemas/Cents'
-        settlementDays:
-          type: number
-          format: double
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
-      required:
-      - allowDelayedTransactions
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      - instantSettle
-      title: ACHSettings
-    RainAutoTopUpCadence:
-      type: string
-      enum:
-      - transaction
-      - hour
-      - day
-      - week
-      - month
-      title: RainAutoTopUpCadence
-    ProgramWhitelistRequest:
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        maxFee:
+          $ref: '#/components/schemas/Cents'
+      title: RefundFeeSettings
+    Pick_AddACHBankAccountData.Exclude_keyofAddACHBankAccountData.plaidAccountId__:
       type: object
       properties:
-        programId:
+        country:
           type: string
-        blockchain:
-          $ref: '#/components/schemas/Blockchain'
-        status:
-          $ref: '#/components/schemas/ProgramWhitelistStatus'
+        email:
+          type: string
+        firstName:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        isTokenized:
+          type: boolean
+        alias:
+          type: string
+        type:
+          $ref: '#/components/schemas/BankAccountType'
+        address1:
+          type: string
+        address2:
+          type: string
+        account_number:
+          type: string
+        rtpEligible:
+          type: boolean
+        routingNumber:
+          type: string
+        lastName:
+          type: string
+        businessName:
+          type: string
+        plaidAccessToken:
+          type: string
+        plaidAccountType:
+          type: string
+        plaidAccountSubtype:
+          type: string
       required:
-      - programId
-      - blockchain
-      - status
-      title: ProgramWhitelistRequest
+      - email
+      - firstName
+      - city
+      - state
+      - zip
+      - alias
+      - type
+      - address1
+      - account_number
+      - routingNumber
+      - lastName
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_AddACHBankAccountData.Exclude_keyofAddACHBankAccountData.plaidAccountId__
+    VerisoulRiskThresholds:
+      type: object
+      properties:
+        device_risk:
+          type: number
+          format: double
+        proxy:
+          type: number
+          format: double
+        vpn:
+          type: number
+          format: double
+        tor:
+          type: number
+          format: double
+        spoofed_ip:
+          type: number
+          format: double
+        datacenter:
+          type: number
+          format: double
+        recent_fraud_ip:
+          type: number
+          format: double
+        impossible_travel:
+          type: number
+          format: double
+        device_network_mismatch:
+          type: number
+          format: double
+        account_score:
+          type: number
+          format: double
+        risk_signals:
+          type: number
+          format: double
+        email_score:
+          type: number
+          format: double
+      title: VerisoulRiskThresholds
     Currency:
       type: string
       enum:
@@ -2019,332 +2300,22 @@ components:
       - SSP
       - VES
       title: Currency
-    CardSettingsVerificationSettings:
+    IvySettings:
       type: object
       properties:
-        threshold3DS:
-          $ref: '#/components/schemas/Cents'
-        verificationLimit:
-          $ref: '#/components/schemas/Cents'
-      title: CardSettingsVerificationSettings
-    HighnoteMerchantSettings:
-      type: object
-      properties:
-        businessId:
+        gbpPayinAccountId:
           type: string
-        primaryAuthorizedPersonId:
-          type: string
-          description: 'Highnote id of the primary business person, captured from the
-
-            createBusiness response — onboardBusiness attributes its consent to it.'
-        merchantAcceptorId:
-          type: string
-        applicationSubmittedAt:
-          type: string
-          format: date-time
-          description: 'Set when onboardBusiness (the ProductApplication submission) succeeded.
-
-            A re-run while underwriting is still Pending must not re-submit the
-
-            application — Highnote rejects duplicates, which would overwrite a
-
-            healthy Pending status with an error.'
-      required:
-      - businessId
-      title: HighnoteMerchantSettings
-    TokenizationProviderOption:
-      type: string
-      enum:
-      - bt
-      - tokenex
-      title: TokenizationProviderOption
-    AftPurpose:
-      type: string
-      enum:
-      - businessToBusiness
-      - creditCardRepayment
-      - crypto
-      - crowdLending
-      - debitCard
-      - education
-      - emergency
-      - familySupport
-      - gift
-      - giftCard
-      - gaming
-      - highRiskSecurities
-      - liquidAssets
-      - medical
-      - payroll
-      - prepaidCard
-      - salary
-      - savings
-      - travel
-      - other
-      title: AftPurpose
-    RtpPayoutProvider:
-      type: string
-      enum:
-      - dwolla
-      - mock
-      - aptpay
-      - aptpayRtp
-      - checkbook
-      - brale
-      title: RtpPayoutProvider
-    NuveiV1MerchantArgs:
-      type: object
-      properties:
-        merchantId:
-          type: string
-        merchantSiteId:
-          type: string
-        conversionAffiliateCountryCode:
+        eurAccountId:
           type: string
       required:
-      - merchantId
-      - merchantSiteId
-      title: NuveiV1MerchantArgs
-    CustomerInfo:
-      oneOf:
-      - $ref: '#/components/schemas/SplitNameCustomerInfo'
-      - $ref: '#/components/schemas/NameCustomerInfo'
-      title: CustomerInfo
-    Partial_WithdrawLimit_:
-      type: object
-      properties:
-        singleTxLimit:
-          $ref: '#/components/schemas/Cents'
-        dailyLimit:
-          $ref: '#/components/schemas/Cents'
-        monthlyLimit:
-          $ref: '#/components/schemas/Cents'
-      description: Make all properties in T optional
-      title: Partial_WithdrawLimit_
-    InterchangeSettings:
-      type: object
-      properties:
-        useType:
-          type: boolean
-        useRegion:
-          type: boolean
-        useScheme:
-          type: boolean
-        useBrand:
-          type: boolean
-        useDurbin:
-          type: boolean
-      required:
-      - useType
-      - useRegion
-      - useScheme
-      - useBrand
-      - useDurbin
-      title: InterchangeSettings
-    Partial_Record_WithdrawSpeed.WithdrawSort__:
-      type: object
-      properties:
-        asap:
-          $ref: '#/components/schemas/WithdrawSort'
-        same_day:
-          $ref: '#/components/schemas/WithdrawSort'
-        standard:
-          $ref: '#/components/schemas/WithdrawSort'
-        card:
-          $ref: '#/components/schemas/WithdrawSort'
-        iban:
-          $ref: '#/components/schemas/WithdrawSort'
-        pix:
-          $ref: '#/components/schemas/WithdrawSort'
-        eft:
-          $ref: '#/components/schemas/WithdrawSort'
-        venmo:
-          $ref: '#/components/schemas/WithdrawSort'
-        paypal:
-          $ref: '#/components/schemas/WithdrawSort'
-        wire:
-          $ref: '#/components/schemas/WithdrawSort'
-        interac:
-          $ref: '#/components/schemas/WithdrawSort'
-      description: Make all properties in T optional
-      title: Partial_Record_WithdrawSpeed.WithdrawSort__
-    PayPalProcessor:
-      type: string
-      enum:
-      - mock
-      - paypal
-      title: PayPalProcessor
-    PassiveWithdrawSettings:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        maxActiveAddresses:
-          type: number
-          format: double
-          description: 'Cap on the number of simultaneously-active withdraw passive deposit
-
-            addresses for this merchant. Undefined = no cap.'
-      required:
-      - enabled
-      description: 'Merchant-level settings for the withdrawer-side passive deposit address
-
-        flow (CryptoWithdrawService). Independent from CryptoPayInSettings.'
-      title: PassiveWithdrawSettings
-    VerisoulRiskThresholds:
-      type: object
-      properties:
-        device_risk:
-          type: number
-          format: double
-        proxy:
-          type: number
-          format: double
-        vpn:
-          type: number
-          format: double
-        tor:
-          type: number
-          format: double
-        spoofed_ip:
-          type: number
-          format: double
-        datacenter:
-          type: number
-          format: double
-        recent_fraud_ip:
-          type: number
-          format: double
-        impossible_travel:
-          type: number
-          format: double
-        device_network_mismatch:
-          type: number
-          format: double
-        account_score:
-          type: number
-          format: double
-        risk_signals:
-          type: number
-          format: double
-        email_score:
-          type: number
-          format: double
-      title: VerisoulRiskThresholds
-    WirePayoutProvider:
-      type: string
-      enum:
-      - MOCK
-      - BRAID
-      title: WirePayoutProvider
-    RainPendingTopUp:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-        queuedAt:
-          type: string
-          format: date-time
-        transactionId:
-          type: string
-      required:
-      - amount
-      - queuedAt
-      - transactionId
-      title: RainPendingTopUp
-    Pick_IBankAccount.Exclude_keyofIBankAccount.vendorData-or-accountOwnerNames-or-nameMatchStatus__:
-      type: object
-      properties:
-        last4:
-          type: string
-        accountHash:
-          type: string
-        accountNumberOnlyHash:
-          type: string
-        isDeleted:
-          type: boolean
-        isTokenized:
-          type: boolean
-        accountNumber:
-          type: string
-        alias:
-          type: string
-        token:
-          type: string
-        reference:
-          type: string
-      required:
-      - last4
-      - accountHash
-      - alias
-      - token
-      - reference
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_IBankAccount.Exclude_keyofIBankAccount.vendorData-or-accountOwnerNames-or-nameMatchStatus__
-    IMerchantStringBlockConfig:
-      type: object
-      properties:
-        disableMultiCardAttemptCheck:
-          type: boolean
-          description: When true, skips the multi-card attempt check (2+ distinct cards failing in 1 hour).
-        maxDistinctTokensPer30Days:
-          type: number
-          format: double
-          description: 'Maximum number of distinct card tokens a single customer may use across
-
-            non-failed/voided card payments for this merchant in a rolling 30-day
-
-            window. Apple Pay / Google Pay payments are excluded. Unset or 0 disables
-
-            the check. Customers with `failedAttemptSetting: Exempt` bypass it.'
-        disableDestinationAuthKey:
-          type: boolean
-          description: When true, prevents usage of destinationAuthKey for custom settlement addresses.
-        enableNmiSettlement:
-          type: boolean
-          description: When true, enables the settlement pipeline for NMI transactions (converts card payments to USDC).
-        disableInvoiceWalletPayment:
-          type: boolean
-          description: When true, disables wallet balance payments for invoices. Merchants must use checkout.
-        blockingRules:
-          type: array
-          items:
-            $ref: '#/components/schemas/IBlockingRule'
-          description: 'Independent geo-blocking rules for withdrawals vs card checkout, with
-
-            explicit per-rule enforcement methods (KYC address / IP / billing address).
-
-            Read via `getBlockingRules` so callers transparently see the legacy
-
-            `bannedWithdrawalStates` for un-migrated merchants.'
-        bannedWithdrawalStates:
-          type: array
-          items:
-            $ref: '#/components/schemas/USState'
-        whitelistedBinLocations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Country'
-        failedPaymentAttemptLimit:
-          type: number
-          format: double
-      title: IMerchantStringBlockConfig
-    CustomerPlaidCheckPostRequestBodyContentApplicationJsonSchemaAccountsItems:
-      type: object
-      properties:
-        bankAccountToken:
-          type: string
-        customerId:
-          type: string
-      required:
-      - customerId
-      title: CustomerPlaidCheckPostRequestBodyContentApplicationJsonSchemaAccountsItems
-    ApaSettings:
+      - gbpPayinAccountId
+      - eurAccountId
+      title: IvySettings
+    CashAppSettings:
       type: object
       properties:
         processor:
-          $ref: '#/components/schemas/ApaProcessor'
+          $ref: '#/components/schemas/CashAppProcessor'
         feeMode:
           $ref: '#/components/schemas/FeePayerMode'
         fxFeeMode:
@@ -2363,111 +2334,232 @@ components:
       required:
       - customerEmailNotifications
       - merchantEmailNotifications
-      title: ApaSettings
-    VenmoProcessor:
-      type: string
-      enum:
-      - mock
-      - paypal
-      title: VenmoProcessor
-    InterchangeFees:
+      title: CashAppSettings
+    WithdrawFeeConfig:
       type: object
       properties:
-        settings:
-          $ref: '#/components/schemas/InterchangeSettings'
-        rates:
-          $ref: '#/components/schemas/Record_string.InterchangeRate_'
-      required:
-      - settings
-      title: InterchangeFees
-    UboEntry:
-      type: object
-      properties:
-        reference:
-          type: string
-        status:
-          $ref: '#/components/schemas/VerificationStatus'
-        vendor:
-          $ref: '#/components/schemas/VerificationVendor'
-        name:
-          type: string
-        attested:
-          type: boolean
-        shareToken:
-          type: string
-        shareTokenStatus:
-          type: string
-        sessionToken:
-          type: string
-        ownershipPct:
+        fixed:
+          $ref: '#/components/schemas/Cents'
+        variableBps:
           type: number
           format: double
+        minimum:
+          $ref: '#/components/schemas/Cents'
+        maximum:
+          $ref: '#/components/schemas/Cents'
+        limit:
+          $ref: '#/components/schemas/Partial_WithdrawLimit_'
       required:
-      - reference
-      - status
-      - vendor
-      title: UboEntry
-    IbanProcessor:
-      type: string
-      enum:
-      - merge
-      - ivy
-      - mock
-      title: IbanProcessor
-    VerificationVendor:
-      type: string
-      enum:
-      - middesk
-      - sumsub
-      - sumsub_docv
-      - persona
-      - persona_kyb
-      title: VerificationVendor
-    IMerchantStringCheckbookSettings:
+      - fixed
+      - variableBps
+      - minimum
+      title: WithdrawFeeConfig
+    CustomWithdrawFeesConfig:
       type: object
       properties:
-        merchantName:
-          type: string
-        secret:
-          type: string
-        key:
-          type: string
-        walletId:
-          type: string
-        id:
-          type: string
-      required:
-      - merchantName
-      - secret
-      - key
-      - walletId
-      - id
-      title: IMerchantStringCheckbookSettings
-    RainContractInfoOnramp:
-      type: object
-      properties:
+        asap:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        same_day:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        standard:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        card:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        iban:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        pix:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        eft:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        venmo:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        paypal:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
         wire:
-          $ref: '#/components/schemas/RainAccountDetails'
-        rtp:
-          $ref: '#/components/schemas/RainAccountDetails'
-        ach:
-          $ref: '#/components/schemas/RainAccountDetails'
-      title: RainContractInfoOnramp
-    IMerchantStringWalletsStellar:
-      type: object
-      properties:
-        usdcPayer:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        interac:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        global:
+          $ref: '#/components/schemas/CustomWithdrawFeeValue'
+        lineItemLabel:
           type: string
+        isBundled:
+          type: boolean
       required:
-      - usdcPayer
-      title: IMerchantStringWalletsStellar
-    InteracPayoutProvider:
+      - global
+      - lineItemLabel
+      - isBundled
+      description: Make all properties in T optional
+      title: CustomWithdrawFeesConfig
+    FeePayerMode:
       type: string
       enum:
-      - checkbook
-      - mock
-      - aptpay
-      title: InteracPayoutProvider
+      - user
+      - merchant
+      - invoice
+      title: FeePayerMode
+    PixSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/PixProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
+      required:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: PixSettings
+    TierSettings:
+      type: object
+      properties:
+        feeBps:
+          type: number
+          format: double
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        enabled:
+          type: boolean
+      required:
+      - feeBps
+      - enabled
+      title: TierSettings
+    GetCustomerResponse:
+      type: object
+      properties:
+        customer:
+          oneOf:
+          - $ref: '#/components/schemas/Pick_ICustomerWithAccounts.Exclude_keyofICustomerWithAccounts.FraudControlFields__'
+          - type: 'null'
+          description: The object representing the customer, will be null on the first purchase.
+        kycApproved:
+          type: boolean
+          description: 'True when the customer (or the wallet''s linked withdrawer/business) has an
+
+            Approved KYC, the UI uses to decide whether to show the KYC gate'
+      required:
+      - customer
+      title: GetCustomerResponse
+    AdditionalVerification:
+      type: object
+      properties:
+        name:
+          type: string
+        link:
+          type: string
+        reference:
+          type: string
+        vendor:
+          $ref: '#/components/schemas/VerificationVendor'
+        sessionToken:
+          type: string
+      required:
+      - name
+      - link
+      - reference
+      - vendor
+      title: AdditionalVerification
+    StableCoin:
+      type: string
+      enum:
+      - USDC
+      - SBC
+      - EUROe
+      - FXUSD
+      - HSUSD
+      - CFUSD
+      - YPUSD
+      title: StableCoin
+    CitconSettings:
+      type: object
+      properties:
+        fundPurpose:
+          $ref: '#/components/schemas/CitconSettingsFundPurpose'
+        apiKey:
+          type: string
+      required:
+      - fundPurpose
+      title: CitconSettings
+    ACHSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/AchProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        maxAmount:
+          $ref: '#/components/schemas/Cents'
+        nameMatchThreshold:
+          type: number
+          format: double
+        requireKycBeforePurchase:
+          type: boolean
+        withdrawNameMatchThreshold:
+          type: number
+          format: double
+        allowDelayedTransactions:
+          type: boolean
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+        instantSettle:
+          type: boolean
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        maxFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        settlementDays:
+          type: number
+          format: double
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
+      required:
+      - allowDelayedTransactions
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      - instantSettle
+      title: ACHSettings
+    CardDataAdditionalVendorData:
+      type: object
+      properties: {}
+      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
+
+        Base type is empty; tokenization providers extend it with their own fields.'
+      title: CardDataAdditionalVendorData
+    CurrencyCents:
+      type: object
+      properties:
+        cents:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+      - cents
+      - currency
+      title: CurrencyCents
+    DirectVendorSettlement:
+      type: string
+      enum:
+      - brale
+      title: DirectVendorSettlement
     USState:
       type: string
       enum:
@@ -2523,12 +2615,622 @@ components:
       - WI
       - WY
       title: USState
-    ApplePayPayoutProvider:
+    CustomWithdrawFeeValue1:
+      type: object
+      properties:
+        maxFeeCents:
+          type:
+          - number
+          - 'null'
+          format: double
+        minFeeCents:
+          type:
+          - number
+          - 'null'
+          format: double
+        coverProcessingFees:
+          type: boolean
+        cents:
+          type:
+          - number
+          - 'null'
+          format: double
+        currency:
+          oneOf:
+          - $ref: '#/components/schemas/Currency'
+          - type: 'null'
+        percent:
+          type: number
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - maxFeeCents
+      - minFeeCents
+      - coverProcessingFees
+      - cents
+      - percent
+      - isFixed
+      title: CustomWithdrawFeeValue1
+    IbanData:
+      type: object
+      properties:
+        number:
+          type: string
+          description: The IBAN number or in the case of the UK the 8-digit account number
+        sortCode:
+          type: string
+          description: Only used for the UK, the 6-digit sort code
+        bic:
+          type: string
+          description: Only used for the Sepa, the bank identifier code - required when requested
+        accountHolder:
+          type: string
+          description: 'The account holder name registered with the bank - required when requested
+
+            (e.g. when a Verification of Payee check needs the exact name)'
+        alias:
+          type: string
+        businessName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        country:
+          type: string
+        email:
+          type: string
+      required:
+      - number
+      - firstName
+      - lastName
+      - country
+      title: IbanData
+    PaymentHistory:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        merchant:
+          type: string
+        totals:
+          $ref: '#/components/schemas/TotalsResponse'
+        createdAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+        signature:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/SubscriptionDisplay'
+      required:
+      - paymentId
+      - merchant
+      - totals
+      - createdAt
+      - status
+      title: PaymentHistory
+    MpcWalletProvider:
       type: string
       enum:
-      - aptpay
-      - MOCK
-      title: ApplePayPayoutProvider
+      - metakeep
+      description: 'The MPC provider Coinflow uses to custody managed settlement wallets. Single
+
+        source of truth — the merchant type, the predicate, and the query filter all
+
+        reference this so a new provider can''t silently pass one check but not another.'
+      title: MpcWalletProvider
+    IMerchantStringFirstPartyPayoutOverrides:
+      type: object
+      properties:
+        interacPayoutProvider:
+          $ref: '#/components/schemas/InteracPayoutProvider'
+        wirePayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/WirePayoutProvider'
+        paypalPayoutProvider:
+          $ref: '#/components/schemas/PayPalPayoutProvider'
+        venmoPayoutProvider:
+          $ref: '#/components/schemas/VenmoPayoutProvider'
+        appleP2cPayoutProvider:
+          $ref: '#/components/schemas/ApplePayPayoutProvider'
+        globalP2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        p2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        eftPayoutProvider:
+          $ref: '#/components/schemas/EftPayoutProvider'
+        pixPayoutProvider:
+          $ref: '#/components/schemas/PixPayoutProvider'
+        rtpPayoutProvider:
+          $ref: '#/components/schemas/RtpPayoutProvider'
+        ibanPayoutProvider:
+          $ref: '#/components/schemas/IbanPayoutProvider'
+        bankPayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutProviderOption'
+      title: IMerchantStringFirstPartyPayoutOverrides
+    Partial_Record_WithdrawSpeed.WithdrawSort__:
+      type: object
+      properties:
+        asap:
+          $ref: '#/components/schemas/WithdrawSort'
+        same_day:
+          $ref: '#/components/schemas/WithdrawSort'
+        standard:
+          $ref: '#/components/schemas/WithdrawSort'
+        card:
+          $ref: '#/components/schemas/WithdrawSort'
+        iban:
+          $ref: '#/components/schemas/WithdrawSort'
+        pix:
+          $ref: '#/components/schemas/WithdrawSort'
+        eft:
+          $ref: '#/components/schemas/WithdrawSort'
+        venmo:
+          $ref: '#/components/schemas/WithdrawSort'
+        paypal:
+          $ref: '#/components/schemas/WithdrawSort'
+        wire:
+          $ref: '#/components/schemas/WithdrawSort'
+        interac:
+          $ref: '#/components/schemas/WithdrawSort'
+      description: Make all properties in T optional
+      title: Partial_Record_WithdrawSpeed.WithdrawSort__
+    GreenlightMerchantArgs:
+      type: object
+      properties:
+        securityKey:
+          type: string
+        mid:
+          type: string
+      required:
+      - securityKey
+      - mid
+      title: GreenlightMerchantArgs
+    IMerchantStringRiskControls:
+      type: object
+      properties:
+        topup:
+          $ref: '#/components/schemas/TopupRiskControls'
+      title: IMerchantStringRiskControls
+    UboEntry:
+      type: object
+      properties:
+        reference:
+          type: string
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+        vendor:
+          $ref: '#/components/schemas/VerificationVendor'
+        name:
+          type: string
+        attested:
+          type: boolean
+        shareToken:
+          type: string
+        shareTokenStatus:
+          type: string
+        sessionToken:
+          type: string
+        ownershipPct:
+          type: number
+          format: double
+      required:
+      - reference
+      - status
+      - vendor
+      title: UboEntry
+    RainAutoTopUpSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        targetUsdc:
+          type: number
+          format: double
+        cadence:
+          $ref: '#/components/schemas/RainAutoTopUpCadence'
+        lastRunAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+      required:
+      - enabled
+      - targetUsdc
+      - cadence
+      title: RainAutoTopUpSettings
+    CustomWithdrawFeeValue0:
+      type: object
+      properties:
+        maxFeeCents:
+          type:
+          - number
+          - 'null'
+          format: double
+        minFeeCents:
+          type:
+          - number
+          - 'null'
+          format: double
+        coverProcessingFees:
+          type: boolean
+        cents:
+          type: number
+          format: double
+        currency:
+          $ref: '#/components/schemas/Currency'
+        percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - maxFeeCents
+      - minFeeCents
+      - coverProcessingFees
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomWithdrawFeeValue0
+    ReserveSettings:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ReserveStatus'
+        rollingBps:
+          type: number
+          format: double
+        rollingDuration:
+          type: number
+          format: double
+        notes:
+          type: string
+      required:
+      - status
+      - rollingBps
+      - rollingDuration
+      title: ReserveSettings
+    CardSettingsApplePayCertificates:
+      type: object
+      properties:
+        merchantIdCert:
+          type: string
+        privatePem:
+          type: string
+        certPem:
+          type: string
+        merchantDisplay:
+          type: string
+        merchantIdentifier:
+          type: string
+      required:
+      - merchantIdCert
+      - privatePem
+      - certPem
+      - merchantDisplay
+      - merchantIdentifier
+      title: CardSettingsApplePayCertificates
+    IMerchantStringWithdrawFees:
+      type: object
+      properties:
+        firstParty:
+          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
+        business:
+          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
+        user:
+          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
+        swapBps:
+          type: number
+          format: double
+      required:
+      - firstParty
+      - business
+      - user
+      - swapBps
+      title: IMerchantStringWithdrawFees
+    BlockingRuleScope:
+      type: string
+      enum:
+      - WITHDRAWAL
+      - CHECKOUT
+      - GLOBAL
+      title: BlockingRuleScope
+    MerchantGoLiveChecklist:
+      type: object
+      properties:
+        acceptedToS:
+          type: boolean
+        programWhitelistRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgramWhitelistRequest'
+        rfis:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantRfiRef'
+        onboardingFormSubmitted:
+          type: boolean
+        applicationSubmitted:
+          type: boolean
+        applicationSubmittedAt:
+          type: string
+          format: date-time
+        lockIndustry:
+          type: boolean
+      title: MerchantGoLiveChecklist
+    Pick_IPayPal.Exclude_keyofIPayPal.vendorData__:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+        alias:
+          type: string
+        token:
+          type: string
+        type:
+          $ref: '#/components/schemas/PickIPayPalExcludeKeyofIPayPalVendorDataType'
+      required:
+      - alias
+      - token
+      - type
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_IPayPal.Exclude_keyofIPayPal.vendorData__
+    MerchantSsoSettings:
+      type: object
+      properties:
+        requireSso:
+          type: boolean
+      required:
+      - requireSso
+      title: MerchantSsoSettings
+    IMerchantStringWalletsEvm:
+      type: object
+      properties:
+        usdcPayer:
+          type: string
+        feePayer:
+          type: string
+      required:
+      - usdcPayer
+      - feePayer
+      title: IMerchantStringWalletsEvm
+    MerchantStyle:
+      type: string
+      enum:
+      - rounded
+      - sharp
+      - pill
+      title: MerchantStyle
+    BlockingRuleListMode:
+      type: string
+      enum:
+      - DENY
+      - ALLOW
+      title: BlockingRuleListMode
+    BlockingRuleMethod:
+      type: string
+      enum:
+      - KYC_ADDRESS
+      - IP
+      - BILLING_ADDRESS
+      - GEOLOCATION
+      title: BlockingRuleMethod
+    IbanPayoutProvider:
+      type: string
+      enum:
+      - merge
+      - mock
+      - ivy
+      title: IbanPayoutProvider
+    PlaidBalanceData:
+      type: object
+      properties:
+        current:
+          type:
+          - number
+          - 'null'
+          format: double
+        available:
+          type:
+          - number
+          - 'null'
+          format: double
+        limit:
+          type:
+          - number
+          - 'null'
+          format: double
+        isoCurrencyCode:
+          type:
+          - string
+          - 'null'
+        unofficialCurrencyCode:
+          type:
+          - string
+          - 'null'
+      required:
+      - current
+      - available
+      - limit
+      - isoCurrencyCode
+      - unofficialCurrencyCode
+      title: PlaidBalanceData
+    AftType:
+      type: string
+      enum:
+      - disbursement
+      - personToPerson
+      - accountToAccount
+      - topUp
+      - purchase
+      - cash
+      - walletLoad
+      title: AftType
+    Partial_Record_WithdrawSpeed.WithdrawFeeConfig__:
+      type: object
+      properties:
+        asap:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        same_day:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        standard:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        card:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        iban:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        pix:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        eft:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        venmo:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        paypal:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        wire:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+        interac:
+          $ref: '#/components/schemas/WithdrawFeeConfig'
+      description: Make all properties in T optional
+      title: Partial_Record_WithdrawSpeed.WithdrawFeeConfig__
+    MerchantTheme:
+      type: object
+      properties:
+        showCardIcon:
+          type: boolean
+        placeholderColor:
+          type: string
+        expirationPlaceholder:
+          type: string
+        cvvPlaceholder:
+          type: string
+        cardNumberPlaceholder:
+          type: string
+        fontWeight:
+          type: string
+        fontSize:
+          type: string
+        style:
+          $ref: '#/components/schemas/MerchantStyle'
+        font:
+          type: string
+        ctaColor:
+          type: string
+        textColorAction:
+          type: string
+        textColorAccent:
+          type: string
+        textColor:
+          type: string
+        backgroundAccent2:
+          type: string
+        backgroundAccent:
+          type: string
+        cardBackground:
+          type: string
+        background:
+          type: string
+        primary:
+          type: string
+      title: MerchantTheme
+    IMerchantStringCheckbookSettings:
+      type: object
+      properties:
+        merchantName:
+          type: string
+        secret:
+          type: string
+        key:
+          type: string
+        walletId:
+          type: string
+        id:
+          type: string
+      required:
+      - merchantName
+      - secret
+      - key
+      - walletId
+      - id
+      title: IMerchantStringCheckbookSettings
+    WithdrawSort:
+      type: string
+      enum:
+      - DEFAULT
+      - CHEAPEST
+      - ORDERED
+      - LIMIT_CONSUMPTION
+      title: WithdrawSort
+    RainAutoTopUpCadence:
+      type: string
+      enum:
+      - transaction
+      - hour
+      - day
+      - week
+      - month
+      title: RainAutoTopUpCadence
+    CustomPayInFeeValue0:
+      type: object
+      properties:
+        cents:
+          type: number
+          format: double
+        currency:
+          $ref: '#/components/schemas/Currency'
+        percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue0
+    AftSettings:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/AftType'
+        purpose:
+          $ref: '#/components/schemas/AftPurpose'
+        merchantA2AMastercardAftRecipient:
+          $ref: '#/components/schemas/AftSettingsMerchantA2AMastercardAftRecipient'
+      required:
+      - enabled
+      - type
+      - purpose
+      title: AftSettings
+    IMerchantStringWithdrawFeePayment:
+      type: object
+      properties:
+        paysGasFees:
+          $ref: '#/components/schemas/Partial_Record_Blockchain.boolean__'
+        bundleDelegatedPayoutFees:
+          type: boolean
+        paysSwapFees:
+          type: boolean
+        paysWithdrawFees:
+          type: boolean
+      title: IMerchantStringWithdrawFeePayment
     Pick_ICustomerWithAccounts.Exclude_keyofICustomerWithAccounts.FraudControlFields__:
       type: object
       properties:
@@ -2591,18 +3293,90 @@ components:
       - interacs
       description: From T, pick a set of properties whose keys are in the union K
       title: Pick_ICustomerWithAccounts.Exclude_keyofICustomerWithAccounts.FraudControlFields__
-    IMerchantStringWithdrawFeePayment:
+    RainCompanyCardsSettings:
       type: object
       properties:
-        paysGasFees:
-          $ref: '#/components/schemas/Partial_Record_Blockchain.boolean__'
-        bundleDelegatedPayoutFees:
+        enabled:
           type: boolean
-        paysSwapFees:
-          type: boolean
-        paysWithdrawFees:
-          type: boolean
-      title: IMerchantStringWithdrawFeePayment
+        rainCompanyId:
+          type: string
+        externalId:
+          type: string
+        applicationStatus:
+          $ref: '#/components/schemas/RainCardApplicationStatus'
+        applicationReason:
+          type: string
+        completionLink:
+          type: string
+        submittedAt:
+          type: string
+          format: date-time
+        lastSyncedAt:
+          type: string
+          format: date-time
+        contract:
+          $ref: '#/components/schemas/RainContractInfo'
+        autoTopUp:
+          $ref: '#/components/schemas/RainAutoTopUpSettings'
+        pendingTopUps:
+          type: array
+          items:
+            $ref: '#/components/schemas/RainPendingTopUp'
+        processedSpendTxnIds:
+          type: array
+          items:
+            type: string
+      title: RainCompanyCardsSettings
+    LinkedBankAccount:
+      type: object
+      properties:
+        routingNumber:
+          type: string
+        accountNumber:
+          type: string
+        accountType:
+          $ref: '#/components/schemas/LinkedBankAccountAccountType'
+        institutionName:
+          type: string
+        plaidAccessToken:
+          type: string
+        plaidAccountId:
+          type: string
+      required:
+      - routingNumber
+      - accountNumber
+      - accountType
+      - plaidAccessToken
+      - plaidAccountId
+      title: LinkedBankAccount
+    CustomerBalances:
+      type: object
+      properties:
+        credits:
+          $ref: '#/components/schemas/Cents'
+        usdc:
+          $ref: '#/components/schemas/Cents'
+      required:
+      - credits
+      - usdc
+      title: CustomerBalances
+    SettlementLocations:
+      type: string
+      enum:
+      - circle
+      - brale
+      - paper
+      - brale_youpay
+      - bastion
+      title: SettlementLocations
+    CardSettingsVerificationSettings:
+      type: object
+      properties:
+        threshold3DS:
+          $ref: '#/components/schemas/Cents'
+        verificationLimit:
+          $ref: '#/components/schemas/Cents'
+      title: CardSettingsVerificationSettings
     CardData:
       type: object
       properties:
@@ -2649,136 +3423,65 @@ components:
       - city
       - country
       title: CardData
-    CustomerBalances:
+    Record_string.any_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.any_
+    RainAccountDetails:
       type: object
       properties:
-        credits:
-          $ref: '#/components/schemas/Cents'
-        usdc:
-          $ref: '#/components/schemas/Cents'
+        beneficiaryName:
+          type: string
+        beneficiaryAddress:
+          type: string
+        beneficiaryBankName:
+          type: string
+        beneficiaryBankAddress:
+          type: string
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
       required:
-      - credits
-      - usdc
-      title: CustomerBalances
-    VerisoulSettings:
+      - beneficiaryName
+      - beneficiaryAddress
+      - accountNumber
+      - routingNumber
+      title: RainAccountDetails
+    LinkedBankAccountAccountType:
+      type: string
+      enum:
+      - checking
+      - savings
+      title: LinkedBankAccountAccountType
+    RainContractInfoOnramp:
       type: object
       properties:
-        enabled:
-          type: boolean
-        riskThresholds:
-          $ref: '#/components/schemas/VerisoulRiskThresholds'
-      required:
-      - enabled
-      - riskThresholds
-      title: VerisoulSettings
-    VerificationStatus:
+        wire:
+          $ref: '#/components/schemas/RainAccountDetails'
+        rtp:
+          $ref: '#/components/schemas/RainAccountDetails'
+        ach:
+          $ref: '#/components/schemas/RainAccountDetails'
+      title: RainContractInfoOnramp
+    EftPayoutProvider:
       type: string
       enum:
-      - pending
-      - partial-approval
-      - approved
-      - rejected
-      - expired
-      title: VerificationStatus
-    DirectVendorSettlement:
-      type: string
-      enum:
-      - brale
-      title: DirectVendorSettlement
-    PlaidAccountStatus:
-      type: string
-      enum:
-      - active
-      - pending_expiration
-      - login_required
-      - removed
-      - error
-      title: PlaidAccountStatus
-    Blockchain:
-      type: string
-      enum:
-      - solana
-      - eth
-      - polygon
-      - base
-      - user
-      - arbitrum
-      - stellar
-      - monad
-      - tempo
-      title: Blockchain
-    AdditionalVerification:
+      - checkbook
+      - aptpay
+      - mock
+      title: EftPayoutProvider
+    MerchantBrandSettings:
       type: object
       properties:
-        name:
+        portalBrand:
+          $ref: '#/components/schemas/PortalBrand'
+        logo:
           type: string
-        link:
+        displayName:
           type: string
-        reference:
-          type: string
-        vendor:
-          $ref: '#/components/schemas/VerificationVendor'
-        sessionToken:
-          type: string
-      required:
-      - name
-      - link
-      - reference
-      - vendor
-      title: AdditionalVerification
-    VelocityLimitMode:
-      type: string
-      enum:
-      - default
-      - dynamic
-      - custom
-      - no_limit
-      title: VelocityLimitMode
-    BlockingRuleListMode:
-      type: string
-      enum:
-      - DENY
-      - ALLOW
-      title: BlockingRuleListMode
-    WebhookVersion:
-      type: string
-      enum:
-      - Legacy
-      - Version 1
-      - Version 2
-      - Version 3
-      title: WebhookVersion
-    PayPalSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/PayPalProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        maxFee:
-          $ref: '#/components/schemas/Cents'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
-      required:
-      - fixedFee
-      - feeBps
-      - minFee
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: PayPalSettings
+      title: MerchantBrandSettings
     PayPalVendorSettings:
       type: object
       properties:
@@ -2814,368 +3517,67 @@ components:
       required:
       - accountId
       title: PayPalVendorSettings
-    ReserveSettings:
+    IMerchantStringApiKeysItems:
       type: object
       properties:
-        status:
-          $ref: '#/components/schemas/ReserveStatus'
-        rollingBps:
-          type: number
-          format: double
-        rollingDuration:
-          type: number
-          format: double
-        notes:
-          type: string
-      required:
-      - status
-      - rollingBps
-      - rollingDuration
-      title: ReserveSettings
-    IMerchantStringWalletsSolana:
-      type: object
-      properties:
-        usdcPayer:
-          type: string
-        feePayer:
-          type: string
-      required:
-      - usdcPayer
-      - feePayer
-      title: IMerchantStringWalletsSolana
-    TotalsResponse:
-      type: object
-      properties:
-        subtotal:
-          $ref: '#/components/schemas/CurrencyCents'
-        creditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        chargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        gasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        fxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        networkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        payInFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        total:
-          $ref: '#/components/schemas/CurrencyCents'
-        reserve:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidCreditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidChargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidGasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidFxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidNetworkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedCreditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedChargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedGasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedFxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedNetworkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-      required:
-      - subtotal
-      - creditCardFees
-      - chargebackProtectionFees
-      - gasFees
-      - fxFees
-      - total
-      title: TotalsResponse
-    Customers_GetHistory_Response_200:
-      type: object
-      properties:
-        history:
+        scope:
+          $ref: '#/components/schemas/MerchantScope'
+        ips:
           type: array
           items:
-            $ref: '#/components/schemas/PaymentHistory'
-      required:
-      - history
-      title: Customers_GetHistory_Response_200
-    PixProcessor:
-      type: string
-      enum:
-      - brla
-      - mock
-      title: PixProcessor
-    IMerchantStringWalletsEvm:
-      type: object
-      properties:
-        usdcPayer:
+            type: string
+        disabled:
+          type: boolean
+        privateUuid:
           type: string
-        feePayer:
+        publicUuid:
           type: string
       required:
-      - usdcPayer
-      - feePayer
-      title: IMerchantStringWalletsEvm
-    VenmoPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - citcon
-      - mock
-      - paypal
-      title: VenmoPayoutProvider
-    CustomPayInFeeValue0:
+      - ips
+      - privateUuid
+      - publicUuid
+      title: IMerchantStringApiKeysItems
+    RainContractInfo:
       type: object
       properties:
-        cents:
+        contractId:
+          type: string
+        chainId:
           type: number
           format: double
-        currency:
-          $ref: '#/components/schemas/Currency'
-        percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        isFixed:
-          type: boolean
-      required:
-      - cents
-      - currency
-      - percent
-      - isFixed
-      title: CustomPayInFeeValue0
-    Pick_AddACHBankAccountData.Exclude_keyofAddACHBankAccountData.plaidAccountId__:
-      type: object
-      properties:
-        country:
+        depositAddress:
           type: string
-        email:
+        proxyAddress:
           type: string
-        firstName:
+        controllerAddress:
           type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        isTokenized:
-          type: boolean
-        alias:
-          type: string
-        type:
-          $ref: '#/components/schemas/BankAccountType'
-        address1:
-          type: string
-        address2:
-          type: string
-        account_number:
-          type: string
-        rtpEligible:
-          type: boolean
-        routingNumber:
-          type: string
-        lastName:
-          type: string
-        businessName:
-          type: string
-        plaidAccessToken:
-          type: string
-        plaidAccountType:
-          type: string
-        plaidAccountSubtype:
-          type: string
-      required:
-      - email
-      - firstName
-      - city
-      - state
-      - zip
-      - alias
-      - type
-      - address1
-      - account_number
-      - routingNumber
-      - lastName
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_AddACHBankAccountData.Exclude_keyofAddACHBankAccountData.plaidAccountId__
-    CustomPayInFeeValue1:
-      type: object
-      properties:
-        cents:
-          type:
-          - number
-          - 'null'
-          format: double
-        currency:
-          type:
-          - number
-          - 'null'
-          format: double
-        percent:
+        contractVersion:
           type: number
           format: double
-        isFixed:
-          type: boolean
-      required:
-      - cents
-      - currency
-      - percent
-      - isFixed
-      title: CustomPayInFeeValue1
-    AptPayCanadaSettings:
-      oneOf:
-      - $ref: '#/components/schemas/AptpayCanadaMerchantSettings'
-      - $ref: '#/components/schemas/AptpayCanadaCoinflowSettings'
-      title: AptPayCanadaSettings
-    Pick_IInterac.Exclude_keyofIInterac.vendorData__:
-      type: object
-      properties:
-        isDeleted:
-          type: boolean
-        alias:
-          type: string
-        token:
-          type: string
-        type:
-          $ref: '#/components/schemas/PickIInteracExcludeKeyofIInteracVendorDataType'
-      required:
-      - alias
-      - token
-      - type
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_IInterac.Exclude_keyofIInterac.vendorData__
-    ApaProcessor:
-      type: string
-      enum:
-      - apa
-      - mock
-      title: ApaProcessor
-    ICardAccountWithExpiry:
-      type: object
-      properties:
-        last4:
-          type: string
-        isDeleted:
-          type: boolean
-        token:
-          type: string
-        type:
-          $ref: '#/components/schemas/CardType'
-        disbursementStatus:
-          $ref: '#/components/schemas/DisbursementStatus'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        nameOnCard:
-          type: string
+        adminAddresses:
+          type: array
+          items:
+            type: string
+        onramp:
+          $ref: '#/components/schemas/RainContractInfoOnramp'
         createdAt:
           type: string
           format: date-time
-        hasAddress:
-          type: boolean
-        expMonth:
+        lastSyncedAt:
           type: string
-        expYear:
-          type: string
+          format: date-time
       required:
-      - last4
-      - token
-      - type
-      - disbursementStatus
+      - contractId
+      - chainId
+      - depositAddress
       - createdAt
-      - hasAddress
-      title: ICardAccountWithExpiry
-    IMerchantStringProcessing:
-      type: object
-      properties:
-        msaSigned:
-          type: boolean
-        statementsOnFile:
-          type: boolean
-      required:
-      - msaSigned
-      - statementsOnFile
-      title: IMerchantStringProcessing
-    PickIVenmoExcludeKeyofIVenmoVendorDataType:
-      type: string
-      enum:
-      - venmo
-      title: PickIVenmoExcludeKeyofIVenmoVendorDataType
-    RainAccountDetails:
-      type: object
-      properties:
-        beneficiaryName:
-          type: string
-        beneficiaryAddress:
-          type: string
-        beneficiaryBankName:
-          type: string
-        beneficiaryBankAddress:
-          type: string
-        accountNumber:
-          type: string
-        routingNumber:
-          type: string
-      required:
-      - beneficiaryName
-      - beneficiaryAddress
-      - accountNumber
-      - routingNumber
-      title: RainAccountDetails
-    ThreeDsChallengePreference:
-      type: string
-      enum:
-      - NoPreference
-      - Frictionless
-      - Challenge
-      title: ThreeDsChallengePreference
-    PlaidBalanceData:
-      type: object
-      properties:
-        current:
-          type:
-          - number
-          - 'null'
-          format: double
-        available:
-          type:
-          - number
-          - 'null'
-          format: double
-        limit:
-          type:
-          - number
-          - 'null'
-          format: double
-        isoCurrencyCode:
-          type:
-          - string
-          - 'null'
-        unofficialCurrencyCode:
-          type:
-          - string
-          - 'null'
-      required:
-      - current
-      - available
-      - limit
-      - isoCurrencyCode
-      - unofficialCurrencyCode
-      title: PlaidBalanceData
-    Record_string.InterchangeRate_:
-      type: object
-      properties: {}
-      description: Construct a type with a set of properties K of type T
-      title: Record_string.InterchangeRate_
-    PixSettings:
+      - lastSyncedAt
+      title: RainContractInfo
+    InteracSettings:
       type: object
       properties:
         processor:
-          $ref: '#/components/schemas/PixProcessor'
+          $ref: '#/components/schemas/InteracProcessor'
         feeMode:
           $ref: '#/components/schemas/FeePayerMode'
         fxFeeMode:
@@ -3185,79 +3587,146 @@ components:
         feeBps:
           type: number
           format: double
+        minFee:
+          $ref: '#/components/schemas/Cents'
         customerEmailNotifications:
           type: boolean
         merchantEmailNotifications:
           type: boolean
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
       required:
       - customerEmailNotifications
       - merchantEmailNotifications
-      title: PixSettings
-    AftType:
+      title: InteracSettings
+    ThreeDsChallengePreference:
       type: string
       enum:
-      - disbursement
-      - personToPerson
-      - accountToAccount
-      - topUp
-      - purchase
-      - cash
-      - walletLoad
-      title: AftType
-    InteracProcessor:
+      - NoPreference
+      - Frictionless
+      - Challenge
+      title: ThreeDsChallengePreference
+    MerchantScope:
       type: string
       enum:
-      - mock
-      - aptpay
-      title: InteracProcessor
-    Cents:
+      - admin
+      - editor
+      - chargeback
+      - chargeback_analyst
+      - viewer
+      - seller
+      - pos_device
+      title: MerchantScope
+    CitconSettingsFundPurpose:
+      type: string
+      enum:
+      - goods
+      - services
+      - prizes
+      - rebates
+      - others
+      title: CitconSettingsFundPurpose
+    IMerchantStringBlockConfig:
       type: object
       properties:
-        cents:
-          type: integer
-      required:
-      - cents
-      title: Cents
-    AcquirerInfo:
+        disableMultiCardAttemptCheck:
+          type: boolean
+          description: When true, skips the multi-card attempt check (2+ distinct cards failing in 1 hour).
+        maxDistinctTokensPer30Days:
+          type: number
+          format: double
+          description: 'Maximum number of distinct card tokens a single customer may use across
+
+            non-failed/voided card payments for this merchant in a rolling 30-day
+
+            window. Apple Pay / Google Pay payments are excluded. Unset or 0 disables
+
+            the check. Customers with `failedAttemptSetting: Exempt` bypass it.'
+        disableDestinationAuthKey:
+          type: boolean
+          description: When true, prevents usage of destinationAuthKey for custom settlement addresses.
+        enableNmiSettlement:
+          type: boolean
+          description: When true, enables the settlement pipeline for NMI transactions (converts card payments to USDC).
+        disableInvoiceWalletPayment:
+          type: boolean
+          description: When true, disables wallet balance payments for invoices. Merchants must use checkout.
+        blockingRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IBlockingRule'
+          description: 'Independent geo-blocking rules for withdrawals vs card checkout, with
+
+            explicit per-rule enforcement methods (KYC address / IP / billing address).
+
+            Read via `getBlockingRules` so callers transparently see the legacy
+
+            `bannedWithdrawalStates` for un-migrated merchants.'
+        bannedWithdrawalStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/USState'
+        whitelistedBinLocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        failedPaymentAttemptLimit:
+          type: number
+          format: double
+      title: IMerchantStringBlockConfig
+    SubscriptionDisplay:
       type: object
       properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        blockchain:
+          $ref: '#/components/schemas/Blockchain'
         merchantId:
           type: string
-        bin:
+        email:
           type: string
-        name:
+        plan:
           type: string
-        mcc:
+        planCode:
           type: string
+        nextPaymentAt:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/SubscriptionStatus'
       required:
+      - id
+      - customerId
       - merchantId
-      - bin
-      - name
-      title: AcquirerInfo
-    IMerchantStringWallets:
+      - email
+      - plan
+      - planCode
+      - status
+      title: SubscriptionDisplay
+    Record_string.InterchangeRate_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.InterchangeRate_
+    ApplePayIntegratorRegistration:
       type: object
       properties:
-        stellar:
-          $ref: '#/components/schemas/IMerchantStringWalletsStellar'
-        evm:
-          $ref: '#/components/schemas/IMerchantStringWalletsEvm'
-        solana:
-          $ref: '#/components/schemas/IMerchantStringWalletsSolana'
+        domainNames:
+          type: array
+          items:
+            type: string
+        partnerMerchantName:
+          type: string
+        partnerMerchantValidationURI:
+          type: string
+        partnerInternalMerchantIdentifier:
+          type: string
       required:
-      - stellar
-      - evm
-      - solana
-      title: IMerchantStringWallets
-    WithdrawSort:
-      type: string
-      enum:
-      - DEFAULT
-      - CHEAPEST
-      - ORDERED
-      - LIMIT_CONSUMPTION
-      title: WithdrawSort
+      - domainNames
+      - partnerMerchantName
+      - partnerMerchantValidationURI
+      - partnerInternalMerchantIdentifier
+      title: ApplePayIntegratorRegistration
     IMerchant_string_:
       type: object
       properties:
@@ -3573,123 +4042,203 @@ components:
       - delayedSettlementDays
       - interchangeFees
       title: IMerchant_string_
-    AchProcessor:
+    CashAppProcessor:
       type: string
       enum:
       - mock
-      - aptpay
-      - coinfx
-      - braid
-      title: AchProcessor
-    GetCustomerResponse:
+      - flashnet
+      title: CashAppProcessor
+    VenmoSettings:
       type: object
       properties:
-        customer:
-          oneOf:
-          - $ref: '#/components/schemas/Pick_ICustomerWithAccounts.Exclude_keyofICustomerWithAccounts.FraudControlFields__'
-          - type: 'null'
-          description: The object representing the customer, will be null on the first purchase.
-        kycApproved:
+        processor:
+          $ref: '#/components/schemas/VenmoProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        maxFee:
+          $ref: '#/components/schemas/Cents'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        customerEmailNotifications:
           type: boolean
-          description: 'True when the customer (or the wallet''s linked withdrawer/business) has an
-
-            Approved KYC, the UI uses to decide whether to show the KYC gate'
+        merchantEmailNotifications:
+          type: boolean
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
       required:
-      - customer
-      title: GetCustomerResponse
-    RainAutoTopUpSettings:
+      - fixedFee
+      - feeBps
+      - minFee
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: VenmoSettings
+    KycType:
+      type: string
+      enum:
+      - person
+      - business
+      - both
+      title: KycType
+    CustomPayInFeeConfig:
+      type: object
+      properties:
+        fee:
+          $ref: '#/components/schemas/CustomPayInFeeValue'
+        lineItemLabel:
+          type: string
+      required:
+      - fee
+      - lineItemLabel
+      title: CustomPayInFeeConfig
+    IMerchantStringWalletsSolana:
+      type: object
+      properties:
+        usdcPayer:
+          type: string
+        feePayer:
+          type: string
+      required:
+      - usdcPayer
+      - feePayer
+      title: IMerchantStringWalletsSolana
+    SplitNameCustomerInfo:
+      type: object
+      properties:
+        verificationId:
+          type: string
+        displayName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        ip:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+        dob:
+          type: string
+          description: Date of birth in YYYY-MM-DD format
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - firstName
+      - lastName
+      title: SplitNameCustomerInfo
+    ApaSettings:
+      type: object
+      properties:
+        processor:
+          $ref: '#/components/schemas/ApaProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
+          type: number
+          format: double
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
+          type: boolean
+      required:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: ApaSettings
+    VendorSettingsKoard:
       type: object
       properties:
         enabled:
           type: boolean
-        targetUsdc:
-          type: number
-          format: double
-        cadence:
-          $ref: '#/components/schemas/RainAutoTopUpCadence'
-        lastRunAt:
+        apiKeyPreview:
           type: string
-          format: date-time
-        updatedAt:
+        apiKey:
           type: string
-          format: date-time
-        updatedBy:
+        accountId:
           type: string
       required:
-      - enabled
-      - targetUsdc
-      - cadence
-      title: RainAutoTopUpSettings
-    CustomWithdrawFeeValue1:
+      - accountId
+      title: VendorSettingsKoard
+    ReserveStatus:
+      type: string
+      enum:
+      - Disabled
+      - Active
+      - SweepFixed
+      title: ReserveStatus
+    BraidMerchantSettings:
       type: object
       properties:
-        maxFeeCents:
-          type:
-          - number
-          - 'null'
-          format: double
-        minFeeCents:
-          type:
-          - number
-          - 'null'
-          format: double
-        coverProcessingFees:
-          type: boolean
-        cents:
-          type:
-          - number
-          - 'null'
-          format: double
-        currency:
-          oneOf:
-          - $ref: '#/components/schemas/Currency'
-          - type: 'null'
-        percent:
+        businessId:
           type: number
           format: double
-        isFixed:
-          type: boolean
+        accountId:
+          type: number
+          format: double
+          description: the Braid operating accountId
+        accountNumber:
+          type: string
+          description: the Braid operating account number
+        reserveAccountId:
+          type: number
+          format: double
+          description: the Braid reserve accountId
+        reserveAccountNumber:
+          type: string
+          description: the Braid reserve account number
+        rollingAccountId:
+          type: number
+          format: double
+          description: the Braid rolling accountId
+        rollingAccountNumber:
+          type: string
+          description: the Braid rolling account number
       required:
-      - maxFeeCents
-      - minFeeCents
-      - coverProcessingFees
-      - cents
-      - percent
-      - isFixed
-      title: CustomWithdrawFeeValue1
-    IGeoBlockOverride:
-      type: object
-      properties:
-        reason:
-          type: string
-        setBy:
-          type: string
-        setAt:
-          type: string
-          format: date-time
-        expiresAt:
-          type: string
-          format: date-time
-      required:
-      - reason
-      - setBy
-      - setAt
-      description: 'Per-customer exemption from real-time geographic enforcement.
-
-
-        When set and not expired, withdrawal blocking rules with method
-
-        `GEOLOCATION` or `IP` are skipped for this withdrawer. `KYC_ADDRESS` rules
-
-        still apply — KYC is the compliance floor and must remain enforceable.
-
-
-        Auditable by construction: `reason` and `setBy` are required so admins can
-
-        review why a specific user was exempted. `expiresAt` is optional but
-
-        strongly recommended; long-lived overrides should be avoided.'
-      title: IGeoBlockOverride
+      - businessId
+      - accountId
+      - accountNumber
+      - reserveAccountId
+      - reserveAccountNumber
+      title: BraidMerchantSettings
+    SubscriptionStatus:
+      type: string
+      enum:
+      - Active
+      - Canceled
+      - Expired
+      - Concluded
+      - Failed
+      - Blocked
+      title: SubscriptionStatus
+    TokenizationProviderOption:
+      type: string
+      enum:
+      - bt
+      - tokenex
+      title: TokenizationProviderOption
     VerificationRequiredResponse:
       type: object
       properties:
@@ -3714,970 +4263,22 @@ components:
       required:
       - verification
       title: VerificationRequiredResponse
-    MerchantBrandSettings:
+    MerchantRfiRef:
       type: object
       properties:
-        portalBrand:
-          $ref: '#/components/schemas/PortalBrand'
-        logo:
+        name:
           type: string
-        displayName:
+        status:
+          $ref: '#/components/schemas/RfiStatus'
+        url:
           type: string
-      title: MerchantBrandSettings
-    DisbursementStatus:
-      type: string
-      enum:
-      - Immediate
-      - Business Day
-      - Ineligible
-      - Unknown
-      title: DisbursementStatus
-    GreenlightMerchantArgs:
-      type: object
-      properties:
-        securityKey:
-          type: string
-        mid:
+        assignmentFormId:
           type: string
       required:
-      - securityKey
-      - mid
-      title: GreenlightMerchantArgs
-    CustomPayInFeesConfig:
-      type: array
-      items:
-        $ref: '#/components/schemas/CustomPayInFeeConfig'
-      title: CustomPayInFeesConfig
-    RainContractInfo:
-      type: object
-      properties:
-        contractId:
-          type: string
-        chainId:
-          type: number
-          format: double
-        depositAddress:
-          type: string
-        proxyAddress:
-          type: string
-        controllerAddress:
-          type: string
-        contractVersion:
-          type: number
-          format: double
-        adminAddresses:
-          type: array
-          items:
-            type: string
-        onramp:
-          $ref: '#/components/schemas/RainContractInfoOnramp'
-        createdAt:
-          type: string
-          format: date-time
-        lastSyncedAt:
-          type: string
-          format: date-time
-      required:
-      - contractId
-      - chainId
-      - depositAddress
-      - createdAt
-      - lastSyncedAt
-      title: RainContractInfo
-    CurrencyCents:
-      type: object
-      properties:
-        cents:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-      required:
-      - cents
-      - currency
-      title: CurrencyCents
-    InteracSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/InteracProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-      required:
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: InteracSettings
-    Record_string.any_:
-      type: object
-      properties: {}
-      description: Construct a type with a set of properties K of type T
-      title: Record_string.any_
-    CashAppProcessor:
-      type: string
-      enum:
-      - mock
-      - flashnet
-      title: CashAppProcessor
-    CrbEnvironment:
-      type: string
-      enum:
-      - sandbox
-      - production
-      title: CrbEnvironment
-    WithdrawFeeConfig:
-      type: object
-      properties:
-        fixed:
-          $ref: '#/components/schemas/Cents'
-        variableBps:
-          type: number
-          format: double
-        minimum:
-          $ref: '#/components/schemas/Cents'
-        maximum:
-          $ref: '#/components/schemas/Cents'
-        limit:
-          $ref: '#/components/schemas/Partial_WithdrawLimit_'
-      required:
-      - fixed
-      - variableBps
-      - minimum
-      title: WithdrawFeeConfig
-    Partial_Record_WithdrawSpeed.WithdrawFeeConfig__:
-      type: object
-      properties:
-        asap:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        same_day:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        standard:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        card:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        iban:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        pix:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        eft:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        venmo:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        paypal:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        wire:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-        interac:
-          $ref: '#/components/schemas/WithdrawFeeConfig'
-      description: Make all properties in T optional
-      title: Partial_Record_WithdrawSpeed.WithdrawFeeConfig__
-    MerchantBankSettlementOptions:
-      type: object
-      properties:
-        token:
-          type: string
-        minRemainingBalance:
-          $ref: '#/components/schemas/Cents'
-        useWire:
-          type: boolean
-      required:
-      - token
-      - minRemainingBalance
-      title: MerchantBankSettlementOptions
-    ProgramWhitelistStatus:
-      type: string
-      enum:
-      - approved
-      - pending
-      - rejected
-      title: ProgramWhitelistStatus
-    CitconSettings:
-      type: object
-      properties:
-        fundPurpose:
-          $ref: '#/components/schemas/CitconSettingsFundPurpose'
-        apiKey:
-          type: string
-      required:
-      - fundPurpose
-      title: CitconSettings
-    CustomWithdrawFeeValue0:
-      type: object
-      properties:
-        maxFeeCents:
-          type:
-          - number
-          - 'null'
-          format: double
-        minFeeCents:
-          type:
-          - number
-          - 'null'
-          format: double
-        coverProcessingFees:
-          type: boolean
-        cents:
-          type: number
-          format: double
-        currency:
-          $ref: '#/components/schemas/Currency'
-        percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        isFixed:
-          type: boolean
-      required:
-      - maxFeeCents
-      - minFeeCents
-      - coverProcessingFees
-      - cents
-      - currency
-      - percent
-      - isFixed
-      title: CustomWithdrawFeeValue0
-    PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsBlockConfigOverride:
-      type: object
-      properties:
-        maxDistinctTokensPer30Days:
-          type: number
-          format: double
-      description: Per-customer overrides of merchant `blockConfig`. Only honored when they raise the effective limit.
-      title: PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsBlockConfigOverride
-    AftSettingsMerchantA2AMastercardAftRecipient:
-      type: object
-      properties:
-        walletReference:
-          type: string
-        countryCode:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        city:
-          type: string
-        address1:
-          type: string
-        lastName:
-          type: string
-        firstName:
-          type: string
-      required:
-      - walletReference
-      - countryCode
-      - state
-      - postalCode
-      - city
-      - address1
-      - lastName
-      - firstName
-      title: AftSettingsMerchantA2AMastercardAftRecipient
-    SsoProvider:
-      type: string
-      enum:
-      - google
-      title: SsoProvider
-    PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsMerchant:
-      oneOf:
-      - type: string
-      - $ref: '#/components/schemas/IMerchant_string_'
-      title: PickICustomerWithAccountsExcludeKeyofICustomerWithAccountsFraudControlFieldsMerchant
-    StableCoin:
-      type: string
-      enum:
-      - USDC
-      - SBC
-      - EUROe
-      - FXUSD
-      - HSUSD
-      - CFUSD
-      - YPUSD
-      title: StableCoin
-    BankAccountType:
-      type: string
-      enum:
-      - checking
-      - savings
-      title: BankAccountType
-    RainCardApplicationStatus:
-      type: string
-      enum:
-      - approved
-      - pending
-      - needsInformation
-      - needsVerification
-      - manualReview
-      - denied
-      - locked
-      - canceled
-      title: RainCardApplicationStatus
-    Pick_IVenmo.Exclude_keyofIVenmo.vendorData__:
-      type: object
-      properties:
-        isDeleted:
-          type: boolean
-        alias:
-          type: string
-        token:
-          type: string
-        type:
-          $ref: '#/components/schemas/PickIVenmoExcludeKeyofIVenmoVendorDataType'
-      required:
-      - alias
-      - token
-      - type
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_IVenmo.Exclude_keyofIVenmo.vendorData__
-    MerchantSsoSettings:
-      type: object
-      properties:
-        requireSso:
-          type: boolean
-      required:
-      - requireSso
-      title: MerchantSsoSettings
-    PayPalPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - citcon
-      - mock
-      - paypal
-      title: PayPalPayoutProvider
-    IMerchantStringSettlementAddressesRecipientAddressesItems:
-      type: object
-      properties:
-        info:
-          $ref: '#/components/schemas/Record_string.any_'
-        createdAt:
-          type: string
-          format: date-time
-        recipient:
-          type: string
-      required:
-      - createdAt
-      - recipient
-      title: IMerchantStringSettlementAddressesRecipientAddressesItems
-    AptpayCanadaMerchantSettings:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-      title: AptpayCanadaMerchantSettings
-    VelocityControlSettings:
-      type: object
-      properties:
-        limitMode:
-          $ref: '#/components/schemas/VelocityLimitMode'
-        customLimit:
-          type: number
-          format: double
-        haltOnThreshold:
-          type: boolean
-        lastHaltNotificationSentAt:
-          type: string
-          format: date-time
-        lastSettlementPausedNotificationSentAt:
-          type: string
-          format: date-time
-      required:
-      - limitMode
-      title: VelocityControlSettings
-    IMerchantStringWithdrawFees:
-      type: object
-      properties:
-        firstParty:
-          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
-        business:
-          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
-        user:
-          $ref: '#/components/schemas/Partial_Record_WithdrawSpeed.WithdrawFeeConfig__'
-        swapBps:
-          type: number
-          format: double
-      required:
-      - firstParty
-      - business
-      - user
-      - swapBps
-      title: IMerchantStringWithdrawFees
-    AftSettings:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        type:
-          $ref: '#/components/schemas/AftType'
-        purpose:
-          $ref: '#/components/schemas/AftPurpose'
-        merchantA2AMastercardAftRecipient:
-          $ref: '#/components/schemas/AftSettingsMerchantA2AMastercardAftRecipient'
-      required:
-      - enabled
-      - type
-      - purpose
-      title: AftSettings
-    FeePayerMode:
-      type: string
-      enum:
-      - user
-      - merchant
-      - invoice
-      title: FeePayerMode
-    SubscriptionStatus:
-      type: string
-      enum:
-      - Active
-      - Canceled
-      - Expired
-      - Concluded
-      - Failed
-      - Blocked
-      title: SubscriptionStatus
-    IMerchantStringApiKeysItems:
-      type: object
-      properties:
-        scope:
-          $ref: '#/components/schemas/MerchantScope'
-        ips:
-          type: array
-          items:
-            type: string
-        disabled:
-          type: boolean
-        privateUuid:
-          type: string
-        publicUuid:
-          type: string
-      required:
-      - ips
-      - privateUuid
-      - publicUuid
-      title: IMerchantStringApiKeysItems
-    CustomPayInFeeConfig:
-      type: object
-      properties:
-        fee:
-          $ref: '#/components/schemas/CustomPayInFeeValue'
-        lineItemLabel:
-          type: string
-      required:
-      - fee
-      - lineItemLabel
-      title: CustomPayInFeeConfig
-    CrbMerchantArgs:
-      type: object
-      properties:
-        merchantAcceptorId:
-          type: string
-          description: 'Highnote MerchantAcceptor id — populated by Highnote onboarding, not
-
-            hand-entered. Optional because the subledger account number can be
-
-            recorded (from CRB''s manual onboarding) before Highnote provisions the
-
-            acceptor.'
-        subledgerAccountNumber:
-          type: string
-          description: 'The merchant''s CRB subledger account that AFT pulls fund. Recorded from
-
-            CRB''s manual onboarding; enables the AFT branch of the CRB provider.'
-      title: CrbMerchantArgs
-    CardSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        orchestrationRuleId:
-          type: string
-        applePayProcessor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        googlePayProcessor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        creditCardFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        chargebackProtectionFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        gasFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        networkFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        variableFeeBps:
-          type: number
-          format: double
-        networkFeeBps:
-          type: number
-          format: double
-        supportsGooglePay:
-          type: boolean
-        supportsApplePay:
-          type: boolean
-        saveCardDefault:
-          type: boolean
-        ignoreProcessorLimit:
-          type: boolean
-        nameMatchThreshold:
-          type: number
-          format: double
-        verificationSettings:
-          $ref: '#/components/schemas/CardSettingsVerificationSettings'
-        avsCheck:
-          type: boolean
-        threeDsChallengePreference:
-          $ref: '#/components/schemas/ThreeDsChallengePreference'
-        enforce3DSWhenProtectionExempt:
-          type: boolean
-        greenlightMerchantArgs:
-          $ref: '#/components/schemas/GreenlightMerchantArgs'
-        nuveiV1MerchantArgs:
-          $ref: '#/components/schemas/NuveiV1MerchantArgs'
-        crbMerchantArgs:
-          $ref: '#/components/schemas/CrbMerchantArgs'
-        threeDSArgs:
-          $ref: '#/components/schemas/ThreeDSArgs'
-        statementDescriptor:
-          type: string
-        tokenizationProvider:
-          $ref: '#/components/schemas/TokenizationProviderOption'
-        applePayIntegratorRegistration:
-          $ref: '#/components/schemas/ApplePayIntegratorRegistration'
-        applePayMerchantDecryption:
-          type: boolean
-        applePayCertificates:
-          $ref: '#/components/schemas/CardSettingsApplePayCertificates'
-        aftSettings:
-          $ref: '#/components/schemas/AftSettings'
-        customStatementDescriptor:
-          type: boolean
-        cardOnFileSettings:
-          $ref: '#/components/schemas/CardOnFileSettings'
-        mitSettings:
-          $ref: '#/components/schemas/CardOnFileSettings'
-        blockCardReuseAcrossCustomers:
-          type: boolean
-          description: When true, blocks a card payment if the same card token has been used by a different customer for this merchant.
-        allowedCardNetworks:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardType'
-        allowServerToServerTokenization:
-          type: boolean
-        visaFraudMonitoringProgram:
-          type: boolean
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
-      required:
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      - avsCheck
-      - threeDsChallengePreference
-      - enforce3DSWhenProtectionExempt
-      title: CardSettings
-    IvySettings:
-      type: object
-      properties:
-        gbpPayinAccountId:
-          type: string
-        eurAccountId:
-          type: string
-      required:
-      - gbpPayinAccountId
-      - eurAccountId
-      title: IvySettings
-    WireProcessor:
-      type: string
-      enum:
-      - braid
-      - mock
-      title: WireProcessor
-    TopupRiskControls:
-      type: object
-      properties:
-        minAmountCents:
-          type: number
-          format: double
-          description: Minimum topup amount in cents
-        maxAmountCents:
-          type: number
-          format: double
-          description: Maximum topup amount in cents
-      title: TopupRiskControls
-    BlockingRuleScope:
-      type: string
-      enum:
-      - WITHDRAWAL
-      - CHECKOUT
-      - GLOBAL
-      title: BlockingRuleScope
-    IbanPayoutProvider:
-      type: string
-      enum:
-      - merge
-      - mock
-      - ivy
-      title: IbanPayoutProvider
-    CardOnFileSettings:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        period:
-          type: number
-          format: double
-        maxCount:
-          type: number
-          format: double
-        maxMultiple:
-          type: number
-          format: double
-        expiration:
-          type: number
-          format: double
-        maxZeroAuthAmount:
-          $ref: '#/components/schemas/Cents'
-        maxAmountLookback:
-          type: number
-          format: double
-      required:
-      - enabled
-      - period
-      - maxCount
-      - maxMultiple
-      - expiration
-      title: CardOnFileSettings
-    LinkedBankAccountAccountType:
-      type: string
-      enum:
-      - checking
-      - savings
-      title: LinkedBankAccountAccountType
-    LinkedBankAccount:
-      type: object
-      properties:
-        routingNumber:
-          type: string
-        accountNumber:
-          type: string
-        accountType:
-          $ref: '#/components/schemas/LinkedBankAccountAccountType'
-        institutionName:
-          type: string
-        plaidAccessToken:
-          type: string
-        plaidAccountId:
-          type: string
-      required:
-      - routingNumber
-      - accountNumber
-      - accountType
-      - plaidAccessToken
-      - plaidAccountId
-      title: LinkedBankAccount
-    CashAppSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/CashAppProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-      required:
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: CashAppSettings
-    MerchantStyle:
-      type: string
-      enum:
-      - rounded
-      - sharp
-      - pill
-      title: MerchantStyle
-    BlockedStatus:
-      type: object
-      properties:
-        level:
-          $ref: '#/components/schemas/BlockedLevel'
-        reason:
-          type: string
-        editor:
-          type: string
-        blockedAt:
-          type: string
-          format: date-time
-        recoverySignature:
-          type: string
-      required:
-      - level
-      - reason
-      - editor
-      - blockedAt
-      title: BlockedStatus
-    VendorSettingsKoard:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        apiKeyPreview:
-          type: string
-        apiKey:
-          type: string
-        accountId:
-          type: string
-      required:
-      - accountId
-      title: VendorSettingsKoard
-    ThreeDSArgs:
-      type: object
-      properties:
-        VISA:
-          $ref: '#/components/schemas/AcquirerInfo'
-        MSTR:
-          $ref: '#/components/schemas/AcquirerInfo'
-        AMEX:
-          $ref: '#/components/schemas/AcquirerInfo'
-        DISC:
-          $ref: '#/components/schemas/AcquirerInfo'
-        scaOnly:
-          type: boolean
-        allowAttempts:
-          type: boolean
-        mcc:
-          type: string
-      required:
-      - VISA
-      - MSTR
-      - AMEX
-      - DISC
-      - allowAttempts
-      - mcc
-      description: Construct a type with a set of properties K of type T
-      title: ThreeDSArgs
-    WebhookSettings:
-      type: object
-      properties:
-        webhookUrls:
-          type: array
-          items:
-            type: string
-        version:
-          $ref: '#/components/schemas/WebhookVersion'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEventType'
-        disableAuthorizationHeader:
-          type: boolean
-        disableSubmerchantToParentWebhooks:
-          type: boolean
-      required:
-      - webhookUrls
-      - version
-      - subscriptions
-      title: WebhookSettings
-    IWireProviderSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/WireProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        maxFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        dailyLimit:
-          $ref: '#/components/schemas/Cents'
-        refundFeeSettings:
-          $ref: '#/components/schemas/RefundFeeSettings'
-      required:
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: IWireProviderSettings
-    MerchantGoLiveChecklist:
-      type: object
-      properties:
-        acceptedToS:
-          type: boolean
-        programWhitelistRequests:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProgramWhitelistRequest'
-        rfis:
-          type: array
-          items:
-            $ref: '#/components/schemas/MerchantRfiRef'
-        onboardingFormSubmitted:
-          type: boolean
-        applicationSubmitted:
-          type: boolean
-        applicationSubmittedAt:
-          type: string
-          format: date-time
-        lockIndustry:
-          type: boolean
-      title: MerchantGoLiveChecklist
-    RfiStatus:
-      type: string
-      enum:
-      - pending
-      - completed
-      title: RfiStatus
-    MerchantTheme:
-      type: object
-      properties:
-        showCardIcon:
-          type: boolean
-        placeholderColor:
-          type: string
-        expirationPlaceholder:
-          type: string
-        cvvPlaceholder:
-          type: string
-        cardNumberPlaceholder:
-          type: string
-        fontWeight:
-          type: string
-        fontSize:
-          type: string
-        style:
-          $ref: '#/components/schemas/MerchantStyle'
-        font:
-          type: string
-        ctaColor:
-          type: string
-        textColorAction:
-          type: string
-        textColorAccent:
-          type: string
-        textColor:
-          type: string
-        backgroundAccent2:
-          type: string
-        backgroundAccent:
-          type: string
-        cardBackground:
-          type: string
-        background:
-          type: string
-        primary:
-          type: string
-      title: MerchantTheme
-    WebhookEventType:
-      type: string
-      enum:
-      - Card Payment Authorized
-      - Card Payment Declined
-      - Card Payment Voided
-      - Credits Minted
-      - ACH Initiated
-      - ACH Success
-      - ACH Returned
-      - ACH Failed
-      - ACH Chargeback
-      - ACH Batched
-      - PIX Failed
-      - PIX Expiration
-      - Payment Authorized
-      - Payment Expiration
-      - Settled
-      - Wire Initiated
-      - USDC Payment Received
-      - Subscription Created
-      - Subscription Canceled
-      - Subscription Expired
-      - Subscription Failure
-      - Subscription Concluded
-      - Card Payment Chargeback Opened
-      - Card Payment Chargeback Won
-      - Card Payment Chargeback Lost
-      - Card Payment Suspected Fraud
-      - Payment Pending Review
-      - KYC Created
-      - KYC Success
-      - KYC Failure
-      - Sub-merchant KYB Created
-      - Sub-merchant KYB Success
-      - Sub-merchant KYB Failure
-      - Withdraw Pending
-      - Withdraw Success
-      - Withdraw Failure
-      - Seller Blocked
-      - Refund
-      - Refund Complete
-      - Refund Failure
-      - Refund Returned
-      - Wire Failure
-      - Iban Failure
-      - Interac Failure
-      - CashApp Failure
-      - PayPal Failure
-      - Venmo Failure
-      - Reserve Released
-      - Crypto Overpayment
-      - Crypto Underpayment
-      - Iban RFI Created
-      - Iban RFI Submitted
-      - Crypto Deposit Funds Received
-      - Customer Override Limit Threshold
-      - Crypto Payin Funds Received
-      - PayPal Payment Authorized
-      - PayPal Payment Voided
-      - PayPal Payment Chargeback Opened
-      - PayPal Payment Chargeback Won
-      - PayPal Payment Chargeback Lost
-      - Venmo Payment Authorized
-      - Venmo Payment Voided
-      - Venmo Payment Chargeback Opened
-      - Venmo Payment Chargeback Won
-      - Venmo Payment Chargeback Lost
-      - Disbursed Funds
-      title: WebhookEventType
+      - name
+      - status
+      - url
+      title: MerchantRfiRef
     CryptoPayInSettings:
       type: object
       properties:
@@ -4723,174 +4324,180 @@ components:
       - customerEmailNotifications
       - merchantEmailNotifications
       title: CryptoPayInSettings
-    PaymentHistory:
+    InteracProcessor:
+      type: string
+      enum:
+      - mock
+      - aptpay
+      title: InteracProcessor
+    SsoProvider:
+      type: string
+      enum:
+      - google
+      title: SsoProvider
+    PayPalSettings:
       type: object
       properties:
-        paymentId:
-          type: string
-        merchant:
-          type: string
-        totals:
-          $ref: '#/components/schemas/TotalsResponse'
-        createdAt:
-          type: string
-          format: date-time
-        status:
-          type: string
-        signature:
-          type: string
-        subscription:
-          $ref: '#/components/schemas/SubscriptionDisplay'
-      required:
-      - paymentId
-      - merchant
-      - totals
-      - createdAt
-      - status
-      title: PaymentHistory
-    CardSettingsApplePayCertificates:
-      type: object
-      properties:
-        merchantIdCert:
-          type: string
-        privatePem:
-          type: string
-        certPem:
-          type: string
-        merchantDisplay:
-          type: string
-        merchantIdentifier:
-          type: string
-      required:
-      - merchantIdCert
-      - privatePem
-      - certPem
-      - merchantDisplay
-      - merchantIdentifier
-      title: CardSettingsApplePayCertificates
-    IMerchantStringFirstPartyPayoutOverrides:
-      type: object
-      properties:
-        interacPayoutProvider:
-          $ref: '#/components/schemas/InteracPayoutProvider'
-        wirePayoutProvider:
-          type: array
-          items:
-            $ref: '#/components/schemas/WirePayoutProvider'
-        paypalPayoutProvider:
-          $ref: '#/components/schemas/PayPalPayoutProvider'
-        venmoPayoutProvider:
-          $ref: '#/components/schemas/VenmoPayoutProvider'
-        appleP2cPayoutProvider:
-          $ref: '#/components/schemas/ApplePayPayoutProvider'
-        globalP2cPayoutProvider:
-          $ref: '#/components/schemas/CardPayoutProvider'
-        p2cPayoutProvider:
-          $ref: '#/components/schemas/CardPayoutProvider'
-        eftPayoutProvider:
-          $ref: '#/components/schemas/EftPayoutProvider'
-        pixPayoutProvider:
-          $ref: '#/components/schemas/PixPayoutProvider'
-        rtpPayoutProvider:
-          $ref: '#/components/schemas/RtpPayoutProvider'
-        ibanPayoutProvider:
-          $ref: '#/components/schemas/IbanPayoutProvider'
-        bankPayoutProvider:
-          type: array
-          items:
-            $ref: '#/components/schemas/PayoutProviderOption'
-      title: IMerchantStringFirstPartyPayoutOverrides
-    AptpayCanadaCoinflowSettings:
-      type: object
-      properties:
-        coinflow:
-          type: boolean
-      required:
-      - coinflow
-      title: AptpayCanadaCoinflowSettings
-    BraidMerchantSettings:
-      type: object
-      properties:
-        businessId:
-          type: number
-          format: double
-        accountId:
-          type: number
-          format: double
-          description: the Braid operating accountId
-        accountNumber:
-          type: string
-          description: the Braid operating account number
-        reserveAccountId:
-          type: number
-          format: double
-          description: the Braid reserve accountId
-        reserveAccountNumber:
-          type: string
-          description: the Braid reserve account number
-        rollingAccountId:
-          type: number
-          format: double
-          description: the Braid rolling accountId
-        rollingAccountNumber:
-          type: string
-          description: the Braid rolling account number
-      required:
-      - businessId
-      - accountId
-      - accountNumber
-      - reserveAccountId
-      - reserveAccountNumber
-      title: BraidMerchantSettings
-    IbanData:
-      type: object
-      properties:
-        number:
-          type: string
-          description: The IBAN number or in the case of the UK the 8-digit account number
-        sortCode:
-          type: string
-          description: Only used for the UK, the 6-digit sort code
-        bic:
-          type: string
-          description: Only used for the Sepa, the bank identifier code - required when requested
-        accountHolder:
-          type: string
-          description: 'The account holder name registered with the bank - required when requested
-
-            (e.g. when a Verification of Payee check needs the exact name)'
-        alias:
-          type: string
-        businessName:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        country:
-          type: string
-        email:
-          type: string
-      required:
-      - number
-      - firstName
-      - lastName
-      - country
-      title: IbanData
-    TierSettings:
-      type: object
-      properties:
+        processor:
+          $ref: '#/components/schemas/PayPalProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        maxFee:
+          $ref: '#/components/schemas/Cents'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
         feeBps:
           type: number
           format: double
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        enabled:
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        customerEmailNotifications:
           type: boolean
+        merchantEmailNotifications:
+          type: boolean
+        refundFeeSettings:
+          $ref: '#/components/schemas/RefundFeeSettings'
       required:
+      - fixedFee
       - feeBps
-      - enabled
-      title: TierSettings
+      - minFee
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: PayPalSettings
+    IMerchantStringWallets:
+      type: object
+      properties:
+        stellar:
+          $ref: '#/components/schemas/IMerchantStringWalletsStellar'
+        evm:
+          $ref: '#/components/schemas/IMerchantStringWalletsEvm'
+        solana:
+          $ref: '#/components/schemas/IMerchantStringWalletsSolana'
+      required:
+      - stellar
+      - evm
+      - solana
+      title: IMerchantStringWallets
+    PayPalPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - citcon
+      - mock
+      - paypal
+      title: PayPalPayoutProvider
+    TopupRiskControls:
+      type: object
+      properties:
+        minAmountCents:
+          type: number
+          format: double
+          description: Minimum topup amount in cents
+        maxAmountCents:
+          type: number
+          format: double
+          description: Maximum topup amount in cents
+      title: TopupRiskControls
+    BankAccountType:
+      type: string
+      enum:
+      - checking
+      - savings
+      title: BankAccountType
+    PlaidAccountStatus:
+      type: string
+      enum:
+      - active
+      - pending_expiration
+      - login_required
+      - removed
+      - error
+      title: PlaidAccountStatus
+    PixPayoutProvider:
+      type: string
+      enum:
+      - brla
+      - mock
+      title: PixPayoutProvider
+    CardType:
+      type: string
+      enum:
+      - VISA
+      - MSTR
+      - AMEX
+      - DISC
+      title: CardType
+    Partial_WithdrawLimit_:
+      type: object
+      properties:
+        singleTxLimit:
+          $ref: '#/components/schemas/Cents'
+        dailyLimit:
+          $ref: '#/components/schemas/Cents'
+        monthlyLimit:
+          $ref: '#/components/schemas/Cents'
+      description: Make all properties in T optional
+      title: Partial_WithdrawLimit_
+    CrbMerchantArgs:
+      type: object
+      properties:
+        merchantAcceptorId:
+          type: string
+          description: 'Highnote MerchantAcceptor id — populated by Highnote onboarding, not
+
+            hand-entered. Optional because the subledger account number can be
+
+            recorded (from CRB''s manual onboarding) before Highnote provisions the
+
+            acceptor.'
+        subledgerAccountNumber:
+          type: string
+          description: 'The merchant''s CRB subledger account that AFT pulls fund. Recorded from
+
+            CRB''s manual onboarding; enables the AFT branch of the CRB provider.'
+      title: CrbMerchantArgs
+    IMerchantUser:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        scope:
+          $ref: '#/components/schemas/MerchantScope'
+        secret:
+          type: string
+        resetNonce:
+          type: string
+        resetNonceUsed:
+          type: boolean
+        ssoProvider:
+          $ref: '#/components/schemas/SsoProvider'
+        ssoId:
+          type: string
+      required:
+      - email
+      - scope
+      title: IMerchantUser
+    Pick_IInterac.Exclude_keyofIInterac.vendorData__:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+        alias:
+          type: string
+        token:
+          type: string
+        type:
+          $ref: '#/components/schemas/PickIInteracExcludeKeyofIInteracVendorDataType'
+      required:
+      - alias
+      - token
+      - type
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_IInterac.Exclude_keyofIInterac.vendorData__
     IBlockingRule:
       type: object
       properties:
@@ -4914,42 +4521,435 @@ components:
       - states
       description: "A single geo-blocking rule on a merchant. Multiple rules of the same scope\nare OR-combined: any matching rule blocks the request. When both DENY and\nALLOW rules are configured, DENY rules are evaluated first — a matching\nDENY blocks the request even if the user is on a separate ALLOW list.\n\n`listMode` controls interpretation (defaults to `DENY`):\n- `DENY`: the listed countries/states are blocked.\n- `ALLOW`: ONLY the listed countries/states are permitted; everything else\n  is blocked.\n\nA rule may specify `countries` (ISO 3166-1 alpha-2 codes), `states`\n(US state codes), or both.\n\n- `scope: GLOBAL` applies to BOTH withdrawal and checkout flows; only valid\n  with `method: IP` (the only method that makes sense for both flows).\n- `method: KYC_ADDRESS` is only valid with `scope: WITHDRAWAL`.\n- `method: BILLING_ADDRESS` is only valid with `scope: CHECKOUT`.\n- `method: IP` is **strictly** fail-closed in both DENY and ALLOW modes:\n  missing IP, failed lookup, or an unresolvable US state resolved from\n  the IP rejects the withdrawal. Both the resolved country and the\n  resolved state (US-only) are evaluated on every request against the\n  rule's `countries` and `states` lists. Skipped on merchant-initiated\n  payouts where no end-user IP exists (`merchantInitiated: true`).\n- `method: GEOLOCATION` is a **best-effort, optional** signal and only\n  valid with `scope: WITHDRAWAL`. When the caller supplies a fresh,\n  resolvable `userLocation`, the rule enforces strictly against the\n  block list. When the signal is absent (browser permission denied,\n  merchant did not send coords, stale capture, or reverse-geocode\n  failure), enforcement is skipped — pair with an `IP` rule for hard\n  real-time enforcement."
       title: IBlockingRule
-    PaymentProcessor:
+    CustomPayInFeeValue1:
+      type: object
+      properties:
+        cents:
+          type:
+          - number
+          - 'null'
+          format: double
+        currency:
+          type:
+          - number
+          - 'null'
+          format: double
+        percent:
+          type: number
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue1
+    CrbEnvironment:
       type: string
       enum:
-      - payarc
+      - sandbox
+      - production
+      title: CrbEnvironment
+    WirePayoutProvider:
+      type: string
+      enum:
+      - MOCK
+      - BRAID
+      title: WirePayoutProvider
+    ApaProcessor:
+      type: string
+      enum:
+      - apa
       - mock
-      - shift4
-      - merchant_warrior
-      - greenlight
-      - frame
-      - nmi_direct
-      - mvb
-      - fifththird
-      - natwest
-      - nuveiv1
-      - fallback_payarc_shift4
-      - fallback_shift4_payarc
-      - fallback_shift4_nuvei
-      - fallback_nuvei_payarc
-      - fallback_payarc_nuvei
-      - fallback_shift4_greenlight
-      - fallback_greenlight_shift4
-      - fallback_frame_merchant_warrior
-      - fallback_merchant_warrior_frame
-      - fallback_natwest_shift4
-      - fallback_natwest_nuvei
-      - fallback_natwest_shift4_payarc
-      - fallback_natwest_shift4_nuvei
-      - fallback_shift4_natwest_payarc
-      - fallback_nuvei_natwest_payarc
-      - fallback_natwest_nuvei_payarc
-      - fallback_mvb_fifththird_shift4_payarc
-      - fallback_fifththird_mvb_shift4_payarc
-      - fallback_mvb_nuvei
-      - fallback_nuvei_fifththird
-      - fallback_fifththird_nuvei
-      title: PaymentProcessor
+      title: ApaProcessor
+    VerificationVendor:
+      type: string
+      enum:
+      - middesk
+      - sumsub
+      - sumsub_docv
+      - persona
+      - persona_kyb
+      title: VerificationVendor
+    PickIVenmoExcludeKeyofIVenmoVendorDataType:
+      type: string
+      enum:
+      - venmo
+      title: PickIVenmoExcludeKeyofIVenmoVendorDataType
+    ProgramWhitelistStatus:
+      type: string
+      enum:
+      - approved
+      - pending
+      - rejected
+      title: ProgramWhitelistStatus
+    RfiStatus:
+      type: string
+      enum:
+      - pending
+      - completed
+      title: RfiStatus
+    RtpPayoutProvider:
+      type: string
+      enum:
+      - dwolla
+      - mock
+      - aptpay
+      - aptpayRtp
+      - checkbook
+      - brale
+      title: RtpPayoutProvider
+    Customers_GetHistory_Response_200:
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentHistory'
+      required:
+      - history
+      title: Customers_GetHistory_Response_200
+    AptpayCanadaCoinflowSettings:
+      type: object
+      properties:
+        coinflow:
+          type: boolean
+      required:
+      - coinflow
+      title: AptpayCanadaCoinflowSettings
+    Country:
+      type: string
+      enum:
+      - AF
+      - AL
+      - DZ
+      - AS
+      - AD
+      - AO
+      - AI
+      - AQ
+      - AG
+      - AR
+      - AM
+      - AW
+      - AU
+      - AT
+      - AX
+      - AZ
+      - BS
+      - BH
+      - BD
+      - BB
+      - BY
+      - BE
+      - BZ
+      - BJ
+      - BM
+      - BT
+      - BO
+      - BQ
+      - BA
+      - BW
+      - BV
+      - BR
+      - IO
+      - BN
+      - BG
+      - BF
+      - BI
+      - CV
+      - KH
+      - CM
+      - CA
+      - KY
+      - CF
+      - TD
+      - CL
+      - CN
+      - CX
+      - CC
+      - CO
+      - KM
+      - CD
+      - CG
+      - CK
+      - CR
+      - HR
+      - CU
+      - CW
+      - CY
+      - CZ
+      - CI
+      - DK
+      - DJ
+      - DM
+      - DO
+      - EC
+      - EG
+      - SV
+      - GQ
+      - ER
+      - EE
+      - EH
+      - SZ
+      - ET
+      - FK
+      - FO
+      - FJ
+      - FI
+      - FR
+      - GF
+      - PF
+      - TF
+      - GA
+      - GM
+      - GE
+      - DE
+      - GH
+      - GI
+      - GR
+      - GL
+      - GD
+      - GP
+      - GU
+      - GT
+      - GG
+      - GN
+      - GW
+      - GY
+      - HT
+      - HM
+      - VA
+      - HN
+      - HK
+      - HU
+      - IS
+      - IN
+      - ID
+      - IR
+      - IQ
+      - IE
+      - IM
+      - IL
+      - IT
+      - JM
+      - JP
+      - JE
+      - JO
+      - KZ
+      - KE
+      - KI
+      - KP
+      - KR
+      - KW
+      - KG
+      - LA
+      - LV
+      - LB
+      - LS
+      - LR
+      - LY
+      - LI
+      - LT
+      - LU
+      - MO
+      - MG
+      - MW
+      - MY
+      - MV
+      - ML
+      - MT
+      - MH
+      - MQ
+      - MR
+      - MU
+      - YT
+      - MX
+      - FM
+      - MD
+      - MC
+      - MN
+      - ME
+      - MS
+      - MA
+      - MZ
+      - MM
+      - NA
+      - NR
+      - NP
+      - NL
+      - NC
+      - NZ
+      - NI
+      - NE
+      - NG
+      - NU
+      - NF
+      - MP
+      - 'NO'
+      - OM
+      - PK
+      - PW
+      - PS
+      - PA
+      - PG
+      - PY
+      - PE
+      - PH
+      - PN
+      - PL
+      - PT
+      - PR
+      - QA
+      - MK
+      - RO
+      - RU
+      - RW
+      - RE
+      - BL
+      - SH
+      - KN
+      - LC
+      - MF
+      - PM
+      - VC
+      - WS
+      - SM
+      - ST
+      - SA
+      - SN
+      - RS
+      - SC
+      - SL
+      - SG
+      - SX
+      - SK
+      - SI
+      - SB
+      - SO
+      - ZA
+      - GS
+      - SS
+      - ES
+      - LK
+      - SD
+      - SR
+      - SJ
+      - SE
+      - CH
+      - SY
+      - TW
+      - TJ
+      - TZ
+      - TH
+      - TL
+      - TG
+      - TK
+      - TO
+      - TT
+      - TN
+      - TR
+      - TM
+      - TC
+      - TV
+      - UG
+      - UA
+      - AE
+      - GB
+      - UM
+      - US
+      - UY
+      - UZ
+      - VU
+      - VE
+      - VN
+      - VG
+      - VI
+      - WF
+      - XK
+      - YE
+      - ZM
+      - ZW
+      title: Country
+    VendorSettings:
+      type: object
+      properties:
+        aptPayIdentity:
+          type: number
+          format: double
+        aptPayUSCoinflow:
+          type: boolean
+        braid:
+          $ref: '#/components/schemas/BraidMerchantSettings'
+        crb:
+          $ref: '#/components/schemas/CrbMerchantSettings'
+        highnote:
+          $ref: '#/components/schemas/HighnoteMerchantSettings'
+        ivy:
+          $ref: '#/components/schemas/IvySettings'
+        paypal:
+          $ref: '#/components/schemas/PayPalVendorSettings'
+        koard:
+          $ref: '#/components/schemas/VendorSettingsKoard'
+      title: VendorSettings
+    VenmoProcessor:
+      type: string
+      enum:
+      - mock
+      - paypal
+      title: VenmoProcessor
+    VenmoPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - citcon
+      - mock
+      - paypal
+      title: VenmoPayoutProvider
+    ApplePayPayoutProvider:
+      type: string
+      enum:
+      - aptpay
+      - MOCK
+      title: ApplePayPayoutProvider
+    InterchangeSettings:
+      type: object
+      properties:
+        useType:
+          type: boolean
+        useRegion:
+          type: boolean
+        useScheme:
+          type: boolean
+        useBrand:
+          type: boolean
+        useDurbin:
+          type: boolean
+      required:
+      - useType
+      - useRegion
+      - useScheme
+      - useBrand
+      - useDurbin
+      title: InterchangeSettings
+    Pick_IVenmo.Exclude_keyofIVenmo.vendorData__:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+        alias:
+          type: string
+        token:
+          type: string
+        type:
+          $ref: '#/components/schemas/PickIVenmoExcludeKeyofIVenmoVendorDataType'
+      required:
+      - alias
+      - token
+      - type
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_IVenmo.Exclude_keyofIVenmo.vendorData__
   securitySchemes:
     wallet:
       type: apiKey

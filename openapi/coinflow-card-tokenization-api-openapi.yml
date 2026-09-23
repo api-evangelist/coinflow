@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference authentication cardTokenization API
+  title: Reference Card Tokenization API
   version: 1.0.0
 servers:
 - url: https://api-sandbox.coinflow.cash/api
   description: https://api-sandbox.coinflow.cash/api
 tags:
-- name: cardTokenization
+- name: Card Tokenization
 paths:
   /tokenize/associate-cvv:
     post:
@@ -19,7 +19,7 @@ paths:
 
         certification, and provide that to your Coinflow Integrations Representative.'
       tags:
-      - cardTokenization
+      - Card Tokenization
       parameters:
       - name: Authorization
         in: header
@@ -69,7 +69,7 @@ paths:
 
         certification, and provide that to your Coinflow Integrations Representative.'
       tags:
-      - cardTokenization
+      - Card Tokenization
       parameters:
       - name: Authorization
         in: header
@@ -119,7 +119,7 @@ paths:
 
         certification, and provide that to your Coinflow Integrations Representative.'
       tags:
-      - cardTokenization
+      - Card Tokenization
       parameters:
       - name: Authorization
         in: header
@@ -160,6 +160,30 @@ paths:
               $ref: '#/components/schemas/ServerToServerCardOnlyRequest'
 components:
   schemas:
+    TokenizePostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizePostParametersTxTokenScheme
+    TokenizeCardOnlyPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeCardOnlyPostParametersTxTokenScheme
+    ServerToServerCardOnlyRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 'The data to be tokenized. This is the PAN of the card.
+
+            Example: 4111111111111111
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      title: ServerToServerCardOnlyRequest
     ServerToServerTokenizationRequest:
       type: object
       properties:
@@ -182,6 +206,11 @@ components:
 
             redirect where the card data should be sent.'
       title: ServerToServerTokenizationRequest
+    TokenizeAssociateCvvPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeAssociateCvvPostParametersTxTokenScheme
     ServerToServerTokenizationResponse:
       type: object
       properties:
@@ -208,11 +237,6 @@ components:
       - error
       - message
       title: ServerToServerTokenizationResponse
-    TokenizeAssociateCvvPostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizeAssociateCvvPostParametersTxTokenScheme
     ServerToServerAssociatedCvvRequest:
       type: object
       properties:
@@ -235,30 +259,6 @@ components:
       required:
       - token
       title: ServerToServerAssociatedCvvRequest
-    TokenizeCardOnlyPostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizeCardOnlyPostParametersTxTokenScheme
-    ServerToServerCardOnlyRequest:
-      type: object
-      properties:
-        data:
-          type: string
-          description: 'The data to be tokenized. This is the PAN of the card.
-
-            Example: 4111111111111111
-
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-      title: ServerToServerCardOnlyRequest
-    TokenizePostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizePostParametersTxTokenScheme
   securitySchemes:
     wallet:
       type: apiKey

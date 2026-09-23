@@ -1,20 +1,7 @@
 {
   "provider": "coinflow",
   "sources": [
-    "coinflow-authentication-api-openapi.yml",
-    "coinflow-cardtokenization-api-openapi.yml",
-    "coinflow-checkout-api-openapi.yml",
-    "coinflow-customers-api-openapi.yml",
-    "coinflow-events-api-openapi.yml",
-    "coinflow-marketplace-api-openapi.yml",
-    "coinflow-merchant-api-openapi.yml",
-    "coinflow-merchantsubscription-api-openapi.yml",
-    "coinflow-redeem-api-openapi.yml",
-    "coinflow-refund-api-openapi.yml",
-    "coinflow-submerchant-api-openapi.yml",
-    "coinflow-subscription-api-openapi.yml",
-    "coinflow-utilities-api-openapi.yml",
-    "coinflow-withdraw-api-openapi.yml"
+    "_original/coinflow-openapi-original.json"
   ],
   "outputs": [
     "coinflow-authentication-api-openapi.yml",
@@ -32,9 +19,45 @@
     "coinflow-utilities-api-openapi.yml",
     "coinflow-withdraw-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "coinflow-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "coinflow-openapi-original.json: declared missing tag: authentication",
+    "coinflow-openapi-original.json: declared missing tag: cardTokenization",
+    "coinflow-openapi-original.json: declared missing tag: checkout",
+    "coinflow-openapi-original.json: declared missing tag: customers",
+    "coinflow-openapi-original.json: declared missing tag: events",
+    "coinflow-openapi-original.json: declared missing tag: marketplace",
+    "coinflow-openapi-original.json: declared missing tag: merchant",
+    "coinflow-openapi-original.json: declared missing tag: merchantSubscription",
+    "coinflow-openapi-original.json: declared missing tag: redeem",
+    "coinflow-openapi-original.json: declared missing tag: refund",
+    "coinflow-openapi-original.json: declared missing tag: subMerchant",
+    "coinflow-openapi-original.json: declared missing tag: subscription",
+    "coinflow-openapi-original.json: declared missing tag: utilities",
+    "coinflow-openapi-original.json: declared missing tag: withdraw",
+    "superseded outputs removed: coinflow-card-tokenization-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 14 total)"
+  ],
+  "skipped": [
+    "coinflow-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-card-tokenization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-checkout-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-marketplace-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-merchant-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-merchantsubscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-redeem-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-refund-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-submerchant-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-utilities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "coinflow-withdraw-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,12 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference authentication utilities API
+  title: Reference Utilities API
   version: 1.0.0
 servers:
 - url: https://api-sandbox.coinflow.cash/api
   description: https://api-sandbox.coinflow.cash/api
 tags:
-- name: utilities
+- name: Utilities
 paths:
   /utils/contract-address:
     get:
@@ -14,7 +14,7 @@ paths:
       summary: Get the Coinflow Contract Address
       description: Get the Coinflow Contract address by blockchain
       tags:
-      - utilities
+      - Utilities
       parameters:
       - name: blockchain
         in: query
@@ -56,7 +56,7 @@ paths:
 
         merchant''s API key like the /send-solana-tx endpoint above.'
       tags:
-      - utilities
+      - Utilities
       responses:
         '200':
           description: Ok
@@ -101,7 +101,7 @@ paths:
 
         retry transactions multiple times.'
       tags:
-      - utilities
+      - Utilities
       parameters:
       - name: Authorization
         in: header
@@ -141,6 +141,14 @@ paths:
               $ref: '#/components/schemas/SendSolanaTransactionRequest'
 components:
   schemas:
+    Utilities_SendCoinflowTransaction_Response_200:
+      type: object
+      properties:
+        signature:
+          type: string
+      required:
+      - signature
+      title: Utilities_SendCoinflowTransaction_Response_200
     SendSolanaTransactionRequest:
       type: object
       properties:
@@ -172,6 +180,25 @@ components:
       required:
       - transaction
       title: SendSolanaTransactionRequest
+    Utilities_GetContractAddresses_Response_200:
+      type: object
+      properties:
+        address:
+          type: string
+      required:
+      - address
+      title: Utilities_GetContractAddresses_Response_200
+    SendSolanaTransactionResponse:
+      type: object
+      properties:
+        signature:
+          type: string
+          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
+
+            which will query the chain to see if the transaction was confirmed.'
+      required:
+      - signature
+      title: SendSolanaTransactionResponse
     SendTransactionBody:
       type: object
       properties:
@@ -205,49 +232,6 @@ components:
       - merchantId
       - signedTransaction
       title: SendTransactionBody
-    SendSolanaTransactionRequestPreconditionFailedError:
-      type: object
-      properties:
-        logs:
-          type: string
-      required:
-      - logs
-      title: SendSolanaTransactionRequestPreconditionFailedError
-    Utilities_SendCoinflowTransaction_Response_200:
-      type: object
-      properties:
-        signature:
-          type: string
-      required:
-      - signature
-      title: Utilities_SendCoinflowTransaction_Response_200
-    Utilities_GetContractAddresses_Response_200:
-      type: object
-      properties:
-        address:
-          type: string
-      required:
-      - address
-      title: Utilities_GetContractAddresses_Response_200
-    SendCoinflowTransactionRequestPreconditionFailedError:
-      type: object
-      properties:
-        logs:
-          type: string
-      required:
-      - logs
-      title: SendCoinflowTransactionRequestPreconditionFailedError
-    SendSolanaTransactionResponse:
-      type: object
-      properties:
-        signature:
-          type: string
-          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
-
-            which will query the chain to see if the transaction was confirmed.'
-      required:
-      - signature
-      title: SendSolanaTransactionResponse
     Blockchain:
       type: string
       enum:
@@ -261,6 +245,22 @@ components:
       - monad
       - tempo
       title: Blockchain
+    SendCoinflowTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendCoinflowTransactionRequestPreconditionFailedError
+    SendSolanaTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendSolanaTransactionRequestPreconditionFailedError
   securitySchemes:
     wallet:
       type: apiKey
