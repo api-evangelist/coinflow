@@ -46,6 +46,9 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
 image: https://coinflow.cash/coinflow-og-image.jpg
+x-docs-platform: fern
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
 tags:
 - Company
 - Crypto
@@ -70,7 +73,7 @@ tags_raw:
 - Fintech
 apis:
 - aid: coinflow:coinflow-authentication-api
-  name: Coinflow authentication API
+  name: Coinflow Authentication API
   description: The authentication API from Coinflow — 3 operation(s) for authentication.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -86,7 +89,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-checkout-api
-  name: Coinflow checkout API
+  name: Coinflow Checkout API
   description: The checkout API from Coinflow — 33 operation(s) for checkout.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -102,7 +105,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-customers-api
-  name: Coinflow customers API
+  name: Coinflow Customers API
   description: The customers API from Coinflow — 15 operation(s) for customers.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -118,7 +121,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-events-api
-  name: Coinflow events API
+  name: Coinflow Events API
   description: The events API from Coinflow — 1 operation(s) for events.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -134,7 +137,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-marketplace-api
-  name: Coinflow marketplace API
+  name: Coinflow Marketplace API
   description: The marketplace API from Coinflow — 11 operation(s) for marketplace.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -150,7 +153,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-merchant-api
-  name: Coinflow merchant API
+  name: Coinflow Merchant API
   description: The merchant API from Coinflow — 49 operation(s) for merchant.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -166,7 +169,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-merchantsubscription-api
-  name: Coinflow merchantSubscription API
+  name: Coinflow Merchant Subscription API
   description: The merchantSubscription API from Coinflow — 4 operation(s) for merchantsubscription.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -181,7 +184,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-redeem-api
-  name: Coinflow redeem API
+  name: Coinflow Redeem API
   description: The redeem API from Coinflow — 4 operation(s) for redeem.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -197,7 +200,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-refund-api
-  name: Coinflow refund API
+  name: Coinflow Refund API
   description: The refund API from Coinflow — 4 operation(s) for refund.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -213,7 +216,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-submerchant-api
-  name: Coinflow subMerchant API
+  name: Coinflow Sub Merchant API
   description: The subMerchant API from Coinflow — 3 operation(s) for submerchant.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -228,7 +231,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-subscription-api
-  name: Coinflow subscription API
+  name: Coinflow Subscription API
   description: The subscription API from Coinflow — 7 operation(s) for subscription.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -244,7 +247,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-utilities-api
-  name: Coinflow utilities API
+  name: Coinflow Utilities API
   description: The utilities API from Coinflow — 3 operation(s) for utilities.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
@@ -260,7 +263,7 @@ apis:
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-withdraw-api
-  name: Coinflow withdraw API
+  name: Coinflow Withdraw API
   description: The withdraw API from Coinflow — 30 operation(s) for withdraw.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api

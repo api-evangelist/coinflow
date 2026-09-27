@@ -225,6 +225,71 @@ components:
       - planCode
       - status
       title: SubscriptionDisplay
+    Blockchain.POLYGON:
+      type: string
+      enum:
+      - polygon
+      title: Blockchain.POLYGON
+    Blockchain.BASE:
+      type: string
+      enum:
+      - base
+      title: Blockchain.BASE
+    Blockchain.SOLANA:
+      type: string
+      enum:
+      - solana
+      title: Blockchain.SOLANA
+    Blockchain.TEMPO:
+      type: string
+      enum:
+      - tempo
+      title: Blockchain.TEMPO
+    Blockchain.ARBITRUM:
+      type: string
+      enum:
+      - arbitrum
+      title: Blockchain.ARBITRUM
+    Blockchain.STELLAR:
+      type: string
+      enum:
+      - stellar
+      title: Blockchain.STELLAR
+    SubscriptionInterval:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      - Monthly
+      - Yearly
+      title: SubscriptionInterval
+    Blockchain.ETH:
+      type: string
+      enum:
+      - eth
+      title: Blockchain.ETH
+    OperationalBlockchain:
+      oneOf:
+      - $ref: '#/components/schemas/Blockchain.SOLANA'
+      - $ref: '#/components/schemas/Blockchain.ETH'
+      - $ref: '#/components/schemas/Blockchain.POLYGON'
+      - $ref: '#/components/schemas/Blockchain.BASE'
+      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
+      - $ref: '#/components/schemas/Blockchain.STELLAR'
+      - $ref: '#/components/schemas/Blockchain.MONAD'
+      - $ref: '#/components/schemas/Blockchain.TEMPO'
+      title: OperationalBlockchain
+    CurrencyCents:
+      type: object
+      properties:
+        cents:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+      - cents
+      - currency
+      title: CurrencyCents
     Partial_SubscriptionPlanRequest_:
       type: object
       properties:
@@ -251,32 +316,11 @@ components:
           description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
       description: Make all properties in T optional
       title: Partial_SubscriptionPlanRequest_
-    Blockchain.ETH:
-      type: string
-      enum:
-      - eth
-      title: Blockchain.ETH
-    Blockchain.TEMPO:
-      type: string
-      enum:
-      - tempo
-      title: Blockchain.TEMPO
-    Blockchain:
-      type: string
-      enum:
-      - solana
-      - eth
-      - polygon
-      - base
-      - user
-      - arbitrum
-      - stellar
-      - monad
-      - tempo
-      title: Blockchain
-    SubscriptionPlanRequest:
+    SubscriptionPlan:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         code:
@@ -299,29 +343,13 @@ components:
           type: boolean
           description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
       required:
+      - id
       - name
       - code
       - interval
       - amount
-      title: SubscriptionPlanRequest
-    SubscriptionInterval:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      - Monthly
-      - Yearly
-      title: SubscriptionInterval
-    SubscriptionStatus:
-      type: string
-      enum:
-      - Active
-      - Canceled
-      - Expired
-      - Concluded
-      - Failed
-      - Blocked
-      title: SubscriptionStatus
+      - active
+      title: SubscriptionPlan
     TotalsResponse:
       type: object
       properties:
@@ -371,11 +399,39 @@ components:
       - fxFees
       - total
       title: TotalsResponse
-    Blockchain.ARBITRUM:
+    SubscriptionStatus:
       type: string
       enum:
-      - arbitrum
-      title: Blockchain.ARBITRUM
+      - Active
+      - Canceled
+      - Expired
+      - Concluded
+      - Failed
+      - Blocked
+      title: SubscriptionStatus
+    Blockchain.MONAD:
+      type: string
+      enum:
+      - monad
+      title: Blockchain.MONAD
+    SubscriptionPayment:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        status:
+          type: string
+        totals:
+          $ref: '#/components/schemas/TotalsResponse'
+        paidAt:
+          type: string
+          format: date-time
+      required:
+      - paymentId
+      - status
+      - totals
+      - paidAt
+      title: SubscriptionPayment
     Currency:
       type: string
       enum:
@@ -536,16 +592,22 @@ components:
       - SSP
       - VES
       title: Currency
-    Blockchain.SOLANA:
+    Blockchain:
       type: string
       enum:
       - solana
-      title: Blockchain.SOLANA
-    SubscriptionPlan:
+      - eth
+      - polygon
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
+    SubscriptionPlanRequest:
       type: object
       properties:
-        id:
-          type: string
         name:
           type: string
         code:
@@ -568,73 +630,11 @@ components:
           type: boolean
           description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
       required:
-      - id
       - name
       - code
       - interval
       - amount
-      - active
-      title: SubscriptionPlan
-    OperationalBlockchain:
-      oneOf:
-      - $ref: '#/components/schemas/Blockchain.SOLANA'
-      - $ref: '#/components/schemas/Blockchain.ETH'
-      - $ref: '#/components/schemas/Blockchain.POLYGON'
-      - $ref: '#/components/schemas/Blockchain.BASE'
-      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
-      - $ref: '#/components/schemas/Blockchain.STELLAR'
-      - $ref: '#/components/schemas/Blockchain.MONAD'
-      - $ref: '#/components/schemas/Blockchain.TEMPO'
-      title: OperationalBlockchain
-    Blockchain.MONAD:
-      type: string
-      enum:
-      - monad
-      title: Blockchain.MONAD
-    CurrencyCents:
-      type: object
-      properties:
-        cents:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-      required:
-      - cents
-      - currency
-      title: CurrencyCents
-    Blockchain.BASE:
-      type: string
-      enum:
-      - base
-      title: Blockchain.BASE
-    Blockchain.POLYGON:
-      type: string
-      enum:
-      - polygon
-      title: Blockchain.POLYGON
-    Blockchain.STELLAR:
-      type: string
-      enum:
-      - stellar
-      title: Blockchain.STELLAR
-    SubscriptionPayment:
-      type: object
-      properties:
-        paymentId:
-          type: string
-        status:
-          type: string
-        totals:
-          $ref: '#/components/schemas/TotalsResponse'
-        paidAt:
-          type: string
-          format: date-time
-      required:
-      - paymentId
-      - status
-      - totals
-      - paidAt
-      title: SubscriptionPayment
+      title: SubscriptionPlanRequest
   securitySchemes:
     wallet:
       type: apiKey

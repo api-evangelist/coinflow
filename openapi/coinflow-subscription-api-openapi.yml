@@ -241,13 +241,11 @@ paths:
               $ref: '#/components/schemas/SubscriptionCardSetup'
 components:
   schemas:
-    AccountFundingTransaction:
-      type: object
-      properties:
-        recipientAftInfo:
-          $ref: '#/components/schemas/RecipientAftInfo'
-      description: Used for Account Funding Transactions
-      title: AccountFundingTransaction
+    CustomerInfo:
+      oneOf:
+      - $ref: '#/components/schemas/SplitNameCustomerInfo'
+      - $ref: '#/components/schemas/NameCustomerInfo'
+      title: CustomerInfo
     SubscriptionDisplay:
       type: object
       properties:
@@ -279,7 +277,231 @@ components:
       - planCode
       - status
       title: SubscriptionDisplay
-    NameCustomerInfo:
+    SubscriptionCardSetup:
+      type: object
+      properties:
+        customerInfo:
+          $ref: '#/components/schemas/CustomerInfo'
+        webhookInfo:
+          $ref: '#/components/schemas/AnyObject'
+        chargebackProtectionData:
+          $ref: '#/components/schemas/CartClassOmitted'
+        feePercentage:
+          type: number
+          format: double
+          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+
+            taken from the subtotal amount.'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        planCode:
+          type: string
+          description: The code of the plan to use for the subscription
+        authentication3DS:
+          $ref: '#/components/schemas/Authentication3DS'
+        threeDsChallengePreference:
+          $ref: '#/components/schemas/ThreeDsChallengePreference'
+        accountFundingTransaction:
+          $ref: '#/components/schemas/AccountFundingTransaction'
+        card:
+          $ref: '#/components/schemas/SubscriptionCardSetupCard'
+          description: 'Credit card information.
+
+            <b>Always</b> pass address unless explicitly told that you may not'
+      required:
+      - planCode
+      - card
+      title: SubscriptionCardSetup
+    Blockchain.POLYGON:
+      type: string
+      enum:
+      - polygon
+      title: Blockchain.POLYGON
+    Blockchain.BASE:
+      type: string
+      enum:
+      - base
+      title: Blockchain.BASE
+    Blockchain.SOLANA:
+      type: string
+      enum:
+      - solana
+      title: Blockchain.SOLANA
+    productType:
+      type: string
+      enum:
+      - inGameProduct
+      - gameOfSkill
+      - dataStorage
+      - computingResources
+      - sportsTicket
+      - eSportsTicket
+      - musicTicket
+      - conferenceTicket
+      - virtualSportsTicket
+      - virtualESportsTicket
+      - virtualMusicTicket
+      - virtualConferenceTicket
+      - alcohol
+      - DLC
+      - subscription
+      - fundACause
+      - realEstate
+      - computingContract
+      - digitalArt
+      - topUp
+      - ownershipContract
+      - inGameCurrency
+      - digitalCollectibles
+      - digitalCollectiblesMarketplace
+      - digitalGiftingMarketplace
+      - sweepstakes
+      - virtualSportsEvents
+      - contractInvoicing
+      - onlineCasino
+      - cryptoOnramp
+      - gaming
+      - travelDocuments
+      - musicStreaming
+      - digitalContent
+      - eBooks
+      - digitalSubscriptionContent
+      title: productType
+    CardDataWithoutAddress:
+      type: object
+      properties:
+        cardToken:
+          type: string
+          description: This is the card token received from the `CoinflowCardNumberInput`
+        expYear:
+          type: string
+          description: 'The Cards Expiration Year ex: 2026 => 26'
+        expMonth:
+          type: string
+          description: 'The Cards Expiration Month ex: January => 01 December => 12'
+        additionalVendorData:
+          $ref: '#/components/schemas/CardDataWithoutAddressAdditionalVendorData'
+          description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
+
+            Base type is empty; tokenization providers extend it with their own fields.'
+        email:
+          type: string
+        businessName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+      - cardToken
+      - expYear
+      - expMonth
+      - email
+      - firstName
+      - lastName
+      title: CardDataWithoutAddress
+    CartClassOmitted:
+      type: array
+      items:
+        $ref: '#/components/schemas/CartItemClassOmitted'
+      description: Cart item details required for Coinflow Chargeback Protection. Required if the merchant uses chargeback protection.
+      title: CartClassOmitted
+    CardDataAdditionalVendorData:
+      type: object
+      properties: {}
+      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
+
+        Base type is empty; tokenization providers extend it with their own fields.'
+      title: CardDataAdditionalVendorData
+    Blockchain.TEMPO:
+      type: string
+      enum:
+      - tempo
+      title: Blockchain.TEMPO
+    Blockchain.ARBITRUM:
+      type: string
+      enum:
+      - arbitrum
+      title: Blockchain.ARBITRUM
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment:
+      type: string
+      enum:
+      - digital
+      - physical
+      description: How the product was fulfilled.
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment
+    External3DSInfo:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        cavv:
+          type: string
+        eci:
+          type: string
+        dsTransactionId:
+          type: string
+        acsTransactionId:
+          type: string
+        version:
+          type: string
+      required:
+      - transactionId
+      - cavv
+      - eci
+      - dsTransactionId
+      - acsTransactionId
+      - version
+      description: 'External 3DS info, if provided must call the endpoint
+
+        with API key or checkout JWT.'
+      title: External3DSInfo
+    Device3DSInfo:
+      type: object
+      properties:
+        colorDepth:
+          type: number
+          format: double
+        screenHeight:
+          type: number
+          format: double
+        screenWidth:
+          type: number
+          format: double
+        timeZone:
+          type: number
+          format: double
+        versionInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/VersionInfo'
+      required:
+      - colorDepth
+      - screenHeight
+      - screenWidth
+      - timeZone
+      title: Device3DSInfo
+    Blockchain.STELLAR:
+      type: string
+      enum:
+      - stellar
+      title: Blockchain.STELLAR
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType:
+      type: string
+      enum:
+      - giftCard
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType
+    CryptoCartItemItemClass:
+      type: string
+      enum:
+      - crypto
+      description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+        Allowed value: crypto
+
+        Example: crypto'
+      title: CryptoCartItemItemClass
+    SplitNameCustomerInfo:
       type: object
       properties:
         verificationId:
@@ -307,38 +529,111 @@ components:
           description: Date of birth in YYYY-MM-DD format
         email:
           type: string
-        name:
+        firstName:
           type: string
-      title: NameCustomerInfo
-    Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__:
+        lastName:
+          type: string
+      required:
+      - firstName
+      - lastName
+      title: SplitNameCustomerInfo
+    MoneyTopUpCartItemItemClass:
+      type: string
+      enum:
+      - moneyTopUp
+      description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+        Allowed value: moneyTopUp
+
+        Example: moneyTopUp'
+      title: MoneyTopUpCartItemItemClass
+    AnyObject:
       type: object
       properties:
-        productName:
+        example:
           type: string
-          description: The name of the related product
-        productType:
-          $ref: '#/components/schemas/productType'
-        listPrice:
-          $ref: '#/components/schemas/PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice'
-          description: The item's list price
+      title: AnyObject
+    MoneyTopUpCartItem:
+      type: object
+      properties:
+        itemClass:
+          $ref: '#/components/schemas/MoneyTopUpCartItemItemClass'
+          description: 'Denotes the cart item class. The item schema is chosen based on this value.
+
+            Allowed value: moneyTopUp
+
+            Example: moneyTopUp'
+        id:
+          type: string
+          description: 'The cart items''s unique ID
+
+            Example: 5de33332-546a-4171-8988-2a43d2bfe9c6'
+        rawProductData:
+          $ref: '#/components/schemas/Record_string.any_'
+        sellingPrice:
+          $ref: '#/components/schemas/CurrencyAmount'
+        recipientInfo:
+          $ref: '#/components/schemas/RecipientInfo'
+        topUpAmount:
+          $ref: '#/components/schemas/CurrencyAmount'
         quantity:
           type: number
           format: double
-          description: The number of units sold
-        rawProductData:
-          $ref: '#/components/schemas/AnyObject'
-        seller:
-          $ref: '#/components/schemas/SellerInfo'
-        transactionHistory:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionHistoryItem'
+          description: 'Quantity
+
+            Example: 2'
+        isPresetAmount:
+          type: boolean
+          description: 'Represents whether the item amount is taken from a preset list, e.g. 25, 50, 100, etc.
+
+            or whether it was a different amount, e.g. 27'
       required:
-      - productName
-      - productType
+      - itemClass
+      - sellingPrice
+      - topUpAmount
       - quantity
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__
+      - isPresetAmount
+      description: Represents a money top-up item in a shopping cart
+      title: MoneyTopUpCartItem
+    SubscriptionInterval:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      - Monthly
+      - Yearly
+      title: SubscriptionInterval
+    ThreeDsChallengePreference:
+      type: string
+      enum:
+      - NoPreference
+      - Frictionless
+      - Challenge
+      title: ThreeDsChallengePreference
+    Blockchain.ETH:
+      type: string
+      enum:
+      - eth
+      title: Blockchain.ETH
+    OperationalBlockchain:
+      oneOf:
+      - $ref: '#/components/schemas/Blockchain.SOLANA'
+      - $ref: '#/components/schemas/Blockchain.ETH'
+      - $ref: '#/components/schemas/Blockchain.POLYGON'
+      - $ref: '#/components/schemas/Blockchain.BASE'
+      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
+      - $ref: '#/components/schemas/Blockchain.STELLAR'
+      - $ref: '#/components/schemas/Blockchain.MONAD'
+      - $ref: '#/components/schemas/Blockchain.TEMPO'
+      title: OperationalBlockchain
+    ConcludeChallenge:
+      type: object
+      properties:
+        transactionId:
+          type: string
+      required:
+      - transactionId
+      title: ConcludeChallenge
     CryptoCartItem:
       type: object
       properties:
@@ -391,24 +686,312 @@ components:
       - recipientInfo
       description: Represents a crypto item in a shopping cart
       title: CryptoCartItem
-    Blockchain.ETH:
-      type: string
-      enum:
-      - eth
-      title: Blockchain.ETH
-    Blockchain.TEMPO:
-      type: string
-      enum:
-      - tempo
-      title: Blockchain.TEMPO
-    ConcludeChallenge:
+    Cents:
       type: object
       properties:
-        transactionId:
+        cents:
+          type: integer
+      required:
+      - cents
+      title: Cents
+    Authentication3DS:
+      oneOf:
+      - $ref: '#/components/schemas/Device3DSInfo'
+      - $ref: '#/components/schemas/External3DSInfo'
+      - $ref: '#/components/schemas/ConcludeChallenge'
+      description: "3DS Card Authorization Data\n\nOn initial payment submission - Device3DSInfo needed:\n 3DS device information - required if 3DS is enabled\n\nAfter card challenge complete:\n 3DS challenge transaction id - required after prompted for challenge"
+      title: Authentication3DS
+    CurrencyCents:
+      type: object
+      properties:
+        cents:
+          type: integer
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+      - cents
+      - currency
+      title: CurrencyCents
+    CartItemClassOmitted:
+      oneOf:
+      - $ref: '#/components/schemas/Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__'
+      - $ref: '#/components/schemas/Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__'
+      - $ref: '#/components/schemas/CryptoCartItem'
+      - $ref: '#/components/schemas/MoneyTopUpCartItem'
+      title: CartItemClassOmitted
+    Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__:
+      type: object
+      properties:
+        productName:
+          type: string
+          description: The name of the related product
+        productType:
+          $ref: '#/components/schemas/productType'
+        listPrice:
+          $ref: '#/components/schemas/PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice'
+          description: The item's list price
+        quantity:
+          type: number
+          format: double
+          description: The number of units sold
+        rawProductData:
+          $ref: '#/components/schemas/AnyObject'
+        seller:
+          $ref: '#/components/schemas/SellerInfo'
+        transactionHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionHistoryItem'
+      required:
+      - productName
+      - productType
+      - quantity
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__
+    TransactionHistoryItem:
+      type: object
+      properties:
+        txType:
+          type: string
+        chain:
+          type: string
+        paymentAmount:
+          type: string
+        paymentToken:
+          type: string
+        to:
+          type: string
+        from:
+          type: string
+        registryContract:
+          type: string
+        assetID:
+          type: string
+        txTime:
+          type: string
+        blockNumber:
+          type: number
+          format: double
+        txHash:
           type: string
       required:
-      - transactionId
-      title: ConcludeChallenge
+      - txType
+      - chain
+      - paymentAmount
+      - paymentToken
+      - to
+      - from
+      - registryContract
+      - assetID
+      - txTime
+      - blockNumber
+      - txHash
+      title: TransactionHistoryItem
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass:
+      type: string
+      enum:
+      - giftCard
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass
+    CartItemAddress:
+      type: object
+      properties:
+        country:
+          type: string
+          description: 'Country code specified as a two letter code according to ISO 3166 Alpha-2
+
+            Between 2 and 2 characters
+
+            Example: US
+
+            Pattern: ^[A-Z]{2}$'
+        state:
+          type: string
+          description: 'The state or province
+
+            Example: PA'
+        city:
+          type: string
+          description: 'The city or locality
+
+            Example: Pittsburgh'
+        street:
+          type: string
+          description: 'The street name
+
+            Example: Baker St'
+        postalCode:
+          type: string
+          description: The address postal code
+      description: Address structure
+      title: CartItemAddress
+    CurrencyAmount:
+      type: object
+      properties:
+        valueInCurrency:
+          type: number
+          format: double
+          description: 'The amount in the currency, which is specified in the `currency` property
+
+            Example: 90'
+        currency:
+          type: string
+          description: 'Currency specified as a three letter code according to ISO 4217
+
+            Example: USD'
+      required:
+      - valueInCurrency
+      - currency
+      description: Common currency amount structure
+      title: CurrencyAmount
+    RecipientInfoWallet:
+      type: object
+      properties:
+        custodialType:
+          $ref: '#/components/schemas/RecipientInfoWalletCustodialType'
+          description: 'The type of the wallet
+
+            Allowed values: custodial, nonCustodial, unknown
+
+            Example: custodial'
+        blockchain:
+          type: string
+          description: 'The blockchain on which the transaction was made
+
+            Example: BTC
+
+            Pattern: ^[A-Z0-9-]+$'
+        address:
+          type: string
+          description: The crypto wallet address that will receive the funds
+      required:
+      - custodialType
+      - blockchain
+      - address
+      description: The crypto wallet that will receive the funds
+      title: RecipientInfoWallet
+    PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        valueInCurrency:
+          type: number
+          format: double
+      description: The item's list price
+      title: PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice
+    Record_string.any_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.any_
+    SubscriptionTokenSetup:
+      type: object
+      properties:
+        customerInfo:
+          $ref: '#/components/schemas/CustomerInfo'
+        webhookInfo:
+          $ref: '#/components/schemas/AnyObject'
+        chargebackProtectionData:
+          $ref: '#/components/schemas/CartClassOmitted'
+        feePercentage:
+          type: number
+          format: double
+          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
+
+            taken from the subtotal amount.'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        planCode:
+          type: string
+          description: The code of the plan to use for the subscription
+        authentication3DS:
+          $ref: '#/components/schemas/Authentication3DS'
+        threeDsChallengePreference:
+          $ref: '#/components/schemas/ThreeDsChallengePreference'
+        accountFundingTransaction:
+          $ref: '#/components/schemas/AccountFundingTransaction'
+        token:
+          type: string
+          description: Token for the card to be used for the subscription
+        address:
+          $ref: '#/components/schemas/SubscriptionTokenSetupAddress'
+          description: The address field is not needed here unless explicitly given instructions to do so.
+      required:
+      - planCode
+      - token
+      title: SubscriptionTokenSetup
+    CardDataWithoutAddressAdditionalVendorData:
+      type: object
+      properties: {}
+      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
+
+        Base type is empty; tokenization providers extend it with their own fields.'
+      title: CardDataWithoutAddressAdditionalVendorData
+    SellerInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the seller
+        email:
+          type:
+          - string
+          - 'null'
+          description: 'Email
+
+            Example: lois.lane@dailyplanet.com'
+        firstName:
+          type: string
+          description: 'First name
+
+            Example: Lois'
+        lastName:
+          type: string
+          description: 'Last name
+
+            Example: Lois'
+        dob:
+          type: string
+          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
+
+            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
+        rawSellerData:
+          $ref: '#/components/schemas/Record_string.any_'
+      title: SellerInfo
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        interval:
+          $ref: '#/components/schemas/SubscriptionInterval'
+        duration:
+          type: integer
+        amount:
+          $ref: '#/components/schemas/CurrencyCents'
+        description:
+          type: string
+        transaction:
+          type: string
+        settlementChain:
+          $ref: '#/components/schemas/OperationalBlockchain'
+        active:
+          type: boolean
+        merchantInitiated:
+          type: boolean
+          description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
+      required:
+      - id
+      - name
+      - code
+      - interval
+      - amount
+      - active
+      title: SubscriptionPlan
     RecipientInfo:
       type: object
       properties:
@@ -453,53 +1036,86 @@ components:
           $ref: '#/components/schemas/RecipientInfoWallet'
           description: The crypto wallet that will receive the funds
       title: RecipientInfo
-    Blockchain:
-      type: string
-      enum:
-      - solana
-      - eth
-      - polygon
-      - base
-      - user
-      - arbitrum
-      - stellar
-      - monad
-      - tempo
-      title: Blockchain
-    MoneyTopUpCartItemItemClass:
-      type: string
-      enum:
-      - moneyTopUp
-      description: 'Denotes the cart item class. The item schema is chosen based on this value.
+    CryptoCartItemUnitPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: 'Currency specified as a three letter code according to ISO 4217
 
-        Allowed value: moneyTopUp
+            Example: USD'
+        valueInCurrency:
+          type: number
+          format: double
+          description: 'The amount in the currency, which is specified in the `currency` property
 
-        Example: moneyTopUp'
-      title: MoneyTopUpCartItemItemClass
-    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass:
+            Example: 90'
+      required:
+      - currency
+      - valueInCurrency
+      description: The price per 1 unit
+      title: CryptoCartItemUnitPrice
+    SubscriptionCardSetupCard:
+      oneOf:
+      - $ref: '#/components/schemas/CardData'
+      - $ref: '#/components/schemas/CardDataWithoutAddress'
+      description: 'Credit card information.
+
+        <b>Always</b> pass address unless explicitly told that you may not'
+      title: SubscriptionCardSetupCard
+    PhoneInfo:
+      type: object
+      properties:
+        carrier:
+          type: string
+          description: 'The mobile carrier
+
+            Example: T-Mobile'
+        countryCode:
+          type: string
+          description: 'The country code (leading `+` is optional)
+
+            Example: 42
+
+            Pattern: ^\+?[0-9]+$'
+        phone:
+          type: string
+          description: 'The phone number without the country code or hyphens
+
+            Example: 2025550169
+
+            Pattern: ^[0-9]+$'
+      required:
+      - countryCode
+      - phone
+      description: Phone information structure
+      title: PhoneInfo
+    VersionInfo:
+      type: object
+      properties:
+        url:
+          type: string
+        transactionId:
+          type: string
+        directoryServer:
+          type: string
+        version:
+          type: string
+      required:
+      - transactionId
+      - directoryServer
+      - version
+      title: VersionInfo
+    SubscriptionStatus:
       type: string
       enum:
-      - giftCard
-      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemClass
-    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment:
-      type: string
-      enum:
-      - digital
-      - physical
-      description: How the product was fulfilled.
-      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceItemFulfillment
-    RecipientInfoWalletCustodialType:
-      type: string
-      enum:
-      - custodial
-      - nonCustodial
-      - unknown
-      description: 'The type of the wallet
-
-        Allowed values: custodial, nonCustodial, unknown
-
-        Example: custodial'
-      title: RecipientInfoWalletCustodialType
+      - Active
+      - Canceled
+      - Expired
+      - Concluded
+      - Failed
+      - Blocked
+      title: SubscriptionStatus
     RecipientAftInfo:
       type: object
       properties:
@@ -532,234 +1148,6 @@ components:
       - postalCode
       - countryCode
       title: RecipientAftInfo
-    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice:
-      type: object
-      properties:
-        currency:
-          type: string
-        valueInCurrency:
-          type: number
-          format: double
-      required:
-      - currency
-      - valueInCurrency
-      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice
-    RecipientInfoWallet:
-      type: object
-      properties:
-        custodialType:
-          $ref: '#/components/schemas/RecipientInfoWalletCustodialType'
-          description: 'The type of the wallet
-
-            Allowed values: custodial, nonCustodial, unknown
-
-            Example: custodial'
-        blockchain:
-          type: string
-          description: 'The blockchain on which the transaction was made
-
-            Example: BTC
-
-            Pattern: ^[A-Z0-9-]+$'
-        address:
-          type: string
-          description: The crypto wallet address that will receive the funds
-      required:
-      - custodialType
-      - blockchain
-      - address
-      description: The crypto wallet that will receive the funds
-      title: RecipientInfoWallet
-    Device3DSInfo:
-      type: object
-      properties:
-        colorDepth:
-          type: number
-          format: double
-        screenHeight:
-          type: number
-          format: double
-        screenWidth:
-          type: number
-          format: double
-        timeZone:
-          type: number
-          format: double
-        versionInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/VersionInfo'
-      required:
-      - colorDepth
-      - screenHeight
-      - screenWidth
-      - timeZone
-      title: Device3DSInfo
-    CustomerInfo:
-      oneOf:
-      - $ref: '#/components/schemas/SplitNameCustomerInfo'
-      - $ref: '#/components/schemas/NameCustomerInfo'
-      title: CustomerInfo
-    AnyObject:
-      type: object
-      properties:
-        example:
-          type: string
-      title: AnyObject
-    SplitNameCustomerInfo:
-      type: object
-      properties:
-        verificationId:
-          type: string
-        displayName:
-          type: string
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country:
-          type: string
-        ip:
-          type: string
-        lat:
-          type: string
-        lng:
-          type: string
-        dob:
-          type: string
-          description: Date of birth in YYYY-MM-DD format
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-      required:
-      - firstName
-      - lastName
-      title: SplitNameCustomerInfo
-    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType:
-      type: string
-      enum:
-      - giftCard
-      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceProductType
-    CartItemAddress:
-      type: object
-      properties:
-        country:
-          type: string
-          description: 'Country code specified as a two letter code according to ISO 3166 Alpha-2
-
-            Between 2 and 2 characters
-
-            Example: US
-
-            Pattern: ^[A-Z]{2}$'
-        state:
-          type: string
-          description: 'The state or province
-
-            Example: PA'
-        city:
-          type: string
-          description: 'The city or locality
-
-            Example: Pittsburgh'
-        street:
-          type: string
-          description: 'The street name
-
-            Example: Baker St'
-        postalCode:
-          type: string
-          description: The address postal code
-      description: Address structure
-      title: CartItemAddress
-    SubscriptionInterval:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      - Monthly
-      - Yearly
-      title: SubscriptionInterval
-    PhoneInfo:
-      type: object
-      properties:
-        carrier:
-          type: string
-          description: 'The mobile carrier
-
-            Example: T-Mobile'
-        countryCode:
-          type: string
-          description: 'The country code (leading `+` is optional)
-
-            Example: 42
-
-            Pattern: ^\+?[0-9]+$'
-        phone:
-          type: string
-          description: 'The phone number without the country code or hyphens
-
-            Example: 2025550169
-
-            Pattern: ^[0-9]+$'
-      required:
-      - countryCode
-      - phone
-      description: Phone information structure
-      title: PhoneInfo
-    SubscriptionStatus:
-      type: string
-      enum:
-      - Active
-      - Canceled
-      - Expired
-      - Concluded
-      - Failed
-      - Blocked
-      title: SubscriptionStatus
-    External3DSInfo:
-      type: object
-      properties:
-        transactionId:
-          type: string
-        cavv:
-          type: string
-        eci:
-          type: string
-        dsTransactionId:
-          type: string
-        acsTransactionId:
-          type: string
-        version:
-          type: string
-      required:
-      - transactionId
-      - cavv
-      - eci
-      - dsTransactionId
-      - acsTransactionId
-      - version
-      description: 'External 3DS info, if provided must call the endpoint
-
-        with API key or checkout JWT.'
-      title: External3DSInfo
-    PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice:
-      type: object
-      properties:
-        currency:
-          type: string
-        valueInCurrency:
-          type: number
-          format: double
-      description: The item's list price
-      title: PickNftCartItemExcludeKeyofnftCartItemSellingPriceOrItemClassListPrice
     SubscriptionTokenSetupAddress:
       type: object
       properties:
@@ -779,70 +1167,7 @@ components:
       - address1
       description: The address field is not needed here unless explicitly given instructions to do so.
       title: SubscriptionTokenSetupAddress
-    MoneyTopUpCartItem:
-      type: object
-      properties:
-        itemClass:
-          $ref: '#/components/schemas/MoneyTopUpCartItemItemClass'
-          description: 'Denotes the cart item class. The item schema is chosen based on this value.
-
-            Allowed value: moneyTopUp
-
-            Example: moneyTopUp'
-        id:
-          type: string
-          description: 'The cart items''s unique ID
-
-            Example: 5de33332-546a-4171-8988-2a43d2bfe9c6'
-        rawProductData:
-          $ref: '#/components/schemas/Record_string.any_'
-        sellingPrice:
-          $ref: '#/components/schemas/CurrencyAmount'
-        recipientInfo:
-          $ref: '#/components/schemas/RecipientInfo'
-        topUpAmount:
-          $ref: '#/components/schemas/CurrencyAmount'
-        quantity:
-          type: number
-          format: double
-          description: 'Quantity
-
-            Example: 2'
-        isPresetAmount:
-          type: boolean
-          description: 'Represents whether the item amount is taken from a preset list, e.g. 25, 50, 100, etc.
-
-            or whether it was a different amount, e.g. 27'
-      required:
-      - itemClass
-      - sellingPrice
-      - topUpAmount
-      - quantity
-      - isPresetAmount
-      description: Represents a money top-up item in a shopping cart
-      title: MoneyTopUpCartItem
-    VersionInfo:
-      type: object
-      properties:
-        url:
-          type: string
-        transactionId:
-          type: string
-        directoryServer:
-          type: string
-        version:
-          type: string
-      required:
-      - transactionId
-      - directoryServer
-      - version
-      title: VersionInfo
-    Blockchain.ARBITRUM:
-      type: string
-      enum:
-      - arbitrum
-      title: Blockchain.ARBITRUM
-    CardDataWithoutAddress:
+    CardData:
       type: object
       properties:
         cardToken:
@@ -855,7 +1180,7 @@ components:
           type: string
           description: 'The Cards Expiration Month ex: January => 01 December => 12'
         additionalVendorData:
-          $ref: '#/components/schemas/CardDataWithoutAddressAdditionalVendorData'
+          $ref: '#/components/schemas/CardDataAdditionalVendorData'
           description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
 
             Base type is empty; tokenization providers extend it with their own fields.'
@@ -867,6 +1192,16 @@ components:
           type: string
         lastName:
           type: string
+        address1:
+          type: string
+        city:
+          type: string
+        zip:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
       required:
       - cardToken
       - expYear
@@ -874,8 +1209,11 @@ components:
       - email
       - firstName
       - lastName
-      title: CardDataWithoutAddress
-    SubscriptionTokenSetup:
+      - address1
+      - city
+      - country
+      title: CardData
+    SubscriptionAchSetup:
       type: object
       properties:
         customerInfo:
@@ -895,22 +1233,37 @@ components:
         planCode:
           type: string
           description: The code of the plan to use for the subscription
-        authentication3DS:
-          $ref: '#/components/schemas/Authentication3DS'
-        threeDsChallengePreference:
-          $ref: '#/components/schemas/ThreeDsChallengePreference'
-        accountFundingTransaction:
-          $ref: '#/components/schemas/AccountFundingTransaction'
         token:
           type: string
-          description: Token for the card to be used for the subscription
-        address:
-          $ref: '#/components/schemas/SubscriptionTokenSetupAddress'
-          description: The address field is not needed here unless explicitly given instructions to do so.
+          description: Token for the bank account to be used for the subscription
       required:
       - planCode
       - token
-      title: SubscriptionTokenSetup
+      title: SubscriptionAchSetup
+    RecipientInfoWalletCustodialType:
+      type: string
+      enum:
+      - custodial
+      - nonCustodial
+      - unknown
+      description: 'The type of the wallet
+
+        Allowed values: custodial, nonCustodial, unknown
+
+        Example: custodial'
+      title: RecipientInfoWalletCustodialType
+    PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice:
+      type: object
+      properties:
+        currency:
+          type: string
+        valueInCurrency:
+          type: number
+          format: double
+      required:
+      - currency
+      - valueInCurrency
+      title: PickGiftCardCartItemExcludeKeyofGiftCardCartItemListPriceSellingPrice
     Currency:
       type: string
       enum:
@@ -1071,385 +1424,62 @@ components:
       - SSP
       - VES
       title: Currency
-    SellerInfo:
+    AccountFundingTransaction:
       type: object
       properties:
-        id:
-          type: string
-          description: Id of the seller
-        email:
-          type:
-          - string
-          - 'null'
-          description: 'Email
-
-            Example: lois.lane@dailyplanet.com'
-        firstName:
-          type: string
-          description: 'First name
-
-            Example: Lois'
-        lastName:
-          type: string
-          description: 'Last name
-
-            Example: Lois'
-        dob:
-          type: string
-          description: 'Date of birth, formatted as YYYY-MM-DD. If only the year is known, use YYYY
-
-            Pattern: ^\d{4}(-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))?$'
-        rawSellerData:
-          $ref: '#/components/schemas/Record_string.any_'
-      title: SellerInfo
-    SubscriptionAchSetup:
-      type: object
-      properties:
-        customerInfo:
-          $ref: '#/components/schemas/CustomerInfo'
-        webhookInfo:
-          $ref: '#/components/schemas/AnyObject'
-        chargebackProtectionData:
-          $ref: '#/components/schemas/CartClassOmitted'
-        feePercentage:
-          type: number
-          format: double
-          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
-
-            taken from the subtotal amount.'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        planCode:
-          type: string
-          description: The code of the plan to use for the subscription
-        token:
-          type: string
-          description: Token for the bank account to be used for the subscription
-      required:
-      - planCode
-      - token
-      title: SubscriptionAchSetup
-    SubscriptionPlan:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        code:
-          type: string
-        interval:
-          $ref: '#/components/schemas/SubscriptionInterval'
-        duration:
-          type: integer
-        amount:
-          $ref: '#/components/schemas/CurrencyCents'
-        description:
-          type: string
-        transaction:
-          type: string
-        settlementChain:
-          $ref: '#/components/schemas/OperationalBlockchain'
-        active:
-          type: boolean
-        merchantInitiated:
-          type: boolean
-          description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
-      required:
-      - id
-      - name
-      - code
-      - interval
-      - amount
-      - active
-      title: SubscriptionPlan
-    Blockchain.SOLANA:
+        recipientAftInfo:
+          $ref: '#/components/schemas/RecipientAftInfo'
+      description: Used for Account Funding Transactions
+      title: AccountFundingTransaction
+    Blockchain:
       type: string
       enum:
       - solana
-      title: Blockchain.SOLANA
-    OperationalBlockchain:
-      oneOf:
-      - $ref: '#/components/schemas/Blockchain.SOLANA'
-      - $ref: '#/components/schemas/Blockchain.ETH'
-      - $ref: '#/components/schemas/Blockchain.POLYGON'
-      - $ref: '#/components/schemas/Blockchain.BASE'
-      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
-      - $ref: '#/components/schemas/Blockchain.STELLAR'
-      - $ref: '#/components/schemas/Blockchain.MONAD'
-      - $ref: '#/components/schemas/Blockchain.TEMPO'
-      title: OperationalBlockchain
-    productType:
-      type: string
-      enum:
-      - inGameProduct
-      - gameOfSkill
-      - dataStorage
-      - computingResources
-      - sportsTicket
-      - eSportsTicket
-      - musicTicket
-      - conferenceTicket
-      - virtualSportsTicket
-      - virtualESportsTicket
-      - virtualMusicTicket
-      - virtualConferenceTicket
-      - alcohol
-      - DLC
-      - subscription
-      - fundACause
-      - realEstate
-      - computingContract
-      - digitalArt
-      - topUp
-      - ownershipContract
-      - inGameCurrency
-      - digitalCollectibles
-      - digitalCollectiblesMarketplace
-      - digitalGiftingMarketplace
-      - sweepstakes
-      - virtualSportsEvents
-      - contractInvoicing
-      - onlineCasino
-      - cryptoOnramp
-      - gaming
-      - travelDocuments
-      - musicStreaming
-      - digitalContent
-      - eBooks
-      - digitalSubscriptionContent
-      title: productType
-    CurrencyAmount:
+      - eth
+      - polygon
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
+    NameCustomerInfo:
       type: object
       properties:
-        valueInCurrency:
-          type: number
-          format: double
-          description: 'The amount in the currency, which is specified in the `currency` property
-
-            Example: 90'
-        currency:
+        verificationId:
           type: string
-          description: 'Currency specified as a three letter code according to ISO 4217
-
-            Example: USD'
-      required:
-      - valueInCurrency
-      - currency
-      description: Common currency amount structure
-      title: CurrencyAmount
+        displayName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country:
+          type: string
+        ip:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+        dob:
+          type: string
+          description: Date of birth in YYYY-MM-DD format
+        email:
+          type: string
+        name:
+          type: string
+      title: NameCustomerInfo
     Blockchain.MONAD:
       type: string
       enum:
       - monad
       title: Blockchain.MONAD
-    CardData:
-      type: object
-      properties:
-        cardToken:
-          type: string
-          description: This is the card token received from the `CoinflowCardNumberInput`
-        expYear:
-          type: string
-          description: 'The Cards Expiration Year ex: 2026 => 26'
-        expMonth:
-          type: string
-          description: 'The Cards Expiration Month ex: January => 01 December => 12'
-        additionalVendorData:
-          $ref: '#/components/schemas/CardDataAdditionalVendorData'
-          description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
-
-            Base type is empty; tokenization providers extend it with their own fields.'
-        email:
-          type: string
-        businessName:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        address1:
-          type: string
-        city:
-          type: string
-        zip:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-      required:
-      - cardToken
-      - expYear
-      - expMonth
-      - email
-      - firstName
-      - lastName
-      - address1
-      - city
-      - country
-      title: CardData
-    Record_string.any_:
-      type: object
-      properties: {}
-      description: Construct a type with a set of properties K of type T
-      title: Record_string.any_
-    CryptoCartItemUnitPrice:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: 'Currency specified as a three letter code according to ISO 4217
-
-            Example: USD'
-        valueInCurrency:
-          type: number
-          format: double
-          description: 'The amount in the currency, which is specified in the `currency` property
-
-            Example: 90'
-      required:
-      - currency
-      - valueInCurrency
-      description: The price per 1 unit
-      title: CryptoCartItemUnitPrice
-    Cents:
-      type: object
-      properties:
-        cents:
-          type: integer
-      required:
-      - cents
-      title: Cents
-    CryptoCartItemItemClass:
-      type: string
-      enum:
-      - crypto
-      description: 'Denotes the cart item class. The item schema is chosen based on this value.
-
-        Allowed value: crypto
-
-        Example: crypto'
-      title: CryptoCartItemItemClass
-    Authentication3DS:
-      oneOf:
-      - $ref: '#/components/schemas/Device3DSInfo'
-      - $ref: '#/components/schemas/External3DSInfo'
-      - $ref: '#/components/schemas/ConcludeChallenge'
-      description: "3DS Card Authorization Data\n\nOn initial payment submission - Device3DSInfo needed:\n 3DS device information - required if 3DS is enabled\n\nAfter card challenge complete:\n 3DS challenge transaction id - required after prompted for challenge"
-      title: Authentication3DS
-    TransactionHistoryItem:
-      type: object
-      properties:
-        txType:
-          type: string
-        chain:
-          type: string
-        paymentAmount:
-          type: string
-        paymentToken:
-          type: string
-        to:
-          type: string
-        from:
-          type: string
-        registryContract:
-          type: string
-        assetID:
-          type: string
-        txTime:
-          type: string
-        blockNumber:
-          type: number
-          format: double
-        txHash:
-          type: string
-      required:
-      - txType
-      - chain
-      - paymentAmount
-      - paymentToken
-      - to
-      - from
-      - registryContract
-      - assetID
-      - txTime
-      - blockNumber
-      - txHash
-      title: TransactionHistoryItem
-    SubscriptionCardSetup:
-      type: object
-      properties:
-        customerInfo:
-          $ref: '#/components/schemas/CustomerInfo'
-        webhookInfo:
-          $ref: '#/components/schemas/AnyObject'
-        chargebackProtectionData:
-          $ref: '#/components/schemas/CartClassOmitted'
-        feePercentage:
-          type: number
-          format: double
-          description: 'If this purchase is for a seller/submerchant where the marketplace takes a fee, this is the % fee which is
-
-            taken from the subtotal amount.'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        planCode:
-          type: string
-          description: The code of the plan to use for the subscription
-        authentication3DS:
-          $ref: '#/components/schemas/Authentication3DS'
-        threeDsChallengePreference:
-          $ref: '#/components/schemas/ThreeDsChallengePreference'
-        accountFundingTransaction:
-          $ref: '#/components/schemas/AccountFundingTransaction'
-        card:
-          $ref: '#/components/schemas/SubscriptionCardSetupCard'
-          description: 'Credit card information.
-
-            <b>Always</b> pass address unless explicitly told that you may not'
-      required:
-      - planCode
-      - card
-      title: SubscriptionCardSetup
-    SubscriptionCardSetupCard:
-      oneOf:
-      - $ref: '#/components/schemas/CardData'
-      - $ref: '#/components/schemas/CardDataWithoutAddress'
-      description: 'Credit card information.
-
-        <b>Always</b> pass address unless explicitly told that you may not'
-      title: SubscriptionCardSetupCard
-    CardDataAdditionalVendorData:
-      type: object
-      properties: {}
-      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
-
-        Base type is empty; tokenization providers extend it with their own fields.'
-      title: CardDataAdditionalVendorData
-    CurrencyCents:
-      type: object
-      properties:
-        cents:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-      required:
-      - cents
-      - currency
-      title: CurrencyCents
-    Blockchain.BASE:
-      type: string
-      enum:
-      - base
-      title: Blockchain.BASE
-    CardDataWithoutAddressAdditionalVendorData:
-      type: object
-      properties: {}
-      description: 'Optional non-PCI passthrough fields merged into the stored card vendorData.
-
-        Base type is empty; tokenization providers extend it with their own fields.'
-      title: CardDataWithoutAddressAdditionalVendorData
     Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__:
       type: object
       properties:
@@ -1504,36 +1534,6 @@ components:
       - itemFulfillment
       description: From T, pick a set of properties whose keys are in the union K
       title: Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__
-    Blockchain.POLYGON:
-      type: string
-      enum:
-      - polygon
-      title: Blockchain.POLYGON
-    CartClassOmitted:
-      type: array
-      items:
-        $ref: '#/components/schemas/CartItemClassOmitted'
-      description: Cart item details required for Coinflow Chargeback Protection. Required if the merchant uses chargeback protection.
-      title: CartClassOmitted
-    Blockchain.STELLAR:
-      type: string
-      enum:
-      - stellar
-      title: Blockchain.STELLAR
-    ThreeDsChallengePreference:
-      type: string
-      enum:
-      - NoPreference
-      - Frictionless
-      - Challenge
-      title: ThreeDsChallengePreference
-    CartItemClassOmitted:
-      oneOf:
-      - $ref: '#/components/schemas/Pick_nftCartItem.Exclude_keyofnftCartItem.sellingPrice-or-itemClass__'
-      - $ref: '#/components/schemas/Pick_GiftCardCartItem.Exclude_keyofGiftCardCartItem.listPrice__'
-      - $ref: '#/components/schemas/CryptoCartItem'
-      - $ref: '#/components/schemas/MoneyTopUpCartItem'
-      title: CartItemClassOmitted
   securitySchemes:
     wallet:
       type: apiKey
