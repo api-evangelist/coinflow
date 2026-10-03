@@ -160,25 +160,11 @@ paths:
               $ref: '#/components/schemas/ServerToServerCardOnlyRequest'
 components:
   schemas:
-    ServerToServerCardOnlyRequest:
-      type: object
-      properties:
-        data:
-          type: string
-          description: 'The data to be tokenized. This is the PAN of the card.
-
-            Example: 4111111111111111
-
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-      title: ServerToServerCardOnlyRequest
-    TokenizeAssociateCvvPostParametersTxTokenScheme:
+    TokenizeCardOnlyPostParametersTxTokenScheme:
       type: string
       enum:
       - sixANTOKENfour
-      title: TokenizeAssociateCvvPostParametersTxTokenScheme
+      title: TokenizeCardOnlyPostParametersTxTokenScheme
     ServerToServerTokenizationResponse:
       type: object
       properties:
@@ -205,28 +191,11 @@ components:
       - error
       - message
       title: ServerToServerTokenizationResponse
-    ServerToServerAssociatedCvvRequest:
-      type: object
-      properties:
-        token:
-          type: string
-          description: 'The token to associate the CVV with.
-
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-        cvv:
-          type: string
-          description: 'The value of the CVV you wish to associate with the token.
-
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-      required:
-      - token
-      title: ServerToServerAssociatedCvvRequest
+    TokenizeAssociateCvvPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeAssociateCvvPostParametersTxTokenScheme
     ServerToServerTokenizationRequest:
       type: object
       properties:
@@ -249,11 +218,42 @@ components:
 
             redirect where the card data should be sent.'
       title: ServerToServerTokenizationRequest
-    TokenizeCardOnlyPostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizeCardOnlyPostParametersTxTokenScheme
+    ServerToServerCardOnlyRequest:
+      type: object
+      properties:
+        data:
+          type: string
+          description: 'The data to be tokenized. This is the PAN of the card.
+
+            Example: 4111111111111111
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      title: ServerToServerCardOnlyRequest
+    ServerToServerAssociatedCvvRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: 'The token to associate the CVV with.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+        cvv:
+          type: string
+          description: 'The value of the CVV you wish to associate with the token.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      required:
+      - token
+      title: ServerToServerAssociatedCvvRequest
     TokenizePostParametersTxTokenScheme:
       type: string
       enum:
