@@ -298,6 +298,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/coinflow-capability-edges.yml
+  name: Coinflow Business Capability Map
 - type: Website
   url: https://coinflow.cash/
 - type: DeveloperPortal
