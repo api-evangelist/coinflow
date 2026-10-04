@@ -48,7 +48,7 @@ paths:
               $ref: '#/components/schemas/EventData'
 components:
   schemas:
-    SoftApprovalChallengeStatus:
+    OtherChallengeStatus:
       type: string
       enum:
       - triggered
@@ -64,47 +64,54 @@ components:
         failed - the user did not successfully fulfill the challenge.
 
         timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: SoftApprovalChallengeStatus
-    EventData:
-      oneOf:
-      - $ref: '#/components/schemas/SignUpEvent'
-      - $ref: '#/components/schemas/BuyerChallengeEvent'
-      - $ref: '#/components/schemas/SignInFailureEvent'
-      - $ref: '#/components/schemas/SignInEvent'
-      title: EventData
-    EmailVerificationChallengeType:
+      title: OtherChallengeStatus
+    OtpVerificationChallengeOtpProvider:
       type: string
       enum:
-      - emailVerification
-      title: EmailVerificationChallengeType
-    InternalKycChallenge:
+      - Google Authenticator
+      - Octa
+      - Authy
+      - Protectimus Smart OTP
+      - Microsoft Authenticator
+      - FreeOTP Authenticator
+      - Sophos Authenticator
+      - Authenticator Plus
+      - LastPass Authenticator
+      - SoundLogin
+      - Yubikey
+      - Protectimus Slim NFC
+      - Other
+      description: The OTP Provider
+      title: OtpVerificationChallengeOtpProvider
+    SignUpEvent:
       type: object
       properties:
-        timeLimit:
-          type: number
-          format: double
-          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
-
-            Only allowed when status is set to triggered'
-        rawChallengeData:
-          $ref: '#/components/schemas/Record_string.string-or-number_'
-        status:
-          $ref: '#/components/schemas/InternalKycChallengeStatus'
-          description: 'Indicates the challenge status. Possible values are:
-
-            triggered - the user has been presented with the challenge.
-
-            successfullyFulfilled - the user has successfully fulfilled the challenge.
-
-            failed - the user did not successfully fulfill the challenge.
-
-            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-        type:
-          $ref: '#/components/schemas/InternalKycChallengeType'
+        eventType:
+          $ref: '#/components/schemas/EventType.SignUp'
+        customerId:
+          type: string
+          description: The id of the customer
+        country:
+          type: string
+          description: The country where the customer is located (if available)
+        username:
+          type: string
+          description: The username or userID of the customer
+        email:
+          type: string
+          description: The email of the customer
+        firstName:
+          type: string
+          description: The first name of the customer (if available)
+        lastName:
+          type: string
+          description: The last name of the customer (if available)
       required:
-      - status
-      - type
-      title: InternalKycChallenge
+      - eventType
+      - customerId
+      - username
+      description: Sign up event - Call this event when your customer signs up for your service.
+      title: SignUpEvent
     InternalKycChallengeStatus:
       type: string
       enum:
@@ -122,22 +129,44 @@ components:
 
         timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
       title: InternalKycChallengeStatus
-    OtherChallengeType:
-      type: string
-      enum:
-      - cardVerification
-      - questionnaire
-      title: OtherChallengeType
-    EventType.SignInFailure:
-      type: string
-      enum:
-      - SignInFailure
-      title: EventType.SignInFailure
-    EventType.BuyerChallenge:
-      type: string
-      enum:
-      - BuyerChallenge
-      title: EventType.BuyerChallenge
+    BuyerChallengeInfo:
+      oneOf:
+      - $ref: '#/components/schemas/EmailVerificationChallenge'
+      - $ref: '#/components/schemas/OtpVerificationChallenge'
+      - $ref: '#/components/schemas/PhoneChallenge'
+      - $ref: '#/components/schemas/ThirdPartyKycChallenge'
+      - $ref: '#/components/schemas/InternalKycChallenge'
+      - $ref: '#/components/schemas/SoftApprovalChallenge'
+      - $ref: '#/components/schemas/OtherChallenge'
+      title: BuyerChallengeInfo
+    SoftApprovalChallenge:
+      type: object
+      properties:
+        timeLimit:
+          type: number
+          format: double
+          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
+
+            Only allowed when status is set to triggered'
+        rawChallengeData:
+          $ref: '#/components/schemas/Record_string.string-or-number_'
+        status:
+          $ref: '#/components/schemas/SoftApprovalChallengeStatus'
+          description: 'Indicates the challenge status. Possible values are:
+
+            triggered - the user has been presented with the challenge.
+
+            successfullyFulfilled - the user has successfully fulfilled the challenge.
+
+            failed - the user did not successfully fulfill the challenge.
+
+            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
+        type:
+          $ref: '#/components/schemas/SoftApprovalChallengeType'
+      required:
+      - status
+      - type
+      title: SoftApprovalChallenge
     ThirdPartyKycChallenge:
       type: object
       properties:
@@ -171,7 +200,17 @@ components:
       - type
       description: KYC verification conducted by a third party
       title: ThirdPartyKycChallenge
-    OtherChallengeStatus:
+    EventType.BuyerChallenge:
+      type: string
+      enum:
+      - BuyerChallenge
+      title: EventType.BuyerChallenge
+    EventType.SignIn:
+      type: string
+      enum:
+      - SignIn
+      title: EventType.SignIn
+    ThirdPartyKycChallengeStatus:
       type: string
       enum:
       - triggered
@@ -187,13 +226,18 @@ components:
         failed - the user did not successfully fulfill the challenge.
 
         timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: OtherChallengeStatus
+      title: ThirdPartyKycChallengeStatus
     InternalKycChallengeType:
       type: string
       enum:
       - internalKyc
       title: InternalKycChallengeType
-    PhoneChallengeStatus:
+    EventType.SignUp:
+      type: string
+      enum:
+      - SignUp
+      title: EventType.SignUp
+    SoftApprovalChallengeStatus:
       type: string
       enum:
       - triggered
@@ -209,7 +253,116 @@ components:
         failed - the user did not successfully fulfill the challenge.
 
         timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: PhoneChallengeStatus
+      title: SoftApprovalChallengeStatus
+    InternalKycChallenge:
+      type: object
+      properties:
+        timeLimit:
+          type: number
+          format: double
+          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
+
+            Only allowed when status is set to triggered'
+        rawChallengeData:
+          $ref: '#/components/schemas/Record_string.string-or-number_'
+        status:
+          $ref: '#/components/schemas/InternalKycChallengeStatus'
+          description: 'Indicates the challenge status. Possible values are:
+
+            triggered - the user has been presented with the challenge.
+
+            successfullyFulfilled - the user has successfully fulfilled the challenge.
+
+            failed - the user did not successfully fulfill the challenge.
+
+            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
+        type:
+          $ref: '#/components/schemas/InternalKycChallengeType'
+      required:
+      - status
+      - type
+      title: InternalKycChallenge
+    EmailVerificationChallengeType:
+      type: string
+      enum:
+      - emailVerification
+      title: EmailVerificationChallengeType
+    PhoneChallenge:
+      type: object
+      properties:
+        timeLimit:
+          type: number
+          format: double
+          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
+
+            Only allowed when status is set to triggered'
+        rawChallengeData:
+          $ref: '#/components/schemas/Record_string.string-or-number_'
+        status:
+          $ref: '#/components/schemas/PhoneChallengeStatus'
+          description: 'Indicates the challenge status. Possible values are:
+
+            triggered - the user has been presented with the challenge.
+
+            successfullyFulfilled - the user has successfully fulfilled the challenge.
+
+            failed - the user did not successfully fulfill the challenge.
+
+            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
+        phoneInfo:
+          $ref: '#/components/schemas/PhoneChallengePhoneInfo'
+        type:
+          $ref: '#/components/schemas/PhoneChallengeType'
+      required:
+      - status
+      - phoneInfo
+      - type
+      description: Verification challenge that is performed by calling the user.
+      title: PhoneChallenge
+    ThirdPartyKycChallengeType:
+      type: string
+      enum:
+      - 3rdPartyKyc
+      title: ThirdPartyKycChallengeType
+    OtpVerificationChallengeType:
+      type: string
+      enum:
+      - otpVerification
+      title: OtpVerificationChallengeType
+    EmailVerificationChallengeStatus:
+      type: string
+      enum:
+      - triggered
+      - successfullyFulfilled
+      - failed
+      - timedOut
+      description: 'Indicates the challenge status. Possible values are:
+
+        triggered - the user has been presented with the challenge.
+
+        successfullyFulfilled - the user has successfully fulfilled the challenge.
+
+        failed - the user did not successfully fulfill the challenge.
+
+        timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
+      title: EmailVerificationChallengeStatus
+    OtpVerificationChallengeStatus:
+      type: string
+      enum:
+      - triggered
+      - successfullyFulfilled
+      - failed
+      - timedOut
+      description: 'Indicates the challenge status. Possible values are:
+
+        triggered - the user has been presented with the challenge.
+
+        successfullyFulfilled - the user has successfully fulfilled the challenge.
+
+        failed - the user did not successfully fulfill the challenge.
+
+        timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
+      title: OtpVerificationChallengeStatus
     OtpVerificationChallenge:
       type: object
       properties:
@@ -243,6 +396,43 @@ components:
       - type
       description: The relevant challenge info
       title: OtpVerificationChallenge
+    Record_string.string-or-number_:
+      type: object
+      properties: {}
+      description: Construct a type with a set of properties K of type T
+      title: Record_string.string-or-number_
+    OtherChallengeType:
+      type: string
+      enum:
+      - cardVerification
+      - questionnaire
+      title: OtherChallengeType
+    SignInFailureEvent:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/EventType.SignInFailure'
+        customerId:
+          type: string
+          description: The id of the customer
+        country:
+          type: string
+          description: The country where the customer is located (if available)
+        email:
+          type: string
+          description: The email of the customer
+        failureReason:
+          type: string
+          description: 'The reason that the failure occurred
+
+            ex: "Incorrect Password", "Incorrect 2FA code"'
+      required:
+      - eventType
+      - customerId
+      description: 'Sign In Failure event - Call this event when a customer attempts to sign into
+
+        your service, but sign in attempt is unsuccessful.'
+      title: SignInFailureEvent
     BuyerChallengeEvent:
       type: object
       properties:
@@ -264,17 +454,37 @@ components:
 
         ex: Email verification link, SMS 2FA text, buyer is KYC''d'
       title: BuyerChallengeEvent
-    BuyerChallengeInfo:
-      oneOf:
-      - $ref: '#/components/schemas/EmailVerificationChallenge'
-      - $ref: '#/components/schemas/OtpVerificationChallenge'
-      - $ref: '#/components/schemas/PhoneChallenge'
-      - $ref: '#/components/schemas/ThirdPartyKycChallenge'
-      - $ref: '#/components/schemas/InternalKycChallenge'
-      - $ref: '#/components/schemas/SoftApprovalChallenge'
-      - $ref: '#/components/schemas/OtherChallenge'
-      title: BuyerChallengeInfo
-    EmailVerificationChallengeStatus:
+    EventType.SignInFailure:
+      type: string
+      enum:
+      - SignInFailure
+      title: EventType.SignInFailure
+    PhoneChallengeType:
+      type: string
+      enum:
+      - phoneCall
+      - phoneVerification
+      title: PhoneChallengeType
+    SignInEvent:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/EventType.SignIn'
+        customerId:
+          type: string
+          description: The id of the customer
+        country:
+          type: string
+          description: The country where the customer is located (if available)
+        email:
+          type: string
+          description: The email of the customer
+      required:
+      - eventType
+      - customerId
+      description: Sign in event - Call this event when your customer signs into your service.
+      title: SignInEvent
+    PhoneChallengeStatus:
       type: string
       enum:
       - triggered
@@ -290,17 +500,30 @@ components:
         failed - the user did not successfully fulfill the challenge.
 
         timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: EmailVerificationChallengeStatus
-    Record_string.string-or-number_:
-      type: object
-      properties: {}
-      description: Construct a type with a set of properties K of type T
-      title: Record_string.string-or-number_
-    EventType.SignIn:
+      title: PhoneChallengeStatus
+    SoftApprovalChallengeType:
       type: string
       enum:
-      - SignIn
-      title: EventType.SignIn
+      - softApproval
+      title: SoftApprovalChallengeType
+    PhoneChallengePhoneInfo:
+      type: object
+      properties:
+        carrier:
+          type: string
+        countryCode:
+          type: string
+          description: The country code (leading + is optional)
+        phone:
+          type: string
+          description: 'The phone number of the user.
+
+            Must match the regex: ^[0-9]+$'
+      required:
+      - carrier
+      - countryCode
+      - phone
+      title: PhoneChallengePhoneInfo
     OtherChallenge:
       type: object
       properties:
@@ -329,38 +552,6 @@ components:
       - status
       - type
       title: OtherChallenge
-    SignInFailureEvent:
-      type: object
-      properties:
-        eventType:
-          $ref: '#/components/schemas/EventType.SignInFailure'
-        customerId:
-          type: string
-          description: The id of the customer
-        country:
-          type: string
-          description: The country where the customer is located (if available)
-        email:
-          type: string
-          description: The email of the customer
-        failureReason:
-          type: string
-          description: 'The reason that the failure occurred
-
-            ex: "Incorrect Password", "Incorrect 2FA code"'
-      required:
-      - eventType
-      - customerId
-      description: 'Sign In Failure event - Call this event when a customer attempts to sign into
-
-        your service, but sign in attempt is unsuccessful.'
-      title: SignInFailureEvent
-    PhoneChallengeType:
-      type: string
-      enum:
-      - phoneCall
-      - phoneVerification
-      title: PhoneChallengeType
     EmailVerificationChallenge:
       type: object
       properties:
@@ -393,204 +584,13 @@ components:
       - type
       description: Verification challenge that is sent by email
       title: EmailVerificationChallenge
-    OtpVerificationChallengeType:
-      type: string
-      enum:
-      - otpVerification
-      title: OtpVerificationChallengeType
-    OtpVerificationChallengeOtpProvider:
-      type: string
-      enum:
-      - Google Authenticator
-      - Octa
-      - Authy
-      - Protectimus Smart OTP
-      - Microsoft Authenticator
-      - FreeOTP Authenticator
-      - Sophos Authenticator
-      - Authenticator Plus
-      - LastPass Authenticator
-      - SoundLogin
-      - Yubikey
-      - Protectimus Slim NFC
-      - Other
-      description: The OTP Provider
-      title: OtpVerificationChallengeOtpProvider
-    PhoneChallengePhoneInfo:
-      type: object
-      properties:
-        carrier:
-          type: string
-        countryCode:
-          type: string
-          description: The country code (leading + is optional)
-        phone:
-          type: string
-          description: 'The phone number of the user.
-
-            Must match the regex: ^[0-9]+$'
-      required:
-      - carrier
-      - countryCode
-      - phone
-      title: PhoneChallengePhoneInfo
-    SignUpEvent:
-      type: object
-      properties:
-        eventType:
-          $ref: '#/components/schemas/EventType.SignUp'
-        customerId:
-          type: string
-          description: The id of the customer
-        country:
-          type: string
-          description: The country where the customer is located (if available)
-        username:
-          type: string
-          description: The username or userID of the customer
-        email:
-          type: string
-          description: The email of the customer
-        firstName:
-          type: string
-          description: The first name of the customer (if available)
-        lastName:
-          type: string
-          description: The last name of the customer (if available)
-      required:
-      - eventType
-      - customerId
-      - username
-      description: Sign up event - Call this event when your customer signs up for your service.
-      title: SignUpEvent
-    ThirdPartyKycChallengeType:
-      type: string
-      enum:
-      - 3rdPartyKyc
-      title: ThirdPartyKycChallengeType
-    SoftApprovalChallengeType:
-      type: string
-      enum:
-      - softApproval
-      title: SoftApprovalChallengeType
-    ThirdPartyKycChallengeStatus:
-      type: string
-      enum:
-      - triggered
-      - successfullyFulfilled
-      - failed
-      - timedOut
-      description: 'Indicates the challenge status. Possible values are:
-
-        triggered - the user has been presented with the challenge.
-
-        successfullyFulfilled - the user has successfully fulfilled the challenge.
-
-        failed - the user did not successfully fulfill the challenge.
-
-        timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: ThirdPartyKycChallengeStatus
-    EventType.SignUp:
-      type: string
-      enum:
-      - SignUp
-      title: EventType.SignUp
-    PhoneChallenge:
-      type: object
-      properties:
-        timeLimit:
-          type: number
-          format: double
-          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
-
-            Only allowed when status is set to triggered'
-        rawChallengeData:
-          $ref: '#/components/schemas/Record_string.string-or-number_'
-        status:
-          $ref: '#/components/schemas/PhoneChallengeStatus'
-          description: 'Indicates the challenge status. Possible values are:
-
-            triggered - the user has been presented with the challenge.
-
-            successfullyFulfilled - the user has successfully fulfilled the challenge.
-
-            failed - the user did not successfully fulfill the challenge.
-
-            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-        phoneInfo:
-          $ref: '#/components/schemas/PhoneChallengePhoneInfo'
-        type:
-          $ref: '#/components/schemas/PhoneChallengeType'
-      required:
-      - status
-      - phoneInfo
-      - type
-      description: Verification challenge that is performed by calling the user.
-      title: PhoneChallenge
-    SignInEvent:
-      type: object
-      properties:
-        eventType:
-          $ref: '#/components/schemas/EventType.SignIn'
-        customerId:
-          type: string
-          description: The id of the customer
-        country:
-          type: string
-          description: The country where the customer is located (if available)
-        email:
-          type: string
-          description: The email of the customer
-      required:
-      - eventType
-      - customerId
-      description: Sign in event - Call this event when your customer signs into your service.
-      title: SignInEvent
-    OtpVerificationChallengeStatus:
-      type: string
-      enum:
-      - triggered
-      - successfullyFulfilled
-      - failed
-      - timedOut
-      description: 'Indicates the challenge status. Possible values are:
-
-        triggered - the user has been presented with the challenge.
-
-        successfullyFulfilled - the user has successfully fulfilled the challenge.
-
-        failed - the user did not successfully fulfill the challenge.
-
-        timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-      title: OtpVerificationChallengeStatus
-    SoftApprovalChallenge:
-      type: object
-      properties:
-        timeLimit:
-          type: number
-          format: double
-          description: 'The time limit in seconds of the challenge, after which the challenge is considered as failed.
-
-            Only allowed when status is set to triggered'
-        rawChallengeData:
-          $ref: '#/components/schemas/Record_string.string-or-number_'
-        status:
-          $ref: '#/components/schemas/SoftApprovalChallengeStatus'
-          description: 'Indicates the challenge status. Possible values are:
-
-            triggered - the user has been presented with the challenge.
-
-            successfullyFulfilled - the user has successfully fulfilled the challenge.
-
-            failed - the user did not successfully fulfill the challenge.
-
-            timedOut - the user did not answer the challenge at all within the challenge timeout period (if one is defined).'
-        type:
-          $ref: '#/components/schemas/SoftApprovalChallengeType'
-      required:
-      - status
-      - type
-      title: SoftApprovalChallenge
+    EventData:
+      oneOf:
+      - $ref: '#/components/schemas/SignUpEvent'
+      - $ref: '#/components/schemas/BuyerChallengeEvent'
+      - $ref: '#/components/schemas/SignInFailureEvent'
+      - $ref: '#/components/schemas/SignInEvent'
+      title: EventData
   securitySchemes:
     wallet:
       type: apiKey

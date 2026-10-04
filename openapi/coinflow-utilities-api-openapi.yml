@@ -141,22 +141,48 @@ paths:
               $ref: '#/components/schemas/SendSolanaTransactionRequest'
 components:
   schemas:
-    SendSolanaTransactionRequestPreconditionFailedError:
+    SendSolanaTransactionRequest:
       type: object
       properties:
-        logs:
+        confirm:
+          type: boolean
+          description: '(Default: false)
+
+
+            Solana transactions after submission need to be confirmed as having been
+
+            picked up by the network. State such as balance changes will not reflect until the transaction has been confirmed.
+
+            Additionally, errors such as invalid signers, insufficient gas, and network congestion can lead to the transaction being dropped.
+
+
+            The most ideal solution to this is for you to implement your own client side confirmation logic with the Solana SDK,
+
+            however we understand that is complex and not every merchant wants to do that.
+
+
+            Setting this property to true will mean the call will not return with your signature, until the solana transaction
+
+            has been confirmed. If the transaction is unable to be confirmed by the time the blockhash expires, then you wil receive a 503 error.'
+        transaction:
           type: string
+          description: 'Base 58 encoded Solana Transaction. Supports Transctions and VersionedTransactions.
+
+            Transaction must be signed by all signers.'
       required:
-      - logs
-      title: SendSolanaTransactionRequestPreconditionFailedError
-    Utilities_SendCoinflowTransaction_Response_200:
+      - transaction
+      title: SendSolanaTransactionRequest
+    SendSolanaTransactionResponse:
       type: object
       properties:
         signature:
           type: string
+          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
+
+            which will query the chain to see if the transaction was confirmed.'
       required:
       - signature
-      title: Utilities_SendCoinflowTransaction_Response_200
+      title: SendSolanaTransactionResponse
     SendTransactionBody:
       type: object
       properties:
@@ -190,25 +216,6 @@ components:
       - merchantId
       - signedTransaction
       title: SendTransactionBody
-    SendCoinflowTransactionRequestPreconditionFailedError:
-      type: object
-      properties:
-        logs:
-          type: string
-      required:
-      - logs
-      title: SendCoinflowTransactionRequestPreconditionFailedError
-    SendSolanaTransactionResponse:
-      type: object
-      properties:
-        signature:
-          type: string
-          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
-
-            which will query the chain to see if the transaction was confirmed.'
-      required:
-      - signature
-      title: SendSolanaTransactionResponse
     Utilities_GetContractAddresses_Response_200:
       type: object
       properties:
@@ -230,37 +237,30 @@ components:
       - monad
       - tempo
       title: Blockchain
-    SendSolanaTransactionRequest:
+    SendSolanaTransactionRequestPreconditionFailedError:
       type: object
       properties:
-        confirm:
-          type: boolean
-          description: '(Default: false)
-
-
-            Solana transactions after submission need to be confirmed as having been
-
-            picked up by the network. State such as balance changes will not reflect until the transaction has been confirmed.
-
-            Additionally, errors such as invalid signers, insufficient gas, and network congestion can lead to the transaction being dropped.
-
-
-            The most ideal solution to this is for you to implement your own client side confirmation logic with the Solana SDK,
-
-            however we understand that is complex and not every merchant wants to do that.
-
-
-            Setting this property to true will mean the call will not return with your signature, until the solana transaction
-
-            has been confirmed. If the transaction is unable to be confirmed by the time the blockhash expires, then you wil receive a 503 error.'
-        transaction:
+        logs:
           type: string
-          description: 'Base 58 encoded Solana Transaction. Supports Transctions and VersionedTransactions.
-
-            Transaction must be signed by all signers.'
       required:
-      - transaction
-      title: SendSolanaTransactionRequest
+      - logs
+      title: SendSolanaTransactionRequestPreconditionFailedError
+    SendCoinflowTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendCoinflowTransactionRequestPreconditionFailedError
+    Utilities_SendCoinflowTransaction_Response_200:
+      type: object
+      properties:
+        signature:
+          type: string
+      required:
+      - signature
+      title: Utilities_SendCoinflowTransaction_Response_200
   securitySchemes:
     wallet:
       type: apiKey
