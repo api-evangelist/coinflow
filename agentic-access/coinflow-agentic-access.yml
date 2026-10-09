@@ -1,18 +1,23 @@
-generated: '2026-07-18'
+generated: '2026-09-23'
 method: generated
-source: openapi/coinflow-openapi-original.json
+source: openapi/coinflow-authentication-api-openapi.yml, openapi/coinflow-card-tokenization-api-openapi.yml,
+  openapi/coinflow-checkout-api-openapi.yml, openapi/coinflow-customers-api-openapi.yml, openapi/coinflow-events-api-openapi.yml,
+  openapi/coinflow-marketplace-api-openapi.yml, openapi/coinflow-merchant-api-openapi.yml, openapi/coinflow-merchantsubscription-api-openapi.yml,
+  openapi/coinflow-redeem-api-openapi.yml, openapi/coinflow-refund-api-openapi.yml, openapi/coinflow-submerchant-api-openapi.yml,
+  openapi/coinflow-subscription-api-openapi.yml, openapi/coinflow-utilities-api-openapi.yml,
+  openapi/coinflow-withdraw-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 180
   by_action_class:
-    connected: 51
-    acting: 129
+    connected: 64
+    acting: 116
   by_consequence:
-    read: 51
-    write: 41
-    physical: 85
+    read: 64
+    write: 35
+    physical: 78
     safety-critical: 3
   human_in_the_loop_required: 3
 operations:
@@ -334,74 +339,42 @@ operations:
   method: post
   operationId: get-destination-auth-key
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /checkout/fees
   method: post
   operationId: get-fees
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /checkout/totals/{merchantId}
   method: post
   operationId: get-totals
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /checkout/evm/usdc-authorization
   method: post
   operationId: get-usdc-authorization-message
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /checkout/google-pay/{merchantId}
   method: post
   operationId: google-pay
@@ -1058,18 +1031,12 @@ operations:
   method: post
   operationId: get-seller-register-link
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /seller/verifyTransaction
   method: get
   operationId: get-verify-transaction
@@ -1084,34 +1051,22 @@ operations:
   method: post
   operationId: get-subscribe-link
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /marketplace/wallet
   method: post
   operationId: get-wallet-address-by-email
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /withdraw/crypto-deposit-address/activate
   method: post
   operationId: activate-passive-deposit-address
@@ -1464,20 +1419,12 @@ operations:
   method: post
   operationId: get-delegated-payout-quote
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /merchant/payments/enhanced/{paymentId}
   method: get
   operationId: get-enhanced-tx-information
@@ -1960,18 +1907,12 @@ operations:
   method: post
   operationId: get-evm-credits-auth-msg
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /redeem/evm/sendGaslessTx
   method: post
   operationId: send-evm-credits-gasless-tx
@@ -1994,34 +1935,22 @@ operations:
   method: post
   operationId: get-merchant-wallet-redeem-transaction
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /redeem
   method: post
   operationId: get-redeem-transaction
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /refunds
   method: get
   operationId: get-refunds
@@ -2382,20 +2311,12 @@ operations:
   method: post
   operationId: get-transaction
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /withdraw/account/{token}
   method: delete
   operationId: delete-withdrawer-account
@@ -2554,20 +2475,12 @@ operations:
   method: post
   operationId: get-evm-message
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /withdraw/quote
   method: get
   operationId: get-quote
