@@ -141,6 +141,33 @@ paths:
               $ref: '#/components/schemas/SendSolanaTransactionRequest'
 components:
   schemas:
+    SendCoinflowTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendCoinflowTransactionRequestPreconditionFailedError
+    Utilities_SendCoinflowTransaction_Response_200:
+      type: object
+      properties:
+        signature:
+          type: string
+      required:
+      - signature
+      title: Utilities_SendCoinflowTransaction_Response_200
+    SendSolanaTransactionResponse:
+      type: object
+      properties:
+        signature:
+          type: string
+          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
+
+            which will query the chain to see if the transaction was confirmed.'
+      required:
+      - signature
+      title: SendSolanaTransactionResponse
     SendSolanaTransactionRequest:
       type: object
       properties:
@@ -172,17 +199,35 @@ components:
       required:
       - transaction
       title: SendSolanaTransactionRequest
-    SendSolanaTransactionResponse:
+    Utilities_GetContractAddresses_Response_200:
       type: object
       properties:
-        signature:
+        address:
           type: string
-          description: 'To confirm that this transaction was successful call `connection.confirmTransaction(signature)`
-
-            which will query the chain to see if the transaction was confirmed.'
       required:
-      - signature
-      title: SendSolanaTransactionResponse
+      - address
+      title: Utilities_GetContractAddresses_Response_200
+    SendSolanaTransactionRequestPreconditionFailedError:
+      type: object
+      properties:
+        logs:
+          type: string
+      required:
+      - logs
+      title: SendSolanaTransactionRequestPreconditionFailedError
+    Blockchain:
+      type: string
+      enum:
+      - solana
+      - eth
+      - polygon
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
     SendTransactionBody:
       type: object
       properties:
@@ -216,51 +261,6 @@ components:
       - merchantId
       - signedTransaction
       title: SendTransactionBody
-    Utilities_GetContractAddresses_Response_200:
-      type: object
-      properties:
-        address:
-          type: string
-      required:
-      - address
-      title: Utilities_GetContractAddresses_Response_200
-    Blockchain:
-      type: string
-      enum:
-      - solana
-      - eth
-      - polygon
-      - base
-      - user
-      - arbitrum
-      - stellar
-      - monad
-      - tempo
-      title: Blockchain
-    SendSolanaTransactionRequestPreconditionFailedError:
-      type: object
-      properties:
-        logs:
-          type: string
-      required:
-      - logs
-      title: SendSolanaTransactionRequestPreconditionFailedError
-    SendCoinflowTransactionRequestPreconditionFailedError:
-      type: object
-      properties:
-        logs:
-          type: string
-      required:
-      - logs
-      title: SendCoinflowTransactionRequestPreconditionFailedError
-    Utilities_SendCoinflowTransaction_Response_200:
-      type: object
-      properties:
-        signature:
-          type: string
-      required:
-      - signature
-      title: Utilities_SendCoinflowTransaction_Response_200
   securitySchemes:
     wallet:
       type: apiKey

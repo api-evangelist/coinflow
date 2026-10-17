@@ -109,354 +109,70 @@ paths:
                 $ref: '#/components/schemas/SubMerchant_GetOnboardingToken_Response_200'
 components:
   schemas:
-    CustomPayInFeeConfig:
+    InteracSettings:
       type: object
       properties:
-        fee:
-          $ref: '#/components/schemas/CustomPayInFeeValue'
-        lineItemLabel:
-          type: string
-      required:
-      - fee
-      - lineItemLabel
-      title: CustomPayInFeeConfig
-    ApplePayPayoutProvider:
-      type: string
-      enum:
-      - aptpay
-      - MOCK
-      title: ApplePayPayoutProvider
-    SubMerchant_GetOnboardingToken_Response_200:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
-      title: SubMerchant_GetOnboardingToken_Response_200
-    PayPalPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - citcon
-      - mock
-      - paypal
-      title: PayPalPayoutProvider
-    Currency:
-      type: string
-      enum:
-      - USD
-      - AED
-      - AFN
-      - ALL
-      - AMD
-      - ANG
-      - AOA
-      - ARS
-      - AUD
-      - AWG
-      - AZN
-      - BAM
-      - BBD
-      - BDT
-      - BGN
-      - BHD
-      - BIF
-      - BMD
-      - BND
-      - BOB
-      - BRL
-      - BSD
-      - BTN
-      - BWP
-      - BYN
-      - BZD
-      - CAD
-      - CHF
-      - CLF
-      - CLP
-      - CNY
-      - COP
-      - CRC
-      - CUP
-      - CVE
-      - CZK
-      - DJF
-      - DKK
-      - DOP
-      - DZD
-      - EGP
-      - ETB
-      - EUR
-      - FJD
-      - GBP
-      - GEL
-      - GHS
-      - GMD
-      - GNF
-      - GTQ
-      - GYD
-      - HKD
-      - HNL
-      - HTG
-      - HUF
-      - IDR
-      - ILS
-      - INR
-      - IQD
-      - IRR
-      - ISK
-      - JMD
-      - JOD
-      - JPY
-      - KES
-      - KGS
-      - KHR
-      - KMF
-      - KRW
-      - KWD
-      - KYD
-      - KZT
-      - LAK
-      - LBP
-      - LKR
-      - LRD
-      - LSL
-      - LYD
-      - MAD
-      - MDL
-      - MGA
-      - MKD
-      - MMK
-      - MNT
-      - MOP
-      - MRU
-      - MUR
-      - MWK
-      - MVR
-      - MXN
-      - MYR
-      - MZN
-      - NAD
-      - NGN
-      - NIO
-      - NOK
-      - NPR
-      - NZD
-      - OMR
-      - PAB
-      - PEN
-      - PGK
-      - PHP
-      - PKR
-      - PLN
-      - PYG
-      - QAR
-      - RON
-      - RSD
-      - RWF
-      - SAR
-      - SCR
-      - SDG
-      - SEK
-      - SGD
-      - SLE
-      - SLL
-      - SOS
-      - SRD
-      - STN
-      - SVC
-      - SYP
-      - SZL
-      - THB
-      - TJS
-      - TMT
-      - TND
-      - TOP
-      - TRY
-      - TTD
-      - TWD
-      - TZS
-      - UAH
-      - UGX
-      - UYU
-      - UZS
-      - VND
-      - VUV
-      - WST
-      - XAF
-      - XCD
-      - XOF
-      - XPF
-      - YER
-      - ZAR
-      - ZMW
-      - ZWL
-      - CDF
-      - ERN
-      - FKP
-      - KPW
-      - RUB
-      - SBD
-      - SHP
-      - SSP
-      - VES
-      title: Currency
-    WirePayoutProvider:
-      type: string
-      enum:
-      - MOCK
-      - BRAID
-      title: WirePayoutProvider
-    VenmoPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - citcon
-      - mock
-      - paypal
-      title: VenmoPayoutProvider
-    InteracPayoutProvider:
-      type: string
-      enum:
-      - checkbook
-      - mock
-      - aptpay
-      title: InteracPayoutProvider
-    SanitizedMerchantCardSettings:
-      type: object
-      properties:
-        statementDescriptor:
-          type: string
-        saveCardDefault:
-          type: boolean
         processor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        googlePayProcessor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        applePayProcessor:
-          $ref: '#/components/schemas/PaymentProcessor'
-        supportsApplePay:
-          type: boolean
-        supportsGooglePay:
-          type: boolean
-        tokenizationProvider:
-          $ref: '#/components/schemas/TokenizationProviderOption'
-        avsCheck:
-          type: boolean
-        requiresKyc:
-          type: boolean
-        aftEnabled:
-          type: boolean
-      required:
-      - avsCheck
-      - requiresKyc
-      - aftEnabled
-      description: From T, pick a set of properties whose keys are in the union K
-      title: SanitizedMerchantCardSettings
-    InteracProcessor:
-      type: string
-      enum:
-      - mock
-      - aptpay
-      title: InteracProcessor
-    Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_:
-      type: object
-      properties:
-        instantSettle:
-          type: boolean
-        requireKycBeforePurchase:
-          type: boolean
-      required:
-      - instantSettle
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_
-    CustomPayInFeesConfig:
-      type: array
-      items:
-        $ref: '#/components/schemas/CustomPayInFeeConfig'
-      title: CustomPayInFeesConfig
-    CustomPayInFeeValue0:
-      type: object
-      properties:
-        cents:
+          $ref: '#/components/schemas/InteracProcessor'
+        feeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fxFeeMode:
+          $ref: '#/components/schemas/FeePayerMode'
+        fixedFee:
+          $ref: '#/components/schemas/Cents'
+        feeBps:
           type: number
           format: double
-        currency:
-          $ref: '#/components/schemas/Currency'
-        percent:
-          type:
-          - number
-          - 'null'
-          format: double
-        isFixed:
+        minFee:
+          $ref: '#/components/schemas/Cents'
+        customerEmailNotifications:
+          type: boolean
+        merchantEmailNotifications:
           type: boolean
       required:
-      - cents
-      - currency
-      - percent
-      - isFixed
-      title: CustomPayInFeeValue0
-    SanitizedMerchantSettlementAddresses:
+      - customerEmailNotifications
+      - merchantEmailNotifications
+      title: InteracSettings
+    MerchantTheme:
       type: object
       properties:
-        solana:
+        showCardIcon:
+          type: boolean
+        placeholderColor:
           type: string
-        eth:
+        expirationPlaceholder:
           type: string
-        polygon:
+        cvvPlaceholder:
           type: string
-        base:
+        cardNumberPlaceholder:
           type: string
-        user:
+        fontWeight:
           type: string
-        arbitrum:
+        fontSize:
           type: string
-        stellar:
+        style:
+          $ref: '#/components/schemas/MerchantStyle'
+        font:
           type: string
-        monad:
+        ctaColor:
           type: string
-        tempo:
+        textColorAction:
           type: string
-      title: SanitizedMerchantSettlementAddresses
-    MerchantStyle:
-      type: string
-      enum:
-      - rounded
-      - sharp
-      - pill
-      title: MerchantStyle
-    Cents:
-      type: object
-      properties:
-        cents:
-          type: integer
-      required:
-      - cents
-      title: Cents
-    PixPayoutProvider:
-      type: string
-      enum:
-      - brla
-      - mock
-      title: PixPayoutProvider
-    FeePayerMode:
-      type: string
-      enum:
-      - user
-      - merchant
-      - invoice
-      title: FeePayerMode
-    PayoutProviderOption:
-      type: string
-      enum:
-      - aptpay
-      - coinfx
-      - checkbook
-      - BRAID
-      - brale
-      - mock
-      title: PayoutProviderOption
+        textColorAccent:
+          type: string
+        textColor:
+          type: string
+        backgroundAccent2:
+          type: string
+        backgroundAccent:
+          type: string
+        cardBackground:
+          type: string
+        background:
+          type: string
+        primary:
+          type: string
+      title: MerchantTheme
     SanitizedMerchant:
       type: object
       properties:
@@ -633,15 +349,304 @@ components:
       - withdrawalGeolocationRequired
       - checkoutGeolocationRequired
       title: SanitizedMerchant
-    VerificationStatus:
+    Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_:
+      type: object
+      properties:
+        instantSettle:
+          type: boolean
+        requireKycBeforePurchase:
+          type: boolean
+      required:
+      - instantSettle
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_ACHSettings.instantSettle-or-requireKycBeforePurchase_
+    MerchantStyle:
       type: string
       enum:
-      - pending
-      - partial-approval
-      - approved
-      - rejected
-      - expired
-      title: VerificationStatus
+      - rounded
+      - sharp
+      - pill
+      title: MerchantStyle
+    InteracPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - mock
+      - aptpay
+      title: InteracPayoutProvider
+    PortalBrand:
+      type: string
+      enum:
+      - approvely
+      - seamlesschex
+      - coinflow
+      - yourbrandhere
+      - Plan2Play
+      - tango
+      - interlace
+      - tapvia
+      title: PortalBrand
+    CustomPayInFeesConfig:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomPayInFeeConfig'
+      title: CustomPayInFeesConfig
+    CustomPayInFeeValue1:
+      type: object
+      properties:
+        cents:
+          type:
+          - number
+          - 'null'
+          format: double
+        currency:
+          type:
+          - number
+          - 'null'
+          format: double
+        percent:
+          type: number
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue1
+    InteracProcessor:
+      type: string
+      enum:
+      - mock
+      - aptpay
+      title: InteracProcessor
+    CustomPayInFeeValue0:
+      type: object
+      properties:
+        cents:
+          type: number
+          format: double
+        currency:
+          $ref: '#/components/schemas/Currency'
+        percent:
+          type:
+          - number
+          - 'null'
+          format: double
+        isFixed:
+          type: boolean
+      required:
+      - cents
+      - currency
+      - percent
+      - isFixed
+      title: CustomPayInFeeValue0
+    CustomPayInFeeValue:
+      oneOf:
+      - $ref: '#/components/schemas/CustomPayInFeeValue0'
+      - $ref: '#/components/schemas/CustomPayInFeeValue1'
+      title: CustomPayInFeeValue
+    SanitizedMerchantFirstPartyPayoutOverrides:
+      type: object
+      properties:
+        interacPayoutProvider:
+          $ref: '#/components/schemas/InteracPayoutProvider'
+        wirePayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/WirePayoutProvider'
+        paypalPayoutProvider:
+          $ref: '#/components/schemas/PayPalPayoutProvider'
+        venmoPayoutProvider:
+          $ref: '#/components/schemas/VenmoPayoutProvider'
+        appleP2cPayoutProvider:
+          $ref: '#/components/schemas/ApplePayPayoutProvider'
+        globalP2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        p2cPayoutProvider:
+          $ref: '#/components/schemas/CardPayoutProvider'
+        eftPayoutProvider:
+          $ref: '#/components/schemas/EftPayoutProvider'
+        pixPayoutProvider:
+          $ref: '#/components/schemas/PixPayoutProvider'
+        rtpPayoutProvider:
+          $ref: '#/components/schemas/RtpPayoutProvider'
+        ibanPayoutProvider:
+          $ref: '#/components/schemas/IbanPayoutProvider'
+        bankPayoutProvider:
+          type: array
+          items:
+            $ref: '#/components/schemas/PayoutProviderOption'
+      title: SanitizedMerchantFirstPartyPayoutOverrides
+    Currency:
+      type: string
+      enum:
+      - USD
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CHF
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ETB
+      - EUR
+      - FJD
+      - GBP
+      - GEL
+      - GHS
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MWK
+      - MVR
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RWF
+      - SAR
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SLE
+      - SLL
+      - SOS
+      - SRD
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - UYU
+      - UZS
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XCD
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMW
+      - ZWL
+      - CDF
+      - ERN
+      - FKP
+      - KPW
+      - RUB
+      - SBD
+      - SHP
+      - SSP
+      - VES
+      title: Currency
+    PayPalPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - citcon
+      - mock
+      - paypal
+      title: PayPalPayoutProvider
     IbanPayoutProvider:
       type: string
       enum:
@@ -649,39 +654,14 @@ components:
       - mock
       - ivy
       title: IbanPayoutProvider
-    MerchantBrandSettings:
+    Cents:
       type: object
       properties:
-        portalBrand:
-          $ref: '#/components/schemas/PortalBrand'
-        logo:
-          type: string
-        displayName:
-          type: string
-      title: MerchantBrandSettings
-    CardPayoutProvider:
-      type: string
-      enum:
-      - aptpay
-      - checkbook
-      - shift4
-      - MOCK
-      title: CardPayoutProvider
-    TokenizationProviderOption:
-      type: string
-      enum:
-      - bt
-      - tokenex
-      title: TokenizationProviderOption
-    Pick_Verification.status_:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/VerificationStatus'
+        cents:
+          type: integer
       required:
-      - status
-      description: From T, pick a set of properties whose keys are in the union K
-      title: Pick_Verification.status_
+      - cents
+      title: Cents
     PaymentProcessor:
       type: string
       enum:
@@ -718,11 +698,117 @@ components:
       - fallback_nuvei_fifththird
       - fallback_fifththird_nuvei
       title: PaymentProcessor
-    CustomPayInFeeValue:
-      oneOf:
-      - $ref: '#/components/schemas/CustomPayInFeeValue0'
-      - $ref: '#/components/schemas/CustomPayInFeeValue1'
-      title: CustomPayInFeeValue
+    CustomPayInFeeConfig:
+      type: object
+      properties:
+        fee:
+          $ref: '#/components/schemas/CustomPayInFeeValue'
+        lineItemLabel:
+          type: string
+      required:
+      - fee
+      - lineItemLabel
+      title: CustomPayInFeeConfig
+    SubMerchant_GetOnboardingToken_Response_200:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+      title: SubMerchant_GetOnboardingToken_Response_200
+    TokenizationProviderOption:
+      type: string
+      enum:
+      - bt
+      - tokenex
+      title: TokenizationProviderOption
+    ApplePayPayoutProvider:
+      type: string
+      enum:
+      - aptpay
+      - MOCK
+      title: ApplePayPayoutProvider
+    WirePayoutProvider:
+      type: string
+      enum:
+      - MOCK
+      - BRAID
+      title: WirePayoutProvider
+    KycType:
+      type: string
+      enum:
+      - person
+      - business
+      - both
+      title: KycType
+    EftPayoutProvider:
+      type: string
+      enum:
+      - checkbook
+      - aptpay
+      - mock
+      title: EftPayoutProvider
+    VerificationStatus:
+      type: string
+      enum:
+      - pending
+      - partial-approval
+      - approved
+      - rejected
+      - expired
+      title: VerificationStatus
+    PayoutProviderOption:
+      type: string
+      enum:
+      - aptpay
+      - coinfx
+      - checkbook
+      - BRAID
+      - brale
+      - mock
+      title: PayoutProviderOption
+    SanitizedMerchantCardSettings:
+      type: object
+      properties:
+        statementDescriptor:
+          type: string
+        saveCardDefault:
+          type: boolean
+        processor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        googlePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        applePayProcessor:
+          $ref: '#/components/schemas/PaymentProcessor'
+        supportsApplePay:
+          type: boolean
+        supportsGooglePay:
+          type: boolean
+        tokenizationProvider:
+          $ref: '#/components/schemas/TokenizationProviderOption'
+        avsCheck:
+          type: boolean
+        requiresKyc:
+          type: boolean
+        aftEnabled:
+          type: boolean
+      required:
+      - avsCheck
+      - requiresKyc
+      - aftEnabled
+      description: From T, pick a set of properties whose keys are in the union K
+      title: SanitizedMerchantCardSettings
+    MerchantBrandSettings:
+      type: object
+      properties:
+        portalBrand:
+          $ref: '#/components/schemas/PortalBrand'
+        logo:
+          type: string
+        displayName:
+          type: string
+      title: MerchantBrandSettings
     RtpPayoutProvider:
       type: string
       enum:
@@ -733,152 +819,66 @@ components:
       - checkbook
       - brale
       title: RtpPayoutProvider
-    KycType:
+    PixPayoutProvider:
       type: string
       enum:
-      - person
-      - business
-      - both
-      title: KycType
-    SanitizedMerchantFirstPartyPayoutOverrides:
+      - brla
+      - mock
+      title: PixPayoutProvider
+    SanitizedMerchantSettlementAddresses:
       type: object
       properties:
-        interacPayoutProvider:
-          $ref: '#/components/schemas/InteracPayoutProvider'
-        wirePayoutProvider:
-          type: array
-          items:
-            $ref: '#/components/schemas/WirePayoutProvider'
-        paypalPayoutProvider:
-          $ref: '#/components/schemas/PayPalPayoutProvider'
-        venmoPayoutProvider:
-          $ref: '#/components/schemas/VenmoPayoutProvider'
-        appleP2cPayoutProvider:
-          $ref: '#/components/schemas/ApplePayPayoutProvider'
-        globalP2cPayoutProvider:
-          $ref: '#/components/schemas/CardPayoutProvider'
-        p2cPayoutProvider:
-          $ref: '#/components/schemas/CardPayoutProvider'
-        eftPayoutProvider:
-          $ref: '#/components/schemas/EftPayoutProvider'
-        pixPayoutProvider:
-          $ref: '#/components/schemas/PixPayoutProvider'
-        rtpPayoutProvider:
-          $ref: '#/components/schemas/RtpPayoutProvider'
-        ibanPayoutProvider:
-          $ref: '#/components/schemas/IbanPayoutProvider'
-        bankPayoutProvider:
-          type: array
-          items:
-            $ref: '#/components/schemas/PayoutProviderOption'
-      title: SanitizedMerchantFirstPartyPayoutOverrides
-    CustomPayInFeeValue1:
-      type: object
-      properties:
-        cents:
-          type:
-          - number
-          - 'null'
-          format: double
-        currency:
-          type:
-          - number
-          - 'null'
-          format: double
-        percent:
-          type: number
-          format: double
-        isFixed:
-          type: boolean
-      required:
-      - cents
-      - currency
-      - percent
-      - isFixed
-      title: CustomPayInFeeValue1
-    InteracSettings:
-      type: object
-      properties:
-        processor:
-          $ref: '#/components/schemas/InteracProcessor'
-        feeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fxFeeMode:
-          $ref: '#/components/schemas/FeePayerMode'
-        fixedFee:
-          $ref: '#/components/schemas/Cents'
-        feeBps:
-          type: number
-          format: double
-        minFee:
-          $ref: '#/components/schemas/Cents'
-        customerEmailNotifications:
-          type: boolean
-        merchantEmailNotifications:
-          type: boolean
-      required:
-      - customerEmailNotifications
-      - merchantEmailNotifications
-      title: InteracSettings
-    MerchantTheme:
-      type: object
-      properties:
-        showCardIcon:
-          type: boolean
-        placeholderColor:
+        solana:
           type: string
-        expirationPlaceholder:
+        eth:
           type: string
-        cvvPlaceholder:
+        polygon:
           type: string
-        cardNumberPlaceholder:
+        base:
           type: string
-        fontWeight:
+        user:
           type: string
-        fontSize:
+        arbitrum:
           type: string
-        style:
-          $ref: '#/components/schemas/MerchantStyle'
-        font:
+        stellar:
           type: string
-        ctaColor:
+        monad:
           type: string
-        textColorAction:
+        tempo:
           type: string
-        textColorAccent:
-          type: string
-        textColor:
-          type: string
-        backgroundAccent2:
-          type: string
-        backgroundAccent:
-          type: string
-        cardBackground:
-          type: string
-        background:
-          type: string
-        primary:
-          type: string
-      title: MerchantTheme
-    PortalBrand:
+      title: SanitizedMerchantSettlementAddresses
+    CardPayoutProvider:
       type: string
       enum:
-      - approvely
-      - seamlesschex
-      - coinflow
-      - yourbrandhere
-      - Plan2Play
-      - tango
-      - interlace
-      - tapvia
-      title: PortalBrand
-    EftPayoutProvider:
+      - aptpay
+      - checkbook
+      - shift4
+      - MOCK
+      title: CardPayoutProvider
+    Pick_Verification.status_:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/VerificationStatus'
+      required:
+      - status
+      description: From T, pick a set of properties whose keys are in the union K
+      title: Pick_Verification.status_
+    VenmoPayoutProvider:
       type: string
       enum:
       - checkbook
-      - aptpay
+      - citcon
       - mock
-      title: EftPayoutProvider
+      - paypal
+      title: VenmoPayoutProvider
+    FeePayerMode:
+      type: string
+      enum:
+      - user
+      - merchant
+      - invoice
+      title: FeePayerMode
   securitySchemes:
     wallet:
       type: apiKey
