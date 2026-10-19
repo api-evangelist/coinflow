@@ -278,9 +278,37 @@ apis:
     url: https://docs.coinflow.cash/
   - type: APIReference
     url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-api-reference-api
+  name: Coinflow API Reference API
+  description: The API Reference API from Coinflow — 0 operation(s) for api reference.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - API Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-api-reference-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
+- aid: coinflow:coinflow-merchantaccounts-api
+  name: Coinflow Merchant Accounts API
+  description: The merchantAccounts API from Coinflow — 5 operation(s) for merchantaccounts.
+  humanURL: https://docs.coinflow.cash/api-reference
+  baseURL: https://api.coinflow.cash/api
+  tags:
+  - merchantAccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/coinflow-merchantaccounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.coinflow.cash/
+  - type: APIReference
+    url: https://docs.coinflow.cash/api-reference
 - aid: coinflow:coinflow-card-tokenization-api
   name: Coinflow Card Tokenization API
-  description: The Card Tokenization API from Coinflow — 3 operation(s) for card tokenization.
+  description: The Card Tokenization API from Coinflow — 4 operation(s) for card tokenization.
   humanURL: https://docs.coinflow.cash/api-reference
   baseURL: https://api.coinflow.cash/api
   tags:

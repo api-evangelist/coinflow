@@ -10,7 +10,7 @@ tags:
 paths:
   /tokenize/associate-cvv:
     post:
-      operationId: associate-cvv
+      operationId: cardTokenization_AssociateCvv
       summary: Associate CVV
       description: 'Tokenize Card PAN & Optionally CVV in a server to server integration.
 
@@ -21,29 +21,22 @@ paths:
       tags:
       - Card Tokenization
       parameters:
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       - name: tx-token-scheme
         in: header
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.
+        required: false
         schema:
           $ref: '#/components/schemas/TokenizeAssociateCvvPostParametersTxTokenScheme'
       - name: tx-tokenex-id
         in: header
-        description: 'In the Sandbox Environment pass: 4582952996979143
-
-          In Production pass: 2781185452603874'
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.
+        required: false
         schema:
           type: string
       - name: tx-apikey
         in: header
-        description: Contact your Coinflow integrations representative to receive this value
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.
+        required: false
         schema:
           type: string
       responses:
@@ -58,9 +51,48 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerToServerAssociatedCvvRequest'
+      security:
+      - merchant: []
+  /tokenize/extract-card:
+    post:
+      operationId: cardTokenization_ExtractCard
+      summary: Extract Card From Image
+      description: 'Extract the card details from a photo of a physical card and tokenize them.
+
+
+        This allows a customer to take a photo of their credit/debit card and have
+
+        the card details auto-populated during checkout instead of typing them in
+
+        manually. The card is extracted and stored as a token in Coinflow''s
+
+        PCI-compliant vault, and the resulting token is returned so it can be used
+
+        in the cards endpoint.
+
+
+        In order to gain access to this endpoint your company must have PCI-DSS
+
+        certification, and provide that to your Coinflow Integrations Representative.'
+      tags:
+      - Card Tokenization
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractCardResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractCardRequest'
+      security:
+      - merchant: []
   /tokenize:
     post:
-      operationId: tokenize
+      operationId: cardTokenization_Tokenize
       summary: Tokenize Card and CVV
       description: 'Tokenize Card PAN & Optionally CVV in a server to server integration.
 
@@ -71,29 +103,22 @@ paths:
       tags:
       - Card Tokenization
       parameters:
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       - name: tx-token-scheme
         in: header
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.
+        required: false
         schema:
           $ref: '#/components/schemas/TokenizePostParametersTxTokenScheme'
       - name: tx-tokenex-id
         in: header
-        description: 'In the Sandbox Environment pass: 4582952996979143
-
-          In Production pass: 2781185452603874'
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.
+        required: false
         schema:
           type: string
       - name: tx-apikey
         in: header
-        description: Contact your Coinflow integrations representative to receive this value
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.
+        required: false
         schema:
           type: string
       responses:
@@ -108,9 +133,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerToServerTokenizationRequest'
+      security:
+      - merchant: []
   /tokenize/card-only:
     post:
-      operationId: card-only
+      operationId: cardTokenization_CardOnly
       summary: Tokenize Card Only
       description: 'Tokenize Card PAN without CVV in a server to server integration.
 
@@ -121,29 +148,22 @@ paths:
       tags:
       - Card Tokenization
       parameters:
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       - name: tx-token-scheme
         in: header
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.
+        required: false
         schema:
           $ref: '#/components/schemas/TokenizeCardOnlyPostParametersTxTokenScheme'
       - name: tx-tokenex-id
         in: header
-        description: 'In the Sandbox Environment pass: 4582952996979143
-
-          In Production pass: 2781185452603874'
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.
+        required: false
         schema:
           type: string
       - name: tx-apikey
         in: header
-        description: Contact your Coinflow integrations representative to receive this value
-        required: true
+        description: Only required if your account is configured with a tokenization provider that uses this header — most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.
+        required: false
         schema:
           type: string
       responses:
@@ -158,18 +178,93 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ServerToServerCardOnlyRequest'
+      security:
+      - merchant: []
 components:
   schemas:
-    TokenizePostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizePostParametersTxTokenScheme
     TokenizeCardOnlyPostParametersTxTokenScheme:
       type: string
       enum:
       - sixANTOKENfour
       title: TokenizeCardOnlyPostParametersTxTokenScheme
+    TokenizeAssociateCvvPostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizeAssociateCvvPostParametersTxTokenScheme
+    ServerToServerAssociatedCvvRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: 'The token to associate the CVV with.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+        cvv:
+          type: string
+          description: 'The value of the CVV you wish to associate with the token.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card data should be sent.'
+      required:
+      - token
+      title: ServerToServerAssociatedCvvRequest
+    ExtractCardRequest:
+      type: object
+      properties:
+        image:
+          type: string
+          description: 'A base64-encoded image of the physical card to extract details from.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card image should be sent.'
+        mimeType:
+          type: string
+          description: 'The MIME type of the provided image. Defaults to image/jpeg.
+
+
+            Note: This is only for documentation purposes, this endpoint returns an HTTP
+
+            redirect where the card image should be sent.'
+      title: ExtractCardRequest
+    TokenizePostParametersTxTokenScheme:
+      type: string
+      enum:
+      - sixANTOKENfour
+      title: TokenizePostParametersTxTokenScheme
+    ServerToServerTokenizationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        firstSix:
+          type: string
+        lastFour:
+          type: string
+        referenceNumber:
+          type: string
+        success:
+          type: boolean
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - token
+      - firstSix
+      - lastFour
+      - referenceNumber
+      - success
+      - error
+      - message
+      title: ServerToServerTokenizationResponse
     ServerToServerCardOnlyRequest:
       type: object
       properties:
@@ -206,59 +301,41 @@ components:
 
             redirect where the card data should be sent.'
       title: ServerToServerTokenizationRequest
-    ServerToServerAssociatedCvvRequest:
+    ExtractCardResponse:
       type: object
       properties:
         token:
           type: string
-          description: 'The token to associate the CVV with.
+          description: 'The token representing the extracted card. Use this token in the cards
 
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-        cvv:
-          type: string
-          description: 'The value of the CVV you wish to associate with the token.
-
-
-            Note: This is only for documentation purposes, this endpoint returns an HTTP
-
-            redirect where the card data should be sent.'
-      required:
-      - token
-      title: ServerToServerAssociatedCvvRequest
-    ServerToServerTokenizationResponse:
-      type: object
-      properties:
-        token:
-          type: string
+            endpoint to complete the checkout.'
         firstSix:
           type: string
+          description: The first six digits of the extracted card number.
         lastFour:
           type: string
-        referenceNumber:
-          type: string
-        success:
+          description: The last four digits of the extracted card number.
+        expirationMonth:
+          type:
+          - string
+          - 'null'
+          description: The extracted card expiration month, if available.
+        expirationYear:
+          type:
+          - string
+          - 'null'
+          description: The extracted card expiration year, if available.
+        cvvCaptured:
           type: boolean
-        error:
-          type: string
-        message:
-          type: string
+          description: Whether a CVV/CVC was captured from the image and stored with the token.
       required:
       - token
       - firstSix
       - lastFour
-      - referenceNumber
-      - success
-      - error
-      - message
-      title: ServerToServerTokenizationResponse
-    TokenizeAssociateCvvPostParametersTxTokenScheme:
-      type: string
-      enum:
-      - sixANTOKENfour
-      title: TokenizeAssociateCvvPostParametersTxTokenScheme
+      - expirationMonth
+      - expirationYear
+      - cvvCaptured
+      title: ExtractCardResponse
   securitySchemes:
     wallet:
       type: apiKey

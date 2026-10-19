@@ -10,18 +10,11 @@ tags:
 paths:
   /auth:
     get:
-      operationId: get-message
+      operationId: authentication_GetMessage
       summary: Get Message
       description: Get the message for the user's wallet to sign.
       tags:
       - Authentication
-      parameters:
-      - name: x-coinflow-auth-wallet
-        in: header
-        description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Ok
@@ -29,20 +22,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetMessageToSignResponse'
+      security:
+      - wallet: []
   /auth/session-key:
     get:
-      operationId: get-session-key
+      operationId: authentication_GetSessionKey
       summary: Get Session Key
       description: Get an authentication session key
       tags:
       - Authentication
-      parameters:
-      - name: x-coinflow-auth-user-id
-        in: header
-        description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Ok
@@ -50,33 +38,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetSessionKeyResponse'
+      security:
+      - userId: []
   /auth/verify:
     get:
-      operationId: verify-token
+      operationId: authentication_VerifyToken
       summary: Verify Token
       description: Verify a token is valid and is not expired
       tags:
       - Authentication
-      parameters:
-      - name: x-coinflow-auth-session-key
-        in: header
-        description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Successful response
+      security:
+      - sessionKey: []
 components:
   schemas:
-    GetSessionKeyResponse:
-      type: object
-      properties:
-        key:
-          type: string
-      required:
-      - key
-      title: GetSessionKeyResponse
     GetMessageToSignResponse:
       type: object
       properties:
@@ -87,6 +64,14 @@ components:
       required:
       - message
       title: GetMessageToSignResponse
+    GetSessionKeyResponse:
+      type: object
+      properties:
+        key:
+          type: string
+      required:
+      - key
+      title: GetSessionKeyResponse
   securitySchemes:
     wallet:
       type: apiKey

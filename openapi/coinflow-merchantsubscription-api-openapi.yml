@@ -10,7 +10,7 @@ tags:
 paths:
   /merchant/subscription/subscribers/{subscriptionId}:
     patch:
-      operationId: cancel-subscription
+      operationId: merchantSubscription_CancelSubscription
       summary: Cancel Subscription (by merchant)
       description: Cancel a subscription
       tags:
@@ -21,17 +21,13 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Successful response
+      security:
+      - merchant: []
     get:
-      operationId: get-subscription-payments
+      operationId: merchantSubscription_GetSubscriptionPayments
       summary: Get Subscription Payments
       description: Get the payments applied to a subscription
       tags:
@@ -39,12 +35,6 @@ paths:
       parameters:
       - name: subscriptionId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
         required: true
         schema:
           type: string
@@ -57,20 +47,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SubscriptionPayment'
+      security:
+      - merchant: []
   /merchant/subscription/plans:
     post:
-      operationId: create-plan
+      operationId: merchantSubscription_CreatePlan
       summary: Create Plans
       description: Create a new subscription plan
       tags:
       - merchantSubscription
-      parameters:
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Ok
@@ -83,19 +68,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SubscriptionPlanRequest'
+      security:
+      - merchant: []
     get:
-      operationId: get-plans
+      operationId: merchantSubscription_GetPlans
       summary: Get Plans
       description: Get subscription plans
       tags:
       - merchantSubscription
-      parameters:
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Ok
@@ -105,9 +85,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SubscriptionPlan'
+      security:
+      - merchant: []
   /merchant/subscription/plans/{planId}:
     delete:
-      operationId: deactivate-plan
+      operationId: merchantSubscription_DeactivatePlan
       summary: Deactivate Plan
       description: 'Deactivate a subscription plan
 
@@ -123,17 +105,13 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: Successful response
+      security:
+      - merchant: []
     put:
-      operationId: update-plan
+      operationId: merchantSubscription_UpdatePlan
       summary: Update Plan
       description: Update a subscription plan
       tags:
@@ -142,12 +120,6 @@ paths:
       - name: planId
         in: path
         description: '- can be the id or the plan code'
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
         required: true
         schema:
           type: string
@@ -163,9 +135,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Partial_SubscriptionPlanRequest_'
+      security:
+      - merchant: []
   /merchant/subscription/plans/{planId}/subscribers:
     get:
-      operationId: get-subscriptions
+      operationId: merchantSubscription_GetSubscriptions
       summary: Get Subscribers
       description: Get the subscriptions for a subscription plan
       tags:
@@ -174,12 +148,6 @@ paths:
       - name: planId
         in: path
         description: '- can be the id or the plan code'
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
         required: true
         schema:
           type: string
@@ -192,34 +160,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SubscriptionDisplay'
+      security:
+      - merchant: []
 components:
   schemas:
-    SubscriptionStatus:
-      type: string
-      enum:
-      - Active
-      - Canceled
-      - Expired
-      - Concluded
-      - Failed
-      - Blocked
-      title: SubscriptionStatus
-    CurrencyCents:
+    Partial_SubscriptionPlanRequest_:
       type: object
       properties:
-        cents:
-          type: integer
-        currency:
-          $ref: '#/components/schemas/Currency'
-      required:
-      - cents
-      - currency
-      title: CurrencyCents
-    SubscriptionPlan:
-      type: object
-      properties:
-        id:
-          type: string
         name:
           type: string
         code:
@@ -228,6 +175,7 @@ components:
           $ref: '#/components/schemas/SubscriptionInterval'
         duration:
           type: integer
+          minimum: 1
         amount:
           $ref: '#/components/schemas/CurrencyCents'
         description:
@@ -241,24 +189,149 @@ components:
         merchantInitiated:
           type: boolean
           description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
+      description: Make all properties in T optional
+      title: Partial_SubscriptionPlanRequest_
+    Blockchain.SOLANA:
+      type: string
+      enum:
+      - solana
+      title: Blockchain.SOLANA
+    SubscriptionDisplay:
+      type: object
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        blockchain:
+          $ref: '#/components/schemas/Blockchain'
+        merchantId:
+          type: string
+        email:
+          type: string
+        plan:
+          type: string
+        planCode:
+          type: string
+        nextPaymentAt:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/SubscriptionStatus'
       required:
       - id
-      - name
-      - code
-      - interval
-      - amount
-      - active
-      title: SubscriptionPlan
-    Blockchain.POLYGON:
+      - customerId
+      - merchantId
+      - email
+      - plan
+      - planCode
+      - status
+      title: SubscriptionDisplay
+    Blockchain.MONAD:
       type: string
       enum:
+      - monad
+      title: Blockchain.MONAD
+    SubscriptionInterval:
+      type: string
+      enum:
+      - Daily
+      - Weekly
+      - Monthly
+      - Yearly
+      title: SubscriptionInterval
+    Blockchain:
+      type: string
+      enum:
+      - solana
+      - eth
       - polygon
-      title: Blockchain.POLYGON
-    Blockchain.STELLAR:
+      - base
+      - user
+      - arbitrum
+      - stellar
+      - monad
+      - tempo
+      title: Blockchain
+    OperationalBlockchain:
+      oneOf:
+      - $ref: '#/components/schemas/Blockchain.SOLANA'
+      - $ref: '#/components/schemas/Blockchain.ETH'
+      - $ref: '#/components/schemas/Blockchain.POLYGON'
+      - $ref: '#/components/schemas/Blockchain.BASE'
+      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
+      - $ref: '#/components/schemas/Blockchain.STELLAR'
+      - $ref: '#/components/schemas/Blockchain.MONAD'
+      - $ref: '#/components/schemas/Blockchain.TEMPO'
+      title: OperationalBlockchain
+    Blockchain.BASE:
       type: string
       enum:
-      - stellar
-      title: Blockchain.STELLAR
+      - base
+      title: Blockchain.BASE
+    TotalsResponse:
+      type: object
+      properties:
+        subtotal:
+          $ref: '#/components/schemas/CurrencyCents'
+        creditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        chargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        gasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        fxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        networkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        payInFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        total:
+          $ref: '#/components/schemas/CurrencyCents'
+        reserve:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidCreditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidChargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidGasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidFxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        merchantPaidNetworkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedCreditCardFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedChargebackProtectionFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedGasFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedFxFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedNetworkFees:
+          $ref: '#/components/schemas/CurrencyCents'
+        rebate:
+          $ref: '#/components/schemas/CurrencyCents'
+        invoicedRebate:
+          $ref: '#/components/schemas/CurrencyCents'
+      required:
+      - subtotal
+      - creditCardFees
+      - chargebackProtectionFees
+      - gasFees
+      - fxFees
+      - total
+      title: TotalsResponse
+    SubscriptionStatus:
+      type: string
+      enum:
+      - Active
+      - Canceled
+      - Expired
+      - Concluded
+      - Failed
+      - Blocked
+      title: SubscriptionStatus
     Currency:
       type: string
       enum:
@@ -419,9 +492,61 @@ components:
       - SSP
       - VES
       title: Currency
-    Partial_SubscriptionPlanRequest_:
+    Blockchain.ARBITRUM:
+      type: string
+      enum:
+      - arbitrum
+      title: Blockchain.ARBITRUM
+    Blockchain.ETH:
+      type: string
+      enum:
+      - eth
+      title: Blockchain.ETH
+    CurrencyCents:
       type: object
       properties:
+        cents:
+          type: integer
+          minimum: 0
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+      - cents
+      - currency
+      title: CurrencyCents
+    Blockchain.TEMPO:
+      type: string
+      enum:
+      - tempo
+      title: Blockchain.TEMPO
+    SubscriptionPayment:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        status:
+          type: string
+        totals:
+          $ref: '#/components/schemas/TotalsResponse'
+        paidAt:
+          type: string
+          format: date-time
+      required:
+      - paymentId
+      - status
+      - totals
+      - paidAt
+      title: SubscriptionPayment
+    Blockchain.STELLAR:
+      type: string
+      enum:
+      - stellar
+      title: Blockchain.STELLAR
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
         name:
           type: string
         code:
@@ -430,6 +555,7 @@ components:
           $ref: '#/components/schemas/SubscriptionInterval'
         duration:
           type: integer
+          minimum: 1
         amount:
           $ref: '#/components/schemas/CurrencyCents'
         description:
@@ -443,60 +569,19 @@ components:
         merchantInitiated:
           type: boolean
           description: Only specify this as true if you do not want subscription payments automatically processed. Then you will be responsible for manually calling the merchant initiated transaction endpoint.
-      description: Make all properties in T optional
-      title: Partial_SubscriptionPlanRequest_
-    OperationalBlockchain:
-      oneOf:
-      - $ref: '#/components/schemas/Blockchain.SOLANA'
-      - $ref: '#/components/schemas/Blockchain.ETH'
-      - $ref: '#/components/schemas/Blockchain.POLYGON'
-      - $ref: '#/components/schemas/Blockchain.BASE'
-      - $ref: '#/components/schemas/Blockchain.ARBITRUM'
-      - $ref: '#/components/schemas/Blockchain.STELLAR'
-      - $ref: '#/components/schemas/Blockchain.MONAD'
-      - $ref: '#/components/schemas/Blockchain.TEMPO'
-      title: OperationalBlockchain
-    SubscriptionDisplay:
-      type: object
-      properties:
-        id:
-          type: string
-        customerId:
-          type: string
-        blockchain:
-          $ref: '#/components/schemas/Blockchain'
-        merchantId:
-          type: string
-        email:
-          type: string
-        plan:
-          type: string
-        planCode:
-          type: string
-        nextPaymentAt:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/SubscriptionStatus'
       required:
       - id
-      - customerId
-      - merchantId
-      - email
-      - plan
-      - planCode
-      - status
-      title: SubscriptionDisplay
-    Blockchain.ETH:
+      - name
+      - code
+      - interval
+      - amount
+      - active
+      title: SubscriptionPlan
+    Blockchain.POLYGON:
       type: string
       enum:
-      - eth
-      title: Blockchain.ETH
-    Blockchain.BASE:
-      type: string
-      enum:
-      - base
-      title: Blockchain.BASE
+      - polygon
+      title: Blockchain.POLYGON
     SubscriptionPlanRequest:
       type: object
       properties:
@@ -508,6 +593,7 @@ components:
           $ref: '#/components/schemas/SubscriptionInterval'
         duration:
           type: integer
+          minimum: 1
         amount:
           $ref: '#/components/schemas/CurrencyCents'
         description:
@@ -527,114 +613,6 @@ components:
       - interval
       - amount
       title: SubscriptionPlanRequest
-    SubscriptionPayment:
-      type: object
-      properties:
-        paymentId:
-          type: string
-        status:
-          type: string
-        totals:
-          $ref: '#/components/schemas/TotalsResponse'
-        paidAt:
-          type: string
-          format: date-time
-      required:
-      - paymentId
-      - status
-      - totals
-      - paidAt
-      title: SubscriptionPayment
-    Blockchain:
-      type: string
-      enum:
-      - solana
-      - eth
-      - polygon
-      - base
-      - user
-      - arbitrum
-      - stellar
-      - monad
-      - tempo
-      title: Blockchain
-    Blockchain.SOLANA:
-      type: string
-      enum:
-      - solana
-      title: Blockchain.SOLANA
-    Blockchain.ARBITRUM:
-      type: string
-      enum:
-      - arbitrum
-      title: Blockchain.ARBITRUM
-    Blockchain.TEMPO:
-      type: string
-      enum:
-      - tempo
-      title: Blockchain.TEMPO
-    SubscriptionInterval:
-      type: string
-      enum:
-      - Daily
-      - Weekly
-      - Monthly
-      - Yearly
-      title: SubscriptionInterval
-    TotalsResponse:
-      type: object
-      properties:
-        subtotal:
-          $ref: '#/components/schemas/CurrencyCents'
-        creditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        chargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        gasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        fxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        networkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        payInFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        total:
-          $ref: '#/components/schemas/CurrencyCents'
-        reserve:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidCreditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidChargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidGasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidFxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        merchantPaidNetworkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedCreditCardFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedChargebackProtectionFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedGasFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedFxFees:
-          $ref: '#/components/schemas/CurrencyCents'
-        invoicedNetworkFees:
-          $ref: '#/components/schemas/CurrencyCents'
-      required:
-      - subtotal
-      - creditCardFees
-      - chargebackProtectionFees
-      - gasFees
-      - fxFees
-      - total
-      title: TotalsResponse
-    Blockchain.MONAD:
-      type: string
-      enum:
-      - monad
-      title: Blockchain.MONAD
   securitySchemes:
     wallet:
       type: apiKey

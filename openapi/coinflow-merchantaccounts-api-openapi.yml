@@ -1,0 +1,463 @@
+openapi: 3.2.0
+info:
+  title: Reference Merchant Accounts API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: merchantAccounts
+paths:
+  /merchant/accounts/subsidiaries:
+    post:
+      operationId: merchantAccounts_CreateSubsidiary
+      summary: Create Subsidiary
+      tags:
+      - merchantAccounts
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant_Accounts_CreateSubsidiary_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+      security:
+      - merchant: []
+    get:
+      operationId: merchantAccounts_GetSubsidiaries
+      summary: Get Subsidiaries
+      tags:
+      - merchantAccounts
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ManagedAccount'
+      security:
+      - merchant: []
+  /merchant/accounts/transfers:
+    post:
+      operationId: merchantAccounts_CreateTransfer
+      summary: Create Transfer
+      tags:
+      - merchantAccounts
+      responses:
+        '200':
+          description: Successful response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedTransferRequest'
+      security:
+      - merchant: []
+  /merchant/accounts/transfers/{addressId}:
+    get:
+      operationId: merchantAccounts_GetAccountTransfers
+      summary: Get Account Transfers
+      tags:
+      - merchantAccounts
+      parameters:
+      - name: addressId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedTransferPage'
+      security:
+      - merchant: []
+  /merchant/accounts/primary-account:
+    get:
+      operationId: merchantAccounts_GetPrimaryAccount
+      summary: Get Primary Account
+      tags:
+      - merchantAccounts
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedAccount'
+      security:
+      - merchant: []
+  /merchant/accounts/subsidiaries/{subsidiaryId}:
+    delete:
+      operationId: merchantAccounts_RemoveSubsidiary
+      summary: Remove Subsidiary
+      tags:
+      - merchantAccounts
+      parameters:
+      - name: subsidiaryId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+      security:
+      - merchant: []
+components:
+  schemas:
+    ManagedTransferRequest:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        destinationId:
+          type: string
+        amount:
+          $ref: '#/components/schemas/Cents'
+        note:
+          type: string
+      required:
+      - sourceId
+      - destinationId
+      - amount
+      title: ManagedTransferRequest
+    ManagedAccount:
+      type: object
+      properties:
+        name:
+          type: string
+        accountId:
+          type: string
+        address:
+          type: string
+        status:
+          $ref: '#/components/schemas/ManagedAccountStatus'
+        balance:
+          $ref: '#/components/schemas/CurrencyCents'
+        transferPending:
+          type: boolean
+      required:
+      - name
+      - accountId
+      - status
+      - balance
+      - transferPending
+      title: ManagedAccount
+    Cents:
+      type: object
+      properties:
+        cents:
+          type: integer
+          minimum: 0
+      required:
+      - cents
+      title: Cents
+    ManagedTransfer:
+      type: object
+      properties:
+        transferId:
+          type: string
+        status:
+          $ref: '#/components/schemas/EmbeddedTransferStatus'
+        direction:
+          $ref: '#/components/schemas/ManagedTransferDirection'
+        amount:
+          $ref: '#/components/schemas/CurrencyCents'
+        notes:
+          type: string
+        signature:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+      - transferId
+      - status
+      - direction
+      - amount
+      - createdAt
+      title: ManagedTransfer
+    ManagedAccountStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - archived
+      title: ManagedAccountStatus
+    Currency:
+      type: string
+      enum:
+      - USD
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CHF
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ETB
+      - EUR
+      - FJD
+      - GBP
+      - GEL
+      - GHS
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MWK
+      - MVR
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RWF
+      - SAR
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SLE
+      - SLL
+      - SOS
+      - SRD
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - UYU
+      - UZS
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XCD
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMW
+      - ZWL
+      - CDF
+      - ERN
+      - FKP
+      - KPW
+      - RUB
+      - SBD
+      - SHP
+      - SSP
+      - VES
+      title: Currency
+    ManagedTransferDirection:
+      type: string
+      enum:
+      - outbound
+      - inbound
+      title: ManagedTransferDirection
+    Merchant_Accounts_CreateSubsidiary_Response_200:
+      type: object
+      properties:
+        address:
+          type: string
+      required:
+      - address
+      title: Merchant Accounts_CreateSubsidiary_Response_200
+    ManagedTransferPage:
+      type: object
+      properties:
+        transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedTransfer'
+        total:
+          type: number
+          format: double
+      required:
+      - transfers
+      - total
+      title: ManagedTransferPage
+    CurrencyCents:
+      type: object
+      properties:
+        cents:
+          type: integer
+          minimum: 0
+        currency:
+          $ref: '#/components/schemas/Currency'
+      required:
+      - cents
+      - currency
+      title: CurrencyCents
+    EmbeddedTransferStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - complete
+      - canceled
+      - failed
+      - unconfirmed
+      title: EmbeddedTransferStatus
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

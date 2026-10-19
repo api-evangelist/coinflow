@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  title: API Reference API
+  version: 1.0.0
+servers:
+- url: https://api-sandbox.coinflow.cash/api
+  description: https://api-sandbox.coinflow.cash/api
+tags:
+- name: API Reference
+paths: {}
+webhooks:
+  withdrawWebhooks_interacPinWebhook:
+    post:
+      operationId: withdrawWebhooks_interacPinWebhook
+      summary: Interac PIN
+      description: Fired when an Interac payout receives its Interac code (PIN), so you can display the code to the recipient without polling.
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteracPinWebhookPacket'
+      tags:
+      - API Reference
+components:
+  schemas:
+    InteracPinWebhookPacketEventType:
+      type: string
+      enum:
+      - Interac PIN
+      description: The webhook event type.
+      title: InteracPinWebhookPacketEventType
+    InteracPinWebhookData:
+      type: object
+      properties:
+        withdrawerId:
+          type: string
+          description: The id of the withdrawer (user or business) the payout belongs to.
+        transferId:
+          type: string
+          description: The provider transfer id for the Interac payout.
+        pin:
+          type: string
+          description: The Interac code (PIN) the recipient uses to claim the payout.
+      required:
+      - withdrawerId
+      - transferId
+      - pin
+      title: InteracPinWebhookData
+    InteracPinWebhookPacketCategory:
+      type: string
+      enum:
+      - Withdraw
+      description: The webhook category.
+      title: InteracPinWebhookPacketCategory
+    InteracPinWebhookPacket:
+      type: object
+      properties:
+        eventType:
+          $ref: '#/components/schemas/InteracPinWebhookPacketEventType'
+          description: The webhook event type.
+        category:
+          $ref: '#/components/schemas/InteracPinWebhookPacketCategory'
+          description: The webhook category.
+        created:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of when the event was created.
+        data:
+          $ref: '#/components/schemas/InteracPinWebhookData'
+      required:
+      - eventType
+      - category
+      - created
+      - data
+      title: InteracPinWebhookPacket
+  securitySchemes:
+    wallet:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-wallet
+      description: The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    blockchain:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-blockchain
+      description: The blockchain associated with the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    userId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-user-id
+      description: The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    merchant:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    signedMessage:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-signed-message
+      description: The message signed by the users wallet
+    merchantId:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-merchant-id
+      description: The merchant ID the session should be generated for
+    sessionKey:
+      type: apiKey
+      in: header
+      name: x-coinflow-auth-session-key
+      description: The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key
+    admin:
+      type: apiKey
+      in: header
+      name: Authorization

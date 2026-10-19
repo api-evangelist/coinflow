@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.coinflow.cash/openapi.json",
+ "final": "https://docs.coinflow.cash/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 913052,
+ "sha256": "9bb23438b330e6406c1a73379f4740fbdce9107dfef1baf9337de9c916955fec",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}
