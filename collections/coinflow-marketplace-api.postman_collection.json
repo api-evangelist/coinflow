@@ -1,1140 +1,623 @@
 {
+  "info": {
+    "_postman_id": "7817c9f8-2ffc-4ad1-a7ff-a09d86652ffd",
+    "name": "Reference Marketplace API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:30:03.000Z",
+    "updatedAt": "2026-10-22T02:30:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7817c9f8-2ffc-4ad1-a7ff-a09d86652ffd"
+  },
   "item": [
     {
-      "id": "ab48570f-552b-4c70-be71-6b43de4e917c",
-      "name": "marketplace",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "seller",
       "item": [
         {
-          "id": "dec6509e-1165-4bce-a10a-8be7294d02a7",
-          "name": "Adds a USDC recipient.",
-          "request": {
-            "name": "Adds a USDC recipient.",
-            "description": {
-              "content": "Registers a solana address that can receive USDC from the merchant’s Coinflow wallet balance",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "seller",
-                "usdc-withdraw",
-                "recipient"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"recipient\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "usdc-withdraw",
+          "item": [
             {
-              "id": "93ca20d6-28ab-46bf-aba3-80e0af515213",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller",
-                    "usdc-withdraw",
-                    "recipient"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"recipient\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "recipient",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ad6e6371-a409-4b4b-8576-7983d221a824",
-              "name": "Must Complete Additional Verification",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller",
-                    "usdc-withdraw",
-                    "recipient"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
+                  "name": "Adds a USDC recipient",
+                  "id": "d2947180-6352-4676-8a43-ca8d2d506344",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"recipient\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "code": 451,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"verification\": {\n    \"reference\": \"string\",\n    \"status\": \"expired\",\n    \"vendor\": \"sumsub_docv\",\n    \"name\": \"string\",\n    \"attested\": true,\n    \"shareToken\": \"string\",\n    \"shareTokenStatus\": \"string\",\n    \"sessionToken\": \"string\"\n  },\n  \"verificationLink\": \"string\",\n  \"redirectLink\": \"string\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"sumsub_docv\",\n      \"sessionToken\": \"string\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "51239f26-efa2-4c14-ae26-d17946f13ea7",
-          "name": "Removes a USDC recipient.",
-          "request": {
-            "name": "Removes a USDC recipient.",
-            "description": {
-              "content": "Removes a solana address from the merchant's allowlisted USDC recipients",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "seller",
-                "usdc-withdraw",
-                "recipient"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"recipient\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1b2aba9d-c164-4f7e-80ad-fa4ffbba1a00",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller",
-                    "usdc-withdraw",
-                    "recipient"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"recipient\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4273b6af-850b-4850-8abc-464a99044b62",
-          "name": "Create Seller",
-          "request": {
-            "name": "Create Seller",
-            "description": {
-              "content": "Given the verification information, register a seller to a marketplace",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "seller"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<string>\",\n  \"sellerId\": \"<string>\",\n  \"business\": \"<boolean>\",\n  \"info\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"website\": \"<string>\",\n    \"business\": {\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\"\n    },\n    \"person\": {\n      \"email\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    \"dateFormed\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    }\n  ],\n  \"onboardingToken\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4c977f2d-640f-4391-86c4-969a20612f75",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"string\",\n  \"sellerId\": \"string\",\n  \"business\": false,\n  \"info\": {\n    \"name\": \"string\",\n    \"tin\": \"string\",\n    \"website\": \"string\",\n    \"business\": {\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\"\n    },\n    \"person\": {\n      \"email\": \"string\",\n      \"lastName\": \"string\",\n      \"firstName\": \"string\"\n    },\n    \"dateFormed\": \"string\",\n    \"phoneNumber\": \"string\",\n    \"entityType\": \"string\",\n    \"merchantId\": \"string\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"string\",\n      \"dob\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"physicalAddress\": \"string\",\n      \"surName\": \"string\",\n      \"firstName\": \"string\"\n    },\n    {\n      \"ssn\": \"string\",\n      \"dob\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"physicalAddress\": \"string\",\n      \"surName\": \"string\",\n      \"firstName\": \"string\"\n    }\n  ],\n  \"onboardingToken\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5609c871-ad11-49be-9e2e-dccc6f786a2b",
-              "name": "Must Complete Additional Verification",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"string\",\n  \"sellerId\": \"string\",\n  \"business\": false,\n  \"info\": {\n    \"name\": \"string\",\n    \"tin\": \"string\",\n    \"website\": \"string\",\n    \"business\": {\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\"\n    },\n    \"person\": {\n      \"email\": \"string\",\n      \"lastName\": \"string\",\n      \"firstName\": \"string\"\n    },\n    \"dateFormed\": \"string\",\n    \"phoneNumber\": \"string\",\n    \"entityType\": \"string\",\n    \"merchantId\": \"string\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"string\",\n      \"dob\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"physicalAddress\": \"string\",\n      \"surName\": \"string\",\n      \"firstName\": \"string\"\n    },\n    {\n      \"ssn\": \"string\",\n      \"dob\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\",\n      \"state\": \"string\",\n      \"city\": \"string\",\n      \"physicalAddress\": \"string\",\n      \"surName\": \"string\",\n      \"firstName\": \"string\"\n    }\n  ],\n  \"onboardingToken\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "code": 451,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"verification\": {\n    \"reference\": \"string\",\n    \"status\": \"expired\",\n    \"vendor\": \"sumsub_docv\",\n    \"name\": \"string\",\n    \"attested\": true,\n    \"shareToken\": \"string\",\n    \"shareTokenStatus\": \"string\",\n    \"sessionToken\": \"string\"\n  },\n  \"verificationLink\": \"string\",\n  \"redirectLink\": \"string\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"sumsub_docv\",\n      \"sessionToken\": \"string\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "97fda310-4a42-4673-8b6d-c8f2c5d2fb4b",
-          "name": "Creates a USDC withdrawal transaction for a merchant using the Coinflow wallet",
-          "request": {
-            "name": "Creates a USDC withdrawal transaction for a merchant using the Coinflow wallet",
-            "description": {
-              "content": "Creates a usdc withdrawal transaction for merchants using Coinflow wallet- so they can withdraw usdc from their wallet.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "seller",
-                "usdc-withdraw"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3513ccb4-3454-438b-8b73-a20a63a7fd12",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller",
-                    "usdc-withdraw"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/seller/usdc-withdraw/recipient",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "seller",
+                        "usdc-withdraw",
+                        "recipient"
+                      ]
+                    },
+                    "description": "Registers a solana address that can receive USDC from the merchant\u2019s Coinflow wallet balance"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": 561\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"transaction\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dfdbbc82-71ef-4325-9f0d-0e983ade6807",
-              "name": "Must Complete Additional Verification",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "seller",
-                    "usdc-withdraw"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": 561\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "code": 451,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"verification\": {\n    \"reference\": \"string\",\n    \"status\": \"expired\",\n    \"vendor\": \"sumsub_docv\",\n    \"name\": \"string\",\n    \"attested\": true,\n    \"shareToken\": \"string\",\n    \"shareTokenStatus\": \"string\",\n    \"sessionToken\": \"string\"\n  },\n  \"verificationLink\": \"string\",\n  \"redirectLink\": \"string\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"sumsub_docv\",\n      \"sessionToken\": \"string\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7f85ed56-aded-4a66-80f7-20d464702a8f",
-          "name": "Download Seller KYC verification report.",
-          "request": {
-            "name": "Download Seller KYC verification report.",
-            "description": {},
-            "url": {
-              "path": [
-                "marketplace",
-                "kyc",
-                "download",
-                ":verificationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "verificationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b17d1841-9823-41af-a665-78340d1bc387",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "marketplace",
-                    "kyc",
-                    "download",
-                    ":verificationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationId",
-                      "description": "(Required) "
+                      "id": "fba606e6-64d2-4f9c-afdf-298e940553af",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/seller/usdc-withdraw/recipient",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "seller",
+                            "usdc-withdraw",
+                            "recipient"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-fba606e6-64d2-4f9c-afdf-298e940553af"
+                    },
+                    {
+                      "id": "983fc33c-274c-445c-86c5-49344ac5d8eb",
+                      "name": "Must Complete Additional Verification",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/seller/usdc-withdraw/recipient",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "seller",
+                            "usdc-withdraw",
+                            "recipient"
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"verification\": {\n    \"reference\": \"<string>\",\n    \"status\": \"pending\",\n    \"vendor\": \"sumsub\",\n    \"name\": \"<string>\",\n    \"attested\": \"<boolean>\",\n    \"shareToken\": \"<string>\",\n    \"shareTokenStatus\": \"<string>\",\n    \"sessionToken\": \"<string>\",\n    \"rejectionReasons\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"verificationLink\": \"<string>\",\n  \"redirectLink\": \"<string>\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-983fc33c-274c-445c-86c5-49344ac5d8eb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-d2947180-6352-4676-8a43-ca8d2d506344"
+                },
+                {
+                  "name": "Removes a USDC recipient",
+                  "id": "abd6b322-1ce4-4bea-b0b7-add21d302483",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/seller/usdc-withdraw/recipient",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "seller",
+                        "usdc-withdraw",
+                        "recipient"
+                      ]
+                    },
+                    "description": "Removes a solana address from the merchant's allowlisted USDC recipients"
+                  },
+                  "response": [
+                    {
+                      "id": "d8ed517c-31f6-4ad2-9d5f-4f7bffaa9cb0",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/seller/usdc-withdraw/recipient",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "seller",
+                            "usdc-withdraw",
+                            "recipient"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-d8ed517c-31f6-4ad2-9d5f-4f7bffaa9cb0"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-abd6b322-1ce4-4bea-b0b7-add21d302483"
+                }
+              ],
+              "id": "9de184d9-b495-426d-a65c-28a620bbc32d",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-9de184d9-b495-426d-a65c-28a620bbc32d"
+            },
+            {
+              "name": "Creates a USDC withdrawal transaction for a merchant using the Coinflow wallet",
+              "id": "bf68e491-dad7-49ca-8fc8-e5cb6133b346",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
                     }
                   ]
                 },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/seller/usdc-withdraw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "seller",
+                    "usdc-withdraw"
+                  ]
+                },
+                "description": "Creates a usdc withdrawal transaction for merchants using Coinflow wallet- so they can withdraw usdc from their wallet."
+              },
+              "response": [
+                {
+                  "id": "73b8d525-90c3-47fd-8291-52de8746422b",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/seller/usdc-withdraw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "seller",
+                        "usdc-withdraw"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transaction\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-73b8d525-90c3-47fd-8291-52de8746422b"
+                },
+                {
+                  "id": "e13e7915-dbe7-446c-a278-2226ca88d1ea",
+                  "name": "Must Complete Additional Verification",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/seller/usdc-withdraw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "seller",
+                        "usdc-withdraw"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"verification\": {\n    \"reference\": \"<string>\",\n    \"status\": \"pending\",\n    \"vendor\": \"sumsub\",\n    \"name\": \"<string>\",\n    \"attested\": \"<boolean>\",\n    \"shareToken\": \"<string>\",\n    \"shareTokenStatus\": \"<string>\",\n    \"sessionToken\": \"<string>\",\n    \"rejectionReasons\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"verificationLink\": \"<string>\",\n  \"redirectLink\": \"<string>\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-e13e7915-dbe7-446c-a278-2226ca88d1ea"
+                }
+              ],
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-bf68e491-dad7-49ca-8fc8-e5cb6133b346"
+            }
+          ],
+          "id": "a0946aa2-b4e6-45bd-abcd-67bc81c050c0",
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-a0946aa2-b4e6-45bd-abcd-67bc81c050c0"
+        },
+        {
+          "name": "verifyTransaction",
+          "item": [
+            {
+              "name": "Get Seller Verification Transaction",
+              "id": "2d8aebda-1ee8-4384-8f4f-e84296213bec",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-wallet",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
                 "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "732375f9-81d2-476a-b44e-2b4f14ac8d56",
-          "name": "Get Purchase Link",
-          "request": {
-            "name": "Get Purchase Link",
-            "description": {
-              "content": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to complete a purchase with a seller.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "link",
-                "purchase"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"<string>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"<string>\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "67400bb6-065a-4f8a-9fc3-6adb4bb81b36",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "marketplace",
-                    "link",
-                    "purchase"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"subtotal\": {\n    \"cents\": 2395\n  },\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"realEstate\",\n      \"quantity\": 4218.627252150988,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 5696.551756279313\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"contractInvoicing\",\n      \"quantity\": 365.5232134657649,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 74.42007943946227\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 6753\n  },\n  \"threeDsChallengePreference\": \"Challenge\",\n  \"theme\": {\n    \"showCardIcon\": true,\n    \"placeholderColor\": \"string\",\n    \"expirationPlaceholder\": \"string\",\n    \"cvvPlaceholder\": \"string\",\n    \"cardNumberPlaceholder\": \"string\",\n    \"fontWeight\": \"string\",\n    \"fontSize\": \"string\",\n    \"style\": \"rounded\",\n    \"font\": \"string\",\n    \"ctaColor\": \"string\",\n    \"textColorAction\": \"string\",\n    \"textColorAccent\": \"string\",\n    \"textColor\": \"string\",\n    \"backgroundAccent2\": \"string\",\n    \"backgroundAccent\": \"string\",\n    \"cardBackground\": \"string\",\n    \"background\": \"string\",\n    \"primary\": \"string\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"link\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "881302cf-c572-4218-a33e-c56c85ae8cba",
-          "name": "Get Purchase with Credits link",
-          "request": {
-            "name": "Get Purchase with Credits link",
-            "description": {
-              "content": "Get a link for a user to make a marketplace purchase with their Credits Balance",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "link",
-                "purchase",
-                "credits"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"checkoutJwtToken\": \"<string>\",\n  \"email\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f293932e-2117-45aa-b7b6-385d0c635638",
-              "name": "Ok",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "marketplace",
-                    "link",
-                    "purchase",
-                    "credits"
-                  ],
+                  "raw": "{{baseUrl}}/seller/verifyTransaction?parentId=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"checkoutJwtToken\": \"<string>\",\n  \"email\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"link\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "03ab3a33-18ef-4594-8fd5-b775d2cc81f9",
-          "name": "Get Seller Login Link",
-          "request": {
-            "name": "Get Seller Login Link",
-            "description": {
-              "content": "Get a link which the marketplace can redirect sellers to login to\ntheir dashboards and view purchases and withdraw their money.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "link",
-                "seller",
-                "login"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "acc55afa-d872-4bf8-87ee-eb6d1b180b5d",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "marketplace",
-                    "link",
-                    "seller",
-                    "login"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"link\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "344e13f2-bc31-46a3-bd5c-a3bc48d7280a",
-          "name": "Get Seller Registration Link",
-          "request": {
-            "name": "Get Seller Registration Link",
-            "description": {
-              "content": "Get a link which the marketplace can redirect new sellers to register\ntheir accounts.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "link",
-                "seller",
-                "registration"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<string>\",\n  \"sellerId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1dc9f58c-2bdc-409a-bd49-25d61d08ed14",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "marketplace",
-                    "link",
-                    "seller",
-                    "registration"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"<string>\",\n  \"sellerId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"link\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0901c628-878b-41fe-8e18-0d8f1667839a",
-          "name": "Get Seller Verification Transaction",
-          "request": {
-            "name": "Get Seller Verification Transaction",
-            "description": {
-              "content": "Returns a verification transaction so the seller needs to sign and send with their MPC wlalet.\nThe transaction verifies that they have access to the authentication method tied to the MPC wallet which is linked\nto their Coinflow Account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "seller",
-                "verifyTransaction"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "parentId",
-                  "value": "<string>",
-                  "description": "(Required) - The parent merchant ID (can be merchantId or _id)"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-wallet",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "daf1376c-cd71-4847-8e78-96f95264d049",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "seller",
                     "verifyTransaction"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) - The parent merchant ID (can be merchantId or _id)",
                       "key": "parentId",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-wallet",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns a verification transaction so the seller needs to sign and send with their MPC wlalet.\nThe transaction verifies that they have access to the authentication method tied to the MPC wallet which is linked\nto their Coinflow Account."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "3d94f92c-fa07-41c7-a30e-25384deb73c7",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-wallet",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/seller/verifyTransaction?parentId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "seller",
+                        "verifyTransaction"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) - The parent merchant ID (can be merchantId or _id)",
+                          "key": "parentId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-3d94f92c-fa07-41c7-a30e-25384deb73c7"
                 }
               ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-2d8aebda-1ee8-4384-8f4f-e84296213bec"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "24e88b21-8fa4-4e7d-8334-3a911be5e343",
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-24e88b21-8fa4-4e7d-8334-3a911be5e343"
         },
         {
-          "id": "82cd2b83-d93d-441c-8f6f-f79487122bc9",
-          "name": "Get Subscription Link",
+          "name": "Create Seller",
+          "id": "5d54d716-17c7-4afa-9cb9-3fbcb0c16d45",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get Subscription Link",
-            "description": {
-              "content": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to subscribe to a particular seller's subscription.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "link",
-                "subscription"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -1145,194 +628,1094 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"planCode\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"<string>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"<string>\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+              "raw": "{\n  \"email\": \"\\\"6z70\\\"@[5.0.754.855]\",\n  \"sellerId\": \"<string>\",\n  \"business\": \"<boolean>\",\n  \"info\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"website\": \"<string>\",\n    \"business\": {\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"state\": \"<string>\",\n      \"address2\": \"<string>\"\n    },\n    \"person\": {\n      \"email\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    \"dateFormed\": \"<string>\",\n    \"formationState\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"completedAt\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"ZG\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"DE\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    }\n  ],\n  \"onboardingToken\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/seller",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "seller"
+              ]
+            },
+            "description": "Given the verification information, register a seller to a marketplace.\n\nWhen the seller must complete additional verification the API responds\nwith a 451 containing a `verificationLink`. Send the seller there; once\nthey finish, they are returned to `body.redirectUrl` when supplied, and\notherwise to the marketplace's Coinflow seller login page."
           },
           "response": [
             {
-              "id": "8c35635c-ee85-4189-b733-ef989ddbfd9e",
-              "name": "Ok",
+              "id": "a5b01abe-2e46-4fe9-98fd-16fc9fc847f3",
+              "name": "Successful response",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "marketplace",
-                    "link",
-                    "subscription"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"planCode\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"computingResources\",\n      \"quantity\": 8030.516151797518,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9371.270787208961\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"DLC\",\n      \"quantity\": 7115.565888907506,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9218.185937257853\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 9202\n  },\n  \"threeDsChallengePreference\": \"Challenge\",\n  \"theme\": {\n    \"showCardIcon\": true,\n    \"placeholderColor\": \"string\",\n    \"expirationPlaceholder\": \"string\",\n    \"cvvPlaceholder\": \"string\",\n    \"cardNumberPlaceholder\": \"string\",\n    \"fontWeight\": \"string\",\n    \"fontSize\": \"string\",\n    \"style\": \"sharp\",\n    \"font\": \"string\",\n    \"ctaColor\": \"string\",\n    \"textColorAction\": \"string\",\n    \"textColorAccent\": \"string\",\n    \"textColor\": \"string\",\n    \"backgroundAccent2\": \"string\",\n    \"backgroundAccent\": \"string\",\n    \"cardBackground\": \"string\",\n    \"background\": \"string\",\n    \"primary\": \"string\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+                  "raw": "{\n  \"email\": \"\\\"6z70\\\"@[5.0.754.855]\",\n  \"sellerId\": \"<string>\",\n  \"business\": \"<boolean>\",\n  \"info\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"website\": \"<string>\",\n    \"business\": {\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"state\": \"<string>\",\n      \"address2\": \"<string>\"\n    },\n    \"person\": {\n      \"email\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    \"dateFormed\": \"<string>\",\n    \"formationState\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"completedAt\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"ZG\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"DE\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    }\n  ],\n  \"onboardingToken\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/seller",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "seller"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-a5b01abe-2e46-4fe9-98fd-16fc9fc847f3"
+            },
+            {
+              "id": "b94ab466-6df0-4bb3-8ff8-42c8b193981d",
+              "name": "Must Complete Additional Verification",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"\\\"6z70\\\"@[5.0.754.855]\",\n  \"sellerId\": \"<string>\",\n  \"business\": \"<boolean>\",\n  \"info\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"website\": \"<string>\",\n    \"business\": {\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"state\": \"<string>\",\n      \"address2\": \"<string>\"\n    },\n    \"person\": {\n      \"email\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    \"dateFormed\": \"<string>\",\n    \"formationState\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"completedAt\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"ubos\": [\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"ZG\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    },\n    {\n      \"ssn\": \"<string>\",\n      \"dob\": \"<string>\",\n      \"country\": \"DE\",\n      \"zip\": \"<string>\",\n      \"state\": \"<string>\",\n      \"city\": \"<string>\",\n      \"physicalAddress\": \"<string>\",\n      \"surName\": \"<string>\",\n      \"firstName\": \"<string>\"\n    }\n  ],\n  \"onboardingToken\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/seller",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "seller"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"link\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"verification\": {\n    \"reference\": \"<string>\",\n    \"status\": \"pending\",\n    \"vendor\": \"sumsub\",\n    \"name\": \"<string>\",\n    \"attested\": \"<boolean>\",\n    \"shareToken\": \"<string>\",\n    \"shareTokenStatus\": \"<string>\",\n    \"sessionToken\": \"<string>\",\n    \"rejectionReasons\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"verificationLink\": \"<string>\",\n  \"redirectLink\": \"<string>\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-b94ab466-6df0-4bb3-8ff8-42c8b193981d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-5d54d716-17c7-4afa-9cb9-3fbcb0c16d45"
+        }
+      ],
+      "id": "66db3d7c-43b1-4c5a-8e80-0538cc70b919",
+      "createdAt": "2026-10-22T02:30:04.000Z",
+      "updatedAt": "2026-10-22T02:30:04.000Z",
+      "uid": "35240-66db3d7c-43b1-4c5a-8e80-0538cc70b919"
+    },
+    {
+      "name": "marketplace",
+      "item": [
+        {
+          "name": "kyc",
+          "item": [
+            {
+              "name": "download",
+              "item": [
+                {
+                  "name": "{verificationId}",
+                  "item": [
+                    {
+                      "name": "Download Seller KYC verification report",
+                      "id": "2a113dce-01c5-4176-8fa7-4150c041017b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/kyc/download/:verificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "kyc",
+                            "download",
+                            ":verificationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9fefb0a8-8ce2-4b5a-b741-d9fbcec0bf49",
+                              "key": "verificationId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e5679263-36ec-497d-a5f6-ce358fdec215",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/marketplace/kyc/download/:verificationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "marketplace",
+                                "kyc",
+                                "download",
+                                ":verificationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:30:04.000Z",
+                          "updatedAt": "2026-10-22T02:30:04.000Z",
+                          "uid": "35240-e5679263-36ec-497d-a5f6-ce358fdec215"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-2a113dce-01c5-4176-8fa7-4150c041017b"
+                    }
+                  ],
+                  "id": "81e06792-726b-4a42-9274-381063360691",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-81e06792-726b-4a42-9274-381063360691"
+                }
+              ],
+              "id": "a922717e-0a92-41c0-8a3e-052a0e3bd1cd",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-a922717e-0a92-41c0-8a3e-052a0e3bd1cd"
+            }
+          ],
+          "id": "a0de403e-34a0-4ccd-b19f-53f6956e12c1",
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-a0de403e-34a0-4ccd-b19f-53f6956e12c1"
         },
         {
-          "id": "4359f946-32e2-47b2-9a27-c4b9afdd95b2",
-          "name": "Get wallet by email",
-          "request": {
-            "name": "Get wallet by email",
-            "description": {
-              "content": "Given an email address returns the MPC wallet address for the user. Can\nbe used to pass into the SDK, query the API, and check balances.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "marketplace",
-                "wallet"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "link",
+          "item": [
             {
-              "id": "54d8d60a-643a-4bbc-84dc-fe592752894a",
-              "name": "Ok",
-              "originalRequest": {
+              "name": "purchase",
+              "item": [
+                {
+                  "name": "credits",
+                  "item": [
+                    {
+                      "name": "Get Purchase with Credits link",
+                      "id": "09310554-428e-4cf6-9013-4b8a3e0e4857",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"checkoutJwtToken\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/link/purchase/credits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "link",
+                            "purchase",
+                            "credits"
+                          ]
+                        },
+                        "description": "Get a link for a user to make a marketplace purchase with their Credits Balance"
+                      },
+                      "response": [
+                        {
+                          "id": "cf8c0636-72e3-42f6-b1d8-6757fb2f310e",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"checkoutJwtToken\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/marketplace/link/purchase/credits",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "marketplace",
+                                "link",
+                                "purchase",
+                                "credits"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"link\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:30:04.000Z",
+                          "updatedAt": "2026-10-22T02:30:04.000Z",
+                          "uid": "35240-cf8c0636-72e3-42f6-b1d8-6757fb2f310e"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-09310554-428e-4cf6-9013-4b8a3e0e4857"
+                    }
+                  ],
+                  "id": "0024d019-4ea7-4b74-ba93-ef626ca6f8d7",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-0024d019-4ea7-4b74-ba93-ef626ca6f8d7"
+                },
+                {
+                  "name": "Get Purchase Link",
+                  "id": "0002f3e0-8f9f-40e5-a009-34b5f1a62245",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"\\\"5Q|HQBfW\\\"@[4.26.95.11]\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\"\n  },\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"Frictionless\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"travelDocuments\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"virtualConferenceTicket\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"pill\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/marketplace/link/purchase",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "marketplace",
+                        "link",
+                        "purchase"
+                      ]
+                    },
+                    "description": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to complete a purchase with a seller."
+                  },
+                  "response": [
+                    {
+                      "id": "a8c49265-3b8d-4661-8ead-a2567636a9a0",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"\\\"5Q|HQBfW\\\"@[4.26.95.11]\",\n  \"subtotal\": {\n    \"cents\": \"<integer>\"\n  },\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"Frictionless\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"travelDocuments\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"virtualConferenceTicket\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"pill\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/link/purchase",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "link",
+                            "purchase"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"link\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-a8c49265-3b8d-4661-8ead-a2567636a9a0"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-0002f3e0-8f9f-40e5-a009-34b5f1a62245"
+                }
+              ],
+              "id": "9a35a628-79db-4c9c-b959-917e45d1bce2",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-9a35a628-79db-4c9c-b959-917e45d1bce2"
+            },
+            {
+              "name": "seller",
+              "item": [
+                {
+                  "name": "login",
+                  "item": [
+                    {
+                      "name": "Get Seller Login Link",
+                      "id": "9f743dc1-9f6f-4a1d-9421-ce67a9a2398a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/link/seller/login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "link",
+                            "seller",
+                            "login"
+                          ]
+                        },
+                        "description": "Get a link which the marketplace can redirect sellers to login to\ntheir dashboards and view purchases and withdraw their money."
+                      },
+                      "response": [
+                        {
+                          "id": "02ca7088-6521-4eae-be61-314c07e16dcf",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/marketplace/link/seller/login",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "marketplace",
+                                "link",
+                                "seller",
+                                "login"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"link\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:30:04.000Z",
+                          "updatedAt": "2026-10-22T02:30:04.000Z",
+                          "uid": "35240-02ca7088-6521-4eae-be61-314c07e16dcf"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-9f743dc1-9f6f-4a1d-9421-ce67a9a2398a"
+                    }
+                  ],
+                  "id": "aa994053-f8fa-4977-9438-b889e5d4484a",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-aa994053-f8fa-4977-9438-b889e5d4484a"
+                },
+                {
+                  "name": "registration",
+                  "item": [
+                    {
+                      "name": "Get Seller Registration Link",
+                      "id": "152b1b0f-f381-4c12-b7f3-7e0b83c09b14",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"N-1jh.hH99|&A^cP|.LjEyg.&'Az5CmGh.y58As{_n.B|.MZ_vU.W'-+w@KYgejpl.4o.o.buwf981jI.WGIbfJprK\",\n  \"sellerId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/link/seller/registration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "link",
+                            "seller",
+                            "registration"
+                          ]
+                        },
+                        "description": "Get a link which the marketplace can redirect new sellers to register\ntheir accounts."
+                      },
+                      "response": [
+                        {
+                          "id": "f4fcfa54-298d-4df9-abf0-af1cef37e477",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"N-1jh.hH99|&A^cP|.LjEyg.&'Az5CmGh.y58As{_n.B|.MZ_vU.W'-+w@KYgejpl.4o.o.buwf981jI.WGIbfJprK\",\n  \"sellerId\": \"<string>\",\n  \"country\": \"<string>\",\n  \"redirectUrl\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/marketplace/link/seller/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "marketplace",
+                                "link",
+                                "seller",
+                                "registration"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"link\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:30:04.000Z",
+                          "updatedAt": "2026-10-22T02:30:04.000Z",
+                          "uid": "35240-f4fcfa54-298d-4df9-abf0-af1cef37e477"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-152b1b0f-f381-4c12-b7f3-7e0b83c09b14"
+                    }
+                  ],
+                  "id": "5da5badb-5193-4470-8aca-5384135a4489",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-5da5badb-5193-4470-8aca-5384135a4489"
+                }
+              ],
+              "id": "7ae5e0cf-ef3c-4198-8ad8-b5fa65bae5a8",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-7ae5e0cf-ef3c-4198-8ad8-b5fa65bae5a8"
+            },
+            {
+              "name": "subscription",
+              "item": [
+                {
+                  "name": "Get Subscription Link",
+                  "id": "012c3260-e645-4ab6-a640-bff39c4622e9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"\\\"\\\"FO=t\\\"@KAG2.qyCef.DeoCHi.1qIUBak0y.F1uBf4M4DL.02a.EhnuLFtt.KnKxZ.KIwB6DgHTr.k0U.H0KDKd4.VETIyziEqPK\",\n  \"planCode\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"subscription\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"realEstate\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"sharp\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/marketplace/link/subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "marketplace",
+                        "link",
+                        "subscription"
+                      ]
+                    },
+                    "description": "Get a link which the marketplace can redirect or present via iframe to the\ncustomer for them to subscribe to a particular seller's subscription."
+                  },
+                  "response": [
+                    {
+                      "id": "56979826-1d04-4d61-b08f-bbff6ffbee90",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sellerId\": \"<string>\",\n  \"email\": \"\\\"\\\"FO=t\\\"@KAG2.qyCef.DeoCHi.1qIUBak0y.F1uBf4M4DL.02a.EhnuLFtt.KnKxZ.KIwB6DgHTr.k0U.H0KDKd4.VETIyziEqPK\",\n  \"planCode\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"subscription\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"realEstate\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"theme\": {\n    \"showCardIcon\": \"<boolean>\",\n    \"placeholderColor\": \"<string>\",\n    \"expirationPlaceholder\": \"<string>\",\n    \"cvvPlaceholder\": \"<string>\",\n    \"cardNumberPlaceholder\": \"<string>\",\n    \"fontWeight\": \"<string>\",\n    \"fontSize\": \"<string>\",\n    \"style\": \"sharp\",\n    \"font\": \"<string>\",\n    \"ctaColor\": \"<string>\",\n    \"textColorAction\": \"<string>\",\n    \"textColorAccent\": \"<string>\",\n    \"textColor\": \"<string>\",\n    \"backgroundAccent2\": \"<string>\",\n    \"backgroundAccent\": \"<string>\",\n    \"cardBackground\": \"<string>\",\n    \"background\": \"<string>\",\n    \"primary\": \"<string>\"\n  },\n  \"redirectUri\": \"<string>\",\n  \"deviceId\": \"<string>\",\n  \"supportEmail\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/marketplace/link/subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "marketplace",
+                            "link",
+                            "subscription"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"link\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:30:04.000Z",
+                      "updatedAt": "2026-10-22T02:30:04.000Z",
+                      "uid": "35240-56979826-1d04-4d61-b08f-bbff6ffbee90"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-012c3260-e645-4ab6-a640-bff39c4622e9"
+                }
+              ],
+              "id": "d40bbc37-ea04-4d67-857e-ff21e6131288",
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-d40bbc37-ea04-4d67-857e-ff21e6131288"
+            }
+          ],
+          "id": "e9e5ad04-150b-41ab-95b7-7d3ffc4b74c7",
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-e9e5ad04-150b-41ab-95b7-7d3ffc4b74c7"
+        },
+        {
+          "name": "wallet",
+          "item": [
+            {
+              "name": "Get wallet by email",
+              "id": "9688bfaf-ff31-45b3-adbf-faaec88f116e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"5EJCqFHl~lA.KHT7OA.*xJIK.&=l*}.P.b#zyr_.pzG~.LVypF8Fo.e.3dLnah3@[3.5.93.06]\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/marketplace/wallet",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "marketplace",
                     "wallet"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Given an email address returns the MPC wallet address for the user. Can\nbe used to pass into the SDK, query the API, and check balances."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "5691f413-eff6-4883-a3f8-3a207e650d74",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"5EJCqFHl~lA.KHT7OA.*xJIK.&=l*}.P.b#zyr_.pzG~.LVypF8Fo.e.3dLnah3@[3.5.93.06]\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/marketplace/wallet",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "marketplace",
+                        "wallet"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"blockchain\": \"<string>\",\n  \"wallet\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:30:04.000Z",
+                  "updatedAt": "2026-10-22T02:30:04.000Z",
+                  "uid": "35240-5691f413-eff6-4883-a3f8-3a207e650d74"
                 }
               ],
-              "body": "{\n  \"blockchain\": \"string\",\n  \"wallet\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:30:04.000Z",
+              "updatedAt": "2026-10-22T02:30:04.000Z",
+              "uid": "35240-9688bfaf-ff31-45b3-adbf-faaec88f116e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "30c4ee4b-5b35-4048-86ed-2abd49127b35",
+          "createdAt": "2026-10-22T02:30:04.000Z",
+          "updatedAt": "2026-10-22T02:30:04.000Z",
+          "uid": "35240-30c4ee4b-5b35-4048-86ed-2abd49127b35"
         }
       ],
-      "event": []
+      "id": "3fa8022d-2593-4f41-9f81-6d3499ab5fdd",
+      "createdAt": "2026-10-22T02:30:04.000Z",
+      "updatedAt": "2026-10-22T02:30:04.000Z",
+      "uid": "35240-3fa8022d-2593-4f41-9f81-6d3499ab5fdd"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api-sandbox.coinflow.cash/api",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
     }
-  ],
-  "info": {
-    "_postman_id": "b1804441-2487-4620-b340-eb78808eb14d",
-    "name": "API Reference authentication marketplace API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

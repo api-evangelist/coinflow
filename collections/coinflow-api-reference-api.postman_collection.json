@@ -1,0 +1,18 @@
+{
+  "info": {
+    "_postman_id": "a9db88e3-231b-4cf9-9920-2b8d7c7f7e97",
+    "name": "API Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:23.000Z",
+    "updatedAt": "2026-10-22T02:31:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9db88e3-231b-4cf9-9920-2b8d7c7f7e97"
+  },
+  "item": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
+    }
+  ]
+}

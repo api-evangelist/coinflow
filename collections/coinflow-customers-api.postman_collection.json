@@ -1,439 +1,1769 @@
 {
+  "info": {
+    "_postman_id": "02ca0a7c-18c7-4f7f-b4b3-1bcf372cdfa6",
+    "name": "Reference Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:29:51.000Z",
+    "updatedAt": "2026-10-22T02:29:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-02ca0a7c-18c7-4f7f-b4b3-1bcf372cdfa6"
+  },
   "item": [
     {
-      "id": "1f505b33-652e-44f6-9e85-68f652cf9e38",
-      "name": "customers",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "customer",
       "item": [
         {
-          "id": "b16391d4-5523-4386-8be6-67f756850e7a",
-          "name": "Add Bank Account",
-          "request": {
-            "name": "Add Bank Account",
-            "description": {
-              "content": "Adds a bank account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "v2",
-                "bankAccount"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-wallet",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"type\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"country\": \"<string>\",\n  \"isTokenized\": \"<boolean>\",\n  \"address2\": \"<string>\",\n  \"rtpEligible\": \"<boolean>\",\n  \"businessName\": \"<string>\",\n  \"plaidAccessToken\": \"<string>\",\n  \"plaidAccountType\": \"<string>\",\n  \"plaidAccountSubtype\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v2",
+          "item": [
             {
-              "id": "4ac763be-f08d-4cb9-8358-d6dcbf693761",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "v2",
-                    "bankAccount"
+              "name": "bankAccount",
+              "item": [
+                {
+                  "name": "Add Bank Account",
+                  "id": "036a571c-6ee1-432f-bf87-f254358ffba4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-wallet",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"g'A_j}$1B.c.=.$m*^.PYv8'l1{.$Nhi^j%1m.ET2!@uKLdIrFJT.3PkOsR28.zO.yMscU.8tW-o.hqsOq3W.Re.caCvcOI\",\n  \"firstName\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"DG\",\n  \"zip\": \"85996\",\n  \"alias\": \"<string>\",\n  \"type\": \"savings\",\n  \"routingNumber\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"country\": \"<string>\",\n  \"isTokenized\": \"<boolean>\",\n  \"plaidAccessToken\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"businessName\": \"<string>\",\n  \"plaidAccountType\": \"<string>\",\n  \"plaidAccountSubtype\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/v2/bankAccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "v2",
+                        "bankAccount"
+                      ]
+                    },
+                    "description": "Adds a bank account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "a9786f66-048d-4d70-a7ac-7613dbeda330",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-wallet",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"email\": \"g'A_j}$1B.c.=.$m*^.PYv8'l1{.$Nhi^j%1m.ET2!@uKLdIrFJT.3PkOsR28.zO.yMscU.8tW-o.hqsOq3W.Re.caCvcOI\",\n  \"firstName\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"DG\",\n  \"zip\": \"85996\",\n  \"alias\": \"<string>\",\n  \"type\": \"savings\",\n  \"routingNumber\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address1\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"country\": \"<string>\",\n  \"isTokenized\": \"<boolean>\",\n  \"plaidAccessToken\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"businessName\": \"<string>\",\n  \"plaidAccountType\": \"<string>\",\n  \"plaidAccountSubtype\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/v2/bankAccount",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "v2",
+                            "bankAccount"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-a9786f66-048d-4d70-a7ac-7613dbeda330"
+                    }
                   ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-036a571c-6ee1-432f-bf87-f254358ffba4"
+                }
+              ],
+              "id": "54a0d112-499b-4921-9f16-04e1cb5c13e1",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-54a0d112-499b-4921-9f16-04e1cb5c13e1"
+            },
+            {
+              "name": "Get Customer",
+              "id": "441539bd-8f7c-4cbd-96b8-452ff70aa35c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-session-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer/v2",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "customer",
+                    "v2"
+                  ]
                 },
+                "description": "Gets the Customer record for a particular user."
+              },
+              "response": [
+                {
+                  "id": "aecc024c-468f-4885-8291-9a71e7838099",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "v2"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"_id\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"KYD\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Unknown\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"NGN\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"pending_manual_review\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"failed\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"venmo\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"paypal\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"paypal\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"blockchain\": \"base\",\n    \"mobiles\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"currency\": \"HTG\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Immediate\",\n        \"currency\": \"KMF\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ]\n  },\n  \"kycApproved\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-aecc024c-468f-4885-8291-9a71e7838099"
+                },
+                {
+                  "id": "fc4efca1-f254-49dd-8c24-3f0cc99d8b89",
+                  "name": "No customer associated with customerId, will also return this code if the customer exists, but they have no payment methods are available.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "v2"
+                      ]
+                    }
+                  },
+                  "status": "Precondition Failed",
+                  "code": 412,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<double>",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-fc4efca1-f254-49dd-8c24-3f0cc99d8b89"
+                },
+                {
+                  "id": "655cb6b8-1c04-4e68-b766-a2a0f215618c",
+                  "name": "Must Complete Additional Verification",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "v2"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"verification\": {\n    \"reference\": \"<string>\",\n    \"status\": \"rejected\",\n    \"vendor\": \"middesk\",\n    \"name\": \"<string>\",\n    \"attested\": \"<boolean>\",\n    \"shareToken\": \"<string>\",\n    \"shareTokenStatus\": \"<string>\",\n    \"sessionToken\": \"<string>\",\n    \"rejectionReasons\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"verificationLink\": \"<string>\",\n  \"redirectLink\": \"<string>\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"persona_kyb\",\n      \"sessionToken\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"link\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"<string>\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-655cb6b8-1c04-4e68-b766-a2a0f215618c"
+                }
+              ],
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-441539bd-8f7c-4cbd-96b8-452ff70aa35c"
+            }
+          ],
+          "id": "a2b5fee1-0119-4ef7-97b5-235d9ed4e121",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-a2b5fee1-0119-4ef7-97b5-235d9ed4e121"
+        },
+        {
+          "name": "plaid-check",
+          "item": [
+            {
+              "name": "Bank Account Status Check",
+              "id": "b33fa184-8d78-488f-8033-102f79ed230c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-wallet",
-                    "value": "<string>"
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"zip\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"type\": \"savings\",\n  \"address1\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"routingNumber\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"country\": \"<string>\",\n  \"isTokenized\": \"<boolean>\",\n  \"address2\": \"<string>\",\n  \"rtpEligible\": \"<boolean>\",\n  \"businessName\": \"<string>\",\n  \"plaidAccessToken\": \"<string>\",\n  \"plaidAccountType\": \"<string>\",\n  \"plaidAccountSubtype\": \"<string>\"\n}",
+                  "raw": "{\n  \"accounts\": [\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    },\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d05469d7-8e6f-4a7e-80e6-092843b84b71",
-          "name": "Bank Account Status Check",
-          "request": {
-            "name": "Bank Account Status Check",
-            "description": {
-              "content": "Checks whether a customer's linked bank account is still active and\nvalid. Returns a normalized status (`active`, `removed`, `login_required`,\nor `error`) that merchants can use to gate transaction attempts before\nsubmission.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "plaid-check"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"accounts\": [\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    },\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "86e3b496-3ef8-4d4c-bd64-1ef7907333ec",
-              "name": "Ok",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/customer/plaid-check",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "customer",
                     "plaid-check"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Checks whether a customer's linked bank account is still active and\nvalid. Returns a normalized status (`active`, `removed`, `login_required`,\nor `error`) that merchants can use to gate transaction attempts before\nsubmission."
+              },
+              "response": [
+                {
+                  "id": "89be145c-8a84-488d-8273-ff1225722a15",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"accounts\": [\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    },\n    {\n      \"customerId\": \"<string>\",\n      \"bankAccountToken\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/plaid-check",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "plaid-check"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"status\": \"login_required\",\n    \"customerId\": \"<string>\",\n    \"errorCode\": \"<string>\",\n    \"errorMessage\": \"<string>\",\n    \"balance\": {\n      \"current\": \"<number,null-double>\",\n      \"available\": \"<number,null-double>\",\n      \"limit\": \"<number,null-double>\",\n      \"isoCurrencyCode\": \"<string,null>\",\n      \"unofficialCurrencyCode\": \"<string,null>\"\n    },\n    \"accountType\": \"<string>\",\n    \"accountSubtype\": \"<string>\",\n    \"bankAccountToken\": \"<string>\"\n  },\n  {\n    \"status\": \"error\",\n    \"customerId\": \"<string>\",\n    \"errorCode\": \"<string>\",\n    \"errorMessage\": \"<string>\",\n    \"balance\": {\n      \"current\": \"<number,null-double>\",\n      \"available\": \"<number,null-double>\",\n      \"limit\": \"<number,null-double>\",\n      \"isoCurrencyCode\": \"<string,null>\",\n      \"unofficialCurrencyCode\": \"<string,null>\"\n    },\n    \"accountType\": \"<string>\",\n    \"accountSubtype\": \"<string>\",\n    \"bankAccountToken\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-89be145c-8a84-488d-8273-ff1225722a15"
+                }
+              ],
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-b33fa184-8d78-488f-8033-102f79ed230c"
+            }
+          ],
+          "id": "7995e68e-6fd0-4125-8668-c268c1b7f39b",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-7995e68e-6fd0-4125-8668-c268c1b7f39b"
+        },
+        {
+          "name": "iban",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Delete Iban Account",
+                  "id": "e240657f-4e0a-45b6-b86b-90dbe085bed7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/iban/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "iban",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9cc89eb3-73f8-4535-96ab-dfd63b05a913",
+                          "key": "token",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes an Iban account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "49c2b558-e88e-41f5-984d-ea5d18a4c42b",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/iban/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "iban",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-49c2b558-e88e-41f5-984d-ea5d18a4c42b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-e240657f-4e0a-45b6-b86b-90dbe085bed7"
+                }
+              ],
+              "id": "270f8edb-5fad-4341-ba76-f9a48e2c1710",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-270f8edb-5fad-4341-ba76-f9a48e2c1710"
+            },
+            {
+              "name": "Create an Iban account",
+              "id": "5aeaa889-a1ec-4e1e-a983-952cbf8bfb66",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-session-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The API key of the merchant - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"accounts\": [\n    {\n      \"customerId\": \"string\",\n      \"bankAccountToken\": \"string\"\n    },\n    {\n      \"customerId\": \"string\",\n      \"bankAccountToken\": \"string\"\n    }\n  ]\n}",
+                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"data\": {\n    \"number\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"country\": \"<string>\",\n    \"sortCode\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"accountHolder\": \"<string>\",\n    \"alias\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"status\": \"active\",\n    \"customerId\": \"string\",\n    \"errorCode\": \"string\",\n    \"errorMessage\": \"string\",\n    \"balance\": {\n      \"current\": 1602.0013215155825,\n      \"available\": 3899.334296594532,\n      \"limit\": 7974.508082375731,\n      \"isoCurrencyCode\": \"string\",\n      \"unofficialCurrencyCode\": \"string\"\n    },\n    \"accountType\": \"string\",\n    \"accountSubtype\": \"string\",\n    \"bankAccountToken\": \"string\"\n  },\n  {\n    \"status\": \"login_required\",\n    \"customerId\": \"string\",\n    \"errorCode\": \"string\",\n    \"errorMessage\": \"string\",\n    \"balance\": {\n      \"current\": 418.64344405169174,\n      \"available\": 8035.95353819999,\n      \"limit\": 916.668987453948,\n      \"isoCurrencyCode\": \"string\",\n      \"unofficialCurrencyCode\": \"string\"\n    },\n    \"accountType\": \"string\",\n    \"accountSubtype\": \"string\",\n    \"bankAccountToken\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4d25ca39-55d9-4619-879d-a5de9d71c0c7",
-          "name": "Create an Iban account",
-          "request": {
-            "name": "Create an Iban account",
-            "description": {
-              "content": "Create an Iban account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "iban"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"merchantId\": \"<string>\",\n  \"data\": {\n    \"number\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"country\": \"<string>\",\n    \"sortCode\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"accountHolder\": \"<string>\",\n    \"alias\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f1528c0f-5841-426a-9f28-067c9a66c478",
-              "name": "Successful response",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/customer/iban",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "customer",
                     "iban"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"merchantId\": \"<string>\",\n  \"data\": {\n    \"number\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"country\": \"string\",\n    \"sortCode\": \"string\",\n    \"bic\": \"string\",\n    \"accountHolder\": \"string\",\n    \"alias\": \"string\",\n    \"businessName\": \"string\",\n    \"email\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Create an Iban account for a given customer"
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "21e54213-d07e-4ece-9658-a19d22a2ce6e",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchantId\": \"<string>\",\n  \"data\": {\n    \"number\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"country\": \"<string>\",\n    \"sortCode\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"accountHolder\": \"<string>\",\n    \"alias\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/iban",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "iban"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-21e54213-d07e-4ece-9658-a19d22a2ce6e"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-5aeaa889-a1ec-4e1e-a983-952cbf8bfb66"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5a99e7a6-f899-4f3f-b3bd-b21bb5cef9f8",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-5a99e7a6-f899-4f3f-b3bd-b21bb5cef9f8"
         },
         {
-          "id": "b843f730-e8dc-4f87-af64-23247aa3da55",
-          "name": "Create Card for Customer",
-          "request": {
-            "name": "Create Card for Customer",
-            "description": {
-              "content": "Create card for a particular customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "card"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "card",
+          "item": [
             {
-              "id": "5ac9c083-caa9-4b31-a297-0f55330cd834",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "card"
+              "name": "{cardToken}",
+              "item": [
+                {
+                  "name": "Delete Card",
+                  "id": "250135fa-6b3a-4e44-a40c-d10b79b3c0b6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/card/:cardToken",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "card",
+                        ":cardToken"
+                      ],
+                      "variable": [
+                        {
+                          "id": "459b9330-8583-4862-b029-b8200e5dccda",
+                          "key": "cardToken",
+                          "value": "<string>",
+                          "description": "(Required) - Token of the card to delete"
+                        }
+                      ]
+                    },
+                    "description": "Deletes the card for a particular customer"
+                  },
+                  "response": [
+                    {
+                      "id": "9bf78c30-dc0c-4aac-b9ba-fc133a1eda2e",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/card/:cardToken",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "card",
+                            ":cardToken"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cardToken"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-9bf78c30-dc0c-4aac-b9ba-fc133a1eda2e"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-250135fa-6b3a-4e44-a40c-d10b79b3c0b6"
+                }
+              ],
+              "id": "4115d5cf-7960-43c8-9869-5dd25c0ede14",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-4115d5cf-7960-43c8-9869-5dd25c0ede14"
+            },
+            {
+              "name": "Create Card for Customer",
+              "id": "0697eeda-dca1-4c28-8612-c581c9feb0bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-user-id",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
                 },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-user-id",
-                    "value": "<string>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"card\": {\n    \"cardToken\": \"string\",\n    \"expYear\": \"string\",\n    \"expMonth\": \"string\",\n    \"email\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"address1\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"string\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"string\",\n    \"zip\": \"string\",\n    \"state\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"40\",\n    \"expMonth\": \"77\",\n    \"email\": \"\\\"/\\\"@[83.411.1.8]\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer/card",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer",
+                    "card"
+                  ]
+                },
+                "description": "Create card for a particular customer"
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "7fa110c8-251d-4484-bb97-84be022e0027",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-user-id",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"40\",\n    \"expMonth\": \"77\",\n    \"email\": \"\\\"/\\\"@[83.411.1.8]\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/card",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "card"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"_id\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"KYD\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Unknown\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"NGN\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"pending_manual_review\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"failed\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"venmo\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"paypal\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"paypal\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"blockchain\": \"base\",\n    \"mobiles\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"currency\": \"HTG\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Immediate\",\n        \"currency\": \"KMF\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ]\n  },\n  \"kycApproved\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-7fa110c8-251d-4484-bb97-84be022e0027"
                 }
               ],
-              "body": "{\n  \"customer\": {\n    \"_id\": \"string\",\n    \"email\": \"string\",\n    \"createdAt\": \"1956-07-06T15:25:32.277Z\",\n    \"merchant\": \"string\",\n    \"customerId\": \"string\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": true,\n        \"accountNumber\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": false,\n        \"accountNumber\": \"string\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Immediate\",\n        \"createdAt\": \"1947-03-02T00:33:18.346Z\",\n        \"hasAddress\": false,\n        \"isDeleted\": true,\n        \"currency\": \"MRU\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"2017-09-26T21:12:00.021Z\",\n        \"hasAddress\": true,\n        \"isDeleted\": false,\n        \"currency\": \"BIF\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": true\n      },\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": false\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"venmo\",\n      \"isDeleted\": false\n    },\n    \"paypal\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"paypal\",\n      \"isDeleted\": false\n    },\n    \"blockchain\": \"arbitrum\",\n    \"geoBlockOverride\": {\n      \"reason\": \"string\",\n      \"setBy\": \"string\",\n      \"setAt\": \"1990-04-07T17:04:19.322Z\",\n      \"expiresAt\": \"2002-01-26T09:51:49.374Z\"\n    },\n    \"blockConfigOverride\": {\n      \"maxDistinctTokensPer30Days\": 9924.152920303251\n    },\n    \"customerOverrideLimit\": {\n      \"cents\": 5823\n    },\n    \"overrideExposureLimit\": {\n      \"cents\": 4407\n    }\n  },\n  \"kycApproved\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-0697eeda-dca1-4c28-8612-c581c9feb0bb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e64d8407-450d-438e-a02f-8aa809f31c40",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-e64d8407-450d-438e-a02f-8aa809f31c40"
         },
         {
-          "id": "5c87b97c-ac33-4d24-85f2-3674454ca4ab",
-          "name": "Create Customer",
-          "request": {
-            "name": "Create Customer",
-            "description": {
-              "content": "Creates a customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer"
+          "name": "bankAccount",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Delete Bank Account",
+                  "id": "55ac1470-ebf1-4e8c-b0ae-455f4de60f1c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/bankAccount/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "bankAccount",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c19af960-a9ff-44dd-b72a-764c5b319c8a",
+                          "key": "token",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes a bank account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "2ce74882-d368-45e2-b2f6-a2c4595ba10c",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/bankAccount/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "bankAccount",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-2ce74882-d368-45e2-b2f6-a2c4595ba10c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-55ac1470-ebf1-4e8c-b0ae-455f4de60f1c"
+                }
               ],
-              "host": [
-                "{{baseUrl}}"
+              "id": "789b2532-a9c0-480e-afff-56ac71082a21",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-789b2532-a9c0-480e-afff-56ac71082a21"
+            }
+          ],
+          "id": "d51fdc95-65b2-4b98-a947-ad32eca8deff",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-d51fdc95-65b2-4b98-a947-ad32eca8deff"
+        },
+        {
+          "name": "interac",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Delete Interac Account",
+                  "id": "fd52b9d0-2672-46ae-a420-06bc12d902da",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/interac/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "interac",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "70a956db-fa20-49a4-9673-33a061994b2c",
+                          "key": "token",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes an Interac account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "38c87eed-699e-47ea-b5dc-9b339d82e1b7",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/interac/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "interac",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-38c87eed-699e-47ea-b5dc-9b339d82e1b7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-fd52b9d0-2672-46ae-a420-06bc12d902da"
+                }
               ],
-              "query": [],
-              "variable": []
+              "id": "411628d0-6bd0-49d6-b84e-46decb5fd6c9",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-411628d0-6bd0-49d6-b84e-46decb5fd6c9"
+            }
+          ],
+          "id": "837e71c3-f2ff-4e5e-8b8d-6c1818c4e3d0",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-837e71c3-f2ff-4e5e-8b8d-6c1818c4e3d0"
+        },
+        {
+          "name": "paypal",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Delete PayPal Account",
+                  "id": "29adeafb-f353-4ff4-8dce-8a3da2105bda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/paypal/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "paypal",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e856dd3-f8d4-4e0a-8029-52d94f3ba4a9",
+                          "key": "token",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes a saved PayPal account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "9b602ae8-ef9f-4f6d-ad1a-dffd48b30755",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/paypal/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "paypal",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-9b602ae8-ef9f-4f6d-ad1a-dffd48b30755"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-29adeafb-f353-4ff4-8dce-8a3da2105bda"
+                }
+              ],
+              "id": "6fc848dd-eda9-474f-b3d2-ec51be8d9c55",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-6fc848dd-eda9-474f-b3d2-ec51be8d9c55"
+            }
+          ],
+          "id": "df57368a-86d1-40af-9845-3a9dbd871eb9",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-df57368a-86d1-40af-9845-3a9dbd871eb9"
+        },
+        {
+          "name": "venmo",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Delete Venmo Account",
+                  "id": "ddff0495-1b91-44c9-8b7e-4b2d1bcf2895",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/venmo/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "venmo",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "73a8ea70-a6de-4c20-bc43-4a96eb594a4a",
+                          "key": "token",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes a saved Venmo account for a given customer"
+                  },
+                  "response": [
+                    {
+                      "id": "90920007-d6d8-4f8c-b933-fdbed9888b6c",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/venmo/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "venmo",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-90920007-d6d8-4f8c-b933-fdbed9888b6c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-ddff0495-1b91-44c9-8b7e-4b2d1bcf2895"
+                }
+              ],
+              "id": "3d6f08d1-961a-4477-8980-a35b6320c067",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-3d6f08d1-961a-4477-8980-a35b6320c067"
+            }
+          ],
+          "id": "e044e038-f299-4c33-b053-a9420e7ffa9f",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-e044e038-f299-4c33-b053-a9420e7ffa9f"
+        },
+        {
+          "name": "balances",
+          "item": [
+            {
+              "name": "{merchantIdOrCreditSeed}",
+              "item": [
+                {
+                  "name": "Get Balances",
+                  "id": "7faf0371-2a67-4706-b34a-8374105749ba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/balances/:merchantIdOrCreditSeed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "balances",
+                        ":merchantIdOrCreditSeed"
+                      ],
+                      "variable": [
+                        {
+                          "id": "601f9a31-b16d-46f5-9b6a-35ccab059ac7",
+                          "key": "merchantIdOrCreditSeed",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Gets the balances of credits, usdc, and an optional token for a particular wallet"
+                  },
+                  "response": [
+                    {
+                      "id": "c6caa594-8453-462c-8113-89532ab45a52",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/balances/:merchantIdOrCreditSeed",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "balances",
+                            ":merchantIdOrCreditSeed"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchantIdOrCreditSeed"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"credits\": {\n    \"cents\": \"<integer>\"\n  },\n  \"usdc\": {\n    \"cents\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-c6caa594-8453-462c-8113-89532ab45a52"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-7faf0371-2a67-4706-b34a-8374105749ba"
+                }
+              ],
+              "id": "bfd95d53-2329-41c9-93c7-e07c2cfe9a4d",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-bfd95d53-2329-41c9-93c7-e07c2cfe9a4d"
+            }
+          ],
+          "id": "b1e5f1ab-551c-466f-a64d-60d5278ce25f",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-b1e5f1ab-551c-466f-a64d-60d5278ce25f"
+        },
+        {
+          "name": "history",
+          "item": [
+            {
+              "name": "{paymentId}",
+              "item": [
+                {
+                  "name": "Get Purchase History By ID",
+                  "id": "a04f4450-2779-4943-a1ab-e1158daaa4b1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/history/:paymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "history",
+                        ":paymentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a5670f84-0e34-41d9-aacd-a6515381832d",
+                          "key": "paymentId",
+                          "value": "<string>",
+                          "description": "(Required) - Payment id to filter the request by"
+                        }
+                      ]
+                    },
+                    "description": "Gets the Purchase for a Customer by ID"
+                  },
+                  "response": [
+                    {
+                      "id": "97e0edb3-2fd9-4d44-8c1d-67f1ff3f049f",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/history/:paymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            "history",
+                            ":paymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"payment\": {\n    \"paymentId\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"CAD\"\n      },\n      \"creditCardFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"JPY\"\n      },\n      \"chargebackProtectionFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"LYD\"\n      },\n      \"gasFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"KWD\"\n      },\n      \"fxFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"THB\"\n      },\n      \"total\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"NOK\"\n      },\n      \"networkFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"VUV\"\n      },\n      \"payInFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"MYR\"\n      },\n      \"reserve\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"LSL\"\n      },\n      \"merchantPaidCreditCardFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"HTG\"\n      },\n      \"merchantPaidChargebackProtectionFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"MMK\"\n      },\n      \"merchantPaidGasFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"KYD\"\n      },\n      \"merchantPaidFxFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"ERN\"\n      },\n      \"merchantPaidNetworkFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"AOA\"\n      },\n      \"invoicedCreditCardFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"MZN\"\n      },\n      \"invoicedChargebackProtectionFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"HNL\"\n      },\n      \"invoicedGasFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"MGA\"\n      },\n      \"invoicedFxFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"ALL\"\n      },\n      \"invoicedNetworkFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"INR\"\n      },\n      \"rebate\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"EUR\"\n      },\n      \"invoicedRebate\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"PGK\"\n      }\n    },\n    \"createdAt\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"subscription\": {\n      \"id\": \"<string>\",\n      \"customerId\": \"<string>\",\n      \"merchantId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"plan\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"status\": \"Canceled\",\n      \"blockchain\": \"base\",\n      \"nextPaymentAt\": \"<dateTime>\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-22T02:29:52.000Z",
+                      "updatedAt": "2026-10-22T02:29:52.000Z",
+                      "uid": "35240-97e0edb3-2fd9-4d44-8c1d-67f1ff3f049f"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-a04f4450-2779-4943-a1ab-e1158daaa4b1"
+                }
+              ],
+              "id": "334b87ec-7969-420d-92f7-6bc059e32567",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-334b87ec-7969-420d-92f7-6bc059e32567"
             },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-user-id",
-                "value": "<string>"
+            {
+              "name": "Get Purchase History",
+              "id": "4a3ed8d6-bec0-4bf9-b9f2-1a3572c6c753",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
               },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-session-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer/history?paymentId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer",
+                    "history"
+                  ],
+                  "query": [
+                    {
+                      "description": "- Optional payment id to filter the request by",
+                      "key": "paymentId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Gets the Purchase History for a particular Customer"
+              },
+              "response": [
+                {
+                  "id": "7e810313-a748-4308-96a7-0ee6e356042d",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/history?paymentId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        "history"
+                      ],
+                      "query": [
+                        {
+                          "description": "- Optional payment id to filter the request by",
+                          "key": "paymentId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"history\": [\n    {\n      \"paymentId\": \"<string>\",\n      \"merchant\": \"<string>\",\n      \"totals\": {\n        \"subtotal\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"QAR\"\n        },\n        \"creditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"PAB\"\n        },\n        \"chargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"BZD\"\n        },\n        \"gasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"QAR\"\n        },\n        \"fxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"RSD\"\n        },\n        \"total\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"DKK\"\n        },\n        \"networkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"UZS\"\n        },\n        \"payInFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SYP\"\n        },\n        \"reserve\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"PLN\"\n        },\n        \"merchantPaidCreditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"UYU\"\n        },\n        \"merchantPaidChargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"NOK\"\n        },\n        \"merchantPaidGasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"VUV\"\n        },\n        \"merchantPaidFxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SDG\"\n        },\n        \"merchantPaidNetworkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SCR\"\n        },\n        \"invoicedCreditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"ILS\"\n        },\n        \"invoicedChargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SDG\"\n        },\n        \"invoicedGasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"TND\"\n        },\n        \"invoicedFxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"BZD\"\n        },\n        \"invoicedNetworkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"INR\"\n        },\n        \"rebate\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"IRR\"\n        },\n        \"invoicedRebate\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"MKD\"\n        }\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"signature\": \"<string>\",\n      \"subscription\": {\n        \"id\": \"<string>\",\n        \"customerId\": \"<string>\",\n        \"merchantId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"plan\": \"<string>\",\n        \"planCode\": \"<string>\",\n        \"status\": \"Concluded\",\n        \"blockchain\": \"stellar\",\n        \"nextPaymentAt\": \"<dateTime>\"\n      }\n    },\n    {\n      \"paymentId\": \"<string>\",\n      \"merchant\": \"<string>\",\n      \"totals\": {\n        \"subtotal\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"AUD\"\n        },\n        \"creditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"MAD\"\n        },\n        \"chargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"ZWL\"\n        },\n        \"gasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SCR\"\n        },\n        \"fxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SOS\"\n        },\n        \"networkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"BZD\"\n        },\n        \"payInFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"FKP\"\n        },\n        \"reserve\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"GEL\"\n        },\n        \"merchantPaidCreditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"JMD\"\n        },\n        \"merchantPaidChargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"BOB\"\n        },\n        \"merchantPaidGasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"EGP\"\n        },\n        \"merchantPaidFxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"MKD\"\n        },\n        \"merchantPaidNetworkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"CRC\"\n        },\n        \"invoicedCreditCardFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SRD\"\n        },\n        \"invoicedChargebackProtectionFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"SGD\"\n        },\n        \"invoicedGasFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"BYN\"\n        },\n        \"invoicedFxFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"CUP\"\n        },\n        \"invoicedNetworkFees\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"OMR\"\n        },\n        \"rebate\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"ARS\"\n        },\n        \"invoicedRebate\": {\n          \"cents\": \"<integer>\",\n          \"currency\": \"DOP\"\n        }\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"signature\": \"<string>\",\n      \"subscription\": {\n        \"id\": \"<string>\",\n        \"customerId\": \"<string>\",\n        \"merchantId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"plan\": \"<string>\",\n        \"planCode\": \"<string>\",\n        \"status\": \"Active\",\n        \"blockchain\": \"tempo\",\n        \"nextPaymentAt\": \"<dateTime>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:29:52.000Z",
+                  "updatedAt": "2026-10-22T02:29:52.000Z",
+                  "uid": "35240-7e810313-a748-4308-96a7-0ee6e356042d"
+                }
+              ],
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-4a3ed8d6-bec0-4bf9-b9f2-1a3572c6c753"
+            }
+          ],
+          "id": "a8d63631-9d81-4c86-b90c-1dda5362ce2f",
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-a8d63631-9d81-4c86-b90c-1dda5362ce2f"
+        },
+        {
+          "name": "Create Customer",
+          "id": "1915d8f6-4758-4741-bf9a-6061cd5d98fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-coinflow-auth-user-id",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
@@ -443,1124 +1773,100 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customer",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer"
+              ]
+            },
+            "description": "Creates a customer"
           },
           "response": [
             {
-              "id": "a55a2571-5518-4b83-9ad3-15e234bafb56",
+              "id": "efd76f94-051c-4a21-9b7f-a1ad6dfbe580",
               "name": "Ok",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
-                    "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-user-id",
-                    "value": "<string>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-coinflow-auth-user-id",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"email\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  }\n}",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"customer\": {\n    \"_id\": \"string\",\n    \"email\": \"string\",\n    \"createdAt\": \"1956-07-06T15:25:32.277Z\",\n    \"merchant\": \"string\",\n    \"customerId\": \"string\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": true,\n        \"accountNumber\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": false,\n        \"accountNumber\": \"string\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Immediate\",\n        \"createdAt\": \"1947-03-02T00:33:18.346Z\",\n        \"hasAddress\": false,\n        \"isDeleted\": true,\n        \"currency\": \"MRU\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"2017-09-26T21:12:00.021Z\",\n        \"hasAddress\": true,\n        \"isDeleted\": false,\n        \"currency\": \"BIF\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": true\n      },\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": false\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"venmo\",\n      \"isDeleted\": false\n    },\n    \"paypal\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"paypal\",\n      \"isDeleted\": false\n    },\n    \"blockchain\": \"arbitrum\",\n    \"geoBlockOverride\": {\n      \"reason\": \"string\",\n      \"setBy\": \"string\",\n      \"setAt\": \"1990-04-07T17:04:19.322Z\",\n      \"expiresAt\": \"2002-01-26T09:51:49.374Z\"\n    },\n    \"blockConfigOverride\": {\n      \"maxDistinctTokensPer30Days\": 9924.152920303251\n    },\n    \"customerOverrideLimit\": {\n      \"cents\": 5823\n    },\n    \"overrideExposureLimit\": {\n      \"cents\": 4407\n    }\n  },\n  \"kycApproved\": false\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"customer\": {\n    \"email\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"_id\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumberOnlyHash\": \"<string>\",\n        \"isDeleted\": \"<boolean>\",\n        \"isTokenized\": \"<boolean>\",\n        \"accountNumber\": \"<string>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"routingNumber\": \"<string>\",\n        \"wireRoutingNumber\": \"<string>\",\n        \"rtpEligible\": \"<boolean>\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"KYD\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Unknown\",\n        \"createdAt\": \"<dateTime>\",\n        \"hasAddress\": \"<boolean>\",\n        \"isDeleted\": \"<boolean>\",\n        \"currency\": \"NGN\",\n        \"nameOnCard\": \"<string>\",\n        \"walletGenus\": \"applepay\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"pending_manual_review\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"failed\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      },\n      {\n        \"last4\": \"<string>\",\n        \"accountHash\": \"<string>\",\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"accountOwnerNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"nameMatchStatus\": \"confirmed_failure\",\n        \"isDeleted\": \"<boolean>\",\n        \"statementFileKey\": \"<string>\",\n        \"statementUploadedAt\": \"<dateTime>\",\n        \"bic\": \"<string>\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"interac\",\n        \"isDeleted\": \"<boolean>\"\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"venmo\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"paypal\": {\n      \"alias\": \"<string>\",\n      \"token\": \"<string>\",\n      \"type\": \"paypal\",\n      \"isDeleted\": \"<boolean>\",\n      \"vaulted\": \"<boolean>\"\n    },\n    \"blockchain\": \"base\",\n    \"mobiles\": [\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"currency\": \"HTG\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      },\n      {\n        \"alias\": \"<string>\",\n        \"token\": \"<string>\",\n        \"type\": \"mobile\",\n        \"genus\": \"applepay\",\n        \"hasAddress\": \"<boolean>\",\n        \"disbursementStatus\": \"Immediate\",\n        \"currency\": \"KMF\",\n        \"retiredTokens\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"deletedAt\": \"<dateTime>\",\n        \"expMonth\": \"<string>\",\n        \"expYear\": \"<string>\"\n      }\n    ]\n  },\n  \"kycApproved\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-22T02:29:52.000Z",
+              "updatedAt": "2026-10-22T02:29:52.000Z",
+              "uid": "35240-efd76f94-051c-4a21-9b7f-a1ad6dfbe580"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f6b52f73-346e-4edb-9d85-04b5b6d6eba7",
-          "name": "Delete Bank Account",
-          "request": {
-            "name": "Delete Bank Account",
-            "description": {
-              "content": "Deletes a bank account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "bankAccount",
-                ":token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6c7af7ae-1bcd-45c8-be4f-ab3fc510e231",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "bankAccount",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0a28cc7d-76c1-48bf-8188-687b082afd8b",
-          "name": "Delete Card",
-          "request": {
-            "name": "Delete Card",
-            "description": {
-              "content": "Deletes the card for a particular customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "card",
-                ":cardToken"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "cardToken",
-                  "description": "(Required) - Token of the card to delete"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "edc85366-1942-4626-a1d5-5bfbd1bfa470",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "card",
-                    ":cardToken"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "cardToken",
-                      "description": "(Required) - Token of the card to delete"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "66517469-0bc0-4c29-90a5-1a98f65df794",
-          "name": "Delete Iban Account",
-          "request": {
-            "name": "Delete Iban Account",
-            "description": {
-              "content": "Deletes an Iban account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "iban",
-                ":token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9c5d7346-e9fc-403f-8e1d-dff3d17fdeaf",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "iban",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "63272ad4-0917-49b7-9a4d-30fc48604a80",
-          "name": "Delete Interac Account",
-          "request": {
-            "name": "Delete Interac Account",
-            "description": {
-              "content": "Deletes an Interac account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "interac",
-                ":token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7efa1fc1-92c0-4f2e-9144-03070db23185",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "interac",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "359d50a5-b80a-416e-b785-773c66a089bf",
-          "name": "Delete PayPal Account",
-          "request": {
-            "name": "Delete PayPal Account",
-            "description": {
-              "content": "Deletes a saved PayPal account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "paypal",
-                ":token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "4760590b-daf9-4bf0-91d7-c06fd2ce11aa",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "paypal",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2eb80cd7-32f2-454e-88e8-b1c1014f0aee",
-          "name": "Delete Venmo Account",
-          "request": {
-            "name": "Delete Venmo Account",
-            "description": {
-              "content": "Deletes a saved Venmo account for a given customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "venmo",
-                ":token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "token",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "03664bd0-4671-47cd-bf2b-06133b427fa2",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "venmo",
-                    ":token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "token",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c8ff759f-2da1-4df6-b3ee-945bf7e69993",
-          "name": "Get Balances",
-          "request": {
-            "name": "Get Balances",
-            "description": {
-              "content": "Gets the balances of credits, usdc, and an optional token for a particular wallet",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "balances",
-                ":merchantIdOrCreditSeed"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantIdOrCreditSeed",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1ed878bc-aead-4a0a-98c1-2c3541913723",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "balances",
-                    ":merchantIdOrCreditSeed"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantIdOrCreditSeed",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"credits\": {\n    \"cents\": 6920\n  },\n  \"usdc\": {\n    \"cents\": 1436\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2195a838-d27a-48b5-8089-0262446810a5",
-          "name": "Get Customer",
-          "request": {
-            "name": "Get Customer",
-            "description": {
-              "content": "Gets the Customer record for a particular user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "v2"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "58928e84-89a0-4838-b309-b7e33f32b68d",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"customer\": {\n    \"_id\": \"string\",\n    \"email\": \"string\",\n    \"createdAt\": \"1956-07-06T15:25:32.277Z\",\n    \"merchant\": \"string\",\n    \"customerId\": \"string\",\n    \"bankAccounts\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": true,\n        \"accountNumber\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumberOnlyHash\": \"string\",\n        \"isDeleted\": true,\n        \"isTokenized\": false,\n        \"accountNumber\": \"string\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"VISA\",\n        \"disbursementStatus\": \"Immediate\",\n        \"createdAt\": \"1947-03-02T00:33:18.346Z\",\n        \"hasAddress\": false,\n        \"isDeleted\": true,\n        \"currency\": \"MRU\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"AMEX\",\n        \"disbursementStatus\": \"Ineligible\",\n        \"createdAt\": \"2017-09-26T21:12:00.021Z\",\n        \"hasAddress\": true,\n        \"isDeleted\": false,\n        \"currency\": \"BIF\",\n        \"nameOnCard\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\"\n      }\n    ],\n    \"sepas\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"fasterPayments\": [\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      },\n      {\n        \"last4\": \"string\",\n        \"accountHash\": \"string\",\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"reference\": \"string\",\n        \"sortCode\": \"string\",\n        \"bic\": \"string\"\n      }\n    ],\n    \"interacs\": [\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": true\n      },\n      {\n        \"alias\": \"string\",\n        \"token\": \"string\",\n        \"type\": \"interac\",\n        \"isDeleted\": false\n      }\n    ],\n    \"venmo\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"venmo\",\n      \"isDeleted\": false\n    },\n    \"paypal\": {\n      \"alias\": \"string\",\n      \"token\": \"string\",\n      \"type\": \"paypal\",\n      \"isDeleted\": false\n    },\n    \"blockchain\": \"arbitrum\",\n    \"geoBlockOverride\": {\n      \"reason\": \"string\",\n      \"setBy\": \"string\",\n      \"setAt\": \"1990-04-07T17:04:19.322Z\",\n      \"expiresAt\": \"2002-01-26T09:51:49.374Z\"\n    },\n    \"blockConfigOverride\": {\n      \"maxDistinctTokensPer30Days\": 9924.152920303251\n    },\n    \"customerOverrideLimit\": {\n      \"cents\": 5823\n    },\n    \"overrideExposureLimit\": {\n      \"cents\": 4407\n    }\n  },\n  \"kycApproved\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "793390b7-9a36-4bb6-9405-171ae07de4f1",
-              "name": "No customer associated with customerId, will also return this code if the customer exists, but they have no payment methods are available.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Precondition Failed",
-              "code": 412,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "2333.8713619275973",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2397fa9c-84c0-45f8-81de-5410134ff8c4",
-              "name": "Must Complete Additional Verification",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "code": 451,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"verification\": {\n    \"reference\": \"string\",\n    \"status\": \"expired\",\n    \"vendor\": \"sumsub\",\n    \"name\": \"string\",\n    \"attested\": false,\n    \"shareToken\": \"string\",\n    \"shareTokenStatus\": \"string\",\n    \"sessionToken\": \"string\"\n  },\n  \"verificationLink\": \"string\",\n  \"redirectLink\": \"string\",\n  \"additionalVerificationLinks\": [\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"middesk\",\n      \"sessionToken\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"link\": \"string\",\n      \"reference\": \"string\",\n      \"vendor\": \"persona\",\n      \"sessionToken\": \"string\"\n    }\n  ],\n  \"rejectionReasons\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f54505d7-957c-4689-81f8-4ab614640ca8",
-          "name": "Get Purchase History",
-          "request": {
-            "name": "Get Purchase History",
-            "description": {
-              "content": "Gets the Purchase History for a particular Customer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "history"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "paymentId",
-                  "value": "<string>",
-                  "description": "- Optional payment id to filter the request by"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e6875235-8321-424e-a923-6bd096b1f398",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "history"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "paymentId",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"history\": [\n    {\n      \"paymentId\": \"string\",\n      \"merchant\": \"string\",\n      \"totals\": {\n        \"subtotal\": {\n          \"cents\": 9470,\n          \"currency\": \"STN\"\n        },\n        \"creditCardFees\": {\n          \"cents\": 3488,\n          \"currency\": \"SBD\"\n        },\n        \"chargebackProtectionFees\": {\n          \"cents\": 7070,\n          \"currency\": \"MRU\"\n        },\n        \"gasFees\": {\n          \"cents\": 2972,\n          \"currency\": \"TND\"\n        },\n        \"fxFees\": {\n          \"cents\": 5226,\n          \"currency\": \"JPY\"\n        },\n        \"total\": {\n          \"cents\": 9528,\n          \"currency\": \"SHP\"\n        },\n        \"networkFees\": {\n          \"cents\": 7294,\n          \"currency\": \"RON\"\n        },\n        \"payInFees\": {\n          \"cents\": 4636,\n          \"currency\": \"PAB\"\n        },\n        \"reserve\": {\n          \"cents\": 4432,\n          \"currency\": \"ZMW\"\n        },\n        \"merchantPaidCreditCardFees\": {\n          \"cents\": 8316,\n          \"currency\": \"ARS\"\n        },\n        \"merchantPaidChargebackProtectionFees\": {\n          \"cents\": 4021,\n          \"currency\": \"UZS\"\n        },\n        \"merchantPaidGasFees\": {\n          \"cents\": 6352,\n          \"currency\": \"TOP\"\n        },\n        \"merchantPaidFxFees\": {\n          \"cents\": 1338,\n          \"currency\": \"XAF\"\n        },\n        \"merchantPaidNetworkFees\": {\n          \"cents\": 3441,\n          \"currency\": \"GHS\"\n        },\n        \"invoicedCreditCardFees\": {\n          \"cents\": 7465,\n          \"currency\": \"BZD\"\n        },\n        \"invoicedChargebackProtectionFees\": {\n          \"cents\": 8542,\n          \"currency\": \"KWD\"\n        },\n        \"invoicedGasFees\": {\n          \"cents\": 6401,\n          \"currency\": \"ZWL\"\n        },\n        \"invoicedFxFees\": {\n          \"cents\": 5931,\n          \"currency\": \"FKP\"\n        },\n        \"invoicedNetworkFees\": {\n          \"cents\": 3350,\n          \"currency\": \"NIO\"\n        }\n      },\n      \"createdAt\": \"1961-09-13T07:45:00.638Z\",\n      \"status\": \"string\",\n      \"signature\": \"string\",\n      \"subscription\": {\n        \"id\": \"string\",\n        \"customerId\": \"string\",\n        \"merchantId\": \"string\",\n        \"email\": \"string\",\n        \"plan\": \"string\",\n        \"planCode\": \"string\",\n        \"status\": \"Failed\",\n        \"blockchain\": \"polygon\",\n        \"nextPaymentAt\": \"1996-08-25T14:27:06.814Z\"\n      }\n    },\n    {\n      \"paymentId\": \"string\",\n      \"merchant\": \"string\",\n      \"totals\": {\n        \"subtotal\": {\n          \"cents\": 5671,\n          \"currency\": \"GTQ\"\n        },\n        \"creditCardFees\": {\n          \"cents\": 5856,\n          \"currency\": \"ILS\"\n        },\n        \"chargebackProtectionFees\": {\n          \"cents\": 266,\n          \"currency\": \"SCR\"\n        },\n        \"gasFees\": {\n          \"cents\": 4187,\n          \"currency\": \"IRR\"\n        },\n        \"fxFees\": {\n          \"cents\": 717,\n          \"currency\": \"MUR\"\n        },\n        \"total\": {\n          \"cents\": 6195,\n          \"currency\": \"XCD\"\n        },\n        \"networkFees\": {\n          \"cents\": 4129,\n          \"currency\": \"PKR\"\n        },\n        \"payInFees\": {\n          \"cents\": 444,\n          \"currency\": \"LBP\"\n        },\n        \"reserve\": {\n          \"cents\": 6180,\n          \"currency\": \"TTD\"\n        },\n        \"merchantPaidCreditCardFees\": {\n          \"cents\": 5879,\n          \"currency\": \"PGK\"\n        },\n        \"merchantPaidChargebackProtectionFees\": {\n          \"cents\": 4643,\n          \"currency\": \"AOA\"\n        },\n        \"merchantPaidGasFees\": {\n          \"cents\": 647,\n          \"currency\": \"SGD\"\n        },\n        \"merchantPaidFxFees\": {\n          \"cents\": 3184,\n          \"currency\": \"NIO\"\n        },\n        \"merchantPaidNetworkFees\": {\n          \"cents\": 5059,\n          \"currency\": \"IDR\"\n        },\n        \"invoicedCreditCardFees\": {\n          \"cents\": 9700,\n          \"currency\": \"MZN\"\n        },\n        \"invoicedChargebackProtectionFees\": {\n          \"cents\": 2446,\n          \"currency\": \"MDL\"\n        },\n        \"invoicedGasFees\": {\n          \"cents\": 1957,\n          \"currency\": \"KWD\"\n        },\n        \"invoicedFxFees\": {\n          \"cents\": 24,\n          \"currency\": \"KMF\"\n        },\n        \"invoicedNetworkFees\": {\n          \"cents\": 9784,\n          \"currency\": \"PAB\"\n        }\n      },\n      \"createdAt\": \"2006-09-10T00:40:33.828Z\",\n      \"status\": \"string\",\n      \"signature\": \"string\",\n      \"subscription\": {\n        \"id\": \"string\",\n        \"customerId\": \"string\",\n        \"merchantId\": \"string\",\n        \"email\": \"string\",\n        \"plan\": \"string\",\n        \"planCode\": \"string\",\n        \"status\": \"Canceled\",\n        \"blockchain\": \"user\",\n        \"nextPaymentAt\": \"1999-04-11T06:06:02.218Z\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e3e50a7d-0a18-4c51-8454-7748992eb9ce",
-          "name": "Get Purchase History By ID",
-          "request": {
-            "name": "Get Purchase History By ID",
-            "description": {
-              "content": "Gets the Purchase for a Customer by ID",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customer",
-                "history",
-                ":paymentId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "paymentId",
-                  "description": "(Required) - Payment id to filter the request by"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "560ad5c3-22e8-4b5a-93ed-eba09df667ad",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customer",
-                    "history",
-                    ":paymentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "paymentId",
-                      "description": "(Required) - Payment id to filter the request by"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"payment\": {\n    \"paymentId\": \"string\",\n    \"merchant\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": 6155,\n        \"currency\": \"SVC\"\n      },\n      \"creditCardFees\": {\n        \"cents\": 1820,\n        \"currency\": \"HKD\"\n      },\n      \"chargebackProtectionFees\": {\n        \"cents\": 7044,\n        \"currency\": \"SAR\"\n      },\n      \"gasFees\": {\n        \"cents\": 7690,\n        \"currency\": \"SLL\"\n      },\n      \"fxFees\": {\n        \"cents\": 4464,\n        \"currency\": \"BRL\"\n      },\n      \"total\": {\n        \"cents\": 1668,\n        \"currency\": \"IRR\"\n      },\n      \"networkFees\": {\n        \"cents\": 4730,\n        \"currency\": \"SSP\"\n      },\n      \"payInFees\": {\n        \"cents\": 1525,\n        \"currency\": \"VUV\"\n      },\n      \"reserve\": {\n        \"cents\": 6762,\n        \"currency\": \"KRW\"\n      },\n      \"merchantPaidCreditCardFees\": {\n        \"cents\": 6368,\n        \"currency\": \"QAR\"\n      },\n      \"merchantPaidChargebackProtectionFees\": {\n        \"cents\": 8923,\n        \"currency\": \"ZAR\"\n      },\n      \"merchantPaidGasFees\": {\n        \"cents\": 3171,\n        \"currency\": \"GBP\"\n      },\n      \"merchantPaidFxFees\": {\n        \"cents\": 9405,\n        \"currency\": \"BAM\"\n      },\n      \"merchantPaidNetworkFees\": {\n        \"cents\": 3655,\n        \"currency\": \"MOP\"\n      },\n      \"invoicedCreditCardFees\": {\n        \"cents\": 5788,\n        \"currency\": \"LKR\"\n      },\n      \"invoicedChargebackProtectionFees\": {\n        \"cents\": 3330,\n        \"currency\": \"ISK\"\n      },\n      \"invoicedGasFees\": {\n        \"cents\": 1055,\n        \"currency\": \"CDF\"\n      },\n      \"invoicedFxFees\": {\n        \"cents\": 6287,\n        \"currency\": \"AMD\"\n      },\n      \"invoicedNetworkFees\": {\n        \"cents\": 9365,\n        \"currency\": \"AUD\"\n      }\n    },\n    \"createdAt\": \"1960-03-10T17:13:23.153Z\",\n    \"status\": \"string\",\n    \"signature\": \"string\",\n    \"subscription\": {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"merchantId\": \"string\",\n      \"email\": \"string\",\n      \"plan\": \"string\",\n      \"planCode\": \"string\",\n      \"status\": \"Concluded\",\n      \"blockchain\": \"user\",\n      \"nextPaymentAt\": \"1951-11-25T14:20:06.360Z\"\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:29:52.000Z",
+          "updatedAt": "2026-10-22T02:29:52.000Z",
+          "uid": "35240-1915d8f6-4758-4741-bf9a-6061cd5d98fd"
         }
       ],
-      "event": []
+      "id": "e37ce5e0-1472-4818-8d0e-572ca5e6d3e2",
+      "createdAt": "2026-10-22T02:29:52.000Z",
+      "updatedAt": "2026-10-22T02:29:52.000Z",
+      "uid": "35240-e37ce5e0-1472-4818-8d0e-572ca5e6d3e2"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api-sandbox.coinflow.cash/api",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
     }
-  ],
-  "info": {
-    "_postman_id": "ae023185-b571-4fd7-a5c1-d0c96712d760",
-    "name": "API Reference authentication customers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

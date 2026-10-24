@@ -1,0 +1,737 @@
+{
+  "info": {
+    "_postman_id": "d9510346-e3e3-4d6e-a570-f842be97b287",
+    "name": "Reference Merchant Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:27.000Z",
+    "updatedAt": "2026-10-22T02:31:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d9510346-e3e3-4d6e-a570-f842be97b287"
+  },
+  "item": [
+    {
+      "name": "merchant",
+      "item": [
+        {
+          "name": "accounts",
+          "item": [
+            {
+              "name": "subsidiaries",
+              "item": [
+                {
+                  "name": "{subsidiaryId}",
+                  "item": [
+                    {
+                      "name": "Remove Subsidiary",
+                      "id": "4ce0beef-4f3c-4139-b693-a5f0e83a113b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/subsidiaries/:subsidiaryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "subsidiaries",
+                            ":subsidiaryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ea8a92e5-e72a-4a38-ba78-47f140c363b4",
+                              "key": "subsidiaryId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1472a7f8-d99c-46a3-8627-cfc943ffa049",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchant/accounts/subsidiaries/:subsidiaryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchant",
+                                "accounts",
+                                "subsidiaries",
+                                ":subsidiaryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "subsidiaryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:31:28.000Z",
+                          "updatedAt": "2026-10-22T02:31:28.000Z",
+                          "uid": "35240-1472a7f8-d99c-46a3-8627-cfc943ffa049"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-4ce0beef-4f3c-4139-b693-a5f0e83a113b"
+                    }
+                  ],
+                  "id": "5159306e-7f84-48e3-8402-f41cb52e429d",
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-5159306e-7f84-48e3-8402-f41cb52e429d"
+                },
+                {
+                  "name": "Create Subsidiary",
+                  "id": "9b3b0d1a-c803-48bc-9448-a449983a63fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchant/accounts/subsidiaries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchant",
+                        "accounts",
+                        "subsidiaries"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f55109a9-2ae9-41ef-9667-c486dd5c1174",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/subsidiaries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "subsidiaries"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"address\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-f55109a9-2ae9-41ef-9667-c486dd5c1174"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-9b3b0d1a-c803-48bc-9448-a449983a63fd"
+                },
+                {
+                  "name": "Get Subsidiaries",
+                  "id": "cf5309fa-77cb-465e-9ff8-44d354751e81",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchant/accounts/subsidiaries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchant",
+                        "accounts",
+                        "subsidiaries"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2e280ff3-a452-4f7c-92f1-8d3cdcb3806d",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/subsidiaries",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "subsidiaries"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"status\": \"active\",\n    \"balance\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"HKD\"\n    },\n    \"transferPending\": \"<boolean>\",\n    \"address\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"status\": \"pending\",\n    \"balance\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"SZL\"\n    },\n    \"transferPending\": \"<boolean>\",\n    \"address\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-2e280ff3-a452-4f7c-92f1-8d3cdcb3806d"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-cf5309fa-77cb-465e-9ff8-44d354751e81"
+                }
+              ],
+              "id": "c0967c31-4f35-49ff-a3ef-5a05ef12a73e",
+              "createdAt": "2026-10-22T02:31:28.000Z",
+              "updatedAt": "2026-10-22T02:31:28.000Z",
+              "uid": "35240-c0967c31-4f35-49ff-a3ef-5a05ef12a73e"
+            },
+            {
+              "name": "transfers",
+              "item": [
+                {
+                  "name": "{addressId}",
+                  "item": [
+                    {
+                      "name": "Get Account Transfers",
+                      "id": "976cea9e-ecd2-444b-8c67-c79e9b15aac1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/transfers/:addressId?skip=<double>&limit=<double>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "transfers",
+                            ":addressId"
+                          ],
+                          "query": [
+                            {
+                              "key": "skip",
+                              "value": "<double>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<double>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "8d062bc5-3b27-4a21-8b47-5669d8d70476",
+                              "key": "addressId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "de6c2bf5-7e22-4332-b9af-a37a8285bf37",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchant/accounts/transfers/:addressId?skip=<double>&limit=<double>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchant",
+                                "accounts",
+                                "transfers",
+                                ":addressId"
+                              ],
+                              "query": [
+                                {
+                                  "key": "skip",
+                                  "value": "<double>"
+                                },
+                                {
+                                  "key": "limit",
+                                  "value": "<double>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "addressId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transfers\": [\n    {\n      \"transferId\": \"<string>\",\n      \"status\": \"processing\",\n      \"direction\": \"outbound\",\n      \"amount\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"SSP\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"notes\": \"<string>\",\n      \"signature\": \"<string>\"\n    },\n    {\n      \"transferId\": \"<string>\",\n      \"status\": \"complete\",\n      \"direction\": \"outbound\",\n      \"amount\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"TZS\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"notes\": \"<string>\",\n      \"signature\": \"<string>\"\n    }\n  ],\n  \"total\": \"<double>\"\n}",
+                          "createdAt": "2026-10-22T02:31:28.000Z",
+                          "updatedAt": "2026-10-22T02:31:28.000Z",
+                          "uid": "35240-de6c2bf5-7e22-4332-b9af-a37a8285bf37"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-976cea9e-ecd2-444b-8c67-c79e9b15aac1"
+                    }
+                  ],
+                  "id": "9e05585e-7163-4592-8ba2-0722d6ec7f36",
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-9e05585e-7163-4592-8ba2-0722d6ec7f36"
+                },
+                {
+                  "name": "Create Transfer",
+                  "id": "f090908f-fa33-401c-83ab-cc60f71a877d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sourceId\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  },\n  \"note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchant/accounts/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchant",
+                        "accounts",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "3d5156dd-6c52-43a5-8725-7f2e90d6509a",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sourceId\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"amount\": {\n    \"cents\": \"<integer>\"\n  },\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/transfers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "transfers"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-3d5156dd-6c52-43a5-8725-7f2e90d6509a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-f090908f-fa33-401c-83ab-cc60f71a877d"
+                }
+              ],
+              "id": "a24b6ea4-6a5e-4391-9881-76f001cbe60f",
+              "createdAt": "2026-10-22T02:31:28.000Z",
+              "updatedAt": "2026-10-22T02:31:28.000Z",
+              "uid": "35240-a24b6ea4-6a5e-4391-9881-76f001cbe60f"
+            },
+            {
+              "name": "primary-account",
+              "item": [
+                {
+                  "name": "Get Primary Account",
+                  "id": "e7dbab66-bb09-4970-98b9-f00ba525f95c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchant/accounts/primary-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchant",
+                        "accounts",
+                        "primary-account"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "bd6689eb-4aee-4977-b244-59307f5afbab",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchant/accounts/primary-account",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchant",
+                            "accounts",
+                            "primary-account"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"status\": \"pending\",\n  \"balance\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"BOB\"\n  },\n  \"transferPending\": \"<boolean>\",\n  \"address\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:31:28.000Z",
+                      "updatedAt": "2026-10-22T02:31:28.000Z",
+                      "uid": "35240-bd6689eb-4aee-4977-b244-59307f5afbab"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:31:28.000Z",
+                  "updatedAt": "2026-10-22T02:31:28.000Z",
+                  "uid": "35240-e7dbab66-bb09-4970-98b9-f00ba525f95c"
+                }
+              ],
+              "id": "f1e01848-8d2d-4b99-858c-5d65133ec0f9",
+              "createdAt": "2026-10-22T02:31:28.000Z",
+              "updatedAt": "2026-10-22T02:31:28.000Z",
+              "uid": "35240-f1e01848-8d2d-4b99-858c-5d65133ec0f9"
+            }
+          ],
+          "id": "b0c31fc0-040e-45b0-b31f-56cd43e482be",
+          "createdAt": "2026-10-22T02:31:28.000Z",
+          "updatedAt": "2026-10-22T02:31:28.000Z",
+          "uid": "35240-b0c31fc0-040e-45b0-b31f-56cd43e482be"
+        }
+      ],
+      "id": "e0fd2498-e38a-4ef9-a94f-269a16a740e1",
+      "createdAt": "2026-10-22T02:31:28.000Z",
+      "updatedAt": "2026-10-22T02:31:28.000Z",
+      "uid": "35240-e0fd2498-e38a-4ef9-a94f-269a16a740e1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
+    }
+  ]
+}

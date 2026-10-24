@@ -1,274 +1,315 @@
 {
+  "info": {
+    "_postman_id": "03c39bbd-1246-470d-812e-7f32c0e19f7a",
+    "name": "Reference Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:29:34.000Z",
+    "updatedAt": "2026-10-22T02:29:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03c39bbd-1246-470d-812e-7f32c0e19f7a"
+  },
   "item": [
     {
-      "id": "14eb0af4-6eec-41fd-ad69-4e74912b3e13",
-      "name": "authentication",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "auth",
       "item": [
         {
-          "id": "1c497f68-ad46-40a3-89e1-8dc4eb4654a0",
-          "name": "Get Message",
-          "request": {
-            "name": "Get Message",
-            "description": {
-              "content": "Get the message for the user's wallet to sign.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "auth"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-wallet",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "session-key",
+          "item": [
             {
-              "id": "fc84ee3e-4f8f-4b59-9584-2b6e5b477f05",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "auth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+              "name": "Get Session Key",
+              "id": "95b7f20c-884c-4ed5-bee0-b41a2b0402a3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-user-id",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
                 },
+                "method": "GET",
                 "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The web3 wallet of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-wallet",
-                    "value": "<string>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"transaction\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "95ffb17a-d618-4983-a186-cd287c443ca4",
-          "name": "Get Session Key",
-          "request": {
-            "name": "Get Session Key",
-            "description": {
-              "content": "Get an authentication session key",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "auth",
-                "session-key"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3c3434c6-b44e-4917-bae9-79126d53a480",
-              "name": "Ok",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/auth/session-key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "auth",
                     "session-key"
+                  ]
+                },
+                "description": "Get an authentication session key"
+              },
+              "response": [
+                {
+                  "id": "bd92dc19-66a9-4c96-8ce0-bc5ff98a14fa",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-user-id",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/session-key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "session-key"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
                   ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"key\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:29:35.000Z",
+                  "updatedAt": "2026-10-22T02:29:35.000Z",
+                  "uid": "35240-bd92dc19-66a9-4c96-8ce0-bc5ff98a14fa"
+                }
+              ],
+              "createdAt": "2026-10-22T02:29:35.000Z",
+              "updatedAt": "2026-10-22T02:29:35.000Z",
+              "uid": "35240-95b7f20c-884c-4ed5-bee0-b41a2b0402a3"
+            }
+          ],
+          "id": "a4474582-8dc9-4a27-b90d-521e833bdad7",
+          "createdAt": "2026-10-22T02:29:35.000Z",
+          "updatedAt": "2026-10-22T02:29:35.000Z",
+          "uid": "35240-a4474582-8dc9-4a27-b90d-521e833bdad7"
+        },
+        {
+          "name": "verify",
+          "item": [
+            {
+              "name": "Verify Token",
+              "id": "46d4c784-38ed-48d8-ad30-cf36d7cbe987",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-coinflow-auth-session-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/verify",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "auth",
+                    "verify"
+                  ]
                 },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The external identifier of the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-user-id",
-                    "value": "<string>"
+                "description": "Verify a token is valid and is not expired"
+              },
+              "response": [
+                {
+                  "id": "b1636cd6-2a01-43f0-b9c6-d3860a0618df",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-coinflow-auth-session-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "verify"
+                      ]
+                    }
                   },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:29:35.000Z",
+                  "updatedAt": "2026-10-22T02:29:35.000Z",
+                  "uid": "35240-b1636cd6-2a01-43f0-b9c6-d3860a0618df"
+                }
+              ],
+              "createdAt": "2026-10-22T02:29:35.000Z",
+              "updatedAt": "2026-10-22T02:29:35.000Z",
+              "uid": "35240-46d4c784-38ed-48d8-ad30-cf36d7cbe987"
+            }
+          ],
+          "id": "a7e842a7-b2fc-4bc1-8367-5d6f2a68f1f4",
+          "createdAt": "2026-10-22T02:29:35.000Z",
+          "updatedAt": "2026-10-22T02:29:35.000Z",
+          "uid": "35240-a7e842a7-b2fc-4bc1-8367-5d6f2a68f1f4"
+        },
+        {
+          "name": "Get Message",
+          "id": "f5e69520-4867-4f9f-b8cb-edae4a0b11cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-coinflow-auth-wallet",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth"
+              ]
+            },
+            "description": "Get the message for the user's wallet to sign."
+          },
+          "response": [
+            {
+              "id": "c705ec5a-ae34-4472-8025-56f398b2420f",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-coinflow-auth-wallet",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"key\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"transaction\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:29:35.000Z",
+              "updatedAt": "2026-10-22T02:29:35.000Z",
+              "uid": "35240-c705ec5a-ae34-4472-8025-56f398b2420f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b2815e74-47fa-4b82-a626-b1f1c8ca5de4",
-          "name": "Verify Token",
-          "request": {
-            "name": "Verify Token",
-            "description": {
-              "content": "Verify a token is valid and is not expired",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "auth",
-                "verify"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2f83da6d-d4b1-4881-a213-329f525564db",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "auth",
-                    "verify"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:29:35.000Z",
+          "updatedAt": "2026-10-22T02:29:35.000Z",
+          "uid": "35240-f5e69520-4867-4f9f-b8cb-edae4a0b11cd"
         }
       ],
-      "event": []
+      "id": "25a96838-01fe-4f63-979c-c815c91ec5a9",
+      "createdAt": "2026-10-22T02:29:35.000Z",
+      "updatedAt": "2026-10-22T02:29:35.000Z",
+      "uid": "35240-25a96838-01fe-4f63-979c-c815c91ec5a9"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api-sandbox.coinflow.cash/api",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
     }
-  ],
-  "info": {
-    "_postman_id": "9bde62d5-d918-4b98-b531-91f3b846e88f",
-    "name": "API Reference authentication API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,86 +1,490 @@
 {
+  "info": {
+    "_postman_id": "7e724006-501f-40dc-bc7e-46b69dfe6eb0",
+    "name": "Reference Refund API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:30:42.000Z",
+    "updatedAt": "2026-10-22T02:30:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7e724006-501f-40dc-bc7e-46b69dfe6eb0"
+  },
   "item": [
     {
-      "id": "019dd86d-74bd-4ae8-a524-62bdf1049cda",
-      "name": "refund",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "refunds",
       "item": [
         {
-          "id": "b1559f31-9c90-4951-ba00-5d1bf20f0018",
-          "name": "Get Refunds",
-          "request": {
-            "name": "Get Refunds",
-            "description": {},
-            "url": {
-              "path": [
-                "refunds"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{refundId}",
+          "item": [
+            {
+              "name": "retry",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "since",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "until",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "source",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "method",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "merchantId",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "search",
-                  "value": "<string>",
-                  "description": "Payment ID or User ID / Customer ID"
+                  "name": "Retry a Failed Refund",
+                  "id": "cf062e6c-f64c-4b11-a837-297e50240947",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/refunds/:refundId/retry",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "refunds",
+                        ":refundId",
+                        "retry"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f28df9bc-4e3e-443b-b071-f265dcdc043d",
+                          "key": "refundId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2b8f28ac-c736-4d59-bb89-b2eaa73dc3cd",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/refunds/:refundId/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "refunds",
+                            ":refundId",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "refundId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jobId\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:30:42.000Z",
+                      "updatedAt": "2026-10-22T02:30:42.000Z",
+                      "uid": "35240-2b8f28ac-c736-4d59-bb89-b2eaa73dc3cd"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:42.000Z",
+                  "updatedAt": "2026-10-22T02:30:42.000Z",
+                  "uid": "35240-cf062e6c-f64c-4b11-a837-297e50240947"
                 }
               ],
-              "variable": []
+              "id": "90e55ea0-b21a-49e1-9af4-f76d2496ace2",
+              "createdAt": "2026-10-22T02:30:42.000Z",
+              "updatedAt": "2026-10-22T02:30:42.000Z",
+              "uid": "35240-90e55ea0-b21a-49e1-9af4-f76d2496ace2"
+            }
+          ],
+          "id": "f98d359c-7b3b-4511-bedc-b43bf3483ca0",
+          "createdAt": "2026-10-22T02:30:42.000Z",
+          "updatedAt": "2026-10-22T02:30:42.000Z",
+          "uid": "35240-f98d359c-7b3b-4511-bedc-b43bf3483ca0"
+        },
+        {
+          "name": "payment",
+          "item": [
+            {
+              "name": "{paymentId}",
+              "item": [
+                {
+                  "name": "all",
+                  "item": [
+                    {
+                      "name": "View All Refunds for Payment",
+                      "id": "a73743ed-04b6-4cfa-a62d-332d1c6b61a6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/refunds/payment/:paymentId/all",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "refunds",
+                            "payment",
+                            ":paymentId",
+                            "all"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2379b489-b5fe-409b-bdb9-e1cdfc151931",
+                              "key": "paymentId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "b5ba5a1e-0e1a-4aef-97ce-29f0d98e3b94",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/refunds/payment/:paymentId/all",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "refunds",
+                                "payment",
+                                ":paymentId",
+                                "all"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "paymentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"_id\": \"<string>\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"INR\"\n      },\n      \"processorFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"PHP\"\n      },\n      \"total\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"DKK\"\n      },\n      \"rate\": \"<double>\",\n      \"resolution\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"SBD\"\n      },\n      \"adjustment\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"SLL\"\n      }\n    },\n    \"customer\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"payment\": \"<string>\",\n    \"status\": \"Settled\",\n    \"reimbursementStatus\": \"Returned\",\n    \"outstanding\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"TMT\"\n    },\n    \"source\": \"Usdc\",\n    \"method\": \"Iban\",\n    \"provider\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"signature\": \"<string>\",\n    \"reimbursementId\": \"<string>\",\n    \"invoicedAt\": \"<dateTime>\",\n    \"invoiceId\": \"<string>\",\n    \"reason\": \"other\",\n    \"refundedBy\": {\n      \"editor\": \"<string>\",\n      \"editorType\": \"Merchant\",\n      \"ipAddress\": \"<string>\"\n    },\n    \"failureReason\": \"<string>\",\n    \"cryptoRefundInfo\": {\n      \"refundAddress\": \"<string>\",\n      \"denominationType\": \"token\",\n      \"refundTransactionHash\": \"<string>\",\n      \"refundTransactionUrl\": \"<string>\",\n      \"amountUSD\": \"<string>\",\n      \"tokenAmount\": \"<string>\",\n      \"paymentCurrency\": \"<string>\"\n    },\n    \"walletDebitStatus\": \"pending\",\n    \"walletDebitTxHash\": \"<string>\",\n    \"returnSignature\": \"<string>\"\n  },\n  {\n    \"_id\": \"<string>\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"KES\"\n      },\n      \"processorFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"CDF\"\n      },\n      \"total\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"KGS\"\n      },\n      \"rate\": \"<double>\",\n      \"resolution\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"BND\"\n      },\n      \"adjustment\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"FKP\"\n      }\n    },\n    \"customer\": \"<string>\",\n    \"merchant\": \"<string>\",\n    \"payment\": \"<string>\",\n    \"status\": \"Failed\",\n    \"reimbursementStatus\": \"Failure\",\n    \"outstanding\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"AED\"\n    },\n    \"source\": \"Usdc\",\n    \"method\": \"APA\",\n    \"provider\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"signature\": \"<string>\",\n    \"reimbursementId\": \"<string>\",\n    \"invoicedAt\": \"<dateTime>\",\n    \"invoiceId\": \"<string>\",\n    \"reason\": \"buyerFraud\",\n    \"refundedBy\": {\n      \"editor\": \"<string>\",\n      \"editorType\": \"Merchant\",\n      \"ipAddress\": \"<string>\"\n    },\n    \"failureReason\": \"<string>\",\n    \"cryptoRefundInfo\": {\n      \"refundAddress\": \"<string>\",\n      \"denominationType\": \"token\",\n      \"refundTransactionHash\": \"<string>\",\n      \"refundTransactionUrl\": \"<string>\",\n      \"amountUSD\": \"<string>\",\n      \"tokenAmount\": \"<string>\",\n      \"paymentCurrency\": \"<string>\"\n    },\n    \"walletDebitStatus\": \"pending\",\n    \"walletDebitTxHash\": \"<string>\",\n    \"returnSignature\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-10-22T02:30:42.000Z",
+                          "updatedAt": "2026-10-22T02:30:42.000Z",
+                          "uid": "35240-b5ba5a1e-0e1a-4aef-97ce-29f0d98e3b94"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:42.000Z",
+                      "updatedAt": "2026-10-22T02:30:42.000Z",
+                      "uid": "35240-a73743ed-04b6-4cfa-a62d-332d1c6b61a6"
+                    }
+                  ],
+                  "id": "f6ddd6e7-b754-4527-9b90-48e92acc5184",
+                  "createdAt": "2026-10-22T02:30:42.000Z",
+                  "updatedAt": "2026-10-22T02:30:42.000Z",
+                  "uid": "35240-f6ddd6e7-b754-4527-9b90-48e92acc5184"
+                },
+                {
+                  "name": "View Refund Information for Payment",
+                  "id": "cfae8f5d-cb18-4c2b-a4c7-05cfcf557dfa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/refunds/payment/:paymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "refunds",
+                        "payment",
+                        ":paymentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "65bda34f-b7c0-424f-ae5a-428d9083014b",
+                          "key": "paymentId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "90b3376d-583b-44d6-be8d-572b0414b043",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/refunds/payment/:paymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "refunds",
+                            "payment",
+                            ":paymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "paymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"refundedBy\": {\n    \"editor\": \"<string>\",\n    \"editorType\": \"Merchant\",\n    \"ipAddress\": \"<string>\"\n  },\n  \"reason\": \"buyerFraud\",\n  \"updatedAt\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\",\n  \"invoiceId\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"method\": \"Pix\",\n  \"source\": \"Usdc\",\n  \"outstanding\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"RON\"\n  },\n  \"reimbursementStatus\": \"Returned\",\n  \"status\": \"Failed\",\n  \"payment\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"customer\": \"<string>\",\n  \"totals\": {\n    \"subtotal\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"AED\"\n    },\n    \"processorFees\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"KYD\"\n    },\n    \"total\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"SBD\"\n    },\n    \"rate\": \"<double>\",\n    \"resolution\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"ARS\"\n    },\n    \"adjustment\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"STN\"\n    }\n  },\n  \"_id\": \"<string>\",\n  \"returnSignature\": \"<string>\",\n  \"walletDebitTxHash\": \"<string>\",\n  \"walletDebitStatus\": \"failed\",\n  \"cryptoRefundInfo\": {\n    \"refundAddress\": \"<string>\",\n    \"denominationType\": \"token\",\n    \"refundTransactionHash\": \"<string>\",\n    \"refundTransactionUrl\": \"<string>\",\n    \"amountUSD\": \"<string>\",\n    \"tokenAmount\": \"<string>\",\n    \"paymentCurrency\": \"<string>\"\n  },\n  \"failureReason\": \"<string>\",\n  \"invoicedAt\": \"<dateTime>\",\n  \"reimbursementId\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:30:42.000Z",
+                      "updatedAt": "2026-10-22T02:30:42.000Z",
+                      "uid": "35240-90b3376d-583b-44d6-be8d-572b0414b043"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:42.000Z",
+                  "updatedAt": "2026-10-22T02:30:42.000Z",
+                  "uid": "35240-cfae8f5d-cb18-4c2b-a4c7-05cfcf557dfa"
+                }
+              ],
+              "id": "4f0f79a8-f6d0-4921-8d8a-99610c24551a",
+              "createdAt": "2026-10-22T02:30:42.000Z",
+              "updatedAt": "2026-10-22T02:30:42.000Z",
+              "uid": "35240-4f0f79a8-f6d0-4921-8d8a-99610c24551a"
+            }
+          ],
+          "id": "999d430c-11fe-4357-a786-2f0e55652058",
+          "createdAt": "2026-10-22T02:30:42.000Z",
+          "updatedAt": "2026-10-22T02:30:42.000Z",
+          "uid": "35240-999d430c-11fe-4357-a786-2f0e55652058"
+        },
+        {
+          "name": "Get Refunds",
+          "id": "f42d0b21-7690-4bdd-8d34-6d501ca20a18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/refunds?since=<string>&until=<string>&status=<string>&source=<string>&method=<string>&merchantId=<string>&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "refunds"
+              ],
+              "query": [
+                {
+                  "key": "since",
+                  "value": "<string>"
+                },
+                {
+                  "key": "until",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "source",
+                  "value": "<string>"
+                },
+                {
+                  "key": "method",
+                  "value": "<string>"
+                },
+                {
+                  "key": "merchantId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Payment ID or User ID / Customer ID",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "41277fa2-9996-43d0-a04f-c0a3a66bd17e",
+              "id": "e6fc98cf-5e86-4508-bd94-bb2fa933c9d9",
               "name": "Ok",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "refunds"
-                  ],
+                  "raw": "{{baseUrl}}/refunds?since=<string>&until=<string>&status=<string>&source=<string>&method=<string>&merchantId=<string>&search=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refunds"
                   ],
                   "query": [
                     {
@@ -108,345 +512,45 @@
                       "value": "<string>"
                     },
                     {
+                      "description": "Payment ID or User ID / Customer ID",
                       "key": "search",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) ",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"merchantId\": \"string\",\n    \"paymentId\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"processorFees\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"total\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rate\": 7737.732045145523,\n      \"resolution\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"adjustment\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"status\": \"Pending\",\n    \"reimbursementStatus\": \"Returned\",\n    \"outstanding\": {\n      \"cents\": 7451\n    },\n    \"source\": \"Credits\",\n    \"method\": \"APA\",\n    \"createdAt\": \"1982-06-29T02:15:10.144Z\",\n    \"userId\": \"string\",\n    \"signature\": \"string\",\n    \"failureReason\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"merchantId\": \"string\",\n    \"paymentId\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"processorFees\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"total\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rate\": 6167.702446952501,\n      \"resolution\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"adjustment\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"status\": \"Settled\",\n    \"reimbursementStatus\": \"Failure\",\n    \"outstanding\": {\n      \"cents\": 4715\n    },\n    \"source\": \"None\",\n    \"method\": \"CashApp\",\n    \"createdAt\": \"1948-02-29T21:54:54.195Z\",\n    \"userId\": \"string\",\n    \"signature\": \"string\",\n    \"failureReason\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d37eac62-d50a-4e70-aca7-abdac2b358fc",
-          "name": "Retry a Failed Refund",
-          "request": {
-            "name": "Retry a Failed Refund",
-            "description": {},
-            "url": {
-              "path": [
-                "refunds",
-                ":refundId",
-                "retry"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "refundId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "eb223ae3-ec89-4657-be72-e8df31c9f4ea",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "refunds",
-                    ":refundId",
-                    "retry"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "refundId",
-                      "description": "(Required) "
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) ",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"jobId\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"merchantId\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"SSP\"\n      },\n      \"processorFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"BMD\"\n      },\n      \"total\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"BIF\"\n      },\n      \"rate\": \"<double>\",\n      \"resolution\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"LBP\"\n      },\n      \"adjustment\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"GNF\"\n      }\n    },\n    \"status\": \"Failed\",\n    \"reimbursementStatus\": \"Failure\",\n    \"outstanding\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"MOP\"\n    },\n    \"source\": \"Credits\",\n    \"method\": \"Venmo\",\n    \"createdAt\": \"<dateTime>\",\n    \"userId\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"failureReason\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"merchantId\": \"<string>\",\n    \"paymentId\": \"<string>\",\n    \"totals\": {\n      \"subtotal\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"MXN\"\n      },\n      \"processorFees\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"DKK\"\n      },\n      \"total\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"ANG\"\n      },\n      \"rate\": \"<double>\",\n      \"resolution\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"BRL\"\n      },\n      \"adjustment\": {\n        \"cents\": \"<integer>\",\n        \"currency\": \"RSD\"\n      }\n    },\n    \"status\": \"Invoiced\",\n    \"reimbursementStatus\": \"Returned\",\n    \"outstanding\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"DZD\"\n    },\n    \"source\": \"Usdc\",\n    \"method\": \"Venmo\",\n    \"createdAt\": \"<dateTime>\",\n    \"userId\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"failureReason\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-10-22T02:30:42.000Z",
+              "updatedAt": "2026-10-22T02:30:42.000Z",
+              "uid": "35240-e6fc98cf-5e86-4508-bd94-bb2fa933c9d9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b9455744-d807-4a7e-b914-0ecf3989739b",
-          "name": "View All Refunds for Payment",
-          "request": {
-            "name": "View All Refunds for Payment",
-            "description": {},
-            "url": {
-              "path": [
-                "refunds",
-                "payment",
-                ":paymentId",
-                "all"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "paymentId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9ef0dd54-f144-4826-b57d-e13868a3b102",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "refunds",
-                    "payment",
-                    ":paymentId",
-                    "all"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "paymentId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) ",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"_id\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"processorFees\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"total\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rate\": 201.2722275840839,\n      \"resolution\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"adjustment\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"customer\": \"string\",\n    \"merchant\": \"string\",\n    \"payment\": \"string\",\n    \"status\": \"Pending\",\n    \"reimbursementStatus\": \"Complete\",\n    \"outstanding\": {\n      \"cents\": 8920\n    },\n    \"source\": \"Credits\",\n    \"method\": \"Card\",\n    \"provider\": \"string\",\n    \"createdAt\": \"1961-12-31T05:22:03.236Z\",\n    \"updatedAt\": \"2006-09-11T05:07:38.931Z\",\n    \"signature\": \"string\",\n    \"reimbursementId\": \"string\",\n    \"invoicedAt\": \"1954-11-13T18:23:48.770Z\",\n    \"reason\": \"buyerFraud\",\n    \"refundedBy\": {\n      \"editor\": \"string\",\n      \"editorType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"ipAddress\": \"string\"\n    },\n    \"failureReason\": \"string\",\n    \"cryptoRefundInfo\": {\n      \"refundAddress\": \"string\",\n      \"denominationType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"refundTransactionHash\": \"string\",\n      \"refundTransactionUrl\": \"string\",\n      \"amountUSD\": \"string\",\n      \"tokenAmount\": \"string\",\n      \"paymentCurrency\": \"string\"\n    },\n    \"walletDebitStatus\": \"pending\",\n    \"walletDebitTxHash\": \"string\",\n    \"returnSignature\": \"string\"\n  },\n  {\n    \"_id\": \"string\",\n    \"totals\": {\n      \"subtotal\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"processorFees\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"total\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"rate\": 739.6748244989726,\n      \"resolution\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"adjustment\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"customer\": \"string\",\n    \"merchant\": \"string\",\n    \"payment\": \"string\",\n    \"status\": \"Settled\",\n    \"reimbursementStatus\": \"Pending\",\n    \"outstanding\": {\n      \"cents\": 4364\n    },\n    \"source\": \"Usdc\",\n    \"method\": \"Iban\",\n    \"provider\": \"string\",\n    \"createdAt\": \"2004-09-23T08:16:46.029Z\",\n    \"updatedAt\": \"2010-02-10T11:07:12.935Z\",\n    \"signature\": \"string\",\n    \"reimbursementId\": \"string\",\n    \"invoicedAt\": \"2016-10-16T06:48:13.056Z\",\n    \"reason\": \"userCancellation\",\n    \"refundedBy\": {\n      \"editor\": \"string\",\n      \"editorType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"ipAddress\": \"string\"\n    },\n    \"failureReason\": \"string\",\n    \"cryptoRefundInfo\": {\n      \"refundAddress\": \"string\",\n      \"denominationType\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"refundTransactionHash\": \"string\",\n      \"refundTransactionUrl\": \"string\",\n      \"amountUSD\": \"string\",\n      \"tokenAmount\": \"string\",\n      \"paymentCurrency\": \"string\"\n    },\n    \"walletDebitStatus\": \"failed\",\n    \"walletDebitTxHash\": \"string\",\n    \"returnSignature\": \"string\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7def8e77-33cb-46df-a1a6-0eb3e7728b07",
-          "name": "View Refund Information for Payment",
-          "request": {
-            "name": "View Refund Information for Payment",
-            "description": {},
-            "url": {
-              "path": [
-                "refunds",
-                "payment",
-                ":paymentId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "paymentId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fec7ff75-9b2b-4490-8bc1-420009bcde0b",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "refunds",
-                    "payment",
-                    ":paymentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "paymentId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) ",
-                    "key": "Authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"refundedBy\": {\n    \"editor\": \"string\",\n    \"editorType\": \"Merchant\",\n    \"ipAddress\": \"string\"\n  },\n  \"reason\": \"failedFulfillment\",\n  \"updatedAt\": \"1956-03-25T14:14:41.092Z\",\n  \"createdAt\": \"1960-09-20T22:46:03.452Z\",\n  \"provider\": \"string\",\n  \"method\": \"CashApp\",\n  \"source\": \"Settlement\",\n  \"outstanding\": {\n    \"cents\": 3739\n  },\n  \"reimbursementStatus\": \"Failure\",\n  \"status\": \"Failed\",\n  \"payment\": \"string\",\n  \"merchant\": \"string\",\n  \"customer\": \"string\",\n  \"totals\": {\n    \"subtotal\": {\n      \"cents\": 108,\n      \"currency\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"processorFees\": {\n      \"cents\": 9701,\n      \"currency\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"total\": {\n      \"cents\": 8658,\n      \"currency\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"rate\": 5108.798918057893,\n    \"resolution\": {\n      \"cents\": 2728,\n      \"currency\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"adjustment\": {\n      \"cents\": 1422,\n      \"currency\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"_id\": \"string\",\n  \"returnSignature\": \"string\",\n  \"walletDebitTxHash\": \"string\",\n  \"walletDebitStatus\": \"pending\",\n  \"cryptoRefundInfo\": {\n    \"refundAddress\": \"string\",\n    \"denominationType\": \"token\",\n    \"refundTransactionHash\": \"string\",\n    \"refundTransactionUrl\": \"string\",\n    \"amountUSD\": \"string\",\n    \"tokenAmount\": \"string\",\n    \"paymentCurrency\": \"string\"\n  },\n  \"failureReason\": \"string\",\n  \"invoicedAt\": \"1972-08-19T20:18:43.659Z\",\n  \"reimbursementId\": \"string\",\n  \"signature\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:30:42.000Z",
+          "updatedAt": "2026-10-22T02:30:42.000Z",
+          "uid": "35240-f42d0b21-7690-4bdd-8d34-6d501ca20a18"
         }
       ],
-      "event": []
+      "id": "ccd555bb-082d-42ac-931f-80c72f5343b3",
+      "createdAt": "2026-10-22T02:30:42.000Z",
+      "updatedAt": "2026-10-22T02:30:42.000Z",
+      "uid": "35240-ccd555bb-082d-42ac-931f-80c72f5343b3"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api-sandbox.coinflow.cash/api",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
     }
-  ],
-  "info": {
-    "_postman_id": "652437ba-dab7-41c0-9963-2837539be891",
-    "name": "API Reference authentication refund API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

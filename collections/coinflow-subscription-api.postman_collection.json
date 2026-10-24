@@ -1,989 +1,1121 @@
 {
+  "info": {
+    "_postman_id": "da14e197-a3fe-443b-ae12-ba64afacae82",
+    "name": "Reference Subscription API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:30:54.000Z",
+    "updatedAt": "2026-10-22T02:30:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da14e197-a3fe-443b-ae12-ba64afacae82"
+  },
   "item": [
     {
-      "id": "d08278c6-ca56-45aa-b66f-c9ed7638515e",
       "name": "subscription",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
       "item": [
         {
-          "id": "6ffe9249-470f-4a8b-a271-3fef2eabc154",
-          "name": "Customer Cancel Subscription",
-          "request": {
-            "name": "Customer Cancel Subscription",
-            "description": {
-              "content": "Cancel a subscription (by customer)",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "subscribers",
-                ":subscriptionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+          "name": "{merchantId}",
+          "item": [
+            {
+              "name": "subscribers",
+              "item": [
                 {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
+                  "name": "{subscriptionId}",
+                  "item": [
+                    {
+                      "name": "Customer Cancel Subscription",
+                      "id": "25b3742e-b3a6-4673-bbb9-7047574dc0e2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-coinflow-auth-session-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/:subscriptionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "subscribers",
+                            ":subscriptionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c38c09d1-86d5-4a18-b092-dcddcd6249b9",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "0152a6ba-c072-4d7d-8e23-1ef211b63ede",
+                              "key": "subscriptionId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Cancel a subscription (by customer)"
+                      },
+                      "response": [
+                        {
+                          "id": "47d6646b-1723-406c-b6cc-a7602e81f566",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/:subscriptionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                ":subscriptionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                },
+                                {
+                                  "key": "subscriptionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-47d6646b-1723-406c-b6cc-a7602e81f566"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-25b3742e-b3a6-4673-bbb9-7047574dc0e2"
+                    }
+                  ],
+                  "id": "6898483b-334d-4e71-b9a7-61109e09ad94",
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-6898483b-334d-4e71-b9a7-61109e09ad94"
                 },
                 {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "subscriptionId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "33c6b77c-4747-44d6-ba8d-314010aa379a",
-              "name": "Successful response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    ":subscriptionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "ach",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
+                      "name": "Purchase Subscription by ACH",
+                      "id": "5604c4fc-bb3b-42ee-92e5-1ae8f931519c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-coinflow-auth-session-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"subscription\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"gaming\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/ach",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "subscribers",
+                            "ach"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9a852f58-f9d4-4c67-95c7-66524e0cbd1c",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Purchase a subscription using ACH"
+                      },
+                      "response": [
+                        {
+                          "id": "a7527941-8f16-4e0f-b2b5-afab2a274219",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"subscription\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"gaming\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/ach",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                "ach"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-a7527941-8f16-4e0f-b2b5-afab2a274219"
+                        },
+                        {
+                          "id": "2b3878d1-a2bd-40f4-84db-90911fe425e9",
+                          "name": "User must re-verify account",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"subscription\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"gaming\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/ach",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                "ach"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Precondition Required",
+                          "code": 428,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"description\": \"Any type\"\n}",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-2b3878d1-a2bd-40f4-84db-90911fe425e9"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-5604c4fc-bb3b-42ee-92e5-1ae8f931519c"
+                    }
+                  ],
+                  "id": "e14ad286-fdf7-4cf2-b7f8-c702046842e7",
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-e14ad286-fdf7-4cf2-b7f8-c702046842e7"
+                },
+                {
+                  "name": "token",
+                  "item": [
+                    {
+                      "name": "Purchase Subscription with Existing Card",
+                      "id": "d3430b21-dd3f-4891-9516-547c02056409",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-coinflow-auth-session-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
+                            "key": "x-device-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalSubscriptionContent\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"computingContract\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"45566881\",\n      \"phoneNumber\": \"6221\",\n      \"documentReference\": \"<string>\"\n    }\n  },\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "subscribers",
+                            "token"
+                          ],
+                          "variable": [
+                            {
+                              "id": "80e6e448-e0ef-48c2-b608-4dffb0d39c8b",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Purchase a subscription with an existing credit card"
+                      },
+                      "response": [
+                        {
+                          "id": "9b321227-388f-4f5e-b3d1-ea621d5a3f47",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
+                                "key": "x-device-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalSubscriptionContent\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"computingContract\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"45566881\",\n      \"phoneNumber\": \"6221\",\n      \"documentReference\": \"<string>\"\n    }\n  },\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                "token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-9b321227-388f-4f5e-b3d1-ea621d5a3f47"
+                        },
+                        {
+                          "id": "66db925a-053f-402c-8c0d-84bae014837e",
+                          "name": "Address Required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
+                                "key": "x-device-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalSubscriptionContent\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"computingContract\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"45566881\",\n      \"phoneNumber\": \"6221\",\n      \"documentReference\": \"<string>\"\n    }\n  },\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                "token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"description\": \"Any type\"\n}",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-66db925a-053f-402c-8c0d-84bae014837e"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-d3430b21-dd3f-4891-9516-547c02056409"
+                    }
+                  ],
+                  "id": "e92772a4-29c4-4d50-ba86-be3f25ba8af1",
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-e92772a4-29c4-4d50-ba86-be3f25ba8af1"
+                },
+                {
+                  "name": "card",
+                  "item": [
+                    {
+                      "name": "Purchase Subscription with New Card",
+                      "id": "4684b89b-69b2-41b4-a980-0cae0912aaf0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-coinflow-auth-session-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
+                            "key": "x-device-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planCode\": \"<string>\",\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"66\",\n    \"expMonth\": \"81\",\n    \"email\": \"\\\"Ha^h$'\\\"@6kQ-E.E7j-AEFtr2.Awki7A.HF1j2DqA4Hi.uRD\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalContent\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalCollectiblesMarketplace\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"Challenge\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"73678680\",\n      \"phoneNumber\": \"72209320\",\n      \"documentReference\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/card",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "subscribers",
+                            "card"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2dc4b6c7-9794-4daf-8ded-da84da2e4149",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Purchase a subscription with a new credit card"
+                      },
+                      "response": [
+                        {
+                          "id": "7df6c6ad-82de-4510-80ca-b0921d8a4b72",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
+                                "key": "x-device-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"planCode\": \"<string>\",\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"66\",\n    \"expMonth\": \"81\",\n    \"email\": \"\\\"Ha^h$'\\\"@6kQ-E.E7j-AEFtr2.Awki7A.HF1j2DqA4Hi.uRD\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalContent\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"digitalCollectiblesMarketplace\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {}\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        },\n        {\n          \"txType\": \"<string>\",\n          \"chain\": \"<string>\",\n          \"paymentAmount\": \"<string>\",\n          \"paymentToken\": \"<string>\",\n          \"to\": \"<string>\",\n          \"from\": \"<string>\",\n          \"registryContract\": \"<string>\",\n          \"assetID\": \"<string>\",\n          \"txTime\": \"<string>\",\n          \"blockNumber\": \"<double>\",\n          \"txHash\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"Challenge\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"73678680\",\n      \"phoneNumber\": \"72209320\",\n      \"documentReference\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/subscribers/card",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "subscribers",
+                                "card"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-7df6c6ad-82de-4510-80ca-b0921d8a4b72"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-4684b89b-69b2-41b4-a980-0cae0912aaf0"
+                    }
+                  ],
+                  "id": "14930d4a-ced9-4817-ad2e-8f49477c9daf",
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-14930d4a-ced9-4817-ad2e-8f49477c9daf"
+                },
+                {
+                  "name": "Get Customer Subscriptions",
+                  "id": "82dfe36e-0deb-4eed-b948-2dbe7c56d5f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "subscriptionId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "949c25ec-7d33-4416-a5da-849c02dcc0ca",
-          "name": "Get Available Plans",
-          "request": {
-            "name": "Get Available Plans",
-            "description": {
-              "content": "Get the available subscription plans for a merchant",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "plans"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7d5daec7-3083-456e-8d92-c5b365da63ee",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "plans"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"interval\": \"Monthly\",\n    \"amount\": {\n      \"cents\": 7042,\n      \"currency\": \"PKR\"\n    },\n    \"active\": true,\n    \"duration\": 1427,\n    \"description\": \"string\",\n    \"transaction\": \"string\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": true\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"interval\": \"Yearly\",\n    \"amount\": {\n      \"cents\": 858,\n      \"currency\": \"SCR\"\n    },\n    \"active\": false,\n    \"duration\": 6181,\n    \"description\": \"string\",\n    \"transaction\": \"string\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": true\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "992d4c68-875e-4247-a8da-a6ef5bcf7e0e",
-          "name": "Get Customer Subscriptions",
-          "request": {
-            "name": "Get Customer Subscriptions",
-            "description": {
-              "content": "Get the subscriptions a customer has with a merchant",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "subscribers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1f07d764-1232-45fe-966b-f81bd0b558d1",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"merchantId\": \"string\",\n    \"email\": \"string\",\n    \"plan\": \"string\",\n    \"planCode\": \"string\",\n    \"status\": \"Blocked\",\n    \"blockchain\": \"polygon\",\n    \"nextPaymentAt\": \"2011-08-29T02:03:50.007Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"merchantId\": \"string\",\n    \"email\": \"string\",\n    \"plan\": \"string\",\n    \"planCode\": \"string\",\n    \"status\": \"Blocked\",\n    \"blockchain\": \"base\",\n    \"nextPaymentAt\": \"2016-01-06T06:50:02.213Z\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "17fac49d-e572-484e-8311-3514d5c6a752",
-          "name": "Get Plan",
-          "request": {
-            "name": "Get Plan",
-            "description": {
-              "content": "Get a specific subscription plan",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "plans",
-                ":code"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "code",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "796a434f-60cf-4302-b61b-a271eb1a1bec",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "plans",
-                    ":code"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:merchantId/subscribers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":merchantId",
+                        "subscribers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a8f8a4bc-554c-47a3-881b-c601e5775b10",
+                          "key": "merchantId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
                     },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "code",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
+                    "description": "Get the subscriptions a customer has with a merchant"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "response": [
+                    {
+                      "id": "e2e9edae-80d9-4b78-883a-b6d079a36c0c",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/subscribers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "subscribers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchantId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"merchantId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"plan\": \"<string>\",\n    \"planCode\": \"<string>\",\n    \"status\": \"Active\",\n    \"blockchain\": \"tempo\",\n    \"nextPaymentAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"merchantId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"plan\": \"<string>\",\n    \"planCode\": \"<string>\",\n    \"status\": \"Failed\",\n    \"blockchain\": \"user\",\n    \"nextPaymentAt\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-e2e9edae-80d9-4b78-883a-b6d079a36c0c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-82dfe36e-0deb-4eed-b948-2dbe7c56d5f2"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"code\": \"string\",\n  \"interval\": \"Weekly\",\n  \"amount\": {\n    \"cents\": 9107,\n    \"currency\": \"BRL\"\n  },\n  \"active\": true,\n  \"duration\": 8395,\n  \"description\": \"string\",\n  \"transaction\": \"string\",\n  \"settlementChain\": \"solana\",\n  \"merchantInitiated\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "f2bc8565-f984-4646-92e1-01bd65c3498c",
+              "createdAt": "2026-10-22T02:30:55.000Z",
+              "updatedAt": "2026-10-22T02:30:55.000Z",
+              "uid": "35240-f2bc8565-f984-4646-92e1-01bd65c3498c"
+            },
+            {
+              "name": "plans",
+              "item": [
+                {
+                  "name": "{code}",
+                  "item": [
+                    {
+                      "name": "Get Plan",
+                      "id": "e77860af-42e6-46ac-aeec-efeeb8bad735",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "x-coinflow-auth-session-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/plans/:code",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "plans",
+                            ":code"
+                          ],
+                          "variable": [
+                            {
+                              "id": "40432f95-3866-49ae-abdb-02946bc71cda",
+                              "key": "merchantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "3b8b0093-6a4f-4e05-885a-2ebf4314f885",
+                              "key": "code",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a specific subscription plan"
+                      },
+                      "response": [
+                        {
+                          "id": "25d43ecc-e2d9-4bce-8d30-be921d0a5cec",
+                          "name": "Ok",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "x-coinflow-auth-session-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/subscription/:merchantId/plans/:code",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "subscription",
+                                ":merchantId",
+                                "plans",
+                                ":code"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "merchantId"
+                                },
+                                {
+                                  "key": "code"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"code\": \"<string>\",\n  \"interval\": \"Weekly\",\n  \"amount\": {\n    \"cents\": \"<integer>\",\n    \"currency\": \"PAB\"\n  },\n  \"active\": \"<boolean>\",\n  \"duration\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"settlementChain\": \"solana\",\n  \"merchantInitiated\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-22T02:30:55.000Z",
+                          "updatedAt": "2026-10-22T02:30:55.000Z",
+                          "uid": "35240-25d43ecc-e2d9-4bce-8d30-be921d0a5cec"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-e77860af-42e6-46ac-aeec-efeeb8bad735"
+                    }
+                  ],
+                  "id": "996a947f-d50e-4be9-ae34-009e26ad47b7",
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-996a947f-d50e-4be9-ae34-009e26ad47b7"
+                },
+                {
+                  "name": "Get Available Plans",
+                  "id": "eafa6b72-78c7-43ee-8d1c-0e91dc55c8cd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-coinflow-auth-session-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:merchantId/plans",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":merchantId",
+                        "plans"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0353aab5-7c1f-412c-8cc7-4037ff91e383",
+                          "key": "merchantId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get the available subscription plans for a merchant"
+                  },
+                  "response": [
+                    {
+                      "id": "a93d73f2-e280-430e-86d9-fae4291d9456",
+                      "name": "Ok",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-coinflow-auth-session-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:merchantId/plans",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":merchantId",
+                            "plans"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchantId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"code\": \"<string>\",\n    \"interval\": \"Weekly\",\n    \"amount\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"NZD\"\n    },\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"transaction\": \"<string>\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"code\": \"<string>\",\n    \"interval\": \"Daily\",\n    \"amount\": {\n      \"cents\": \"<integer>\",\n      \"currency\": \"GEL\"\n    },\n    \"active\": \"<boolean>\",\n    \"duration\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"transaction\": \"<string>\",\n    \"settlementChain\": \"solana\",\n    \"merchantInitiated\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:30:55.000Z",
+                      "updatedAt": "2026-10-22T02:30:55.000Z",
+                      "uid": "35240-a93d73f2-e280-430e-86d9-fae4291d9456"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:30:55.000Z",
+                  "updatedAt": "2026-10-22T02:30:55.000Z",
+                  "uid": "35240-eafa6b72-78c7-43ee-8d1c-0e91dc55c8cd"
+                }
+              ],
+              "id": "c1dd215e-742c-4b29-bab3-ef99f19d7956",
+              "createdAt": "2026-10-22T02:30:55.000Z",
+              "updatedAt": "2026-10-22T02:30:55.000Z",
+              "uid": "35240-c1dd215e-742c-4b29-bab3-ef99f19d7956"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "72a65caa-47eb-4434-a3a0-94898c257791",
-          "name": "Purchase Subscription by ACH",
-          "request": {
-            "name": "Purchase Subscription by ACH",
-            "description": {
-              "content": "Purchase a subscription using ACH",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "subscribers",
-                "ach"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ed905ba7-0418-4102-aa6f-960156883e53",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    "ach"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"computingContract\",\n      \"quantity\": 5238.676320450546,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 2953.904449461501\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"dataStorage\",\n      \"quantity\": 3821.1869675934904,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 1902.2585154671335\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 5032\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "15983639-9fcb-4a7e-b1dd-319bb752fc85",
-              "name": "User must re-verify account",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    "ach"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"computingContract\",\n      \"quantity\": 5238.676320450546,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 2953.904449461501\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"dataStorage\",\n      \"quantity\": 3821.1869675934904,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 1902.2585154671335\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 5032\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Precondition Required",
-              "code": 428,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "296d2791-7a59-4ac1-8c47-10c7e4a94fa2",
-          "name": "Purchase Subscription with Existing Card",
-          "request": {
-            "name": "Purchase Subscription with Existing Card",
-            "description": {
-              "content": "Purchase a subscription with an existing credit card",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "subscribers",
-                "token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
-                "key": "x-device-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"<string>\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"documentReference\": \"<string>\"\n    }\n  },\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5b47292b-9aa2-4895-a9a0-675f86eacfdc",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    "token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
-                    "key": "x-device-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"digitalCollectiblesMarketplace\",\n      \"quantity\": 573.9283062157951,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 3402.0961620806956\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"musicTicket\",\n      \"quantity\": 3504.271793930429,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 858.0346828626906\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 5933\n  },\n  \"authentication3DS\": {\n    \"colorDepth\": 1648.7268687543421,\n    \"screenHeight\": 5541.019726438144,\n    \"screenWidth\": 6469.973027688599,\n    \"timeZone\": 8282.961406130988,\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"Frictionless\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"address1\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"dateOfBirth\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"documentReference\": \"string\"\n    }\n  },\n  \"address\": {\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"address1\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a4fe6822-72c3-4fdf-ab51-3b364b5a3418",
-              "name": "Address Required",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    "token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
-                    "key": "x-device-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planCode\": \"<string>\",\n  \"token\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"digitalCollectiblesMarketplace\",\n      \"quantity\": 573.9283062157951,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 3402.0961620806956\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"musicTicket\",\n      \"quantity\": 3504.271793930429,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 858.0346828626906\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 5933\n  },\n  \"authentication3DS\": {\n    \"colorDepth\": 1648.7268687543421,\n    \"screenHeight\": 5541.019726438144,\n    \"screenWidth\": 6469.973027688599,\n    \"timeZone\": 8282.961406130988,\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"Frictionless\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"address1\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"dateOfBirth\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"documentReference\": \"string\"\n    }\n  },\n  \"address\": {\n    \"country\": \"string\",\n    \"city\": \"string\",\n    \"address1\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d1ed7969-510c-4174-bb43-cdedccce3d90",
-          "name": "Purchase Subscription with New Card",
-          "request": {
-            "name": "Purchase Subscription with New Card",
-            "description": {
-              "content": "Purchase a subscription with a new credit card",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscription",
-                ":merchantId",
-                "subscribers",
-                "card"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "merchantId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                "key": "x-coinflow-auth-session-key",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
-                "key": "x-device-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"planCode\": \"<string>\",\n  \"card\": {\n    \"cardToken\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"state\": \"<string>\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"verificationId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"lat\": \"<string>\",\n    \"lng\": \"<string>\",\n    \"dob\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"webhookInfo\": {\n    \"example\": \"<string>\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"<string>\",\n      \"productType\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"listPrice\": {\n        \"currency\": \"<string>\",\n        \"valueInCurrency\": \"<double>\"\n      },\n      \"rawProductData\": {\n        \"example\": \"<string>\"\n      },\n      \"seller\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string,null>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"dob\": \"<string>\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": \"<integer>\"\n  },\n  \"authentication3DS\": {\n    \"colorDepth\": \"<double>\",\n    \"screenHeight\": \"<double>\",\n    \"screenWidth\": \"<double>\",\n    \"timeZone\": \"<double>\",\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"transactionId\": \"<string>\",\n        \"directoryServer\": \"<string>\",\n        \"version\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"<string>\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"dateOfBirth\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"documentReference\": \"<string>\"\n    }\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "bf4a32f2-27a8-47f2-b1e6-12f513962dda",
-              "name": "Ok",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscription",
-                    ":merchantId",
-                    "subscribers",
-                    "card"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "merchantId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The session key generated for the end user - see https://docs.coinflow.cash/api-reference/api-reference/authentication/get-session-key",
-                    "key": "x-coinflow-auth-session-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "- (Optional) If you are using Coinflow Chargeback Protection, you must pass the device id of the customer's device.",
-                    "key": "x-device-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planCode\": \"<string>\",\n  \"card\": {\n    \"cardToken\": \"string\",\n    \"expYear\": \"string\",\n    \"expMonth\": \"string\",\n    \"email\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"address1\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"string\",\n    \"additionalVendorData\": {},\n    \"businessName\": \"string\",\n    \"zip\": \"string\",\n    \"state\": \"string\"\n  },\n  \"customerInfo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"verificationId\": \"string\",\n    \"displayName\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zip\": \"string\",\n    \"country\": \"string\",\n    \"ip\": \"string\",\n    \"lat\": \"string\",\n    \"lng\": \"string\",\n    \"dob\": \"string\",\n    \"email\": \"string\"\n  },\n  \"webhookInfo\": {\n    \"type\": \"string\"\n  },\n  \"chargebackProtectionData\": [\n    {\n      \"productName\": \"string\",\n      \"productType\": \"conferenceTicket\",\n      \"quantity\": 606.6010325803505,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 895.0098334440027\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    {\n      \"productName\": \"string\",\n      \"productType\": \"alcohol\",\n      \"quantity\": 178.90550410098461,\n      \"listPrice\": {\n        \"currency\": \"string\",\n        \"valueInCurrency\": 9263.697490882107\n      },\n      \"rawProductData\": {\n        \"type\": \"string\"\n      },\n      \"seller\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"dob\": \"string\",\n        \"rawSellerData\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"transactionHistory\": [\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"txType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"chain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentAmount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"paymentToken\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"from\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"registryContract\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"assetID\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"blockNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"txHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  ],\n  \"feePercentage\": \"<double>\",\n  \"fixedFee\": {\n    \"cents\": 6644\n  },\n  \"authentication3DS\": {\n    \"colorDepth\": 8147.409890205994,\n    \"screenHeight\": 334.5043882839149,\n    \"screenWidth\": 4461.401240836897,\n    \"timeZone\": 9775.453046892608,\n    \"versionInfo\": [\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"transactionId\": \"string\",\n        \"directoryServer\": \"string\",\n        \"version\": \"string\",\n        \"url\": \"string\"\n      }\n    ]\n  },\n  \"threeDsChallengePreference\": \"NoPreference\",\n  \"accountFundingTransaction\": {\n    \"recipientAftInfo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"address1\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\",\n      \"state\": \"string\",\n      \"dateOfBirth\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"documentReference\": \"string\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "\"string\"",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b766debf-84b3-42d8-aee2-151f2a47f447",
+          "createdAt": "2026-10-22T02:30:55.000Z",
+          "updatedAt": "2026-10-22T02:30:55.000Z",
+          "uid": "35240-b766debf-84b3-42d8-aee2-151f2a47f447"
         }
       ],
-      "event": []
+      "id": "6e63c523-f744-4ca0-b3ae-2cdad7ff5f96",
+      "createdAt": "2026-10-22T02:30:55.000Z",
+      "updatedAt": "2026-10-22T02:30:55.000Z",
+      "uid": "35240-6e63c523-f744-4ca0-b3ae-2cdad7ff5f96"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api-sandbox.coinflow.cash/api",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
     }
-  ],
-  "info": {
-    "_postman_id": "ec9b9427-ec6a-4f58-9581-64c89b7962f8",
-    "name": "API Reference authentication subscription API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

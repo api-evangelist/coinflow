@@ -1,0 +1,635 @@
+{
+  "info": {
+    "_postman_id": "69ecf63b-f9ab-45ef-b475-61e467f877ae",
+    "name": "Reference Card Tokenization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:31:34.000Z",
+    "updatedAt": "2026-10-22T02:31:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-69ecf63b-f9ab-45ef-b475-61e467f877ae"
+  },
+  "item": [
+    {
+      "name": "tokenize",
+      "item": [
+        {
+          "name": "associate-cvv",
+          "item": [
+            {
+              "name": "Associate CVV",
+              "id": "d54ca53d-2162-4cf3-be7b-415562da42ef",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokenize/associate-cvv",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokenize",
+                    "associate-cvv"
+                  ]
+                },
+                "description": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+              },
+              "response": [
+                {
+                  "id": "9c46d18a-84b4-45b4-bec5-857fb9f2712f",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                        "key": "tx-token-scheme",
+                        "value": "sixANTOKENfour"
+                      },
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                        "key": "tx-tokenex-id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                        "key": "tx-apikey",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tokenize/associate-cvv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokenize",
+                        "associate-cvv"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\",\n  \"firstSix\": \"<string>\",\n  \"lastFour\": \"<string>\",\n  \"referenceNumber\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-9c46d18a-84b4-45b4-bec5-857fb9f2712f"
+                }
+              ],
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-d54ca53d-2162-4cf3-be7b-415562da42ef"
+            }
+          ],
+          "id": "b27852d3-530e-4a5b-ac10-9d8e723079fb",
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-b27852d3-530e-4a5b-ac10-9d8e723079fb"
+        },
+        {
+          "name": "extract-card",
+          "item": [
+            {
+              "name": "Extract Card From Image",
+              "id": "74a63b3a-affa-4087-a5d6-54b0f6eecac0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"image\": \"<string>\",\n  \"mimeType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokenize/extract-card",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokenize",
+                    "extract-card"
+                  ]
+                },
+                "description": "Extract the card details from a photo of a physical card and tokenize them.\n\nThis allows a customer to take a photo of their credit/debit card and have\nthe card details auto-populated during checkout instead of typing them in\nmanually. The card is extracted and stored as a token in Coinflow's\nPCI-compliant vault, and the resulting token is returned so it can be used\nin the cards endpoint.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+              },
+              "response": [
+                {
+                  "id": "cf28c8d4-d043-4e98-93cf-5f7e58538dbb",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"image\": \"<string>\",\n  \"mimeType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tokenize/extract-card",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokenize",
+                        "extract-card"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\",\n  \"firstSix\": \"<string>\",\n  \"lastFour\": \"<string>\",\n  \"expirationMonth\": \"<string,null>\",\n  \"expirationYear\": \"<string,null>\",\n  \"cvvCaptured\": \"<boolean>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-cf28c8d4-d043-4e98-93cf-5f7e58538dbb"
+                }
+              ],
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-74a63b3a-affa-4087-a5d6-54b0f6eecac0"
+            }
+          ],
+          "id": "91415890-e2be-4386-9a5d-fa5a622decf0",
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-91415890-e2be-4386-9a5d-fa5a622decf0"
+        },
+        {
+          "name": "card-only",
+          "item": [
+            {
+              "name": "Tokenize Card Only",
+              "id": "2bd146ba-9a4f-4df1-886a-ccad5e9fb1a8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokenize/card-only",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokenize",
+                    "card-only"
+                  ]
+                },
+                "description": "Tokenize Card PAN without CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+              },
+              "response": [
+                {
+                  "id": "2eb5c072-2c57-46fb-a8e9-339fcacfac45",
+                  "name": "Ok",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                        "key": "tx-token-scheme",
+                        "value": "sixANTOKENfour"
+                      },
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                        "key": "tx-tokenex-id",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                        "key": "tx-apikey",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tokenize/card-only",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokenize",
+                        "card-only"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\",\n  \"firstSix\": \"<string>\",\n  \"lastFour\": \"<string>\",\n  \"referenceNumber\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:31:35.000Z",
+                  "updatedAt": "2026-10-22T02:31:35.000Z",
+                  "uid": "35240-2eb5c072-2c57-46fb-a8e9-339fcacfac45"
+                }
+              ],
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-2bd146ba-9a4f-4df1-886a-ccad5e9fb1a8"
+            }
+          ],
+          "id": "30f31e6f-fb91-454b-8fea-0a41a4ba2392",
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-30f31e6f-fb91-454b-8fea-0a41a4ba2392"
+        },
+        {
+          "name": "Tokenize Card and CVV",
+          "id": "235fdeba-cf27-4738-8319-fb68cd5a6b51",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                "key": "tx-token-scheme",
+                "value": "sixANTOKENfour"
+              },
+              {
+                "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                "key": "tx-tokenex-id",
+                "value": "<string>"
+              },
+              {
+                "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                "key": "tx-apikey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tokenize",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tokenize"
+              ]
+            },
+            "description": "Tokenize Card PAN & Optionally CVV in a server to server integration.\n\nIn order to gain access to this endpoint your company must have PCI-DSS\ncertification, and provide that to your Coinflow Integrations Representative."
+          },
+          "response": [
+            {
+              "id": "75f67f11-ad38-499e-9f55-0e0578ef7e81",
+              "name": "Ok",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. Contact your Coinflow integrations representative if you are unsure whether this applies to you.",
+                    "key": "tx-token-scheme",
+                    "value": "sixANTOKENfour"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, pass 4582952996979143 in the Sandbox Environment and 2781185452603874 in Production.",
+                    "key": "tx-tokenex-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Only required if your account is configured with a tokenization provider that uses this header \u2014 most merchants should omit it. If it applies to you, contact your Coinflow integrations representative to receive this value.",
+                    "key": "tx-apikey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": \"<string>\",\n  \"cvv\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tokenize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokenize"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"token\": \"<string>\",\n  \"firstSix\": \"<string>\",\n  \"lastFour\": \"<string>\",\n  \"referenceNumber\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:31:35.000Z",
+              "updatedAt": "2026-10-22T02:31:35.000Z",
+              "uid": "35240-75f67f11-ad38-499e-9f55-0e0578ef7e81"
+            }
+          ],
+          "createdAt": "2026-10-22T02:31:35.000Z",
+          "updatedAt": "2026-10-22T02:31:35.000Z",
+          "uid": "35240-235fdeba-cf27-4738-8319-fb68cd5a6b51"
+        }
+      ],
+      "id": "213425f3-3470-4be2-a4b6-ac77257a56e8",
+      "createdAt": "2026-10-22T02:31:35.000Z",
+      "updatedAt": "2026-10-22T02:31:35.000Z",
+      "uid": "35240-213425f3-3470-4be2-a4b6-ac77257a56e8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.coinflow.cash/api"
+    }
+  ]
+}
